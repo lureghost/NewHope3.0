@@ -17,5 +17,15 @@ namespace NewHope.Controllers
 
             return View();
         }
+
+        /// <summary>
+        /// 测试
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ceshi()
+        {
+
+            return View();
+        }
     }
 }
