@@ -19,12 +19,11 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
-        /// 测试
+        /// 库位管理
         /// </summary>
         /// <returns></returns>
-        public ActionResult ceshi()
+        public ActionResult kuwei()
         {
-
             return View();
         }
     }
