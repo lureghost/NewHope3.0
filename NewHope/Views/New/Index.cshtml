@@ -1,0 +1,115 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        
+        <ul class="layui-nav">
+            <li class="layui-nav-item">
+                <a href=""><h1>仓储管理系统</h1></a>
+            </li>
+           @*个人中心的下拉框*@
+            <li class="layui-nav-item" lay-unselect="" style="float:right;">
+                <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">当前登录</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">administrator</a></dd>
+                    <dd><a href="javascript:;">修改密码</a></dd>
+                    <dd><a href="javascript:;">退出系统</a></dd>
+                </dl>
+            </li>
+        </ul>
+
+        @*最大div*@
+        <div>
+
+            @*菜单栏的div*@
+            <div style="float:left;">
+                <ul class="layui-nav layui-nav-tree layui-inline layui-show" lay-filter="demo" style="margin-right: 10px;">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">系统设置</a>
+                        <dl class="layui-nav-child ">
+                            <dd><a href="javascript:;">员工管理</a></dd>
+                            <dd><a href="javascript:;">角色管理</a></dd>
+                            <dd><a href="javascript:;">部门管理</a></dd>
+                            <dd><a href="javascript:;">菜单管理</a></dd>
+                            <dd><a href="javascript:;">权限分配</a></dd>
+                            <dd><a href="javascript:;">标识符管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">基本资料</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">库位管理</a></dd>
+                            <dd><a href="javascript:;">供应商管理</a></dd>
+                            <dd><a href="javascript:;">客户管理</a></dd>
+                            <dd><a href="javascript:;">计量单位</a></dd>
+                            <dd><a href="javascript:;">产品类型</a></dd>
+                            <dd><a href="javascript:;">产品管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">仓库作业</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">入库管理</a></dd>
+                            <dd><a href="javascript:;">出库管理</a></dd>
+                            <dd><a href="javascript:;">报损管理</a></dd>
+                            <dd><a href="javascript:;">移库单位</a></dd>
+                            <dd><a href="javascript:;">盘点管理</a></dd>
+                            <dd><a href="javascript:;">退货管理</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">报表管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">库存清单</a></dd>
+                            <dd><a href="javascript:;">货品统计</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a href="javascript:;">退出系统</a>
+                    </li>
+                </ul>
+            </div>
+
+            @*子页面的div*@
+            <div style="float:left;">
+                @RenderBody()
+
+            </div>
+        </div>
+
+
+        
+        
+
+        <div class="layui-collapse" lay-accordion>
+           
+
+    </div>
+    <script src="~/layui/layui.js"></script>
+    <script>
+
+
+        layui.use('element', function () {
+            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+            ////监听导航点击
+            //element.on('nav(demo)', function (elem) {
+            //    //console.log(elem)
+            //    layer.msg(elem.text());
+            //});
+        });
+
+    </script>
+</body>
+</html>
