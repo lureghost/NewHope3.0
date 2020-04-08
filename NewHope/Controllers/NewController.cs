@@ -58,8 +58,25 @@ namespace NewHope.Controllers
         {
             return View();
         }
+
+
         //计量单位
         public ActionResult jilangdanwei()
+        {
+            return View();
+        }
+        //产品类别
+        public ActionResult chanpinlb()
+        {
+            return View();
+        }
+        //产品管理
+        public ActionResult chanpinguanli()
+        {
+            return View();
+        }
+        //菜单管理
+        public ActionResult caidanuanli()
         {
             return View();
         }

@@ -305,6 +305,9 @@
     <Content Include="Views\New\kehu.cshtml" />
     <Content Include="Views\New\bumen.cshtml" />
     <Content Include="Views\New\jilangdanwei.cshtml" />
+    <Content Include="Views\New\chanpinlb.cshtml" />
+    <Content Include="Views\New\chanpinguanli.cshtml" />
+    <Content Include="Views\New\caidanuanli.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
