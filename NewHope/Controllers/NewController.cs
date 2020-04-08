@@ -54,7 +54,7 @@ namespace NewHope.Controllers
         /// 部门管理呀
         /// </summary>
         /// <returns></returns>
-        public ActionResult bumenj()
+        public ActionResult bumen()
         {
             return View();
         }
