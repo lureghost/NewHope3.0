@@ -58,5 +58,10 @@ namespace NewHope.Controllers
         {
             return View();
         }
+        //计量单位
+        public ActionResult jilangdanwei()
+        {
+            return View();
+        }
     }
 }
