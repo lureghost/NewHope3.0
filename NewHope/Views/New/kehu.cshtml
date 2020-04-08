@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "kehu";
+    Layout = "~/Views/New/Index.cshtml";
+}
+
+
+
+
+<div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
+            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">客户管理</a>
+
+        </div>
+        <div class="layui-card-body">
+
+
+            <div class="layui-card" style="border: 1px solid #E1DFDF">
+
+
+                <div class="layui-card-header">
+                    客户管理
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button type="button" class="layui-btn layui-btn-radius">导出</button>
+
+                </div>
+                <div class="layui-card-body">
+
+
+                    <input type="text" name="kuweiName" placeholder="请输入客户编号或名称" size="36" />
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
+
+
+
+
+
+                    <div class="layui-form">
+                        <table class="layui-table">
+                            <colgroup>
+                                @*<col width="150">
+                        <col width="150">
+                        <col width="200">
+                        <col>*@
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td>&nbsp;客户编号</td>
+                                    <td>&nbsp;客户名称</td>
+                                    <td>&nbsp;电话	</td>
+                                    <td>&nbsp;传真	</td>
+                                    <td>&nbsp;创建时间</td>
+                                    <td>&nbsp;操作</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td>&nbsp;序号1111</td>
+                                    <td>&nbsp;库位编号</td>
+                                    <td>&nbsp;库位名11</td>
+                                    <td>&nbsp;所在仓库</td>
+                                    <td>&nbsp;库位类型</td>
+                                    <td>&nbsp;编辑&nbsp; 删除</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div>
+                        共 5 行 ,每页
+                        <div class="layui-input-inline">
+                            <select name="quiz3">
+                                <option value="">5</option>
+                                <option value="产品仓库">10</option>
+                                <option value="产品仓库">15</option>
+                                <option value="产品仓库">20</option>
+                                <option value="产品仓库">25</option>
+                            </select>
+                        </div>
+                        行
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+
+                    </div>
+                </div>
+
+
+
+                <div id="hideID" hidden="hidden">
+                    <br />
+                    <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                    <span style="margin-left:30px">名称&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" placeholder="请输入客户名称" /></span>
+                    <span style="margin-left:30px"> 备注&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <br />
+                    <br />
+
+                    <span style="margin-left:30px"> 传真&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <span style="margin-left:30px"> Email&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+
+
+
+                    <br />
+                    <br />
+                    <table class="layui-table">
+                        <colgroup>
+                            @*<col width="150">
+                    <col width="150">
+                    <col width="200">
+                    <col>*@
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <td>&nbsp;地址编号</td>
+                                <td>&nbsp;地址</td>
+                                <td>&nbsp;联系人	</td>
+                                <td>&nbsp;电话	</td>
+                                <td>&nbsp;操作</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>&nbsp;库位编号</td>
+                                <td>&nbsp;库位名11</td>
+                                <td>&nbsp;所在仓库</td>
+                                <td>&nbsp;库位类型</td>
+                                <td>&nbsp;编辑&nbsp; 删除</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br />
+                    <br />
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:550px" onclick="show2()">新增地址</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">确定</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                </div>
+
+
+
+
+
+
+
+                <div id="hideID2" hidden="hidden">
+                    <br />
+                    <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                    <br />
+                    <br />
+                    <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" ></span>
+                    <br />
+                    <br />
+                    <span style="margin-left:30px"> 联系人&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <br />
+                    <br />
+                    <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <br />
+                    <br />
+
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@*<script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/layui/layui.all.js"></script>*@
+<script>
+
+
+    function show() {
+        //var a = layer.open({
+        //    type: 1,
+        //    area: ['100%', '550px'],
+        //    title: ['添加库位','font-size:18px'],
+        //    shadeClose: true,
+        //    content: ['layer_model.html', 'no']
+        //});
+
+        //layer.open({
+        //    type: 1,
+        //    content: '11' //这里content是一个普通的String
+        //});
+
+
+
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['添加供应商', 'font-size:18px'],
+            area: ['800px', '350px'],
+            shadeClose: true,
+            content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+        //Ajax获取
+        $.post('url', {}, function (str) {
+            layer.open({
+                type: 1,
+
+                content: str //注意，如果str是object，那么需要字符拼接。
+            });
+        });
+    }
+
+
+    function show2() {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['新增地址', 'font-size:18px'],
+            area: ['300px', '300px'],
+            shadeClose: true,
+            content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+        //Ajax获取
+        $.post('url', {}, function (str) {
+            layer.open({
+                type: 1,
+                content: str //注意，如果str是object，那么需要字符拼接。
+            });
+        });
+    }
+
+
+</script>
+
+

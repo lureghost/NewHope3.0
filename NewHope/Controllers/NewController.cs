@@ -26,5 +26,32 @@ namespace NewHope.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 供应商管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult gongyingshang()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 客户管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult kehu()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 部门管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult bumen()
+        {
+            return View();
+        }
     }
 }

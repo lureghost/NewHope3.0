@@ -285,6 +285,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\New\kuwei.cshtml" />
+    <Content Include="Views\New\gongyingshang.cshtml" />
+    <Content Include="Views\New\kehu.cshtml" />
+    <Content Include="Views\New\bumen.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
