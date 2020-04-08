@@ -58,5 +58,13 @@ namespace NewHope.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 移库单位
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult yiku()
+        {
+            return View();
+        }
     }
 }
