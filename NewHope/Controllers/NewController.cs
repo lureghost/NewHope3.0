@@ -14,6 +14,11 @@ namespace NewHope.Controllers
             return View();
         }
         public ActionResult test() {
+            
+            return View();
+        }
+        public ActionResult test22()
+        {
 
             return View();
         }
