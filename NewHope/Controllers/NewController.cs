@@ -51,7 +51,7 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
-        /// 部门管理呀
+        /// 部门管理
         /// </summary>
         /// <returns></returns>
         public ActionResult bumen()
