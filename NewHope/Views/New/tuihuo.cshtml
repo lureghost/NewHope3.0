@@ -1,29 +1,26 @@
 ﻿
 @{
-    ViewBag.Title = "yiku";
-   Layout = "~/Views/New/Index.cshtml";
+    ViewBag.Title = "tuihuo";
+    Layout = "~/Views/New/Index.cshtml";
 }
 
-<h2>yiku</h2>
+<h2>tuihuo</h2>
 
-<head>
-    @*<link href="~/layui/css/layui.css" rel="stylesheet" />*@
-</head>
 <body class="layui-layout-body">
     <div class="layui-layout layui-layout-admin">
-      
 
-        <div class="layui-body" >
+
+        <div class="layui-body">
             <!-- 内容主体区域 -->
 
             <ul class="">
-                <li class=""><a href="">首页</a>>  <a href="">仓库作业</a>>    <a href="">移库管理</a></li>
+                <li class=""><a href="">首页</a>>  <a href="">仓库作业</a>>    <a href="">退货管理</a></li>
 
 
             </ul>
             <form class="layui-form" action="" lay-filter="example">
                 <div>
-                    <h3 >移库管理</h3>
+                    <h3>退货管理</h3>
                 </div>
 
                 <div class="layui-btn-group">
@@ -34,11 +31,11 @@
 
                 </div>
                 <div style="float:right">
-                    <button type="button" onclick="location.href='/New/addyikudan'" class="layui-btn" ><i class="layui-icon" > </i>新增</button>
+                    <button type="button" onclick="location.href='/New/addtuihuo'" class="layui-btn"><i class="layui-icon"> </i>新增</button>
                     <button type="button" class="layui-btn"><i class="layui-icon"></i>删除</button>
                     <button type="button" class="layui-btn"><i class="layui-icon"></i>导出</button>
                 </div>
-              
+
                 <div class="layui-form-item">
 
 
@@ -62,50 +59,42 @@
                             <thead>
                                 <tr>
                                     <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;移库单编号</td>
-                                    <td>&nbsp;移库类型</td>
+                                    <td>&nbsp;退货单</td>
+                                    <td>&nbsp;退货类型</td>
+                                    <td>&nbsp;退货数量</td>
                                     <td>&nbsp;关联单号</td>
-                                    <td>&nbsp;移库总数</td>
-                                    <td>&nbsp;移库人</td>
                                     <td>&nbsp;状态</td>
+                                    <td>&nbsp;制单人</td>
+                                    <td>&nbsp;操作方式</td>
                                     <td>&nbsp;创建时间</td>
                                     <td>&nbsp;操作</td>
-
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;单号1111</td>
-                                    <td>&nbsp;移库上架</td>
-                                    <td>&nbsp;23</td>
-                                    <td>&nbsp;3</td>
-                                    <td>&nbsp;admin</td>
-                                    <td>&nbsp;等待审核</td>
-                                    <td>&nbsp;2020/4/9</td>
-                                    <td>&nbsp;新增删除查看审核</td>
+                                 
 
                                 </tr>
                             </tbody>
                         </table>
-                       
+
                         <div id="demo8"></div>
 
                     </div>
-                   
+
                 </div>
 
 
 
             </form>
-            
-            </div>
-
 
         </div>
-        
-   
+
+
+    </div>
+
+
 
     <script src="~/layui/layui.js"></script>
     <script src="~/layui/layui.all.js"></script>
@@ -119,6 +108,6 @@
             , count: 1000
             , layout: ['limit', 'prev', 'page', 'next']
         });
-          
+
     </script>
 </body>

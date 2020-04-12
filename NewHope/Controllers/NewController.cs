@@ -59,10 +59,50 @@ namespace NewHope.Controllers
             return View();
         }
         /// <summary>
-        /// 移库单位
+        /// 移库管理
         /// </summary>
         /// <returns></returns>
         public ActionResult yiku()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 新增移库单
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult addyikudan()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 盘点管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult pandian()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 新增盘点
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult addpandian()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 退货管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult tuihuo()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 新增退货
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult addtuihuo()
         {
             return View();
         }

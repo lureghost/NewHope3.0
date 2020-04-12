@@ -289,6 +289,11 @@
     <Content Include="Views\New\kehu.cshtml" />
     <Content Include="Views\New\bumen.cshtml" />
     <Content Include="Views\New\yiku.cshtml" />
+    <Content Include="Views\New\addyikudan.cshtml" />
+    <Content Include="Views\New\pandian.cshtml" />
+    <Content Include="Views\New\addpandian.cshtml" />
+    <Content Include="Views\New\tuihuo.cshtml" />
+    <Content Include="Views\New\addtuihuo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

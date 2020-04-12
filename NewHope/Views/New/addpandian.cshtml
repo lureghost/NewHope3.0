@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "addpandian";
+    Layout = "~/Views/New/Index.cshtml";
+}
+
+<h2>addpandian</h2>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+
+            <ul class="">
+                <li class=""><a href="">首页</a>>  <a href="">仓库作业</a>>    <a href="">盘点管理</a> ><a href="">新增盘点</a></li>
+
+
+            </ul>
+
+            <form class="layui-form" action="" lay-filter="example">
+                <div>
+                    <h3>新增盘点</h3>
+                </div>
+
+
+                <div class="layui-inline">
+                    <div class="layui-input-inline" style="width: 200px;">
+                        盘点单号
+                        <input type="text" name="danhao" lay-verify="title" autocomplete="off" placeholder="可不填,自动生成" readonly="readonly" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        关联订单
+                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        订单时间
+                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline" style="width: 200px;">
+                        制单人
+                        <input type="text" name="time_max" placeholder="admin" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline" style="width: 400px;">
+                        备注
+                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="table">
+                    <table class="layui-table">
+
+                        <thead>
+                            <tr>
+                               
+                                <td>&nbsp;产品编号</td>
+                                <td>&nbsp;产品名称</td>
+                                <td>&nbsp;产品条码</td>
+                                <td>&nbsp;规格</td>
+                                <td>&nbsp;类别</td>
+                              
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="layui-btn-group">
+                        <button type="button" onclick="show('light')" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>添加盘点目标</button>
+                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>保存</button>
+
+                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>取消</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <div id="light" class="white_content">
+
+
+                <div style="height:450px;">
+
+                    <div class="layui-input-inline" style="width: 200px;">
+                        类别编号/名称： <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-input-inline">
+                        移库类型
+                        <select name="quiz2">
+                            <option value="">请选择类别</option>
+                            <option value="家电">家电</option>
+                            <option value="珠宝">珠宝</option>
+                            <option value="女装">女装</option>
+
+                        </select>
+                    </div>
+
+                    <button type="button" class="layui-btn layui-btn-normal">搜索</button>
+
+                    <table class="layui-table">
+                        <thead>
+                            <tr>
+                                <td><input id="Checkbox1" type="checkbox" /></td>
+                                <td>&nbsp;产品编号</td>
+                                <td>&nbsp;产品名称</td>
+                                <td>&nbsp;产品类别</td>
+                                <td>&nbsp;单位</td>
+                                <td>&nbsp;单价</td>
+                                <td>&nbsp;规格</td>
+                                <td>&nbsp;描述</td>
+                                <td>&nbsp;备注</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                    <div style="float:right">
+
+                        <div class="close"><button>全部</button><button>确定</button><button onclick="hide('light')">关闭</button> </div>
+                    </div>
+                </div>
+
+                </div>
+
+
+            <div id="fade" class="black_overlay"></div>
+
+        </div>
+
+
+    </div>
+
+</body>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(function () {
+
+    });
+    function show(tag) {
+        var light = document.getElementById(tag);
+        light.style.display = 'block';
+        $("#fade").css('display', 'block');
+    }
+    function hide(tag) {
+        var light = document.getElementById(tag);
+        light.style.display = 'none';
+        $("#fade").css('display', 'none');
+    }
+
+</script>
