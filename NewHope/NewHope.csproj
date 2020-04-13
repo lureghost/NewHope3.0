@@ -288,6 +288,9 @@
     <Content Include="Views\New\gongyingshang.cshtml" />
     <Content Include="Views\New\kehu.cshtml" />
     <Content Include="Views\New\bumen.cshtml" />
+    <Content Include="Views\New\QuanXianFenPei.cshtml" />
+    <Content Include="Views\New\ceshi.cshtml" />
+    <Content Include="Views\New\BiaoShiFuGuanLi.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

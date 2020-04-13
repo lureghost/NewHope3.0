@@ -17,7 +17,7 @@ namespace NewHope.Controllers
             
             return View();
         }
-        public ActionResult test22()
+        public ActionResult test2233()
         {
 
             return View();
@@ -51,10 +51,30 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
-        /// 部门管理呀
+        /// 张志雄的部门管理呀
         /// </summary>
         /// <returns></returns>
         public ActionResult bumen()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 张志雄的权限分配
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult QuanXianFenPei()
+        {
+            return View();
+        }
+        public ActionResult ceshi()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 张志雄的标识符管理
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult BiaoShiFuGuanLi()
         {
             return View();
         }

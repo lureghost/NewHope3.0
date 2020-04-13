@@ -1,19 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "bumen";
+    ViewBag.Title = "BiaoShiFuGuanLi";
     Layout = "~/Views/New/Index.cshtml";
 }
-
-
-
-
 
 <div>
 
     <div class="layui-card">
         <div class="layui-card-header">
             <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
-            <a href="javascript:;">系统设置</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">部门管理</a>
+            <a href="javascript:;">系统设置</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">标识符管理</a>
 
         </div>
         <div class="layui-card-body">
@@ -32,7 +28,7 @@
                 <div class="layui-card-body">
 
 
-                    <input type="text" name="kuweiName" placeholder="请输入部门编号或部门名称" size="36" />
+                    <input type="text" name="kuweiName" placeholder="请输入表名" size="36" />
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
 
 
@@ -49,27 +45,46 @@
                             </colgroup>
                             <thead>
                                 <tr>
-                                    
-                                    	
-                                    
-                                    	
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;序号	</td>
-                                    <td>&nbsp;部门编号</td>
-                                    <td>&nbsp;部门名称	</td>
-                                    <td>&nbsp;创建时间</td>
+                                    <td>&nbsp;表名	</td>
+                                    <td>&nbsp;类型1</td>
+                                    <td>&nbsp;规则1	</td>
+                                    <td>&nbsp;长度1</td>
+                                    <td>&nbsp;连接符</td>
+                                    <td>&nbsp;类型2</td>
+                                    <td>&nbsp;规则2</td>
+                                    <td>&nbsp;长度2</td>
                                     <td>&nbsp;操作</td>
 
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;序号1111</td>
-                                    <td>&nbsp;库位编号</td>
-                                    <td>&nbsp;库位名11</td>
-                                    <td>&nbsp;库位类型</td>
-                                    <td>&nbsp;编辑&nbsp; 删除</td>
+
+                                    <td>&nbsp;Admin</td>
+                                    <td>&nbsp;
+                                        <div class="layui-input-inline"style="width:100px;">
+                                            <select name="quiz3">
+                                                <option value="">选择</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" size="7" style="border-radius: 5px 5px 5px 5px;height:20px;" /></td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" placeholder="6" style="border-radius: 5px 5px 5px 5px;height:20px;width:40px;" /></td>
+                                    <td>&nbsp;<input type="text" name="kuweiName"  style="border-radius: 5px 5px 5px 5px;height:20px;width:40px;" /></td>
+                                    <td>&nbsp;
+                                        <div class="layui-input-inline" style="width:100px;">
+                                            <select name="quiz3" >
+                                                <option value="" >选择</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" size="7" style="border-radius: 5px 5px 5px 5px;height:20px;" /></td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" placeholder="0" style="border-radius: 5px 5px 5px 5px;height:20px;width:40px;" /></td>
+                                    <td>&nbsp;保存</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -97,7 +112,7 @@
 
 
 
-              
+
 
 
 
@@ -127,7 +142,7 @@
 <script>
 
 
-   
+
 
 
     function show2() {
@@ -151,5 +166,4 @@
 
 
 </script>
-
 
