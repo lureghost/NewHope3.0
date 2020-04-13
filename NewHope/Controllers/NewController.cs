@@ -108,26 +108,50 @@ namespace NewHope.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 刘绕菁移库管理
+        /// </summary>
+        /// <returns></returns>
         public ActionResult yiku()
         {
             return View();
         }
+        /// <summary>
+        /// 刘绕菁添加移库单
+        /// </summary>
+        /// <returns></returns>
         public ActionResult addyiku()
         {
             return View();
         }
+        /// <summary>
+        /// 刘绕菁盘点管理
+        /// </summary>
+        /// <returns></returns>
         public ActionResult pandian()
         {
             return View();
         }
+        /// <summary>
+        /// 刘绕菁添加盘点
+        /// </summary>
+        /// <returns></returns>
         public ActionResult addpandian()
         {
             return View();
         }
+        /// <summary>
+        /// 刘绕菁退货管理
+        /// </summary>
+        /// <returns></returns>
         public ActionResult tuihuo()
         {
             return View();
         }
+        /// <summary>
+        /// 刘绕菁添加退货管理
+        /// </summary>
+        /// <returns></returns>
         public ActionResult addtuihuo()
         {
             return View();
