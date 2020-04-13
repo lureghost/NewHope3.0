@@ -18,7 +18,7 @@ namespace NewHope.Controllers
 
             return View();
         }
-        //入库新增
+        //农翔-入库新增
         public ActionResult rukuadd() {
 
             return View();
