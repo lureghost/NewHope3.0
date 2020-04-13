@@ -22,7 +22,35 @@ namespace NewHope.Controllers
 
             return View();
         }
+        public ActionResult ruku() {
 
+            return View();
+        }
+        public ActionResult rukuadd()
+        {
+
+            return View();
+        }
+        public ActionResult chuku()
+        {
+
+            return View();
+        }
+        public ActionResult chukuadd()
+        {
+
+            return View();
+        }
+        public ActionResult baosun()
+        {
+
+            return View();
+        }
+        public ActionResult baosunadd()
+        {
+
+            return View();
+        }
         /// <summary>
         /// 库位管理
         /// </summary>
@@ -58,51 +86,25 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        /// <summary>
-        /// 移库管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult yiku()
+
+
+        //计量单位
+        public ActionResult jilangdanwei()
         {
             return View();
         }
-        /// <summary>
-        /// 新增移库单
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addyikudan()
+        //产品类别
+        public ActionResult chanpinlb()
         {
             return View();
         }
-        /// <summary>
-        /// 盘点管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult pandian()
+        //产品管理
+        public ActionResult chanpinguanli()
         {
             return View();
         }
-        /// <summary>
-        /// 新增盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addpandian()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 退货管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult tuihuo()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 新增退货
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addtuihuo()
+        //菜单管理
+        public ActionResult caidanuanli()
         {
             return View();
         }
