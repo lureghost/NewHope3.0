@@ -13,36 +13,16 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        //农翔-入库管理
-        public ActionResult ruku() {
+        public ActionResult test() {
+            
+            return View();
+        }
+        public ActionResult test22()
+        {
 
             return View();
         }
-        //入库新增
-        public ActionResult rukuadd() {
 
-            return View();
-        }
-        //农翔-出库管理
-        public ActionResult chuku() {
-
-            return View();
-        }
-        //出库新增
-        public ActionResult chukuadd() {
-
-            return View();
-        }
-        //农翔-报损管理
-        public ActionResult baosun() {
-
-            return View();
-        }
-        //报损新增
-        public ActionResult baosunadd() {
-
-            return View();
-        }
         /// <summary>
         /// 库位管理
         /// </summary>
@@ -71,7 +51,7 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
-        /// 部门管理
+        /// 部门管理呀
         /// </summary>
         /// <returns></returns>
         public ActionResult bumen()
