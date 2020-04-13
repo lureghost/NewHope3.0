@@ -18,8 +18,8 @@ namespace NewHope.Controllers
 
             return View();
         }
-        //入库新增
-        public ActionResult rukuadd() {
+        public ActionResult test22()
+        {
 
             return View();
         }
@@ -71,32 +71,10 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
-        /// 部门管理
+        /// 部门管理呀
         /// </summary>
         /// <returns></returns>
         public ActionResult bumen()
-        {
-            return View();
-        }
-
-
-        //计量单位
-        public ActionResult jilangdanwei()
-        {
-            return View();
-        }
-        //产品类别
-        public ActionResult chanpinlb()
-        {
-            return View();
-        }
-        //产品管理
-        public ActionResult chanpinguanli()
-        {
-            return View();
-        }
-        //菜单管理
-        public ActionResult caidanuanli()
         {
             return View();
         }
