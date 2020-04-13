@@ -89,6 +89,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\NewHope.dll" />
+    <Content Include="bin\NewHope.pdb" />
     <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
     <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap-3.3.7-dist\css\bootstrap.css" />
@@ -209,6 +211,9 @@
     <Content Include="layui\lay\modules\tree.js" />
     <Content Include="layui\lay\modules\upload.js" />
     <Content Include="layui\lay\modules\util.js" />
+    <Content Include="obj\Debug\NewHope.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\NewHope.dll" />
+    <Content Include="obj\Debug\NewHope.pdb" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -227,6 +232,10 @@
     <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\NewHope.csproj.CopyComplete" />
+    <Content Include="obj\Debug\NewHope.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\NewHope.csprojAssemblyReference.cache" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -309,6 +318,16 @@
     <Content Include="Views\New\baosun.cshtml" />
     <Content Include="Views\New\chukuadd.cshtml" />
     <Content Include="Views\New\baosunadd.cshtml" />
+    <Content Include="Views\New\addpandian.cshtml" />
+    <Content Include="Views\New\addtuihuo.cshtml" />
+    <Content Include="Views\New\addyikudan.cshtml" />
+    <Content Include="Views\New\caidanuanli.cshtml" />
+    <Content Include="Views\New\chanpinguanli.cshtml" />
+    <Content Include="Views\New\chanpinlb.cshtml" />
+    <Content Include="Views\New\jilangdanwei.cshtml" />
+    <Content Include="Views\New\pandian.cshtml" />
+    <Content Include="Views\New\tuihuo.cshtml" />
+    <Content Include="Views\New\yiku.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -319,6 +338,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
