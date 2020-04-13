@@ -1,0 +1,299 @@
+﻿
+@{
+    ViewBag.Title = "chanpinguanli";
+    Layout = "~/Views/New/Index.cshtml";
+}
+<link href="~/layui/css/layui.css" rel="stylesheet" />
+<link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/layui/layui.js"></script>
+<script src="~/layui/layui.all.js"></script>
+<div style="width:1307px;height:40px;text-align:left;background-color:#EFEFEF;border:1px solid black;">
+    <div style="position:relative;top:8px;margin-left:20px;">
+        <a style="color: #016fa7;" href="javascript:void(0)"><span class="glyphicon glyphicon-home" style="color:black"></span>   首页</a> <i>></i>
+        <a style="color: #016fa7;" href="javascript:void(0)">基本资料</a> <i>></i>
+        <a style="color:#016fa7;" href="javascript:void(0)">产品管理</a>
+    </div>
+
+
+</div>
+<div class="layui-col-md12">
+    <div class="layui-card" style="margin:0px;padding:0px;">
+        <div class="layui-card-header" style="width:1260px;">
+            <p style="font-weight:bolder"><span class="glyphicon glyphicon-globe"></span>产品管理</p>
+            <div style="height:30px;float:right;margin-top:-53px;">
+                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#006dcc" onclick="show()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
+                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49"><span class="glyphicon glyphicon-trash"></span>  删除</button>
+                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#49afcd"><span class="glyphicon glyphicon-download"></span>  导出</button>
+
+                @*<button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button type="button" class="layui-btn layui-btn-radius">导出</button>*@
+            </div>
+        </div>
+        <br />
+
+        <div class="layui-card-body">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    产品<input type="text" class="form-control" placeholder="">
+                    类别 <select name="quiz" style="height:30px;">
+                        <option value="">请选择类别</option>
+                        <optgroup label="城市记忆">
+                            <option value="你工作的第一个城市">你工作的第一个城市</option>
+                        </optgroup>
+                        <optgroup label="学生时代">
+                            <option value="你的工号">你的工号</option>
+                            <option value="你最喜欢的老师">你最喜欢的老师</option>
+                        </optgroup>
+                    </select>
+
+
+                </div>
+                <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
+            </form>
+            <table class="layui-table" style="color: black;">
+                @*<colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>*@
+                <thead>
+                    <tr>
+                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
+                        <th style="font-weight:bolder;">序号</th>
+                        <th style="font-weight: bolder;">编号</th>
+                        <th style="font-weight:bolder;">显示名</th>
+                        <th style="font-weight:bolder;">上限</th>
+                        <th style="font-weight:bolder;">下限</th>
+                        <th style="font-weight:bolder;">价格</th>
+                        <th style="font-weight:bolder;">规格</th>
+                        <th style="font-weight:bolder;">类别</th>
+                        <th style="font-weight:bolder;">单位</th>
+                        <th style="font-weight:bolder;">备注</th>
+                        <th style="font-weight:bolder;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tb1">
+                    <tr>
+                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
+                        <td>0001</td>
+                        <td>20222</td>
+                        <td>人生就像是一场修行</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>无</td>
+                        <td>杯子</td>
+                        <td>千克</td>
+                        <td>无</td>
+                        <td>修改</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
+                        <td>0002</td>
+                        <td>1111</td>
+                        <td>时间的无涯的荒野里…</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>0</td>
+                        <td>无</td>
+                        <td>杯子</td>
+                        <td>千克</td>
+                        <td>无</td>
+                        <td>修改</td>
+                    </tr>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            共12行，每页
+            <div style="margin-top:-28px;margin-left:95px;">
+                <select class="form-control" style="width:50px;height:30px;">
+                    <option value="1">1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+
+            </div>
+            <div style="float:right;margin-top:-25px;">
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">首页</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+
+            </div>
+
+            <div id="nb" hidden>
+
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;<input type="text" name="id" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <span style="">产品条码&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">产品名称&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline">
+                            产品类别&nbsp;&nbsp;
+                            <select name="quiz1" style="height: 29px;width: 178.4px;">
+                                <option value="">请选择</option>
+                                <option value="浙江" selected="">杯子</option>
+                                <option value="你的工号">家电</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <br />
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">预警上限&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <span style="">产品下限&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline" >
+                            单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;
+                            <select name="quiz3" style=" height: 29px;width: 178.4px;">
+                                <option value="">请选择</option>
+                                <option value="产品仓库">米</option>
+                                <option value="产品仓库">吨</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline" >
+                            客&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;
+                            <select name="quiz3" style="height: 29px;width: 178.4px;">
+                                <option value="">请选择</option>
+                                <option value="产品仓库">111</option>
+                                <option value="产品仓库">222</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline" style="margin-left:30px;">
+                            默认仓库&nbsp;&nbsp;
+                            <select name="quiz3"  style=" height: 29px;width: 178.4px;" >
+                                <option value="">请选择</option>
+                                <option value="产品仓库">111</option>
+                                <option value="产品仓库">222</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline" >
+                            默认库位&nbsp;&nbsp;
+                            <select name="quiz3"  style="height: 29px;width: 178.4px;">
+                                <option value="">请选择</option>
+                                <option value="产品仓库">111</option>
+                                <option value="产品仓库">222</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+               
+              
+                <br />
+                <br />
+                <span style="margin-left:30px">描订单述&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                <br />
+                <br />
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    function show() {
+        //var a = layer.open({
+        //    type: 1,
+        //    area: ['100%', '550px'],
+        //    title: ['添加库位','font-size:18px'],
+        //    shadeClose: true,
+        //    content: ['layer_model.html', 'no']
+        //});
+
+        //layer.open({
+        //    type: 1,
+        //    content: '11' //这里content是一个普通的String
+        //});
+
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['添加产品管理', 'font-size:18px'],
+            area: ['600px', '550px'],
+            shadeClose: true,
+            content: $('#nb') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+
+        //Ajax获取
+        //$.post('url', {}, function (str) {
+        //    layer.open({
+        //        type: 1,
+
+        //        content: str //注意，如果str是object，那么需要字符拼接。
+        //    });
+        //});
+    }
+</script>
