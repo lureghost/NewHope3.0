@@ -22,7 +22,35 @@ namespace NewHope.Controllers
 
             return View();
         }
+        public ActionResult ruku() {
 
+            return View();
+        }
+        public ActionResult rukuadd()
+        {
+
+            return View();
+        }
+        public ActionResult chuku()
+        {
+
+            return View();
+        }
+        public ActionResult chukuadd()
+        {
+
+            return View();
+        }
+        public ActionResult baosun()
+        {
+
+            return View();
+        }
+        public ActionResult baosunadd()
+        {
+
+            return View();
+        }
         /// <summary>
         /// 库位管理
         /// </summary>
