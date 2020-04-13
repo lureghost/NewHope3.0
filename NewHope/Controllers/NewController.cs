@@ -13,41 +13,33 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        public ActionResult test() {
-            
-            return View();
-        }
-        public ActionResult test22()
-        {
-
-            return View();
-        }
+        //农翔-入库管理
         public ActionResult ruku() {
 
             return View();
         }
-        public ActionResult rukuadd()
-        {
+        //入库新增
+        public ActionResult rukuadd() {
 
             return View();
         }
-        public ActionResult chuku()
-        {
+        //农翔-出库管理
+        public ActionResult chuku() {
 
             return View();
         }
-        public ActionResult chukuadd()
-        {
+        //出库新增
+        public ActionResult chukuadd() {
 
             return View();
         }
-        public ActionResult baosun()
-        {
+        //农翔-报损管理
+        public ActionResult baosun() {
 
             return View();
         }
-        public ActionResult baosunadd()
-        {
+        //报损新增
+        public ActionResult baosunadd() {
 
             return View();
         }
@@ -79,7 +71,7 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
-        /// 部门管理呀
+        /// 部门管理
         /// </summary>
         /// <returns></returns>
         public ActionResult bumen()
@@ -108,51 +100,13 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        /// <summary>
-        /// 刘绕菁移库管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult yiku()
+        //zzx标识符管理
+        public ActionResult BiaoShiFuGuanLi()
         {
             return View();
         }
-        /// <summary>
-        /// 刘绕菁添加移库单
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addyiku()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁盘点管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult pandian()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁添加盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addpandian()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁退货管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult tuihuo()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁添加退货管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addtuihuo()
+        //zzx权限分配
+        public ActionResult QuanXianFenPei()
         {
             return View();
         }
