@@ -16,7 +16,7 @@ namespace NewHope
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "New", action = "test", id = UrlParameter.Optional }
+                defaults: new { controller = "New", action = "rukuadd", id = UrlParameter.Optional }
             );
         }
     }
