@@ -5,9 +5,6 @@
 }
 
 
-
-
-
 <div>
 
     <div class="layui-card">
@@ -24,7 +21,7 @@
 
                 <div class="layui-card-header">
                     入库单管理
-                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="window.open('rukuadd')">新增</button>
                     <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
 
@@ -43,7 +40,7 @@
                             搜索
                         </button>
 
-                        时间 
+                        时间
                         <div class="layui-input-inline">
                             <input type="text" name="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="width:100px;">
                         </div>-
@@ -224,6 +221,7 @@
 
 
     function show2() {
+        
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
@@ -231,7 +229,8 @@
             area: ['300px', '200px'],
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-        });
+        })
+        ;
 
         //Ajax获取
         $.post('url', {}, function (str) {
@@ -297,5 +296,7 @@
 
 
 </script>
+
+
 
 
