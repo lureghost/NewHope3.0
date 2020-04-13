@@ -108,5 +108,29 @@ namespace NewHope.Controllers
         {
             return View();
         }
+        public ActionResult yiku()
+        {
+            return View();
+        }
+        public ActionResult addyiku()
+        {
+            return View();
+        }
+        public ActionResult pandian()
+        {
+            return View();
+        }
+        public ActionResult addpandian()
+        {
+            return View();
+        }
+        public ActionResult tuihuo()
+        {
+            return View();
+        }
+        public ActionResult addtuihuo()
+        {
+            return View();
+        }
     }
 }
