@@ -13,39 +13,37 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        public ActionResult test() {
-            
-            return View();
-        }
-        public ActionResult test22()
-        {
-
-            return View();
-        }
+       
+        //农翔-入库页面
         public ActionResult ruku() {
 
             return View();
         }
+        //农翔-入库添加页面
         public ActionResult rukuadd()
         {
 
             return View();
         }
+        //农翔-出库页面
         public ActionResult chuku()
         {
 
             return View();
         }
+        //出库添加页面
         public ActionResult chukuadd()
         {
 
             return View();
         }
+        //农翔-报损管理页面
         public ActionResult baosun()
         {
 
             return View();
         }
+        //农翔-报损添加页面
         public ActionResult baosunadd()
         {
 
