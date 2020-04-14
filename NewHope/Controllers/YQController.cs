@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using Models;
+using BLL;
 namespace NewHope.Controllers
 {
     public class YQController : Controller
