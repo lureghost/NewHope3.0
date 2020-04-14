@@ -15,7 +15,7 @@
         </div>
         <div class="layui-card-body">
 
-
+            
             <div class="layui-card" style="border: 1px solid #E1DFDF">
 
 
@@ -26,27 +26,33 @@
 
                 </div>
                 <div class="layui-card-body">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            仓库
+                            <div class="layui-input-inline">
+                                <select name="quiz3">
+                                    <option value="">请选择仓库</option>
+                                    <option value="产品仓库">产品仓库</option>
+                                </select>
+                            </div>
+                            类型
+                            <div class="layui-input-inline">
+                                <select name="quiz3">
+                                    <option value="">请选择</option>
+                                    <option value="产品仓库">xx库区</option>
+                                    <option value="产品仓库">xx库区</option>
+                                    <option value="产品仓库">xx库区</option>
+                                    <option value="产品仓库">xx库区</option>
+                                </select>
+                            </div>
+                            库位 <input type="text" name="kuweiName" class="form-control" />
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
+                            
+                        </div>
+                       
+                    </form>
 
-
-                    仓库
-                    <div class="layui-input-inline">
-                        <select name="quiz3">
-                            <option value="">请选择仓库</option>
-                            <option value="产品仓库">产品仓库</option>
-                        </select>
-                    </div>
-                    类型
-                    <div class="layui-input-inline">
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                        </select>
-                    </div>
-                    库位 <input type="text" name="kuweiName" />
-                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
+                    
 
 
 
@@ -56,13 +62,13 @@
                         <table class="layui-table">
                             <colgroup>
                                 @*<col width="150">
-                        <col width="150">
-                        <col width="200">
-                        <col>*@
+                    <col width="150">
+                    <col width="200">
+                    <col>*@
                             </colgroup>
                             <thead>
                                 <tr>
-                                   
+
                                     <td>&nbsp;序号</td>
                                     <td>&nbsp;库位编号</td>
                                     <td>&nbsp;库位名</td>
@@ -76,7 +82,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                   
+
                                     <td>&nbsp;序号1111</td>
                                     <td>&nbsp;库位编号</td>
                                     <td>&nbsp;库位名11</td>
@@ -86,7 +92,7 @@
                                     <td>&nbsp;是否默认</td>
                                     <td>&nbsp;创建时间</td>
                                     <td>&nbsp;编辑&nbsp; 删除</td>
-                                 
+
                                 </tr>
                             </tbody>
                         </table>
@@ -115,7 +121,7 @@
                 <div id="hideID" hidden>
                     <br />
                     <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="kuweiName" placeholder="请输入库位名称"/></span>
+                    <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="kuweiName" placeholder="请输入库位名称" /></span>
                     <br />
                     <br />
                     <span style="margin-left:30px">库位条码&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
@@ -133,7 +139,7 @@
 
                     <br />
                     <br />
-                  
+
                     <div class="layui-input-inline" style="margin-left:30px">
                         仓库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <select name="quiz3">
@@ -141,8 +147,8 @@
                             <option value="产品仓库">产品仓库</option>
                         </select>
                     </div>
-                    
-                    
+
+
                     <div class="layui-input-inline" style="margin-left:100px">
                         是否默认&nbsp;&nbsp;
                         <select name="quiz3">
@@ -156,10 +162,10 @@
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px">确定</button>
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
                 </div>
-                
-               
-                
-               
+
+
+
+
 
             </div>
 
@@ -168,12 +174,16 @@
     </div>
 </div>
 
-
+<link href="~/layui/css/layui.css" rel="stylesheet" />
+<link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/layui/layui.js"></script>
+<script src="~/layui/layui.all.js"></script>
 @*<script src="~/layui/layui.js" charset="utf-8"></script>
-<script src="~/layui/layui.all.js"></script>*@
+    <script src="~/layui/layui.all.js"></script>*@
 <script>
-    
-    
+
+
     function show() {
         //var a = layer.open({
         //    type: 1,
@@ -188,7 +198,7 @@
         //    content: '11' //这里content是一个普通的String
         //});
 
-      
+
 
         layer.open({
             type: 1,
@@ -203,12 +213,12 @@
         $.post('url', {}, function (str) {
             layer.open({
                 type: 1,
-               
+
                 content: str //注意，如果str是object，那么需要字符拼接。
             });
         });
     }
 
-    
-  
+
+
 </script>
