@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="jiliangdanweiManager.cs" />
+    <Compile Include="KLmanager.cs" />
+    <Compile Include="LRJmanager.cs" />
+    <Compile Include="NXmanager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YQmanager.cs" />
+    <Compile Include="ZZXmanager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

@@ -51,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KLdal.cs" />
+    <Compile Include="LRJdal.cs" />
     <Compile Include="NXdal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="YQdal.cs" />
+    <Compile Include="ZZXdal.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
