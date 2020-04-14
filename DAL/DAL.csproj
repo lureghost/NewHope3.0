@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="NXdal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZZXDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -67,5 +68,6 @@
       <Name>MOD</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
