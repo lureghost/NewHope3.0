@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NewHopeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NewHope4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="UserID" />
@@ -353,7 +353,7 @@
           <Property Name="rukuName" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“NewHope.dbo.storage”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“NewHope4.dbo.storage”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="storage">
           <Key>
             <PropertyRef Name="TID" />
@@ -369,6 +369,16 @@
           <Property Name="state" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tuihuo">
           <Key>
@@ -1011,7 +1021,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NewHopeModelStoreContainer">
+        <EntityContainer Name="NewHope4ModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="baosun" EntityType="Self.baosun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="baosunType" EntityType="Self.baosunType" Schema="dbo" store:Type="Tables" />
@@ -1040,6 +1050,7 @@
           <EntitySet Name="roleType" EntityType="Self.roleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ruku" EntityType="Self.ruku" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rukuType" EntityType="Self.rukuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuo" EntityType="Self.tuihuo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" Schema="dbo" store:Type="Tables" />
@@ -1255,7 +1266,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NewHopeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NewHope4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="UserID" />
@@ -1678,6 +1689,16 @@
           <Property Name="rukuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="rukuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="rukuType" ToRole="ruku" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="tuihuo">
           <Key>
@@ -2354,7 +2375,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NewHopeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NewHope4Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admin" EntityType="Self.Admin" />
           <EntitySet Name="baosun" EntityType="Self.baosun" />
           <EntitySet Name="baosunType" EntityType="Self.baosunType" />
@@ -2383,6 +2404,7 @@
           <EntitySet Name="roleType" EntityType="Self.roleType" />
           <EntitySet Name="ruku" EntityType="Self.ruku" />
           <EntitySet Name="rukuType" EntityType="Self.rukuType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tuihuo" EntityType="Self.tuihuo" />
           <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" />
           <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" />
@@ -2585,9 +2607,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NewHopeModelStoreContainer" CdmEntityContainer="NewHopeEntities">
+        <EntityContainerMapping StorageEntityContainer="NewHope4ModelStoreContainer" CdmEntityContainer="NewHope4Entities">
           <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="NewHopeModel.Admin">
+            <EntityTypeMapping TypeName="NewHope4Model.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -2606,7 +2628,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="baosun">
-            <EntityTypeMapping TypeName="NewHopeModel.baosun">
+            <EntityTypeMapping TypeName="NewHope4Model.baosun">
               <MappingFragment StoreEntitySet="baosun">
                 <ScalarProperty Name="baosunID" ColumnName="baosunID" />
                 <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
@@ -2625,7 +2647,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="baosunType">
-            <EntityTypeMapping TypeName="NewHopeModel.baosunType">
+            <EntityTypeMapping TypeName="NewHope4Model.baosunType">
               <MappingFragment StoreEntitySet="baosunType">
                 <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
                 <ScalarProperty Name="baosunTypeName" ColumnName="baosunTypeName" />
@@ -2633,7 +2655,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BSxiang">
-            <EntityTypeMapping TypeName="NewHopeModel.BSxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.BSxiang">
               <MappingFragment StoreEntitySet="BSxiang">
                 <ScalarProperty Name="bsID" ColumnName="bsID" />
                 <ScalarProperty Name="Pid" ColumnName="Pid" />
@@ -2650,7 +2672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="chuku">
-            <EntityTypeMapping TypeName="NewHopeModel.chuku">
+            <EntityTypeMapping TypeName="NewHope4Model.chuku">
               <MappingFragment StoreEntitySet="chuku">
                 <ScalarProperty Name="chukuID" ColumnName="chukuID" />
                 <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
@@ -2671,7 +2693,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="chukuType">
-            <EntityTypeMapping TypeName="NewHopeModel.chukuType">
+            <EntityTypeMapping TypeName="NewHope4Model.chukuType">
               <MappingFragment StoreEntitySet="chukuType">
                 <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
                 <ScalarProperty Name="chukuTypeName" ColumnName="chukuTypeName" />
@@ -2679,7 +2701,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CKxiang">
-            <EntityTypeMapping TypeName="NewHopeModel.CKxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.CKxiang">
               <MappingFragment StoreEntitySet="CKxiang">
                 <ScalarProperty Name="ckID" ColumnName="ckID" />
                 <ScalarProperty Name="Pid" ColumnName="Pid" />
@@ -2697,7 +2719,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customer">
-            <EntityTypeMapping TypeName="NewHopeModel.customer">
+            <EntityTypeMapping TypeName="NewHope4Model.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
                 <ScalarProperty Name="KehuName" ColumnName="KehuName" />
@@ -2710,7 +2732,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="department">
-            <EntityTypeMapping TypeName="NewHopeModel.department">
+            <EntityTypeMapping TypeName="NewHope4Model.department">
               <MappingFragment StoreEntitySet="department">
                 <ScalarProperty Name="Did" ColumnName="Did" />
                 <ScalarProperty Name="DName" ColumnName="DName" />
@@ -2720,7 +2742,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="dizhi">
-            <EntityTypeMapping TypeName="NewHopeModel.dizhi">
+            <EntityTypeMapping TypeName="NewHope4Model.dizhi">
               <MappingFragment StoreEntitySet="dizhi">
                 <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
                 <ScalarProperty Name="dizhiName" ColumnName="dizhiName" />
@@ -2731,7 +2753,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="gysguanli">
-            <EntityTypeMapping TypeName="NewHopeModel.gysguanli">
+            <EntityTypeMapping TypeName="NewHope4Model.gysguanli">
               <MappingFragment StoreEntitySet="gysguanli">
                 <ScalarProperty Name="GID" ColumnName="GID" />
                 <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
@@ -2749,7 +2771,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="gystype">
-            <EntityTypeMapping TypeName="NewHopeModel.gystype">
+            <EntityTypeMapping TypeName="NewHope4Model.gystype">
               <MappingFragment StoreEntitySet="gystype">
                 <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
                 <ScalarProperty Name="gystypeName" ColumnName="gystypeName" />
@@ -2758,7 +2780,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="jurisdiction">
-            <EntityTypeMapping TypeName="NewHopeModel.jurisdiction">
+            <EntityTypeMapping TypeName="NewHope4Model.jurisdiction">
               <MappingFragment StoreEntitySet="jurisdiction">
                 <ScalarProperty Name="JID" ColumnName="JID" />
                 <ScalarProperty Name="RID" ColumnName="RID" />
@@ -2768,7 +2790,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KuType">
-            <EntityTypeMapping TypeName="NewHopeModel.KuType">
+            <EntityTypeMapping TypeName="NewHope4Model.KuType">
               <MappingFragment StoreEntitySet="KuType">
                 <ScalarProperty Name="KuTYpeID" ColumnName="KuTYpeID" />
                 <ScalarProperty Name="KuName" ColumnName="KuName" />
@@ -2778,7 +2800,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="measurement">
-            <EntityTypeMapping TypeName="NewHopeModel.measurement">
+            <EntityTypeMapping TypeName="NewHope4Model.measurement">
               <MappingFragment StoreEntitySet="measurement">
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
@@ -2789,7 +2811,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="menu">
-            <EntityTypeMapping TypeName="NewHopeModel.menu">
+            <EntityTypeMapping TypeName="NewHope4Model.menu">
               <MappingFragment StoreEntitySet="menu">
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MNmae" ColumnName="MNmae" />
@@ -2804,7 +2826,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MenuType">
-            <EntityTypeMapping TypeName="NewHopeModel.MenuType">
+            <EntityTypeMapping TypeName="NewHope4Model.MenuType">
               <MappingFragment StoreEntitySet="MenuType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
@@ -2813,7 +2835,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="panDian">
-            <EntityTypeMapping TypeName="NewHopeModel.panDian">
+            <EntityTypeMapping TypeName="NewHope4Model.panDian">
               <MappingFragment StoreEntitySet="panDian">
                 <ScalarProperty Name="pandianID" ColumnName="pandianID" />
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
@@ -2826,7 +2848,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pandianType">
-            <EntityTypeMapping TypeName="NewHopeModel.pandianType">
+            <EntityTypeMapping TypeName="NewHope4Model.pandianType">
               <MappingFragment StoreEntitySet="pandianType">
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
                 <ScalarProperty Name="pandianTypeName" ColumnName="pandianTypeName" />
@@ -2835,7 +2857,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pandianxq">
-            <EntityTypeMapping TypeName="NewHopeModel.pandianxq">
+            <EntityTypeMapping TypeName="NewHope4Model.pandianxq">
               <MappingFragment StoreEntitySet="pandianxq">
                 <ScalarProperty Name="pandianxqID" ColumnName="pandianxqID" />
                 <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
@@ -2850,7 +2872,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Parentmenu">
-            <EntityTypeMapping TypeName="NewHopeModel.Parentmenu">
+            <EntityTypeMapping TypeName="NewHope4Model.Parentmenu">
               <MappingFragment StoreEntitySet="Parentmenu">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
@@ -2859,7 +2881,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productguanli">
-            <EntityTypeMapping TypeName="NewHopeModel.productguanli">
+            <EntityTypeMapping TypeName="NewHope4Model.productguanli">
               <MappingFragment StoreEntitySet="productguanli">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="cpID" ColumnName="cpID" />
@@ -2882,7 +2904,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productType">
-            <EntityTypeMapping TypeName="NewHopeModel.productType">
+            <EntityTypeMapping TypeName="NewHope4Model.productType">
               <MappingFragment StoreEntitySet="productType">
                 <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="PName" ColumnName="PName" />
@@ -2896,7 +2918,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RKxiang">
-            <EntityTypeMapping TypeName="NewHopeModel.RKxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.RKxiang">
               <MappingFragment StoreEntitySet="RKxiang">
                 <ScalarProperty Name="rxID" ColumnName="rxID" />
                 <ScalarProperty Name="Pid" ColumnName="Pid" />
@@ -2912,7 +2934,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="role">
-            <EntityTypeMapping TypeName="NewHopeModel.role">
+            <EntityTypeMapping TypeName="NewHope4Model.role">
               <MappingFragment StoreEntitySet="role">
                 <ScalarProperty Name="RID" ColumnName="RID" />
                 <ScalarProperty Name="RName" ColumnName="RName" />
@@ -2925,7 +2947,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roleType">
-            <EntityTypeMapping TypeName="NewHopeModel.roleType">
+            <EntityTypeMapping TypeName="NewHope4Model.roleType">
               <MappingFragment StoreEntitySet="roleType">
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
@@ -2934,7 +2956,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ruku">
-            <EntityTypeMapping TypeName="NewHopeModel.ruku">
+            <EntityTypeMapping TypeName="NewHope4Model.ruku">
               <MappingFragment StoreEntitySet="ruku">
                 <ScalarProperty Name="rukuID" ColumnName="rukuID" />
                 <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
@@ -2954,15 +2976,26 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rukuType">
-            <EntityTypeMapping TypeName="NewHopeModel.rukuType">
+            <EntityTypeMapping TypeName="NewHope4Model.rukuType">
               <MappingFragment StoreEntitySet="rukuType">
                 <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
                 <ScalarProperty Name="rukuName" ColumnName="rukuName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NewHope4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tuihuo">
-            <EntityTypeMapping TypeName="NewHopeModel.tuihuo">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuo">
               <MappingFragment StoreEntitySet="tuihuo">
                 <ScalarProperty Name="tuihuoID" ColumnName="tuihuoID" />
                 <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
@@ -2975,7 +3008,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tuihuoType">
-            <EntityTypeMapping TypeName="NewHopeModel.tuihuoType">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoType">
               <MappingFragment StoreEntitySet="tuihuoType">
                 <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
                 <ScalarProperty Name="tuihuoTypeName" ColumnName="tuihuoTypeName" />
@@ -2984,7 +3017,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tuihuoxq">
-            <EntityTypeMapping TypeName="NewHopeModel.tuihuoxq">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoxq">
               <MappingFragment StoreEntitySet="tuihuoxq">
                 <ScalarProperty Name="tuihuoxqID" ColumnName="tuihuoxqID" />
                 <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
@@ -2999,7 +3032,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="warehouse">
-            <EntityTypeMapping TypeName="NewHopeModel.warehouse">
+            <EntityTypeMapping TypeName="NewHope4Model.warehouse">
               <MappingFragment StoreEntitySet="warehouse">
                 <ScalarProperty Name="WID" ColumnName="WID" />
                 <ScalarProperty Name="WName" ColumnName="WName" />
@@ -3009,7 +3042,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="yiku">
-            <EntityTypeMapping TypeName="NewHopeModel.yiku">
+            <EntityTypeMapping TypeName="NewHope4Model.yiku">
               <MappingFragment StoreEntitySet="yiku">
                 <ScalarProperty Name="yikuID" ColumnName="yikuID" />
                 <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
@@ -3022,7 +3055,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="yikuType">
-            <EntityTypeMapping TypeName="NewHopeModel.yikuType">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuType">
               <MappingFragment StoreEntitySet="yikuType">
                 <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
                 <ScalarProperty Name="yikuTypeName" ColumnName="yikuTypeName" />
@@ -3031,7 +3064,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="yikuxq">
-            <EntityTypeMapping TypeName="NewHopeModel.yikuxq">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuxq">
               <MappingFragment StoreEntitySet="yikuxq">
                 <ScalarProperty Name="yikuxqID" ColumnName="yikuxqID" />
                 <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
@@ -3046,7 +3079,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="storage">
-            <EntityTypeMapping TypeName="NewHopeModel.storage">
+            <EntityTypeMapping TypeName="NewHope4Model.storage">
               <MappingFragment StoreEntitySet="storage">
                 <ScalarProperty Name="TID" ColumnName="TID" />
                 <ScalarProperty Name="KID" ColumnName="KID" />

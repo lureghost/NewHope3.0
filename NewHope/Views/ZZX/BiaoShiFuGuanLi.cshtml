@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "BiaoShiFuGuanLi";
+    Layout = "~/Views/New/Index.cshtml";
+}
+
+
+<div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
+            <a href="javascript:;">系统设置</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">标识符管理</a>
+
+        </div>
+        <div class="layui-card-body">
+
+
+            <div class="layui-card" style="border: 1px solid #E1DFDF">
+
+
+                <div class="layui-card-header">
+                    标识符管理
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button type="button" class="layui-btn layui-btn-radius">导出</button>
+
+                </div>
+                <div class="layui-card-body">
+
+
+                    <input type="text" name="kuweiName" placeholder="请输入表名" size="36" />
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
+
+
+
+
+
+                    <div class="layui-form">
+                        <table class="layui-table">
+                            <colgroup>
+                                @*<col width="150">
+                                    <col width="150">
+                                    <col width="200">
+                                    <col>*@
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <td>&nbsp;表名	</td>
+                                    <td>&nbsp;类型1</td>
+                                    <td>&nbsp;规则1	</td>
+                                    <td>&nbsp;长度1</td>
+                                    <td>&nbsp;连接符</td>
+                                    <td>&nbsp;类型2</td>
+                                    <td>&nbsp;规则2</td>
+                                    <td>&nbsp;长度2</td>
+                                    <td>&nbsp;操作</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td>&nbsp;Admin</td>
+                                    <td>
+                                        &nbsp;
+                                        <div class="layui-input-inline" style="width:100px;">
+                                            <select name="quiz3">
+                                                <option value="">选择</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" size="7" style="border-radius: 5px 5px 5px 5px;height:20px;" /></td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" placeholder="6" style="border-radius: 5px 5px 5px 5px;height:20px;width:40px;" /></td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" style="border-radius: 5px 5px 5px 5px;height:20px;width:40px;" /></td>
+                                    <td>
+                                        &nbsp;
+                                        <div class="layui-input-inline" style="width:100px;">
+                                            <select name="quiz3">
+                                                <option value="">选择</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" size="7" style="border-radius: 5px 5px 5px 5px;height:20px;" /></td>
+                                    <td>&nbsp;<input type="text" name="kuweiName" placeholder="0" style="border-radius: 5px 5px 5px 5px;height:20px;width:40px;" /></td>
+                                    <td>&nbsp;保存</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div>
+                        共 5 行 ,每页
+                        <div class="layui-input-inline">
+                            <select name="quiz3">
+                                <option value="">5</option>
+                                <option value="产品仓库">10</option>
+                                <option value="产品仓库">15</option>
+                                <option value="产品仓库">20</option>
+                                <option value="产品仓库">25</option>
+                            </select>
+                        </div>
+                        行
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div id="hideID2" hidden="hidden">
+                    <br />
+                    <span style="margin-left:30px">
+                        部门名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="请输入部门名称" />
+                    </span>
+                    <br />
+                    <br />
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@*<script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/layui/layui.all.js"></script>*@
+<script>
+
+
+
+
+
+    function show2() {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['添加部门', 'font-size:18px'],
+            area: ['300px', '200px'],
+            shadeClose: true,
+            content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+        //Ajax获取
+        $.post('url', {}, function (str) {
+            layer.open({
+                type: 1,
+                content: str //注意，如果str是object，那么需要字符拼接。
+            });
+        });
+    }
+
+
+</script>
+

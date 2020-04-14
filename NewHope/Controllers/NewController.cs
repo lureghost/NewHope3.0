@@ -13,73 +13,11 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        public ActionResult test() {
-            
-            return View();
-        }
-        public ActionResult test22()
-        {
-
-            return View();
-        }
-        public ActionResult ruku() {
-
-            return View();
-        }
-        public ActionResult rukuadd()
-        {
-
-            return View();
-        }
-        public ActionResult chuku()
-        {
-
-            return View();
-        }
-        public ActionResult chukuadd()
-        {
-
-            return View();
-        }
-        public ActionResult baosun()
-        {
-
-            return View();
-        }
-        public ActionResult baosunadd()
-        {
-
-            return View();
-        }
-        /// <summary>
-        /// 库位管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult kuwei()
-        {
-            return View();
-        }
+       
+        
 
         /// <summary>
-        /// 供应商管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult gongyingshang()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 客户管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult kehu()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 部门管理呀
+        /// 部门管理
         /// </summary>
         /// <returns></returns>
         public ActionResult bumen()
@@ -88,71 +26,19 @@ namespace NewHope.Controllers
         }
 
 
-        //计量单位
-        public ActionResult jilangdanwei()
-        {
-            return View();
-        }
-        //产品类别
-        public ActionResult chanpinlb()
-        {
-            return View();
-        }
-        //产品管理
-        public ActionResult chanpinguanli()
-        {
-            return View();
-        }
+       
         //菜单管理
         public ActionResult caidanuanli()
         {
             return View();
         }
-        /// <summary>
-        /// 刘绕菁移库管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult yiku()
+        //zzx标识符管理
+        public ActionResult BiaoShiFuGuanLi()
         {
             return View();
         }
-        /// <summary>
-        /// 刘绕菁添加移库单
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addyiku()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁盘点管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult pandian()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁添加盘点
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addpandian()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁退货管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult tuihuo()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 刘绕菁添加退货管理
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult addtuihuo()
+        //zzx权限分配
+        public ActionResult QuanXianFenPei()
         {
             return View();
         }
