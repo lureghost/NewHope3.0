@@ -53,12 +53,6 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="KLDAL\" />
-    <Folder Include="LRJDAL\" />
-    <Folder Include="NXDAL\" />
-    <Folder Include="YQDAL\" />
-    <Folder Include="ZZXDAL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

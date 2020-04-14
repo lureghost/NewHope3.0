@@ -54,12 +54,6 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="KLBLL\" />
-    <Folder Include="LRJBLL\" />
-    <Folder Include="NXBLL\" />
-    <Folder Include="YQBLL\" />
-    <Folder Include="ZZXBLL\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
