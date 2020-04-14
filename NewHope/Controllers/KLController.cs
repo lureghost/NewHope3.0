@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MOD;
+using BLL;
 
 namespace NewHope.Controllers
 {
@@ -39,6 +41,11 @@ namespace NewHope.Controllers
         public ActionResult kehu()
         {
             return View();
+        }
+
+        public ActionResult Get_kuweiAll(int PageIndex, int PageSize)
+        {
+            return Json(KLmanager.Get_kuweiAll(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
         }
     }
 }

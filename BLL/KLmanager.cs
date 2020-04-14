@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MOD;
+using DAL;
 
 namespace BLL
 {
-    class KLmanager
+   public class KLmanager
     {
+     
+        public static PageList Get_kuweiAll(int PageIndex, int PageSize)
+        {
+            return KLdal.Get_kuweiAll(PageIndex, PageSize);
+        }
     }
 }
