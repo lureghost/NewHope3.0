@@ -1,0 +1,3121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NewHope4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="LoginNum" Type="int" />
+          <Property Name="Did" Type="int" />
+          <Property Name="RID" Type="int" />
+          <Property Name="Userpwd" Type="int" />
+          <Property Name="UserTypeID" Type="int" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="baosun">
+          <Key>
+            <PropertyRef Name="baosunID" />
+          </Key>
+          <Property Name="baosunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baosunTypeID" Type="int" />
+          <Property Name="bsID" Type="int" />
+          <Property Name="cpid" Type="varchar" MaxLength="50" />
+          <Property Name="baosunSum" Type="int" />
+          <Property Name="zt" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="caozuofs" Type="varchar" MaxLength="50" />
+          <Property Name="createTime" Type="varchar" MaxLength="50" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+          <Property Name="by3" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="baosunType">
+          <Key>
+            <PropertyRef Name="baosunTypeID" />
+          </Key>
+          <Property Name="baosunTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="baosunTypeName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BSxiang">
+          <Key>
+            <PropertyRef Name="bsID" />
+          </Key>
+          <Property Name="bsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pid" Type="int" />
+          <Property Name="Ptiaoma" Type="varchar" MaxLength="50" />
+          <Property Name="Pguige" Type="varchar" MaxLength="50" />
+          <Property Name="Pprice" Type="money" />
+          <Property Name="bsSum" Type="int" />
+          <Property Name="bspici" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+          <Property Name="by3" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="chuku">
+          <Key>
+            <PropertyRef Name="chukuID" />
+          </Key>
+          <Property Name="chukuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chukuTypeID" Type="int" />
+          <Property Name="ckID" Type="int" />
+          <Property Name="kehuID" Type="int" />
+          <Property Name="cpID" Type="varchar" MaxLength="50" />
+          <Property Name="chukuSum" Type="int" />
+          <Property Name="price" Type="money" />
+          <Property Name="zt" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="caozuofs" Type="varchar" MaxLength="50" />
+          <Property Name="createTime" Type="datetime" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+          <Property Name="by3" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="chukuType">
+          <Key>
+            <PropertyRef Name="chukuTypeID" />
+          </Key>
+          <Property Name="chukuTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chukuTypeName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CKxiang">
+          <Key>
+            <PropertyRef Name="ckID" />
+          </Key>
+          <Property Name="ckID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pid" Type="int" />
+          <Property Name="Ptiaoma" Type="varchar" MaxLength="50" />
+          <Property Name="Pguige" Type="varchar" MaxLength="50" />
+          <Property Name="Pprice" Type="money" />
+          <Property Name="ckpici" Type="int" />
+          <Property Name="Tid" Type="int" />
+          <Property Name="chuSum" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+          <Property Name="by3" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="kehuID" />
+          </Key>
+          <Property Name="kehuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KehuName" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="faxes" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+          <Property Name="dizhiID" Type="int" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DName" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="dizhi">
+          <Key>
+            <PropertyRef Name="dizhiID" />
+          </Key>
+          <Property Name="dizhiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dizhiName" Type="varchar" MaxLength="50" />
+          <Property Name="linkman" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="gysguanli">
+          <Key>
+            <PropertyRef Name="GID" />
+          </Key>
+          <Property Name="GID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gystypeID" Type="int" />
+          <Property Name="GName" Type="varchar" MaxLength="50" />
+          <Property Name="phone" Type="varchar" MaxLength="50" />
+          <Property Name="faxes" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="linkman" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="describe" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="gystype">
+          <Key>
+            <PropertyRef Name="gystypeID" />
+          </Key>
+          <Property Name="gystypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gystypeName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="jurisdiction">
+          <Key>
+            <PropertyRef Name="JID" />
+          </Key>
+          <Property Name="JID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RID" Type="int" />
+          <Property Name="MID" Type="int" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="KuType">
+          <Key>
+            <PropertyRef Name="KuTYpeID" />
+          </Key>
+          <Property Name="KuTYpeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KuName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="measurement">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MName" Type="varchar" MaxLength="10" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="10" />
+          <Property Name="by2" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MNmae" Type="varchar" MaxLength="50" />
+          <Property Name="PID" Type="int" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="style" Type="varchar" MaxLength="50" />
+          <Property Name="sort" Type="varchar" MaxLength="50" />
+          <Property Name="path" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="MenuType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="panDian">
+          <Key>
+            <PropertyRef Name="pandianID" />
+          </Key>
+          <Property Name="pandianID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pandianTypeID" Type="int" />
+          <Property Name="chanpinID" Type="varchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="caozuofs" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="pandianType">
+          <Key>
+            <PropertyRef Name="pandianTypeID" />
+          </Key>
+          <Property Name="pandianTypeID" Type="int" Nullable="false" />
+          <Property Name="pandianTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="pandianxq">
+          <Key>
+            <PropertyRef Name="pandianxqID" />
+          </Key>
+          <Property Name="pandianxqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chanpinID" Type="varchar" MaxLength="50" />
+          <Property Name="chanpinName" Type="varchar" MaxLength="50" />
+          <Property Name="chanpintiaoma" Type="varchar" MaxLength="50" />
+          <Property Name="chanpinPrice" Type="int" />
+          <Property Name="pandiansum" Type="int" />
+          <Property Name="chanpinpici" Type="varchar" MaxLength="50" />
+          <Property Name="pandianTypeID" Type="int" />
+          <Property Name="kehuID" Type="int" />
+        </EntityType>
+        <EntityType Name="Parentmenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="productguanli">
+          <Key>
+            <PropertyRef Name="cpID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cpID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cpName" Type="varchar" MaxLength="100" />
+          <Property Name="upper" Type="int" />
+          <Property Name="floor" Type="int" />
+          <Property Name="price" Type="money" />
+          <Property Name="specification" Type="varchar" MaxLength="15" />
+          <Property Name="PID" Type="int" />
+          <Property Name="MID" Type="int" />
+          <Property Name="remark" Type="varchar" MaxLength="15" />
+          <Property Name="kehuID" Type="int" />
+          <Property Name="WID" Type="int" />
+          <Property Name="XID" Type="int" />
+          <Property Name="defaultstorage" Type="int" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="10" />
+          <Property Name="by2" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="productType">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PName" Type="varchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="remark" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="10" />
+          <Property Name="by2" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="RKxiang">
+          <Key>
+            <PropertyRef Name="rxID" />
+          </Key>
+          <Property Name="rxID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pid" Type="varchar" MaxLength="50" />
+          <Property Name="Pguige" Type="varchar" MaxLength="50" />
+          <Property Name="Pprice" Type="money" />
+          <Property Name="Ppici" Type="int" />
+          <Property Name="zt" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+          <Property Name="by3" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="int" Nullable="false" />
+          <Property Name="RName" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="remark" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="roleType">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="ruku">
+          <Key>
+            <PropertyRef Name="rukuID" />
+          </Key>
+          <Property Name="rukuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rukuTypeID" Type="int" />
+          <Property Name="gysID" Type="int" />
+          <Property Name="cpID" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="money" />
+          <Property Name="zt" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="caozuofs" Type="varchar" MaxLength="50" />
+          <Property Name="createTime" Type="datetime" />
+          <Property Name="rxID" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
+          <Property Name="by3" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="rukuType">
+          <Key>
+            <PropertyRef Name="rukuTypeID" />
+          </Key>
+          <Property Name="rukuTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rukuName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“NewHope4.dbo.storage”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KID" Type="int" />
+          <Property Name="KName" Type="varchar" MaxLength="50" />
+          <Property Name="WID" Type="int" />
+          <Property Name="KuTypeID" Type="int" />
+          <Property Name="forbidden" Type="varchar" MaxLength="50" />
+          <Property Name="default" Type="varchar" MaxLength="50" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tuihuo">
+          <Key>
+            <PropertyRef Name="tuihuoID" />
+          </Key>
+          <Property Name="tuihuoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tuihuoTypeID" Type="int" />
+          <Property Name="sum" Type="int" />
+          <Property Name="chanpinID" Type="varchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="tuihuoType">
+          <Key>
+            <PropertyRef Name="tuihuoTypeID" />
+          </Key>
+          <Property Name="tuihuoTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tuihuoTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="tuihuoxq">
+          <Key>
+            <PropertyRef Name="tuihuoxqID" />
+          </Key>
+          <Property Name="tuihuoxqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chanpinID" Type="int" />
+          <Property Name="chanpinName" Type="varchar" MaxLength="50" />
+          <Property Name="chanpintiaoma" Type="varchar" MaxLength="50" />
+          <Property Name="chanpinPrice" Type="int" />
+          <Property Name="tuihuosum" Type="int" />
+          <Property Name="chanpinpici" Type="varchar" MaxLength="50" />
+          <Property Name="tuihuoTypeID" Type="int" />
+          <Property Name="kehuID" Type="int" />
+        </EntityType>
+        <EntityType Name="warehouse">
+          <Key>
+            <PropertyRef Name="WID" />
+          </Key>
+          <Property Name="WID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="yiku">
+          <Key>
+            <PropertyRef Name="yikuID" />
+          </Key>
+          <Property Name="yikuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yikuTypeID" Type="int" />
+          <Property Name="chanpinID" Type="varchar" MaxLength="50" />
+          <Property Name="count" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="CreationDate" Type="datetime" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="yikuType">
+          <Key>
+            <PropertyRef Name="yikuTypeID" />
+          </Key>
+          <Property Name="yikuTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yikuTypeName" Type="varchar" MaxLength="50" />
+          <Property Name="state" Type="int" />
+        </EntityType>
+        <EntityType Name="yikuxq">
+          <Key>
+            <PropertyRef Name="yikuxqID" />
+          </Key>
+          <Property Name="yikuxqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chanpinID" Type="int" />
+          <Property Name="chanpinName" Type="varchar" MaxLength="50" />
+          <Property Name="chanpintiaoma" Type="varchar" MaxLength="50" />
+          <Property Name="chanpinPrice" Type="int" />
+          <Property Name="yikusum" Type="int" />
+          <Property Name="chanpinpici" Type="int" />
+          <Property Name="yikuTypeID" Type="int" />
+          <Property Name="kehuID" Type="int" />
+        </EntityType>
+        <Association Name="FK_ADMIN_REFERENCE_DEPARTME">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Did" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="Did" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_REFERENCE_ROLE">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_REFERENCE_ROLETYPE">
+          <End Role="roleType" Type="Self.roleType" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_BAOSUNTY">
+          <End Role="baosunType" Type="Self.baosunType" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="baosunType">
+              <PropertyRef Name="baosunTypeID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="baosunTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_BSXIANG">
+          <End Role="BSxiang" Type="Self.BSxiang" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BSxiang">
+              <PropertyRef Name="bsID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="bsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="cpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_CHUKUTYP">
+          <End Role="chukuType" Type="Self.chukuType" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chukuType">
+              <PropertyRef Name="chukuTypeID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="chukuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_CKXIANG">
+          <End Role="CKxiang" Type="Self.CKxiang" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CKxiang">
+              <PropertyRef Name="ckID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="ckID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="cpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
+          <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dizhi">
+              <PropertyRef Name="dizhiID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="dizhiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GYSGUANL_REFERENCE_GYSTYPE">
+          <End Role="gystype" Type="Self.gystype" Multiplicity="0..1" />
+          <End Role="gysguanli" Type="Self.gysguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gystype">
+              <PropertyRef Name="gystypeID" />
+            </Principal>
+            <Dependent Role="gysguanli">
+              <PropertyRef Name="gystypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JURISDIC_REFERENCE_MENU">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="jurisdiction" Type="Self.jurisdiction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="MID" />
+            </Principal>
+            <Dependent Role="jurisdiction">
+              <PropertyRef Name="MID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JURISDIC_REFERENCE_ROLE">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="jurisdiction" Type="Self.jurisdiction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="jurisdiction">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_MenuType">
+          <End Role="MenuType" Type="Self.MenuType" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="menu">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_REFERENCE_PARENTME">
+          <End Role="Parentmenu" Type="Self.Parentmenu" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentmenu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="menu">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIAN_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="panDian">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIAN_REFERENCE_PANDIANT">
+          <End Role="pandianType" Type="Self.pandianType" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pandianType">
+              <PropertyRef Name="pandianTypeID" />
+            </Principal>
+            <Dependent Role="panDian">
+              <PropertyRef Name="pandianTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIAN_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="panDian">
+              <PropertyRef Name="chanpinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIANX_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="pandianxq" Type="Self.pandianxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="pandianxq">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIANX_REFERENCE_PANDIANT">
+          <End Role="pandianType" Type="Self.pandianType" Multiplicity="0..1" />
+          <End Role="pandianxq" Type="Self.pandianxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pandianType">
+              <PropertyRef Name="pandianTypeID" />
+            </Principal>
+            <Dependent Role="pandianxq">
+              <PropertyRef Name="pandianTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_KUTYPE">
+          <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KuType">
+              <PropertyRef Name="KuTYpeID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="defaultstorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_PRODUCTT">
+          <End Role="productType" Type="Self.productType" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productType">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_WAREHOUS">
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warehouse">
+              <PropertyRef Name="WID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="WID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productguanli_measurement">
+          <End Role="measurement" Type="Self.measurement" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement">
+              <PropertyRef Name="MID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="MID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productguanli_productguanli">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="1" />
+          <End Role="productguanli1" Type="Self.productguanli" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="productguanli1">
+              <PropertyRef Name="cpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTT_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="productType" Type="Self.productType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="productType">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_GYSGUANL">
+          <End Role="gysguanli" Type="Self.gysguanli" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gysguanli">
+              <PropertyRef Name="GID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="gysID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="cpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_RKXIANG">
+          <End Role="RKxiang" Type="Self.RKxiang" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RKxiang">
+              <PropertyRef Name="rxID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="rxID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_RUKUTYPE">
+          <End Role="rukuType" Type="Self.rukuType" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuType">
+              <PropertyRef Name="rukuTypeID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="rukuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORAGE_REFERENCE_KUTYPE">
+          <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KuType">
+              <PropertyRef Name="KuTYpeID" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="KuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORAGE_REFERENCE_WAREHOUS">
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warehouse">
+              <PropertyRef Name="WID" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="WID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUO_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tuihuo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUO_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="tuihuo">
+              <PropertyRef Name="chanpinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUO_REFERENCE_TUIHUOTY">
+          <End Role="tuihuoType" Type="Self.tuihuoType" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tuihuoType">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Principal>
+            <Dependent Role="tuihuo">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="tuihuoxq" Type="Self.tuihuoxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="tuihuoxq">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
+          <End Role="tuihuoType" Type="Self.tuihuoType" Multiplicity="0..1" />
+          <End Role="tuihuoxq" Type="Self.tuihuoxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tuihuoType">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Principal>
+            <Dependent Role="tuihuoxq">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKU_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="yiku">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKU_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="yiku">
+              <PropertyRef Name="chanpinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKU_REFERENCE_YIKUTYPE">
+          <End Role="yikuType" Type="Self.yikuType" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yikuType">
+              <PropertyRef Name="yikuTypeID" />
+            </Principal>
+            <Dependent Role="yiku">
+              <PropertyRef Name="yikuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKUXQ_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="yikuxq" Type="Self.yikuxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="yikuxq">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKUXQ_REFERENCE_YIKUTYPE">
+          <End Role="yikuType" Type="Self.yikuType" Multiplicity="0..1" />
+          <End Role="yikuxq" Type="Self.yikuxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yikuType">
+              <PropertyRef Name="yikuTypeID" />
+            </Principal>
+            <Dependent Role="yikuxq">
+              <PropertyRef Name="yikuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NewHope4ModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="baosun" EntityType="Self.baosun" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="baosunType" EntityType="Self.baosunType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BSxiang" EntityType="Self.BSxiang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chuku" EntityType="Self.chuku" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chukuType" EntityType="Self.chukuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CKxiang" EntityType="Self.CKxiang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dizhi" EntityType="Self.dizhi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gysguanli" EntityType="Self.gysguanli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gystype" EntityType="Self.gystype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jurisdiction" EntityType="Self.jurisdiction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KuType" EntityType="Self.KuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="measurement" EntityType="Self.measurement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuType" EntityType="Self.MenuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="panDian" EntityType="Self.panDian" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pandianType" EntityType="Self.pandianType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pandianxq" EntityType="Self.pandianxq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parentmenu" EntityType="Self.Parentmenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productguanli" EntityType="Self.productguanli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productType" EntityType="Self.productType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RKxiang" EntityType="Self.RKxiang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="roleType" EntityType="Self.roleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ruku" EntityType="Self.ruku" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rukuType" EntityType="Self.rukuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tuihuo" EntityType="Self.tuihuo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="warehouse" EntityType="Self.warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yiku" EntityType="Self.yiku" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yikuType" EntityType="Self.yikuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yikuxq" EntityType="Self.yikuxq" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storage" EntityType="Self.storage" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [storage].[TID] AS [TID], 
+    [storage].[KID] AS [KID], 
+    [storage].[KName] AS [KName], 
+    [storage].[WID] AS [WID], 
+    [storage].[KuTypeID] AS [KuTypeID], 
+    [storage].[forbidden] AS [forbidden], 
+    [storage].[default] AS [default], 
+    [storage].[CreationDate] AS [CreationDate], 
+    [storage].[state] AS [state], 
+    [storage].[by1] AS [by1], 
+    [storage].[by2] AS [by2]
+    FROM [dbo].[storage] AS [storage]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_DEPARTME" Association="Self.FK_ADMIN_REFERENCE_DEPARTME">
+            <End Role="department" EntitySet="department" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLE" Association="Self.FK_ADMIN_REFERENCE_ROLE">
+            <End Role="role" EntitySet="role" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLETYPE" Association="Self.FK_ADMIN_REFERENCE_ROLETYPE">
+            <End Role="roleType" EntitySet="roleType" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_ADMIN" Association="Self.FK_BAOSUN_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_BAOSUNTY" Association="Self.FK_BAOSUN_REFERENCE_BAOSUNTY">
+            <End Role="baosunType" EntitySet="baosunType" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_BSXIANG" Association="Self.FK_BAOSUN_REFERENCE_BSXIANG">
+            <End Role="BSxiang" EntitySet="BSxiang" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_PRODUCTG" Association="Self.FK_BAOSUN_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_ADMIN" Association="Self.FK_CHUKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CHUKUTYP" Association="Self.FK_CHUKU_REFERENCE_CHUKUTYP">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CKXIANG" Association="Self.FK_CHUKU_REFERENCE_CKXIANG">
+            <End Role="CKxiang" EntitySet="CKxiang" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CUSTOMER" Association="Self.FK_CHUKU_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_PRODUCTG" Association="Self.FK_CHUKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
+            <End Role="dizhi" EntitySet="dizhi" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GYSGUANL_REFERENCE_GYSTYPE" Association="Self.FK_GYSGUANL_REFERENCE_GYSTYPE">
+            <End Role="gystype" EntitySet="gystype" />
+            <End Role="gysguanli" EntitySet="gysguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JURISDIC_REFERENCE_MENU" Association="Self.FK_JURISDIC_REFERENCE_MENU">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="jurisdiction" EntitySet="jurisdiction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JURISDIC_REFERENCE_ROLE" Association="Self.FK_JURISDIC_REFERENCE_ROLE">
+            <End Role="role" EntitySet="role" />
+            <End Role="jurisdiction" EntitySet="jurisdiction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_MenuType" Association="Self.FK_menu_MenuType">
+            <End Role="MenuType" EntitySet="MenuType" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_REFERENCE_PARENTME" Association="Self.FK_MENU_REFERENCE_PARENTME">
+            <End Role="Parentmenu" EntitySet="Parentmenu" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_ADMIN" Association="Self.FK_PANDIAN_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_PANDIANT" Association="Self.FK_PANDIAN_REFERENCE_PANDIANT">
+            <End Role="pandianType" EntitySet="pandianType" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_PRODUCTG" Association="Self.FK_PANDIAN_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIANX_REFERENCE_CUSTOMER" Association="Self.FK_PANDIANX_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="pandianxq" EntitySet="pandianxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIANX_REFERENCE_PANDIANT" Association="Self.FK_PANDIANX_REFERENCE_PANDIANT">
+            <End Role="pandianType" EntitySet="pandianType" />
+            <End Role="pandianxq" EntitySet="pandianxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_CUSTOMER" Association="Self.FK_PRODUCTG_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_KUTYPE" Association="Self.FK_PRODUCTG_REFERENCE_KUTYPE">
+            <End Role="KuType" EntitySet="KuType" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_PRODUCTT" Association="Self.FK_PRODUCTG_REFERENCE_PRODUCTT">
+            <End Role="productType" EntitySet="productType" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_WAREHOUS" Association="Self.FK_PRODUCTG_REFERENCE_WAREHOUS">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productguanli_measurement" Association="Self.FK_productguanli_measurement">
+            <End Role="measurement" EntitySet="measurement" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productguanli_productguanli" Association="Self.FK_productguanli_productguanli">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="productguanli1" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTT_REFERENCE_ADMIN" Association="Self.FK_PRODUCTT_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="productType" EntitySet="productType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_ADMIN" Association="Self.FK_RUKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_GYSGUANL" Association="Self.FK_RUKU_REFERENCE_GYSGUANL">
+            <End Role="gysguanli" EntitySet="gysguanli" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_PRODUCTG" Association="Self.FK_RUKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_RKXIANG" Association="Self.FK_RUKU_REFERENCE_RKXIANG">
+            <End Role="RKxiang" EntitySet="RKxiang" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_RUKUTYPE" Association="Self.FK_RUKU_REFERENCE_RUKUTYPE">
+            <End Role="rukuType" EntitySet="rukuType" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORAGE_REFERENCE_KUTYPE" Association="Self.FK_STORAGE_REFERENCE_KUTYPE">
+            <End Role="KuType" EntitySet="KuType" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORAGE_REFERENCE_WAREHOUS" Association="Self.FK_STORAGE_REFERENCE_WAREHOUS">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_ADMIN" Association="Self.FK_TUIHUO_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_PRODUCTG" Association="Self.FK_TUIHUO_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_TUIHUOTY" Association="Self.FK_TUIHUO_REFERENCE_TUIHUOTY">
+            <End Role="tuihuoType" EntitySet="tuihuoType" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER" Association="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY" Association="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
+            <End Role="tuihuoType" EntitySet="tuihuoType" />
+            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_ADMIN" Association="Self.FK_YIKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_PRODUCTG" Association="Self.FK_YIKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_YIKUTYPE" Association="Self.FK_YIKU_REFERENCE_YIKUTYPE">
+            <End Role="yikuType" EntitySet="yikuType" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKUXQ_REFERENCE_CUSTOMER" Association="Self.FK_YIKUXQ_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="yikuxq" EntitySet="yikuxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKUXQ_REFERENCE_YIKUTYPE" Association="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE">
+            <End Role="yikuType" EntitySet="yikuType" />
+            <End Role="yikuxq" EntitySet="yikuxq" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NewHope4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoginNum" Type="Int32" />
+          <Property Name="Did" Type="Int32" />
+          <Property Name="RID" Type="Int32" />
+          <Property Name="Userpwd" Type="Int32" />
+          <Property Name="UserTypeID" Type="Int32" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="department" Relationship="Self.FK_ADMIN_REFERENCE_DEPARTME" FromRole="Admin" ToRole="department" />
+          <NavigationProperty Name="role" Relationship="Self.FK_ADMIN_REFERENCE_ROLE" FromRole="Admin" ToRole="role" />
+          <NavigationProperty Name="roleType" Relationship="Self.FK_ADMIN_REFERENCE_ROLETYPE" FromRole="Admin" ToRole="roleType" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_ADMIN" FromRole="Admin" ToRole="baosun" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="chuku" />
+          <NavigationProperty Name="panDian" Relationship="Self.FK_PANDIAN_REFERENCE_ADMIN" FromRole="Admin" ToRole="panDian" />
+          <NavigationProperty Name="productType" Relationship="Self.FK_PRODUCTT_REFERENCE_ADMIN" FromRole="Admin" ToRole="productType" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="ruku" />
+          <NavigationProperty Name="tuihuo" Relationship="Self.FK_TUIHUO_REFERENCE_ADMIN" FromRole="Admin" ToRole="tuihuo" />
+          <NavigationProperty Name="yiku" Relationship="Self.FK_YIKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="yiku" />
+        </EntityType>
+        <EntityType Name="baosun">
+          <Key>
+            <PropertyRef Name="baosunID" />
+          </Key>
+          <Property Name="baosunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baosunTypeID" Type="Int32" />
+          <Property Name="bsID" Type="Int32" />
+          <Property Name="cpid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="baosunSum" Type="Int32" />
+          <Property Name="zt" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="caozuofs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_BAOSUN_REFERENCE_ADMIN" FromRole="baosun" ToRole="Admin" />
+          <NavigationProperty Name="baosunType" Relationship="Self.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosun" ToRole="baosunType" />
+          <NavigationProperty Name="BSxiang" Relationship="Self.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="baosun" ToRole="BSxiang" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="baosun" ToRole="productguanli" />
+        </EntityType>
+        <EntityType Name="baosunType">
+          <Key>
+            <PropertyRef Name="baosunTypeID" />
+          </Key>
+          <Property Name="baosunTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="baosunTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosunType" ToRole="baosun" />
+        </EntityType>
+        <EntityType Name="BSxiang">
+          <Key>
+            <PropertyRef Name="bsID" />
+          </Key>
+          <Property Name="bsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pid" Type="Int32" />
+          <Property Name="Ptiaoma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pguige" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="bsSum" Type="Int32" />
+          <Property Name="bspici" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="BSxiang" ToRole="baosun" />
+        </EntityType>
+        <EntityType Name="chuku">
+          <Key>
+            <PropertyRef Name="chukuID" />
+          </Key>
+          <Property Name="chukuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chukuTypeID" Type="Int32" />
+          <Property Name="ckID" Type="Int32" />
+          <Property Name="kehuID" Type="Int32" />
+          <Property Name="cpID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chukuSum" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="zt" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="caozuofs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_CHUKU_REFERENCE_ADMIN" FromRole="chuku" ToRole="Admin" />
+          <NavigationProperty Name="chukuType" Relationship="Self.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chuku" ToRole="chukuType" />
+          <NavigationProperty Name="CKxiang" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="chuku" ToRole="CKxiang" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="chuku" ToRole="customer" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="chuku" ToRole="productguanli" />
+        </EntityType>
+        <EntityType Name="chukuType">
+          <Key>
+            <PropertyRef Name="chukuTypeID" />
+          </Key>
+          <Property Name="chukuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chukuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chukuType" ToRole="chuku" />
+        </EntityType>
+        <EntityType Name="CKxiang">
+          <Key>
+            <PropertyRef Name="ckID" />
+          </Key>
+          <Property Name="ckID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pid" Type="Int32" />
+          <Property Name="Ptiaoma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pguige" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ckpici" Type="Int32" />
+          <Property Name="Tid" Type="Int32" />
+          <Property Name="chuSum" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="CKxiang" ToRole="chuku" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="kehuID" />
+          </Key>
+          <Property Name="kehuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KehuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="faxes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="dizhiID" Type="Int32" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="customer" ToRole="chuku" />
+          <NavigationProperty Name="dizhi" Relationship="Self.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="customer" ToRole="dizhi" />
+          <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="customer" ToRole="pandianxq" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
+          <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
+          <NavigationProperty Name="yikuxq" Relationship="Self.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="yikuxq" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ADMIN_REFERENCE_DEPARTME" FromRole="department" ToRole="Admin" />
+        </EntityType>
+        <EntityType Name="dizhi">
+          <Key>
+            <PropertyRef Name="dizhiID" />
+          </Key>
+          <Property Name="dizhiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dizhiName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="dizhi" ToRole="customer" />
+        </EntityType>
+        <EntityType Name="gysguanli">
+          <Key>
+            <PropertyRef Name="GID" />
+          </Key>
+          <Property Name="GID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gystypeID" Type="Int32" />
+          <Property Name="GName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="faxes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="describe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="gystype" Relationship="Self.FK_GYSGUANL_REFERENCE_GYSTYPE" FromRole="gysguanli" ToRole="gystype" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_GYSGUANL" FromRole="gysguanli" ToRole="ruku" />
+        </EntityType>
+        <EntityType Name="gystype">
+          <Key>
+            <PropertyRef Name="gystypeID" />
+          </Key>
+          <Property Name="gystypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gystypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="gysguanli" Relationship="Self.FK_GYSGUANL_REFERENCE_GYSTYPE" FromRole="gystype" ToRole="gysguanli" />
+        </EntityType>
+        <EntityType Name="jurisdiction">
+          <Key>
+            <PropertyRef Name="JID" />
+          </Key>
+          <Property Name="JID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RID" Type="Int32" />
+          <Property Name="MID" Type="Int32" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_JURISDIC_REFERENCE_MENU" FromRole="jurisdiction" ToRole="menu" />
+          <NavigationProperty Name="role" Relationship="Self.FK_JURISDIC_REFERENCE_ROLE" FromRole="jurisdiction" ToRole="role" />
+        </EntityType>
+        <EntityType Name="KuType">
+          <Key>
+            <PropertyRef Name="KuTYpeID" />
+          </Key>
+          <Property Name="KuTYpeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_KUTYPE" FromRole="KuType" ToRole="productguanli" />
+          <NavigationProperty Name="storage" Relationship="Self.FK_STORAGE_REFERENCE_KUTYPE" FromRole="KuType" ToRole="storage" />
+        </EntityType>
+        <EntityType Name="measurement">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="MID" />
+          </Key>
+          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MNmae" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="style" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sort" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="jurisdiction" Relationship="Self.FK_JURISDIC_REFERENCE_MENU" FromRole="menu" ToRole="jurisdiction" />
+          <NavigationProperty Name="MenuType" Relationship="Self.FK_menu_MenuType" FromRole="menu" ToRole="MenuType" />
+          <NavigationProperty Name="Parentmenu" Relationship="Self.FK_MENU_REFERENCE_PARENTME" FromRole="menu" ToRole="Parentmenu" />
+        </EntityType>
+        <EntityType Name="MenuType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_menu_MenuType" FromRole="MenuType" ToRole="menu" />
+        </EntityType>
+        <EntityType Name="panDian">
+          <Key>
+            <PropertyRef Name="pandianID" />
+          </Key>
+          <Property Name="pandianID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pandianTypeID" Type="Int32" />
+          <Property Name="chanpinID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="caozuofs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_PANDIAN_REFERENCE_ADMIN" FromRole="panDian" ToRole="Admin" />
+          <NavigationProperty Name="pandianType" Relationship="Self.FK_PANDIAN_REFERENCE_PANDIANT" FromRole="panDian" ToRole="pandianType" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PANDIAN_REFERENCE_PRODUCTG" FromRole="panDian" ToRole="productguanli" />
+        </EntityType>
+        <EntityType Name="pandianType">
+          <Key>
+            <PropertyRef Name="pandianTypeID" />
+          </Key>
+          <Property Name="pandianTypeID" Type="Int32" Nullable="false" />
+          <Property Name="pandianTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="panDian" Relationship="Self.FK_PANDIAN_REFERENCE_PANDIANT" FromRole="pandianType" ToRole="panDian" />
+          <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianType" ToRole="pandianxq" />
+        </EntityType>
+        <EntityType Name="pandianxq">
+          <Key>
+            <PropertyRef Name="pandianxqID" />
+          </Key>
+          <Property Name="pandianxqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chanpinID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpinName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpintiaoma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpinPrice" Type="Int32" />
+          <Property Name="pandiansum" Type="Int32" />
+          <Property Name="chanpinpici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pandianTypeID" Type="Int32" />
+          <Property Name="kehuID" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="pandianxq" ToRole="customer" />
+          <NavigationProperty Name="pandianType" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianxq" ToRole="pandianType" />
+        </EntityType>
+        <EntityType Name="Parentmenu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_MENU_REFERENCE_PARENTME" FromRole="Parentmenu" ToRole="menu" />
+        </EntityType>
+        <EntityType Name="productguanli">
+          <Key>
+            <PropertyRef Name="cpID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cpID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cpName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="upper" Type="Int32" />
+          <Property Name="floor" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="specification" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="Int32" />
+          <Property Name="MID" Type="Int32" />
+          <Property Name="remark" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="kehuID" Type="Int32" />
+          <Property Name="WID" Type="Int32" />
+          <Property Name="XID" Type="Int32" />
+          <Property Name="defaultstorage" Type="Int32" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="baosun" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="chuku" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="productguanli" ToRole="customer" />
+          <NavigationProperty Name="KuType" Relationship="Self.FK_PRODUCTG_REFERENCE_KUTYPE" FromRole="productguanli" ToRole="KuType" />
+          <NavigationProperty Name="measurement" Relationship="Self.FK_productguanli_measurement" FromRole="productguanli" ToRole="measurement" />
+          <NavigationProperty Name="panDian" Relationship="Self.FK_PANDIAN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="panDian" />
+          <NavigationProperty Name="productType" Relationship="Self.FK_PRODUCTG_REFERENCE_PRODUCTT" FromRole="productguanli" ToRole="productType" />
+          <NavigationProperty Name="warehouse" Relationship="Self.FK_PRODUCTG_REFERENCE_WAREHOUS" FromRole="productguanli" ToRole="warehouse" />
+          <NavigationProperty Name="productguanli1" Relationship="Self.FK_productguanli_productguanli" FromRole="productguanli" ToRole="productguanli1" />
+          <NavigationProperty Name="productguanli2" Relationship="Self.FK_productguanli_productguanli" FromRole="productguanli1" ToRole="productguanli" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="ruku" />
+          <NavigationProperty Name="tuihuo" Relationship="Self.FK_TUIHUO_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="tuihuo" />
+          <NavigationProperty Name="yiku" Relationship="Self.FK_YIKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="yiku" />
+        </EntityType>
+        <EntityType Name="productType">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_PRODUCTT_REFERENCE_ADMIN" FromRole="productType" ToRole="Admin" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_PRODUCTT" FromRole="productType" ToRole="productguanli" />
+        </EntityType>
+        <EntityType Name="RKxiang">
+          <Key>
+            <PropertyRef Name="rxID" />
+          </Key>
+          <Property Name="rxID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pguige" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pprice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Ppici" Type="Int32" />
+          <Property Name="zt" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RKXIANG" FromRole="RKxiang" ToRole="ruku" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int32" Nullable="false" />
+          <Property Name="RName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ADMIN_REFERENCE_ROLE" FromRole="role" ToRole="Admin" />
+          <NavigationProperty Name="jurisdiction" Relationship="Self.FK_JURISDIC_REFERENCE_ROLE" FromRole="role" ToRole="jurisdiction" />
+        </EntityType>
+        <EntityType Name="roleType">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ADMIN_REFERENCE_ROLETYPE" FromRole="roleType" ToRole="Admin" />
+        </EntityType>
+        <EntityType Name="ruku">
+          <Key>
+            <PropertyRef Name="rukuID" />
+          </Key>
+          <Property Name="rukuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rukuTypeID" Type="Int32" />
+          <Property Name="gysID" Type="Int32" />
+          <Property Name="cpID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="zt" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="caozuofs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="createTime" Type="DateTime" Precision="3" />
+          <Property Name="rxID" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_RUKU_REFERENCE_ADMIN" FromRole="ruku" ToRole="Admin" />
+          <NavigationProperty Name="gysguanli" Relationship="Self.FK_RUKU_REFERENCE_GYSGUANL" FromRole="ruku" ToRole="gysguanli" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_RUKU_REFERENCE_PRODUCTG" FromRole="ruku" ToRole="productguanli" />
+          <NavigationProperty Name="RKxiang" Relationship="Self.FK_RUKU_REFERENCE_RKXIANG" FromRole="ruku" ToRole="RKxiang" />
+          <NavigationProperty Name="rukuType" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="ruku" ToRole="rukuType" />
+        </EntityType>
+        <EntityType Name="rukuType">
+          <Key>
+            <PropertyRef Name="rukuTypeID" />
+          </Key>
+          <Property Name="rukuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rukuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="rukuType" ToRole="ruku" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tuihuo">
+          <Key>
+            <PropertyRef Name="tuihuoID" />
+          </Key>
+          <Property Name="tuihuoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tuihuoTypeID" Type="Int32" />
+          <Property Name="sum" Type="Int32" />
+          <Property Name="chanpinID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_TUIHUO_REFERENCE_ADMIN" FromRole="tuihuo" ToRole="Admin" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_TUIHUO_REFERENCE_PRODUCTG" FromRole="tuihuo" ToRole="productguanli" />
+          <NavigationProperty Name="tuihuoType" Relationship="Self.FK_TUIHUO_REFERENCE_TUIHUOTY" FromRole="tuihuo" ToRole="tuihuoType" />
+        </EntityType>
+        <EntityType Name="tuihuoType">
+          <Key>
+            <PropertyRef Name="tuihuoTypeID" />
+          </Key>
+          <Property Name="tuihuoTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tuihuoTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="tuihuo" Relationship="Self.FK_TUIHUO_REFERENCE_TUIHUOTY" FromRole="tuihuoType" ToRole="tuihuo" />
+          <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" FromRole="tuihuoType" ToRole="tuihuoxq" />
+        </EntityType>
+        <EntityType Name="tuihuoxq">
+          <Key>
+            <PropertyRef Name="tuihuoxqID" />
+          </Key>
+          <Property Name="tuihuoxqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chanpinID" Type="Int32" />
+          <Property Name="chanpinName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpintiaoma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpinPrice" Type="Int32" />
+          <Property Name="tuihuosum" Type="Int32" />
+          <Property Name="chanpinpici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tuihuoTypeID" Type="Int32" />
+          <Property Name="kehuID" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="tuihuoxq" ToRole="customer" />
+          <NavigationProperty Name="tuihuoType" Relationship="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" FromRole="tuihuoxq" ToRole="tuihuoType" />
+        </EntityType>
+        <EntityType Name="warehouse">
+          <Key>
+            <PropertyRef Name="WID" />
+          </Key>
+          <Property Name="WID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_WAREHOUS" FromRole="warehouse" ToRole="productguanli" />
+          <NavigationProperty Name="storage" Relationship="Self.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="warehouse" ToRole="storage" />
+        </EntityType>
+        <EntityType Name="yiku">
+          <Key>
+            <PropertyRef Name="yikuID" />
+          </Key>
+          <Property Name="yikuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yikuTypeID" Type="Int32" />
+          <Property Name="chanpinID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_YIKU_REFERENCE_ADMIN" FromRole="yiku" ToRole="Admin" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_YIKU_REFERENCE_PRODUCTG" FromRole="yiku" ToRole="productguanli" />
+          <NavigationProperty Name="yikuType" Relationship="Self.FK_YIKU_REFERENCE_YIKUTYPE" FromRole="yiku" ToRole="yikuType" />
+        </EntityType>
+        <EntityType Name="yikuType">
+          <Key>
+            <PropertyRef Name="yikuTypeID" />
+          </Key>
+          <Property Name="yikuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yikuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="Int32" />
+          <NavigationProperty Name="yiku" Relationship="Self.FK_YIKU_REFERENCE_YIKUTYPE" FromRole="yikuType" ToRole="yiku" />
+          <NavigationProperty Name="yikuxq" Relationship="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE" FromRole="yikuType" ToRole="yikuxq" />
+        </EntityType>
+        <EntityType Name="yikuxq">
+          <Key>
+            <PropertyRef Name="yikuxqID" />
+          </Key>
+          <Property Name="yikuxqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chanpinID" Type="Int32" />
+          <Property Name="chanpinName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpintiaoma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chanpinPrice" Type="Int32" />
+          <Property Name="yikusum" Type="Int32" />
+          <Property Name="chanpinpici" Type="Int32" />
+          <Property Name="yikuTypeID" Type="Int32" />
+          <Property Name="kehuID" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="yikuxq" ToRole="customer" />
+          <NavigationProperty Name="yikuType" Relationship="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE" FromRole="yikuxq" ToRole="yikuType" />
+        </EntityType>
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KID" Type="Int32" />
+          <Property Name="KName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WID" Type="Int32" />
+          <Property Name="KuTypeID" Type="Int32" />
+          <Property Name="forbidden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="default" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KuType" Relationship="Self.FK_STORAGE_REFERENCE_KUTYPE" FromRole="storage" ToRole="KuType" />
+          <NavigationProperty Name="warehouse" Relationship="Self.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="storage" ToRole="warehouse" />
+        </EntityType>
+        <Association Name="FK_ADMIN_REFERENCE_DEPARTME">
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="Did" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="Did" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_REFERENCE_ROLE">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ADMIN_REFERENCE_ROLETYPE">
+          <End Role="roleType" Type="Self.roleType" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roleType">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIAN_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="panDian">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTT_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="productType" Type="Self.productType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="productType">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUO_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tuihuo">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKU_REFERENCE_ADMIN">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="yiku">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_BAOSUNTY">
+          <End Role="baosunType" Type="Self.baosunType" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="baosunType">
+              <PropertyRef Name="baosunTypeID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="baosunTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_BSXIANG">
+          <End Role="BSxiang" Type="Self.BSxiang" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BSxiang">
+              <PropertyRef Name="bsID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="bsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BAOSUN_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="cpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_CHUKUTYP">
+          <End Role="chukuType" Type="Self.chukuType" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chukuType">
+              <PropertyRef Name="chukuTypeID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="chukuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_CKXIANG">
+          <End Role="CKxiang" Type="Self.CKxiang" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CKxiang">
+              <PropertyRef Name="ckID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="ckID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHUKU_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="cpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
+          <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
+          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dizhi">
+              <PropertyRef Name="dizhiID" />
+            </Principal>
+            <Dependent Role="customer">
+              <PropertyRef Name="dizhiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIANX_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="pandianxq" Type="Self.pandianxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="pandianxq">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="tuihuoxq" Type="Self.tuihuoxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="tuihuoxq">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKUXQ_REFERENCE_CUSTOMER">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="yikuxq" Type="Self.yikuxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="yikuxq">
+              <PropertyRef Name="kehuID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GYSGUANL_REFERENCE_GYSTYPE">
+          <End Role="gystype" Type="Self.gystype" Multiplicity="0..1" />
+          <End Role="gysguanli" Type="Self.gysguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gystype">
+              <PropertyRef Name="gystypeID" />
+            </Principal>
+            <Dependent Role="gysguanli">
+              <PropertyRef Name="gystypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_GYSGUANL">
+          <End Role="gysguanli" Type="Self.gysguanli" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gysguanli">
+              <PropertyRef Name="GID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="gysID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JURISDIC_REFERENCE_MENU">
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="jurisdiction" Type="Self.jurisdiction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menu">
+              <PropertyRef Name="MID" />
+            </Principal>
+            <Dependent Role="jurisdiction">
+              <PropertyRef Name="MID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JURISDIC_REFERENCE_ROLE">
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="jurisdiction" Type="Self.jurisdiction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="jurisdiction">
+              <PropertyRef Name="RID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_KUTYPE">
+          <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KuType">
+              <PropertyRef Name="KuTYpeID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="defaultstorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORAGE_REFERENCE_KUTYPE">
+          <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KuType">
+              <PropertyRef Name="KuTYpeID" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="KuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productguanli_measurement">
+          <End Role="measurement" Type="Self.measurement" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="measurement">
+              <PropertyRef Name="MID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="MID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_menu_MenuType">
+          <End Role="MenuType" Type="Self.MenuType" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="menu">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_REFERENCE_PARENTME">
+          <End Role="Parentmenu" Type="Self.Parentmenu" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentmenu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="menu">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIAN_REFERENCE_PANDIANT">
+          <End Role="pandianType" Type="Self.pandianType" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pandianType">
+              <PropertyRef Name="pandianTypeID" />
+            </Principal>
+            <Dependent Role="panDian">
+              <PropertyRef Name="pandianTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIAN_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="panDian">
+              <PropertyRef Name="chanpinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PANDIANX_REFERENCE_PANDIANT">
+          <End Role="pandianType" Type="Self.pandianType" Multiplicity="0..1" />
+          <End Role="pandianxq" Type="Self.pandianxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pandianType">
+              <PropertyRef Name="pandianTypeID" />
+            </Principal>
+            <Dependent Role="pandianxq">
+              <PropertyRef Name="pandianTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_PRODUCTT">
+          <End Role="productType" Type="Self.productType" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productType">
+              <PropertyRef Name="PID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTG_REFERENCE_WAREHOUS">
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warehouse">
+              <PropertyRef Name="WID" />
+            </Principal>
+            <Dependent Role="productguanli">
+              <PropertyRef Name="WID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productguanli_productguanli">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="1" />
+          <End Role="productguanli1" Type="Self.productguanli" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="productguanli1">
+              <PropertyRef Name="cpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="cpID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUO_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="tuihuo">
+              <PropertyRef Name="chanpinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKU_REFERENCE_PRODUCTG">
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productguanli">
+              <PropertyRef Name="cpID" />
+            </Principal>
+            <Dependent Role="yiku">
+              <PropertyRef Name="chanpinID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_RKXIANG">
+          <End Role="RKxiang" Type="Self.RKxiang" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RKxiang">
+              <PropertyRef Name="rxID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="rxID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RUKU_REFERENCE_RUKUTYPE">
+          <End Role="rukuType" Type="Self.rukuType" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuType">
+              <PropertyRef Name="rukuTypeID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="rukuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUO_REFERENCE_TUIHUOTY">
+          <End Role="tuihuoType" Type="Self.tuihuoType" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tuihuoType">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Principal>
+            <Dependent Role="tuihuo">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
+          <End Role="tuihuoType" Type="Self.tuihuoType" Multiplicity="0..1" />
+          <End Role="tuihuoxq" Type="Self.tuihuoxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tuihuoType">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Principal>
+            <Dependent Role="tuihuoxq">
+              <PropertyRef Name="tuihuoTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORAGE_REFERENCE_WAREHOUS">
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warehouse">
+              <PropertyRef Name="WID" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="WID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKU_REFERENCE_YIKUTYPE">
+          <End Role="yikuType" Type="Self.yikuType" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yikuType">
+              <PropertyRef Name="yikuTypeID" />
+            </Principal>
+            <Dependent Role="yiku">
+              <PropertyRef Name="yikuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_YIKUXQ_REFERENCE_YIKUTYPE">
+          <End Role="yikuType" Type="Self.yikuType" Multiplicity="0..1" />
+          <End Role="yikuxq" Type="Self.yikuxq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="yikuType">
+              <PropertyRef Name="yikuTypeID" />
+            </Principal>
+            <Dependent Role="yikuxq">
+              <PropertyRef Name="yikuTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NewHope4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="baosun" EntityType="Self.baosun" />
+          <EntitySet Name="baosunType" EntityType="Self.baosunType" />
+          <EntitySet Name="BSxiang" EntityType="Self.BSxiang" />
+          <EntitySet Name="chuku" EntityType="Self.chuku" />
+          <EntitySet Name="chukuType" EntityType="Self.chukuType" />
+          <EntitySet Name="CKxiang" EntityType="Self.CKxiang" />
+          <EntitySet Name="customer" EntityType="Self.customer" />
+          <EntitySet Name="department" EntityType="Self.department" />
+          <EntitySet Name="dizhi" EntityType="Self.dizhi" />
+          <EntitySet Name="gysguanli" EntityType="Self.gysguanli" />
+          <EntitySet Name="gystype" EntityType="Self.gystype" />
+          <EntitySet Name="jurisdiction" EntityType="Self.jurisdiction" />
+          <EntitySet Name="KuType" EntityType="Self.KuType" />
+          <EntitySet Name="measurement" EntityType="Self.measurement" />
+          <EntitySet Name="menu" EntityType="Self.menu" />
+          <EntitySet Name="MenuType" EntityType="Self.MenuType" />
+          <EntitySet Name="panDian" EntityType="Self.panDian" />
+          <EntitySet Name="pandianType" EntityType="Self.pandianType" />
+          <EntitySet Name="pandianxq" EntityType="Self.pandianxq" />
+          <EntitySet Name="Parentmenu" EntityType="Self.Parentmenu" />
+          <EntitySet Name="productguanli" EntityType="Self.productguanli" />
+          <EntitySet Name="productType" EntityType="Self.productType" />
+          <EntitySet Name="RKxiang" EntityType="Self.RKxiang" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="roleType" EntityType="Self.roleType" />
+          <EntitySet Name="ruku" EntityType="Self.ruku" />
+          <EntitySet Name="rukuType" EntityType="Self.rukuType" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tuihuo" EntityType="Self.tuihuo" />
+          <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" />
+          <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" />
+          <EntitySet Name="warehouse" EntityType="Self.warehouse" />
+          <EntitySet Name="yiku" EntityType="Self.yiku" />
+          <EntitySet Name="yikuType" EntityType="Self.yikuType" />
+          <EntitySet Name="yikuxq" EntityType="Self.yikuxq" />
+          <EntitySet Name="storage" EntityType="Self.storage" />
+          <AssociationSet Name="FK_ADMIN_REFERENCE_DEPARTME" Association="Self.FK_ADMIN_REFERENCE_DEPARTME">
+            <End Role="department" EntitySet="department" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLE" Association="Self.FK_ADMIN_REFERENCE_ROLE">
+            <End Role="role" EntitySet="role" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLETYPE" Association="Self.FK_ADMIN_REFERENCE_ROLETYPE">
+            <End Role="roleType" EntitySet="roleType" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_ADMIN" Association="Self.FK_BAOSUN_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_ADMIN" Association="Self.FK_CHUKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_ADMIN" Association="Self.FK_PANDIAN_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTT_REFERENCE_ADMIN" Association="Self.FK_PRODUCTT_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="productType" EntitySet="productType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_ADMIN" Association="Self.FK_RUKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_ADMIN" Association="Self.FK_TUIHUO_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_ADMIN" Association="Self.FK_YIKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_BAOSUNTY" Association="Self.FK_BAOSUN_REFERENCE_BAOSUNTY">
+            <End Role="baosunType" EntitySet="baosunType" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_BSXIANG" Association="Self.FK_BAOSUN_REFERENCE_BSXIANG">
+            <End Role="BSxiang" EntitySet="BSxiang" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_PRODUCTG" Association="Self.FK_BAOSUN_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CHUKUTYP" Association="Self.FK_CHUKU_REFERENCE_CHUKUTYP">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CKXIANG" Association="Self.FK_CHUKU_REFERENCE_CKXIANG">
+            <End Role="CKxiang" EntitySet="CKxiang" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CUSTOMER" Association="Self.FK_CHUKU_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_PRODUCTG" Association="Self.FK_CHUKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
+            <End Role="dizhi" EntitySet="dizhi" />
+            <End Role="customer" EntitySet="customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIANX_REFERENCE_CUSTOMER" Association="Self.FK_PANDIANX_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="pandianxq" EntitySet="pandianxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_CUSTOMER" Association="Self.FK_PRODUCTG_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER" Association="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKUXQ_REFERENCE_CUSTOMER" Association="Self.FK_YIKUXQ_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="yikuxq" EntitySet="yikuxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GYSGUANL_REFERENCE_GYSTYPE" Association="Self.FK_GYSGUANL_REFERENCE_GYSTYPE">
+            <End Role="gystype" EntitySet="gystype" />
+            <End Role="gysguanli" EntitySet="gysguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_GYSGUANL" Association="Self.FK_RUKU_REFERENCE_GYSGUANL">
+            <End Role="gysguanli" EntitySet="gysguanli" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JURISDIC_REFERENCE_MENU" Association="Self.FK_JURISDIC_REFERENCE_MENU">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="jurisdiction" EntitySet="jurisdiction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JURISDIC_REFERENCE_ROLE" Association="Self.FK_JURISDIC_REFERENCE_ROLE">
+            <End Role="role" EntitySet="role" />
+            <End Role="jurisdiction" EntitySet="jurisdiction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_KUTYPE" Association="Self.FK_PRODUCTG_REFERENCE_KUTYPE">
+            <End Role="KuType" EntitySet="KuType" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORAGE_REFERENCE_KUTYPE" Association="Self.FK_STORAGE_REFERENCE_KUTYPE">
+            <End Role="KuType" EntitySet="KuType" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productguanli_measurement" Association="Self.FK_productguanli_measurement">
+            <End Role="measurement" EntitySet="measurement" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_MenuType" Association="Self.FK_menu_MenuType">
+            <End Role="MenuType" EntitySet="MenuType" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_REFERENCE_PARENTME" Association="Self.FK_MENU_REFERENCE_PARENTME">
+            <End Role="Parentmenu" EntitySet="Parentmenu" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_PANDIANT" Association="Self.FK_PANDIAN_REFERENCE_PANDIANT">
+            <End Role="pandianType" EntitySet="pandianType" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_PRODUCTG" Association="Self.FK_PANDIAN_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIANX_REFERENCE_PANDIANT" Association="Self.FK_PANDIANX_REFERENCE_PANDIANT">
+            <End Role="pandianType" EntitySet="pandianType" />
+            <End Role="pandianxq" EntitySet="pandianxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_PRODUCTT" Association="Self.FK_PRODUCTG_REFERENCE_PRODUCTT">
+            <End Role="productType" EntitySet="productType" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_WAREHOUS" Association="Self.FK_PRODUCTG_REFERENCE_WAREHOUS">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productguanli_productguanli" Association="Self.FK_productguanli_productguanli">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="productguanli1" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_PRODUCTG" Association="Self.FK_RUKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_PRODUCTG" Association="Self.FK_TUIHUO_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_PRODUCTG" Association="Self.FK_YIKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_RKXIANG" Association="Self.FK_RUKU_REFERENCE_RKXIANG">
+            <End Role="RKxiang" EntitySet="RKxiang" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_RUKUTYPE" Association="Self.FK_RUKU_REFERENCE_RUKUTYPE">
+            <End Role="rukuType" EntitySet="rukuType" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_TUIHUOTY" Association="Self.FK_TUIHUO_REFERENCE_TUIHUOTY">
+            <End Role="tuihuoType" EntitySet="tuihuoType" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY" Association="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
+            <End Role="tuihuoType" EntitySet="tuihuoType" />
+            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORAGE_REFERENCE_WAREHOUS" Association="Self.FK_STORAGE_REFERENCE_WAREHOUS">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_YIKUTYPE" Association="Self.FK_YIKU_REFERENCE_YIKUTYPE">
+            <End Role="yikuType" EntitySet="yikuType" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKUXQ_REFERENCE_YIKUTYPE" Association="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE">
+            <End Role="yikuType" EntitySet="yikuType" />
+            <End Role="yikuxq" EntitySet="yikuxq" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NewHope4ModelStoreContainer" CdmEntityContainer="NewHope4Entities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="NewHope4Model.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LoginNum" ColumnName="LoginNum" />
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="Userpwd" ColumnName="Userpwd" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="baosun">
+            <EntityTypeMapping TypeName="NewHope4Model.baosun">
+              <MappingFragment StoreEntitySet="baosun">
+                <ScalarProperty Name="baosunID" ColumnName="baosunID" />
+                <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
+                <ScalarProperty Name="bsID" ColumnName="bsID" />
+                <ScalarProperty Name="cpid" ColumnName="cpid" />
+                <ScalarProperty Name="baosunSum" ColumnName="baosunSum" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="baosunType">
+            <EntityTypeMapping TypeName="NewHope4Model.baosunType">
+              <MappingFragment StoreEntitySet="baosunType">
+                <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
+                <ScalarProperty Name="baosunTypeName" ColumnName="baosunTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BSxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.BSxiang">
+              <MappingFragment StoreEntitySet="BSxiang">
+                <ScalarProperty Name="bsID" ColumnName="bsID" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
+                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
+                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
+                <ScalarProperty Name="bsSum" ColumnName="bsSum" />
+                <ScalarProperty Name="bspici" ColumnName="bspici" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chuku">
+            <EntityTypeMapping TypeName="NewHope4Model.chuku">
+              <MappingFragment StoreEntitySet="chuku">
+                <ScalarProperty Name="chukuID" ColumnName="chukuID" />
+                <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
+                <ScalarProperty Name="ckID" ColumnName="ckID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
+                <ScalarProperty Name="chukuSum" ColumnName="chukuSum" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chukuType">
+            <EntityTypeMapping TypeName="NewHope4Model.chukuType">
+              <MappingFragment StoreEntitySet="chukuType">
+                <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
+                <ScalarProperty Name="chukuTypeName" ColumnName="chukuTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CKxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.CKxiang">
+              <MappingFragment StoreEntitySet="CKxiang">
+                <ScalarProperty Name="ckID" ColumnName="ckID" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
+                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
+                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
+                <ScalarProperty Name="ckpici" ColumnName="ckpici" />
+                <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="chuSum" ColumnName="chuSum" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer">
+            <EntityTypeMapping TypeName="NewHope4Model.customer">
+              <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="KehuName" ColumnName="KehuName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="faxes" ColumnName="faxes" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="NewHope4Model.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dizhi">
+            <EntityTypeMapping TypeName="NewHope4Model.dizhi">
+              <MappingFragment StoreEntitySet="dizhi">
+                <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
+                <ScalarProperty Name="dizhiName" ColumnName="dizhiName" />
+                <ScalarProperty Name="linkman" ColumnName="linkman" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gysguanli">
+            <EntityTypeMapping TypeName="NewHope4Model.gysguanli">
+              <MappingFragment StoreEntitySet="gysguanli">
+                <ScalarProperty Name="GID" ColumnName="GID" />
+                <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
+                <ScalarProperty Name="GName" ColumnName="GName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="faxes" ColumnName="faxes" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="linkman" ColumnName="linkman" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="describe" ColumnName="describe" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gystype">
+            <EntityTypeMapping TypeName="NewHope4Model.gystype">
+              <MappingFragment StoreEntitySet="gystype">
+                <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
+                <ScalarProperty Name="gystypeName" ColumnName="gystypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jurisdiction">
+            <EntityTypeMapping TypeName="NewHope4Model.jurisdiction">
+              <MappingFragment StoreEntitySet="jurisdiction">
+                <ScalarProperty Name="JID" ColumnName="JID" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KuType">
+            <EntityTypeMapping TypeName="NewHope4Model.KuType">
+              <MappingFragment StoreEntitySet="KuType">
+                <ScalarProperty Name="KuTYpeID" ColumnName="KuTYpeID" />
+                <ScalarProperty Name="KuName" ColumnName="KuName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="measurement">
+            <EntityTypeMapping TypeName="NewHope4Model.measurement">
+              <MappingFragment StoreEntitySet="measurement">
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="NewHope4Model.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="MNmae" ColumnName="MNmae" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="style" ColumnName="style" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuType">
+            <EntityTypeMapping TypeName="NewHope4Model.MenuType">
+              <MappingFragment StoreEntitySet="MenuType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="panDian">
+            <EntityTypeMapping TypeName="NewHope4Model.panDian">
+              <MappingFragment StoreEntitySet="panDian">
+                <ScalarProperty Name="pandianID" ColumnName="pandianID" />
+                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pandianType">
+            <EntityTypeMapping TypeName="NewHope4Model.pandianType">
+              <MappingFragment StoreEntitySet="pandianType">
+                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
+                <ScalarProperty Name="pandianTypeName" ColumnName="pandianTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pandianxq">
+            <EntityTypeMapping TypeName="NewHope4Model.pandianxq">
+              <MappingFragment StoreEntitySet="pandianxq">
+                <ScalarProperty Name="pandianxqID" ColumnName="pandianxqID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
+                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
+                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
+                <ScalarProperty Name="pandiansum" ColumnName="pandiansum" />
+                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
+                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parentmenu">
+            <EntityTypeMapping TypeName="NewHope4Model.Parentmenu">
+              <MappingFragment StoreEntitySet="Parentmenu">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productguanli">
+            <EntityTypeMapping TypeName="NewHope4Model.productguanli">
+              <MappingFragment StoreEntitySet="productguanli">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
+                <ScalarProperty Name="cpName" ColumnName="cpName" />
+                <ScalarProperty Name="upper" ColumnName="upper" />
+                <ScalarProperty Name="floor" ColumnName="floor" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="specification" ColumnName="specification" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="WID" ColumnName="WID" />
+                <ScalarProperty Name="XID" ColumnName="XID" />
+                <ScalarProperty Name="defaultstorage" ColumnName="defaultstorage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productType">
+            <EntityTypeMapping TypeName="NewHope4Model.productType">
+              <MappingFragment StoreEntitySet="productType">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RKxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.RKxiang">
+              <MappingFragment StoreEntitySet="RKxiang">
+                <ScalarProperty Name="rxID" ColumnName="rxID" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
+                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
+                <ScalarProperty Name="Ppici" ColumnName="Ppici" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="role">
+            <EntityTypeMapping TypeName="NewHope4Model.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="RName" ColumnName="RName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roleType">
+            <EntityTypeMapping TypeName="NewHope4Model.roleType">
+              <MappingFragment StoreEntitySet="roleType">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ruku">
+            <EntityTypeMapping TypeName="NewHope4Model.ruku">
+              <MappingFragment StoreEntitySet="ruku">
+                <ScalarProperty Name="rukuID" ColumnName="rukuID" />
+                <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
+                <ScalarProperty Name="gysID" ColumnName="gysID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="rxID" ColumnName="rxID" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rukuType">
+            <EntityTypeMapping TypeName="NewHope4Model.rukuType">
+              <MappingFragment StoreEntitySet="rukuType">
+                <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
+                <ScalarProperty Name="rukuName" ColumnName="rukuName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NewHope4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tuihuo">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuo">
+              <MappingFragment StoreEntitySet="tuihuo">
+                <ScalarProperty Name="tuihuoID" ColumnName="tuihuoID" />
+                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
+                <ScalarProperty Name="sum" ColumnName="sum" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tuihuoType">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoType">
+              <MappingFragment StoreEntitySet="tuihuoType">
+                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
+                <ScalarProperty Name="tuihuoTypeName" ColumnName="tuihuoTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tuihuoxq">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoxq">
+              <MappingFragment StoreEntitySet="tuihuoxq">
+                <ScalarProperty Name="tuihuoxqID" ColumnName="tuihuoxqID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
+                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
+                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
+                <ScalarProperty Name="tuihuosum" ColumnName="tuihuosum" />
+                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
+                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warehouse">
+            <EntityTypeMapping TypeName="NewHope4Model.warehouse">
+              <MappingFragment StoreEntitySet="warehouse">
+                <ScalarProperty Name="WID" ColumnName="WID" />
+                <ScalarProperty Name="WName" ColumnName="WName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yiku">
+            <EntityTypeMapping TypeName="NewHope4Model.yiku">
+              <MappingFragment StoreEntitySet="yiku">
+                <ScalarProperty Name="yikuID" ColumnName="yikuID" />
+                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yikuType">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuType">
+              <MappingFragment StoreEntitySet="yikuType">
+                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
+                <ScalarProperty Name="yikuTypeName" ColumnName="yikuTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yikuxq">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuxq">
+              <MappingFragment StoreEntitySet="yikuxq">
+                <ScalarProperty Name="yikuxqID" ColumnName="yikuxqID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
+                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
+                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
+                <ScalarProperty Name="yikusum" ColumnName="yikusum" />
+                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
+                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="storage">
+            <EntityTypeMapping TypeName="NewHope4Model.storage">
+              <MappingFragment StoreEntitySet="storage">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="KID" ColumnName="KID" />
+                <ScalarProperty Name="KName" ColumnName="KName" />
+                <ScalarProperty Name="WID" ColumnName="WID" />
+                <ScalarProperty Name="KuTypeID" ColumnName="KuTypeID" />
+                <ScalarProperty Name="forbidden" ColumnName="forbidden" />
+                <ScalarProperty Name="default" ColumnName="default" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,8 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "bumen";
+    ViewBag.Title = "juese";
     Layout = "~/Views/New/Index.cshtml";
 }
+
+
 
 
 
@@ -13,7 +15,7 @@
     <div class="layui-card">
         <div class="layui-card-header">
             <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
-            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">部门管理</a>
+            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">角色管理</a>
 
         </div>
         <div class="layui-card-body">
@@ -23,7 +25,7 @@
 
 
                 <div class="layui-card-header">
-                    部门管理
+                    角色管理
                     <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
                     <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
@@ -32,7 +34,7 @@
                 <div class="layui-card-body">
 
 
-                    <input type="text" name="kuweiName" placeholder="请输入部门编号或部门名称" size="36" />
+                    <input type="text" name="jueseName" placeholder="请输入角色编号或角色名称" size="36" />
                     <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
 
 
@@ -42,22 +44,20 @@
                     <div class="layui-form">
                         <table class="layui-table">
                             <colgroup>
-                                @*<col width="150">
-                                    <col width="150">
-                                    <col width="200">
-                                    <col>*@
+                               
                             </colgroup>
                             <thead>
                                 <tr>
-                                    
-                                    	
-                                    
-                                    	
+
+
+
+
                                     <td><input id="Checkbox1" type="checkbox" /></td>
                                     <td>&nbsp;序号	</td>
-                                    <td>&nbsp;部门编号</td>
-                                    <td>&nbsp;部门名称	</td>
+                                    <td>&nbsp;角色编号</td>
+                                    <td>&nbsp;角色名	</td>
                                     <td>&nbsp;创建时间</td>
+                                    <td>&nbsp;操作</td>
                                     <td>&nbsp;操作</td>
 
                                 </tr>
@@ -97,7 +97,7 @@
 
 
 
-              
+
 
 
 
@@ -105,10 +105,17 @@
                 <div id="hideID2" hidden="hidden">
                     <br />
                     <span style="margin-left:30px">
-                        部门名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="请输入部门名称" />
+                        角色编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID" readonly="readonly" placeholder="自动生成，不可填" />
                     </span>
                     <br />
+                    <span style="margin-left:30px">
+                        角色名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jueseName" />
+                    </span>
                     <br />
+                    <span style="margin-left:30px">
+                        备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    </span>
+                    <br/>
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
                 </div>
@@ -127,15 +134,15 @@
 <script>
 
 
-   
+
 
 
     function show2() {
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
-            title: ['添加部门', 'font-size:18px'],
-            area: ['300px', '200px'],
+            title: ['添加角色', 'font-size:18px'],
+            area: ['350px', '250px'],
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -151,5 +158,6 @@
 
 
 </script>
+
 
 

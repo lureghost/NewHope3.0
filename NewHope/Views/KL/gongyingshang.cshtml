@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "kuwei";
+    ViewBag.Title = "gongyingshang";
     Layout = "~/Views/New/Index.cshtml";
 }
 
@@ -10,7 +10,7 @@
     <div class="layui-card">
         <div class="layui-card-header">
             <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
-            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">库位管理</a>
+            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">供应商管理</a>
 
         </div>
         <div class="layui-card-body">
@@ -20,33 +20,21 @@
 
 
                 <div class="layui-card-header">
-                    库位管理
-                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:1020px" onclick="show()">新增</button>
+                    供应商管理
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
 
                 </div>
                 <div class="layui-card-body">
 
-
-                    仓库
-                    <div class="layui-input-inline">
-                        <select name="quiz3">
-                            <option value="">请选择仓库</option>
-                            <option value="产品仓库">产品仓库</option>
-                        </select>
-                    </div>
-                    类型
-                    <div class="layui-input-inline">
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                        </select>
-                    </div>
-                    库位 <input type="text" name="kuweiName" />
-                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入供应商编号或类型">
+                        </div>
+                        <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
+                    </form>
+                    
 
 
 
@@ -56,27 +44,29 @@
                         <table class="layui-table">
                             <colgroup>
                                 @*<col width="150">
-                        <col width="150">
-                        <col width="200">
-                        <col>*@
+                                    <col width="150">
+                                    <col width="200">
+                                    <col>*@
                             </colgroup>
                             <thead>
                                 <tr>
-                                   
-                                    <td>&nbsp;序号</td>
-                                    <td>&nbsp;库位编号</td>
-                                    <td>&nbsp;库位名</td>
-                                    <td>&nbsp;所在仓库</td>
-                                    <td>&nbsp;库位类型</td>
-                                    <td>&nbsp;是否禁用</td>
-                                    <td>&nbsp;是否默认</td>
-                                    <td>&nbsp;创建时间</td>
+                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td>&nbsp;供应商编号</td>
+                                    <td>&nbsp;供应商类型</td>
+                                    <td>&nbsp;供应商名称</td>
+                                    <td>&nbsp;电话</td>
+                                    <td>&nbsp;传真</td>
+                                    <td>&nbsp;Email</td>
+                                    <td>&nbsp;联系人</td>
+                                    <td>&nbsp;地址</td>
+                                    <td>&nbsp;描述</td>
                                     <td>&nbsp;操作</td>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                   
+                                    <td><input id="Checkbox1" type="checkbox" /></td>
                                     <td>&nbsp;序号1111</td>
                                     <td>&nbsp;库位编号</td>
                                     <td>&nbsp;库位名11</td>
@@ -85,8 +75,8 @@
                                     <td>&nbsp;是否禁用</td>
                                     <td>&nbsp;是否默认</td>
                                     <td>&nbsp;创建时间</td>
+                                    <td>&nbsp;创建时间11</td>
                                     <td>&nbsp;编辑&nbsp; 删除</td>
-                                 
                                 </tr>
                             </tbody>
                         </table>
@@ -114,41 +104,34 @@
 
                 <div id="hideID" hidden>
                     <br />
-                    <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="kuweiName" placeholder="请输入库位名称"/></span>
+                    <span style="margin-left:30px">供应商编号&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                    <span style="margin-left:30px">供应商名称&nbsp;&nbsp;<input type="text" name="kuweiName" placeholder="请输入供应商名称" /></span>
                     <br />
                     <br />
-                    <span style="margin-left:30px">库位条码&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
-                    <div class="layui-input-inline" style="margin-left:30px">
-                        库位类型&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                        </select>
-                    </div>
+                    <span style="margin-left:30px">传真&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <span style="margin-left:30px">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+
+
 
 
                     <br />
                     <br />
-                  
+                    <span style="margin-left:30px">电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <span style="margin-left:30px">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+
+                    <br />
+                    <br />
+                    <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <span style="margin-left:30px">描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
+                    <br />
+                    <br />
+
                     <div class="layui-input-inline" style="margin-left:30px">
-                        仓库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择仓库</option>
-                            <option value="产品仓库">产品仓库</option>
-                        </select>
-                    </div>
-                    
-                    
-                    <div class="layui-input-inline" style="margin-left:100px">
-                        是否默认&nbsp;&nbsp;
+                        供应商类型&nbsp;&nbsp;
                         <select name="quiz3">
                             <option value="">请选择</option>
-                            <option value="产品仓库">是</option>
-                            <option value="产品仓库">否</option>
+                            <option value="产品仓库">虚拟供应商</option>
+                            <option value="产品仓库">合作供应商</option>
                         </select>
                     </div>
                     <br />
@@ -156,10 +139,15 @@
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px">确定</button>
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
                 </div>
-                
-               
-                
-               
+
+
+
+
+
+
+
+
+
 
             </div>
 
@@ -169,11 +157,14 @@
 </div>
 
 
-@*<script src="~/layui/layui.js" charset="utf-8"></script>
-<script src="~/layui/layui.all.js"></script>*@
+<link href="~/layui/css/layui.css" rel="stylesheet" />
+<link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/layui/layui.js"></script>
+<script src="~/layui/layui.all.js"></script>
 <script>
-    
-    
+
+
     function show() {
         //var a = layer.open({
         //    type: 1,
@@ -188,12 +179,12 @@
         //    content: '11' //这里content是一个普通的String
         //});
 
-      
+
 
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
-            title: ['添加库位', 'font-size:18px'],
+            title: ['添加供应商', 'font-size:18px'],
             area: ['600px', '350px'],
             shadeClose: true,
             content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
@@ -203,12 +194,13 @@
         $.post('url', {}, function (str) {
             layer.open({
                 type: 1,
-               
+
                 content: str //注意，如果str是object，那么需要字符拼接。
             });
         });
     }
 
-    
-  
+
+
 </script>
+
