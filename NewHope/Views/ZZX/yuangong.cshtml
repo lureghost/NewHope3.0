@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "yuangong";
+    Layout = "~/Views/New/Index.cshtml";
+}
+
+
+
+
+<div>
+
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
+            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">员工管理</a>
+
+        </div>
+        <div class="layui-card-body">
+
+
+            <div class="layui-card" style="border: 1px solid #E1DFDF">
+
+
+                <div class="layui-card-header">
+                    员工管理
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button type="button" class="layui-btn layui-btn-radius">导出</button>
+
+                </div>
+                <div class="layui-card-body">
+
+
+                    <input type="text" name="yuangongName" placeholder="请输入员工编号或员工名称" size="36" />
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">高级搜索</button>
+
+
+
+
+                    <div class="layui-form">
+                        <table class="layui-table">
+                            <colgroup>
+                            </colgroup>
+                            <thead>
+                                <tr>
+
+
+
+
+                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td>&nbsp;用户名	</td>
+                                    <td>&nbsp;编号</td>
+                                    <td>&nbsp;真名	</td>
+                                    <td>&nbsp;Email</td>
+                                    <td>&nbsp;联系方式</td>
+                                    <td>&nbsp;登录次数</td>
+                                    <td>&nbsp;部门</td>
+                                    <td>&nbsp;角色</td>
+                                    <td>&nbsp;操作</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td>&nbsp;序号1111</td>
+                                    <td>&nbsp;库位编号</td>
+                                    <td>&nbsp;库位名11</td>
+                                    <td>&nbsp;库位类型</td>
+                                    <td>&nbsp;编辑&nbsp; 删除</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div>
+                        共 5 行 ,每页
+                        <div class="layui-input-inline">
+                            <select name="quiz3">
+                                <option value="">5</option>
+                                <option value="产品仓库">10</option>
+                                <option value="产品仓库">15</option>
+                                <option value="产品仓库">20</option>
+                                <option value="产品仓库">25</option>
+                            </select>
+                        </div>
+                        行
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div id="hideID2" hidden="hidden">
+                    <br />
+                    <span style="margin-left:30px">
+                        用户编号&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID" readonly="readonly" placeholder="自动生成，不可填" />
+                    </span>
+
+                    <span style="margin-left:30px">
+                        用户名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jueseName" />
+                    </span>
+                    <br />
+                    <span style="margin-left:30px">
+                        密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" placeholder="请输入密码" />
+                    </span>
+                    <span style="margin-left:30px">
+                        确认密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" placeholder="请确认输入密码" />
+                    </span>
+                    <br />
+                    <span style="margin-left:30px">
+                        真名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    </span>
+                    <span style="margin-left:30px">
+                        Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    </span>
+                    <br />
+                    <span style="margin-left:30px">
+                        电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    </span>
+                    <span style="margin-left:30px">
+                        手机&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    </span>
+                    <br />
+                    <div class="layui-input-inline">
+                        部门 <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        角色 <select name="modules" lay-verify="required" lay-search="">
+                            <option value="">直接选择或搜索选择</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+        </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+@*<script src="~/layui/layui.js" charset="utf-8"></script>
+    <script src="~/layui/layui.all.js"></script>*@
+<script>
+
+
+
+
+
+    function show2() {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['添加角色', 'font-size:18px'],
+            area: ['350px', '250px'],
+            shadeClose: true,
+            content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+        //Ajax获取
+        $.post('url', {}, function (str) {
+            layer.open({
+                type: 1,
+                content: str //注意，如果str是object，那么需要字符拼接。
+            });
+        });
+    }
+
+
+</script>
+
+
+
+
+

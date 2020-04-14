@@ -290,7 +290,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\KLController.cs" />
+    <Compile Include="Controllers\LLRJController.cs" />
     <Compile Include="Controllers\NewController.cs" />
+    <Compile Include="Controllers\NXController.cs" />
+    <Compile Include="Controllers\YQController.cs" />
+    <Compile Include="Controllers\ZZXController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -308,26 +313,30 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\New\kuwei.cshtml" />
-    <Content Include="Views\New\gongyingshang.cshtml" />
-    <Content Include="Views\New\kehu.cshtml" />
-    <Content Include="Views\New\bumen.cshtml" />
-    <Content Include="Views\New\ruku.cshtml" />
-    <Content Include="Views\New\rukuadd.cshtml" />
-    <Content Include="Views\New\chuku.cshtml" />
-    <Content Include="Views\New\baosun.cshtml" />
-    <Content Include="Views\New\chukuadd.cshtml" />
-    <Content Include="Views\New\baosunadd.cshtml" />
-    <Content Include="Views\New\addpandian.cshtml" />
-    <Content Include="Views\New\addtuihuo.cshtml" />
-    <Content Include="Views\New\addyikudan.cshtml" />
-    <Content Include="Views\New\caidanuanli.cshtml" />
-    <Content Include="Views\New\chanpinguanli.cshtml" />
-    <Content Include="Views\New\chanpinlb.cshtml" />
-    <Content Include="Views\New\jilangdanwei.cshtml" />
-    <Content Include="Views\New\pandian.cshtml" />
-    <Content Include="Views\New\tuihuo.cshtml" />
-    <Content Include="Views\New\yiku.cshtml" />
+    <Content Include="Views\KL\kuwei.cshtml" />
+    <Content Include="Views\KL\gongyingshang.cshtml" />
+    <Content Include="Views\KL\kehu.cshtml" />
+    <Content Include="Views\ZZX\bumen.cshtml" />
+    <Content Include="Views\NX\ruku.cshtml" />
+    <Content Include="Views\NX\rukuadd.cshtml" />
+    <Content Include="Views\NX\chuku.cshtml" />
+    <Content Include="Views\NX\baosun.cshtml" />
+    <Content Include="Views\NX\chukuadd.cshtml" />
+    <Content Include="Views\NX\baosunadd.cshtml" />
+    <Content Include="Views\LLRJ\addpandian.cshtml" />
+    <Content Include="Views\LLRJ\addtuihuo.cshtml" />
+    <Content Include="Views\LLRJ\addyikudan.cshtml" />
+    <Content Include="Views\YQ\chanpinguanli.cshtml" />
+    <Content Include="Views\YQ\chanpinlb.cshtml" />
+    <Content Include="Views\YQ\jilangdanwei.cshtml" />
+    <Content Include="Views\LLRJ\pandian.cshtml" />
+    <Content Include="Views\LLRJ\tuihuo.cshtml" />
+    <Content Include="Views\LLRJ\yiku.cshtml" />
+    <Content Include="Views\ZZX\QuanXianFenPei.cshtml" />
+    <Content Include="Views\ZZX\BiaoShiFuGuanLi.cshtml" />
+    <Content Include="Views\ZZX\caidanuanli.cshtml" />
+    <Content Include="Views\ZZX\juese.cshtml" />
+    <Content Include="Views\ZZX\yuangong.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
