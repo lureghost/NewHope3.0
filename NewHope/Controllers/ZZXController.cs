@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace NewHope.Controllers
@@ -21,13 +23,18 @@ namespace NewHope.Controllers
 
             return View();
         }
+        #region 部门
         public ActionResult bumen()
         {
             return View();
         }
+        public ActionResult AdminChaXun()
+        {
+            return Json(ZZXBLL.AdminChaXun(),JsonRequestBehavior.AllowGet);
+        }
+        #endregion
         public ActionResult juese() {
-
-            return View();
+        return View();
         }
         public ActionResult yuangong() {
 

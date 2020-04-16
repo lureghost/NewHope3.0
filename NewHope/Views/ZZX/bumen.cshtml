@@ -3,13 +3,7 @@
     ViewBag.Title = "bumen";
     Layout = "~/Views/New/Index.cshtml";
 }
-
-
-
-
-
 <div>
-
     <div class="layui-card">
         <div class="layui-card-header">
             <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
@@ -24,7 +18,6 @@
                     <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
                     <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
-
                 </div>
                 <div class="layui-card-body">
                     <form class="navbar-form navbar-left" role="search">
@@ -33,13 +26,6 @@
                         </div>
                         <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
                     </form>
-
-
-
-
-
-
-
                     <div class="layui-form">
                         <table class="layui-table">
                             <colgroup>
@@ -50,17 +36,12 @@
                             </colgroup>
                             <thead>
                                 <tr>
-
-
-
-
                                     <td><input id="Checkbox1" type="checkbox" /></td>
                                     <td>&nbsp;序号	</td>
                                     <td>&nbsp;部门编号</td>
                                     <td>&nbsp;部门名称	</td>
                                     <td>&nbsp;创建时间</td>
                                     <td>&nbsp;操作</td>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,8 +56,6 @@
                             </tbody>
                         </table>
                     </div>
-
-
                     <div>
                         共 5 行 ,每页
                         <div class="layui-input-inline">
@@ -92,17 +71,8 @@
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
-
                     </div>
                 </div>
-
-
-
-
-
-
-
-
                 <div id="hideID2" hidden="hidden">
                     <br />
                     <span style="margin-left:30px">
@@ -113,26 +83,16 @@
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
 </div>
-
 <link href="~/layui/css/layui.css" rel="stylesheet" />
 <link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/layui/layui.js"></script>
 <script src="~/layui/layui.all.js"></script>
 <script>
-
-
-
-
-
     function show2() {
         layer.open({
             type: 1,
@@ -142,7 +102,6 @@
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
-
         //Ajax获取
         $.post('url', {}, function (str) {
             layer.open({
@@ -151,8 +110,6 @@
             });
         });
     }
-
-
 </script>
 
 
