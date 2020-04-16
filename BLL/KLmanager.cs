@@ -11,17 +11,9 @@ namespace BLL
    public class KLmanager
     {
      
-        public static PageList Get_kuweiAll(int PageIndex,int PageSize)
+        public static PageList Get_kuweiAll(int PageIndex, int PageSize)
         {
-            return KLdal.Get_kuweiAll(PageIndex,PageSize);
+            return KLdal.Get_kuweiAll(PageIndex, PageSize);
         }
-
-
-        public static IQueryable Get_kuweiAlls()
-        {
-            return KLdal.Get_kuweiAlls();
-        }
-
-
-        }
+    }
 }
