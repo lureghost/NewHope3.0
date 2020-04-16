@@ -22,6 +22,46 @@ namespace BLL
             return KLdal.Get_kuweiAllss();
         }
 
+        /// <summary>
+        /// 库位新增
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int Get_kuweiInsert(storage s)
+        {
+            return KLdal.Get_kuweiInsert(s);
+        }
 
-    }
+
+        /// <summary>
+        /// 库位删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static int Get_kuweiDel(int id)
+        {
+            return KLdal.Get_kuweiDel(id);
+        }
+
+        /// <summary>
+        /// 库位修改
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int Get_kuweiupdate(storage s)
+        {
+            return KLdal.Get_kuweiupdate(s);
+        }
+
+
+        /// <summary>
+        /// 库位根据id查询
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public static int Get_kuweiByid(int ID)
+        {
+            return KLdal.Get_kuweiByid(ID);
+        }
+        }
 }

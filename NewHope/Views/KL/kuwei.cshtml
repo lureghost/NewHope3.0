@@ -161,30 +161,11 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/layui/layui.js"></script>
 <script src="~/layui/layui.all.js"></script>
-@*<script src="~/layui/layui.js" charset="utf-8"></script>
-    <script src="~/layui/layui.all.js"></script>*@
+
 <script>
-    function show() {
-        layer.open({
-            type: 1,
-            skin: 'layui-layer-demo', //样式类名
-            title: ['添加库位', 'font-size:18px'],
-            area: ['600px', '350px'],
-            shadeClose: true,
-            content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-        });
-
-        //Ajax获取
-        $.post('url', {}, function (str) {
-            layer.open({
-                type: 1,
-                content: str //注意，如果str是object，那么需要字符拼接。
-            });
-        });
-    }
-
-  
-
+    var PageIndex = 1;
+    var PageSize = 2;
+    var PageCount = 0;
     $(function () {
         Get_All();
     })
@@ -197,9 +178,7 @@
     })
 
 
-    var PageIndex = 1;
-    var PageSize = 2;
-    var PageCount = 0;
+    
     function Get_All() {
         var ty = $("[name='fenyerows']").val();
         $.ajax({
@@ -210,12 +189,16 @@
             contentType: "application/json",
             success: function (result) {
                 console.log(result);
-                $("#tb1 tr").remove();
-                PageCount = result.PageCount;
-                $.each(result.DateList, function (index, data) {
-                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td></td></tr>");
-                    $("#rows").html(b.rows);
-                })
+                //$("#tb1 tr").remove();
+                //PageCount = result.PageCount;
+                //$.each(result.DateList, function (index, data) {
+                //    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td></td></tr>");
+                //    $("#rows").html(b.rows);
+                //})
+            },
+            error: function (ex) {
+                console.log("ex:" + ex);
+                alert(ex.responseText);
             }
 
         });
@@ -245,6 +228,26 @@
                 })
             }
 
+        });
+    }
+
+
+    function show() {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['添加库位', 'font-size:18px'],
+            area: ['600px', '350px'],
+            shadeClose: true,
+            content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+        //Ajax获取
+        $.post('url', {}, function (str) {
+            layer.open({
+                type: 1,
+                content: str //注意，如果str是object，那么需要字符拼接。
+            });
         });
     }
 </script>
