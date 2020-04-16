@@ -92,9 +92,9 @@
                             </select>
                         </div>
                         行
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px" id="shouye">首页</button>
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="weiye">尾页</button>
 
                     </div>
                 </div>
@@ -165,6 +165,7 @@
     <script src="~/layui/layui.all.js"></script>*@
 <script>
     function show() {
+      
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
@@ -184,24 +185,47 @@
         });
     }
 
-    var PageIndex = 1;
-    var PageSize = 2;
-    var PageCount = 0;
+
+
     $(function () {
-        Get_All();
+        alert(111);
+        //Get_All();
+        Get_Allss();
+        
+
     })
 
+    $("#shouye").click(function () {
+        if (PageIndex == 1) {
+            alert(1);
+            return;
+        }
+        PageIndex--;
+        //Get_All();
+    })
 
+    var PageIndex = 1
+    var PageSize = 2
+    var PageCount = 0
+    
+   
+
+    //转换日期
+    function Data(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
 
     function Get_All() {
         var ty = $("[name='fenyerows']").val();
         $.ajax({
             type: "POST",
             url: "/KL/Get_kuweiAll",
-            data: "{PageIndex:'" + PageIndex + "',PageSize:'" + PageSize + "'}",
+            data: "{PageIndex:" + PageIndex + ",PageSize:" + PageSize + "}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
+                alert(PageIndex);
                 $("#tb1 tr").remove();
                 PageCount = result.PageCount;
                 $.each(result.DateList, function (a, b) {
@@ -213,11 +237,24 @@
         });
     }
 
-    //转换日期
-    function Data(time) {
-        var date = new Date(parseInt(time.substr(6)));
-        return date.toLocaleDateString();
-    }
 
+    function Get_Allss() {
+        var ty = $("[name='fenyerows']").val();
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiAlls",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+                $.each(result, function (a, b) {
+                    $("#tb1").append("<tr><td>" + b.TID + "</td><td>" + b.KName + "</td><td>" + b.WName + "</td><td>" + b.KuName + "</td><td>" + b.forbidden + "</td><td>" + b.defaults + "</td><td>" + Data(b.CreationDate) + "</td><td></td></tr>");
+                    $("#rows").html(b.rows);
+                })
+            }
+
+        });
+    }
 
 </script>

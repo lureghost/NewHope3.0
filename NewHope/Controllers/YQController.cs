@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MOD;
 using BLL;
+
 namespace NewHope.Controllers
 {
     public class YQController : Controller
