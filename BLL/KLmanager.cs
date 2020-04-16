@@ -15,5 +15,13 @@ namespace BLL
         {
             return KLdal.Get_kuweiAll(PageIndex, PageSize);
         }
+
+        
+        public static IQueryable Get_kuweiAllss()
+        {
+            return KLdal.Get_kuweiAllss();
+        }
+
+
     }
 }

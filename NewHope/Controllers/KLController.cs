@@ -47,5 +47,10 @@ namespace NewHope.Controllers
         {
             return Json(KLmanager.Get_kuweiAll(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult Get_kuweiAllss()
+        {
+            return Json(KLmanager.Get_kuweiAllss(), JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -44,5 +44,27 @@ namespace DAL
             return list;
         }
 
+
+        public static IQueryable Get_kuweiAllss()
+        {
+            var obj = from p in context.storage
+                       orderby p.TID descending
+                       select new
+                       {
+                           TID = p.TID,
+                           KName = p.KName,
+                           WID = p.WID,
+                           WName = p.warehouse.WName,
+                           KuTypeID = p.KuTypeID,
+                           KuName = p.KuType.KuName,
+                           forbidden = p.forbidden,
+                           defaults = p.@default,
+                           CreationDate = p.CreationDate,
+                           state = p.state,
+                           rows = context.storage.Count()
+                       };
+            return obj;
+        }
+
     }
 }

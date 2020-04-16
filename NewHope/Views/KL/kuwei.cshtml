@@ -188,7 +188,7 @@
     var PageSize = 2;
     var PageCount = 0;
     $(function () {
-        Get_All();
+        Get_Allss();
     })
 
 
@@ -220,4 +220,24 @@
     }
 
 
+    
+    function Get_Allss() {
+        var ty = $("[name='fenyerows']").val();
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiAllss",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+               
+                $.each(result, function (a, b) {
+                    $("#tb1").append("<tr><td>" + b.TID + "</td><td>" + b.KName + "</td><td>" + b.WName + "</td><td>" + b.KuName + "</td><td>" + b.forbidden + "</td><td>" + b.defaults + "</td><td>" + Data(b.CreationDate) + "</td><td></td></tr>");
+                    $("#rows").html(b.rows);
+                })
+            }
+
+        });
+    }
 </script>
