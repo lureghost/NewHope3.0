@@ -15,7 +15,7 @@
         </div>
         <div class="layui-card-body">
 
-            
+
             <div class="layui-card" style="border: 1px solid #E1DFDF">
 
 
@@ -47,12 +47,12 @@
                             </div>
                             库位 <input type="text" name="kuweiName" class="form-control" />
                             <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
-                            
+
                         </div>
-                       
+
                     </form>
 
-                    
+
 
 
 
@@ -60,16 +60,9 @@
 
                     <div class="layui-form">
                         <table class="layui-table">
-                            <colgroup>
-                                @*<col width="150">
-                    <col width="150">
-                    <col width="200">
-                    <col>*@
-                            </colgroup>
+                            
                             <thead>
                                 <tr>
-
-                                    <td>&nbsp;序号</td>
                                     <td>&nbsp;库位编号</td>
                                     <td>&nbsp;库位名</td>
                                     <td>&nbsp;所在仓库</td>
@@ -80,34 +73,22 @@
                                     <td>&nbsp;操作</td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>&nbsp;序号1111</td>
-                                    <td>&nbsp;库位编号</td>
-                                    <td>&nbsp;库位名11</td>
-                                    <td>&nbsp;所在仓库</td>
-                                    <td>&nbsp;库位类型</td>
-                                    <td>&nbsp;是否禁用</td>
-                                    <td>&nbsp;是否默认</td>
-                                    <td>&nbsp;创建时间</td>
-                                    <td>&nbsp;编辑&nbsp; 删除</td>
-
-                                </tr>
+                            <tbody id="tb1">
+                              
                             </tbody>
                         </table>
                     </div>
 
 
                     <div>
-                        共 5 行 ,每页
+                        共 <label id="sum"></label> 行 ,每页
                         <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="">5</option>
-                                <option value="产品仓库">10</option>
-                                <option value="产品仓库">15</option>
-                                <option value="产品仓库">20</option>
-                                <option value="产品仓库">25</option>
+                            <select name="fenyerows">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
                             </select>
                         </div>
                         行
@@ -176,30 +157,14 @@
 
 <link href="~/layui/css/layui.css" rel="stylesheet" />
 <link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/layui/layui.js"></script>
 <script src="~/layui/layui.all.js"></script>
 @*<script src="~/layui/layui.js" charset="utf-8"></script>
     <script src="~/layui/layui.all.js"></script>*@
 <script>
-
-
     function show() {
-        //var a = layer.open({
-        //    type: 1,
-        //    area: ['100%', '550px'],
-        //    title: ['添加库位','font-size:18px'],
-        //    shadeClose: true,
-        //    content: ['layer_model.html', 'no']
-        //});
-
-        //layer.open({
-        //    type: 1,
-        //    content: '11' //这里content是一个普通的String
-        //});
-
-
-
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
@@ -219,6 +184,40 @@
         });
     }
 
+    var PageIndex = 1;
+    var PageSize = 2;
+    var PageCount = 0;
+    $(function () {
+        Get_All();
+    })
+
+
+
+    function Get_All() {
+        var ty = $("[name='fenyerows']").val();
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiAll",
+            data: "{PageIndex:'" + PageIndex + "',PageSize:'" + PageSize + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+                PageCount = result.PageCount;
+                $.each(result.DateList, function (a, b) {
+                    $("#tb1").append("<tr><td>" + b.TID + "</td><td>" + b.KName + "</td><td>" + b.WName + "</td><td>" + b.KuName + "</td><td>" + b.forbidden + "</td><td>" + b.defaults + "</td><td>" + Data(b.CreationDate) + "</td><td></td></tr>");
+                    $("#rows").html(b.rows);
+                })
+            }
+
+        });
+    }
+
+    //转换日期
+    function Data(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
 
 
 </script>
