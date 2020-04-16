@@ -21,8 +21,8 @@ namespace DAL
         public static PageList Get_kuweiAll(int PageIndex, int PageSize)
         {
             PageList list = new PageList();
-            var obj = (from p in context.storage
-                       orderby p.TID descending
+            var obj = from p in context.storage
+                       //orderby p.TID descending
                        select new
                        {
                            TID = p.TID,
@@ -32,15 +32,14 @@ namespace DAL
                            KuTypeID = p.KuTypeID,
                            KuName = p.KuType.KuName,
                            forbidden = p.forbidden,
-                           defaults = p.@default,
+                           //defaults = p.@default,
                            CreationDate = p.CreationDate,
                            state = p.state,
                            rows=context.storage.Count()
-                       }) ;
+                       } ;
             list.DateList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
-            int row = context.storage.Count();
-            list.PageCount = row % PageSize == 0 ? row / PageSize : row / PageSize + 1;
-
+            list.PageCount = context.storage.Count();
+            //list.PageCount = row % PageSize == 0 ? row / PageSize : row / PageSize + 1;
             return list;
         }
 
@@ -58,7 +57,7 @@ namespace DAL
                            KuTypeID = p.KuTypeID,
                            KuName = p.KuType.KuName,
                            forbidden = p.forbidden,
-                           defaults = p.@default,
+                           //defaults = p.@default,
                            CreationDate = p.CreationDate,
                            state = p.state,
                            rows = context.storage.Count()

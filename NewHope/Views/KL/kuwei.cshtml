@@ -92,9 +92,9 @@
                             </select>
                         </div>
                         行
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px" id="shouye">首页</button>
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="weiye">尾页</button>
 
                     </div>
                 </div>
@@ -178,34 +178,42 @@
         $.post('url', {}, function (str) {
             layer.open({
                 type: 1,
-
                 content: str //注意，如果str是object，那么需要字符拼接。
             });
         });
     }
 
-    var PageIndex = 1;
-    var PageSize = 2;
-    var PageCount = 0;
+  
+
     $(function () {
-        Get_Allss();
+        Get_All();
+    })
+
+    $("#shouye").click(function () {
+        if (PageIndex == 1) {
+            return;
+        }
+        Get_All();
     })
 
 
-
+    var PageIndex = 1;
+    var PageSize = 2;
+    var PageCount = 0;
     function Get_All() {
         var ty = $("[name='fenyerows']").val();
         $.ajax({
             type: "POST",
             url: "/KL/Get_kuweiAll",
-            data: "{PageIndex:'" + PageIndex + "',PageSize:'" + PageSize + "'}",
+            data: "{PageIndex:" + PageIndex + ",PageSize:" + PageSize + "}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
+                console.log(result);
                 $("#tb1 tr").remove();
                 PageCount = result.PageCount;
-                $.each(result.DateList, function (a, b) {
-                    $("#tb1").append("<tr><td>" + b.TID + "</td><td>" + b.KName + "</td><td>" + b.WName + "</td><td>" + b.KuName + "</td><td>" + b.forbidden + "</td><td>" + b.defaults + "</td><td>" + Data(b.CreationDate) + "</td><td></td></tr>");
+                $.each(result.DateList, function (index, data) {
+                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td></td></tr>");
                     $("#rows").html(b.rows);
                 })
             }
@@ -231,9 +239,8 @@
             contentType: "application/json",
             success: function (result) {
                 $("#tb1 tr").remove();
-               
                 $.each(result, function (a, b) {
-                    $("#tb1").append("<tr><td>" + b.TID + "</td><td>" + b.KName + "</td><td>" + b.WName + "</td><td>" + b.KuName + "</td><td>" + b.forbidden + "</td><td>" + b.defaults + "</td><td>" + Data(b.CreationDate) + "</td><td></td></tr>");
+                    $("#tb1").append("<tr><td>" + b.TID + "</td><td>" + b.KName + "</td><td>" + b.WName + "</td><td>" + b.KuName + "</td><td>" + b.forbidden + "</td><td>" + Data(b.CreationDate) + "</td></tr>");
                     $("#rows").html(b.rows);
                 })
             }
