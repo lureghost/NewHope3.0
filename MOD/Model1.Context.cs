@@ -54,7 +54,6 @@ namespace MOD
         public virtual DbSet<ruku> ruku { get; set; }
         public virtual DbSet<rukuType> rukuType { get; set; }
         public virtual DbSet<storage> storage { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tuihuo> tuihuo { get; set; }
         public virtual DbSet<tuihuoType> tuihuoType { get; set; }
         public virtual DbSet<tuihuoxq> tuihuoxq { get; set; }

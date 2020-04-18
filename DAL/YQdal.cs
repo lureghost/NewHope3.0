@@ -15,10 +15,10 @@ namespace DAL
         public static IQueryable measurementQurey()
         {
             var obj = from p in uu.measurement
-                      orderby p.XID ascending
+                      orderby p.MID ascending
                       select new
                       {
-                          XID = p.XID,
+                          //XID = p.XID,
                           MID = p.MID,
                           MName = p.MName
                       };

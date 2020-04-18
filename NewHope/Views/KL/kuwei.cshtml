@@ -56,10 +56,11 @@
 
                     <div class="layui-form">
                         <table class="layui-table">
-                            
+
                             <thead>
                                 <tr>
                                     <td>&nbsp;库位编号</td>
+                                    <td>&nbsp;库位条码</td>
                                     <td>&nbsp;库位名</td>
                                     <td>&nbsp;所在仓库</td>
                                     <td>&nbsp;库位类型</td>
@@ -70,7 +71,6 @@
                                 </tr>
                             </thead>
                             <tbody id="tb1">
-                              
                             </tbody>
                         </table>
                     </div>
@@ -78,58 +78,100 @@
 
                     <div>
                         共 <label id="sum"></label> 行
-                        
-                        
+
+
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:500px" id="shouye">上一页</button>
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="weiye">下一页</button>
 
                     </div>
                 </div>
 
-                <div id="hideID" hidden>
-                    <br />
-                    <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="TID" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="KNname" placeholder="请输入库位名称" /></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px">库位条码&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
-                    <div class="layui-input-inline" style="margin-left:30px">
-                        库位类型&nbsp;&nbsp;
-                        <select name="Kuweitype">
-                            <option value="0">请选择</option>
-                            
-                        </select>
-                    </div>
+                <div id="hideID" hidden="hidden">
+                    <form class="navbar-form navbar-left" role="search">
+                        <br />
+                        <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="TID" readonly="readonly" placeholder="自动生成,可不填" class="form-control" /></span>
+                        <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="KNname" id="Kname2" placeholder="请输入库位名称" class="form-control" /></span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px">库位条码&nbsp;&nbsp;<input type="text" name="KID" class="form-control" /></span>
+                        <div class="layui-input-inline" style="margin-left:30px">
+                            库位类型&nbsp;&nbsp;
+                            <select name="Kuweitype" id="KuTypeID2">
+                                <option value="0">请选择</option>
+
+                            </select>
+                        </div>
 
 
-                    <br />
-                    <br />
+                        <br />
+                        <br />
 
-                    <div class="layui-input-inline" style="margin-left:30px">
-                        仓库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select name="cangku">
-                            <option value="0">请选择仓库</option>
-                        </select>
-                    </div>
+                        <div class="layui-input-inline" style="margin-left:30px">
+                            仓库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="cangku" id="WID2">
+                                <option value="0">请选择仓库</option>
+                            </select>
+                        </div>
 
 
-                    <div class="layui-input-inline" style="margin-left:100px">
-                        是否默认&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="是">是</option>
-                            <option value="否">否</option>
-                        </select>
-                    </div>
-                    <br />
-                    <br />
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                        <div class="layui-input-inline" style="margin-left:120px">
+                            是否默认&nbsp;&nbsp;
+                            <select name="moren" id="moren2">
+                                <option value="">请选择</option>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </div>
+                        <br />
+                        <br />
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px" id="xinzeng">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi" onclick="guanbi()">关闭</button>
+                    </form>
                 </div>
 
 
 
+                <div id="hideID22" hidden="hidden">
+                    <form class="navbar-form navbar-left" role="search">
+                        <br />
+                        <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="TID2" id="TID2" class="form-control" readonly="readonly" placeholder="自动生成,可不填"/></span>
+                        <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="KNname" id="Kname3" placeholder="请输入库位名称" class="form-control" /></span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px">库位条码&nbsp;&nbsp;<input type="text" name="KID2" id="KID3" class="form-control"/></span>
+                        <div class="layui-input-inline" style="margin-left:30px" >
+                            库位类型&nbsp;&nbsp;
+                            <select name="Kuweitype" id="KuTypeID3">
+                                <option value="0" selected="selected">请选择</option>
+                            </select>
+                        </div>
 
+
+                        <br />
+                        <br />
+
+                        <div class="layui-input-inline" style="margin-left:30px">
+                            仓库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select name="cangku" id="WID3" class="WID3">
+                                <option value="0">请选择仓库</option>
+                            </select>
+                        </div>
+
+
+                        <div class="layui-input-inline" style="margin-left:120px">
+                            是否默认&nbsp;&nbsp;
+                            <select name="moren" id="moren3" class="moren3">
+                                <option value="">请选择</option>
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                            </select>
+                        </div>
+                        <br />
+                        <br />
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px" id="xiugaiha" onclick="xiugai()">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onclick="guanbi2()">关闭</button>
+                    </form>
+                </div>
 
             </div>
 
@@ -153,7 +195,7 @@
         Get_kuweiTypes();
         Get_kuweiwarehouses();
         Get_All();
-       
+        
     })
 
     $("#shouye").click(function () {
@@ -174,8 +216,19 @@
         Get_All();
     })
 
-    
-    
+    $("#guanbi").click(function () {
+        layer.closeAll('page');
+    })
+
+  
+
+  
+
+    function guanbi2() {
+        Get_All();
+        $("#hideID22").hide();
+
+    }
    
     //分页
     function Get_All() {
@@ -190,7 +243,7 @@
                 $("#tb1 tr").remove();
                 PageCount = result.PageCount;
                 $.each(result.DateList, function (index, data) {
-                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + data.moren + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.TID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.rows)
                 })
             },
@@ -231,7 +284,7 @@
                 console.log(result);
                 $("#tb1 tr").remove();
                 $.each(result, function (index, data) {
-                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + data.moren + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.TID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.rows)
                 })
             }
@@ -305,11 +358,100 @@
     }
 
 
-    //新增
-    function Get_kuweiinsert() {
+    //新增库位
+    $("#xinzeng").click(function () {
+        
+        var KID = $("[name='KID']").val();
+        var KName = $("#Kname2").val();
+        var WID = $("#WID2").val();
+        var KuTypeID = $("#KuTypeID2").val();
+        var moren = $("#moren2").val();
+        alert(KID);
+        alert(KName);
+        alert(WID);
+        alert(KuTypeID);
+        // alert(moren);
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiInsert",
+            data: "{s:{KID:'" + KID + "',KName:'" + KName + "',WID:'" + WID + "',KuTypeID:'" + KuTypeID + "',moren:'" + moren + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("新增成功");
+                    Get_All();
+                } else {
+                    alert("新增失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    })
 
+    //编辑库位
+    function bj(id) {
+        $("#hideID22").show();
+       
+                $.ajax({
+                    type: "POST",
+                    url: "/KL/Get_kuweiByid",
+                    data: "{ID: "+id +"}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {    
+                        $.each(result, function (index, data) {
+                                $("#TID2").val(data.TID);
+                                $("#KID3").val(data.KID);
+                                $("#Kname3").val(data.KName);
+                                $("#WID3").val(data.WID);
+                                $("#KuTypeID3").val(data.KuTypeID);
+                                $("#moren3").val(data.moren);
+                        })
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+            }
+      
+    //修改库位
+    function xiugai() {
+        var TID = $("#TID2").val();
+        var KID = $("#KID3").val();
+        var KName = $("#Kname3").val();
+        var WID = $("#WID3").val();
+        var KuTypeID = $("#KuTypeID3").val();
+        var moren = $("#moren3").val();
+        var forbidden = "否";
+        var state = 0;
+
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiupdate",
+            data: "{s:{TID:'" + TID + "',KID:'" + KID + "',KName:'" + KName + "',WID:'" + WID + "',KuTypeID:'" + KuTypeID + "',moren:'" + moren + "',forbidden:'" + forbidden + "',state:'"+state+"'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("修改成功");
+                    
+                } else {
+                    alert("修改失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
     }
+     
 
+        
+
+    //新增弹窗
     function show() {
         layer.open({
             type: 1,
@@ -320,13 +462,13 @@
             content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
 
-        //Ajax获取
-        $.post('url', {}, function (str) {
-            layer.open({
-                type: 1,
-                content: str //注意，如果str是object，那么需要字符拼接。
-            });
-        });
+        ////Ajax获取
+        //$.post('1', {}, function (str) {
+        //    layer.open({
+        //        type: 1,
+        //        content: str //注意，如果str是object，那么需要字符拼接。
+        //    });
+        //});
     }
 
 
