@@ -218,7 +218,7 @@ namespace DAL
 
 
         /// <summary>
-        /// 供应商分页
+        /// 供应商分页1
         /// </summary>
         /// <returns></returns>
         public static IQueryable Get_gongyingshangAll()
