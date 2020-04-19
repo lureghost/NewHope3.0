@@ -70,6 +70,9 @@ namespace NewHope.Controllers
         /// <returns></returns>
         public ActionResult Get_kuweiInsert(storage s)
         {
+            s.forbidden = "否";
+            s.CreationDate = DateTime.Now;
+            s.state = 0;
             return Json(KLmanager.Get_kuweiInsert(s), JsonRequestBehavior.AllowGet);
         }
 
@@ -104,6 +107,7 @@ namespace NewHope.Controllers
         /// <returns></returns>
         public ActionResult Get_kuweiupdate(storage s)
         {
+            
             return Json(KLmanager.Get_kuweiupdate(s), JsonRequestBehavior.AllowGet);
         }
 
@@ -112,9 +116,9 @@ namespace NewHope.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Get_kuweiByid(int id)
+        public ActionResult Get_kuweiByid(int ID)
         {
-            return Json(KLmanager.Get_kuweiByid(id), JsonRequestBehavior.AllowGet);
+            return Json(KLmanager.Get_kuweiByid(ID), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

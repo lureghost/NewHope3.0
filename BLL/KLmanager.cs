@@ -29,6 +29,7 @@ namespace BLL
         /// <returns></returns>
         public static int Get_kuweiInsert(storage s)
         {
+            
             return KLdal.Get_kuweiInsert(s);
         }
 
@@ -68,7 +69,7 @@ namespace BLL
             /// </summary>
             /// <param name="ID"></param>
             /// <returns></returns>
-            public static int Get_kuweiByid(int ID)
+        public static IQueryable Get_kuweiByid(int ID)
         {
             return KLdal.Get_kuweiByid(ID);
         }
