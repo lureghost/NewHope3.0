@@ -25,14 +25,9 @@
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#006dcc" onclick="show()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49"><span class="glyphicon glyphicon-trash"></span>  删除</button>
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#49afcd"><span class="glyphicon glyphicon-download"></span>  导出</button>
-
-                @*<button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
-                    <button type="button" class="layui-btn layui-btn-radius">导出</button>*@
             </div>
         </div>
         <br />
-
         <div class="layui-card-body">
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
@@ -41,36 +36,22 @@
                 <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
             </form>
             <table class="layui-table" style="color: black;">
-                <colgroup>
-                    <col width="150">
-                    <col width="200">
-                    <col>
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th style="font-weight:bolder;">序号</th>
-                        <th style="font-weight: bolder;">编号</th>
-                        <th style="font-weight:bolder;">名称</th>
-                        <th style="font-weight:bolder;">操作</th>
-                    </tr>
-                </thead>
-                <tbody id="tb1">
-                    <tr>
-                        <td>1</td>
-                        <td>2016-11-29</td>
-                        <td>人生就像是一场修行</td>
-                        <td>编辑</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2016-11-28</td>
-                        <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>
-                        <td>编辑</td>
-                    </tr>
-                    <tr>
-                    </tr>
-                </tbody>
-            </table>
+            <colgroup>
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th style="font-weight:bolder;">序号</th>
+                    <th style="font-weight: bolder;">编号</th>
+                    <th style="font-weight:bolder;">名称</th>
+                    <th style="font-weight:bolder;">操作</th>
+                </tr>
+            </thead>
+            <tbody id="tb1"></tbody>
+        </table>
+           
             <br />
             共12行，每页
             <div style="margin-top:-28px;margin-left:95px;">
@@ -91,24 +72,26 @@
             </div>
 
             <div id="nb" hidden>
-
+               
                 <br />
-                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="id" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="bh" readonly="readonly" placeholder="自动生成,可不填" /></span>
                 <br />
                 <br />
-                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="mc" placeholder="请输入供应商名称" /></span>
+                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="mc" placeholder="请输入计量单位名称" /></span>
                 <br />
                 <br />
                 @*<div class="layui-input-inline" style="margin-left:30px">
-                        供应商类型&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="产品仓库">虚拟供应商</option>
-                            <option value="产品仓库">合作供应商</option>
-                        </select>
-                    </div>*@
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:10px">确定</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                供应商类型&nbsp;&nbsp;
+                <select name="quiz3">
+                    <option value="">请选择</option>
+                    <option value="产品仓库">虚拟供应商</option>
+                    <option value="产品仓库">合作供应商</option>
+                </select>
+
+                    
+            </div>*@
+                @*<button id="bntSub" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:240px;">确定</button>
+                <button  class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>*@
 
             </div>
         </div>
@@ -116,37 +99,65 @@
 </div>
 
 <script>
+$(function () {
+     GetAll();
+ });
+    //查询所有
+    function GetAll() {
+        alert("111");
+        $.ajax({
+            type: "POST",
+            url: "/YQ/measurementQurey",
+            data: "",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+             
+                $("#tb1 tr").remove();
+                //获取总条数
+                $.each(result, function (index, data) {
 
-
+                    $("#tb1").append("<tr><td>" + data.XID + "</td><td>" + data.MID + "</td><td>" + data.MName + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除' onclick='Dell(" + data.id + ")'  /><a class='btn btn-warning' href='/Demo/Update?id=" + data.id + "'>编辑</a></td></tr>");
+                })
+            },
+        });
+       
+    }
+    //新增
     function show() {
-        //var a = layer.open({
-        //    type: 1,
-        //    area: ['100%', '550px'],
-        //    title: ['添加库位','font-size:18px'],
-        //    shadeClose: true,
-        //    content: ['layer_model.html', 'no']
-        //});
-
-        //layer.open({
-        //    type: 1,
-        //    content: '11' //这里content是一个普通的String
-        //});
-
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
-            title: ['添加计量单位', 'font-size:18px'],
-            area: ['450px', '250px'],
-            shadeClose: true,
-            content: $('#nb') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            title: ['添加计量单位', 'font-size:18px'],//标题名称，和样式
+            area: ['350px', '235px'],//宽高
+            shadeClose: true,//是否允许拖拽
+            content: $('#nb'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响 内容
+            id: 'LAY_layuipro', //随便设置一个id防止重复弹出
+            //yes: function (index, layero) {
+            //    $.getJSON(url+'/'+)
+            //}
+            btn: ['提交', '关闭'],
+         
+            //btn1: function (index, layero) {
+            //    var kk = $("#mc").val();
+            //    alert(kk);
+            //},
+            //btn2: function (index, layero) {
+            //    this.closeAll();
+            //    return false;
+            //}
+            //,
+            //cancel: function (index, layero) {
+            //    layer.closeAll();
+            //}
+            
         });
 
-
+       
         //Ajax获取
         //$.post('url', {}, function (str) {
         //    layer.open({
         //        type: 1,
-
         //        content: str //注意，如果str是object，那么需要字符拼接。
         //    });
         //});

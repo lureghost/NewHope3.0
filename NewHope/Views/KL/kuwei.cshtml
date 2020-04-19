@@ -15,7 +15,7 @@
         </div>
         <div class="layui-card-body">
 
-            
+
             <div class="layui-card" style="border: 1px solid #E1DFDF">
 
 
@@ -30,29 +30,25 @@
                         <div class="form-group">
                             仓库
                             <div class="layui-input-inline">
-                                <select name="quiz3">
-                                    <option value="">请选择仓库</option>
-                                    <option value="产品仓库">产品仓库</option>
+                                <select name="cangku" id="cangku">
+                                    <option value="0">请选择仓库</option>
                                 </select>
                             </div>
                             类型
                             <div class="layui-input-inline">
-                                <select name="quiz3">
-                                    <option value="">请选择</option>
-                                    <option value="产品仓库">xx库区</option>
-                                    <option value="产品仓库">xx库区</option>
-                                    <option value="产品仓库">xx库区</option>
-                                    <option value="产品仓库">xx库区</option>
+                                <select name="Kuweitype" id="Kuweitype">
+                                    <option value="0">请选择</option>
+
                                 </select>
                             </div>
-                            库位 <input type="text" name="kuweiName" class="form-control" />
-                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
-                            
+                            库位 <input type="text" name="kuweiName" class="form-control" id="KName" />
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" id="sousuo">搜索</button>
+
                         </div>
-                       
+
                     </form>
 
-                    
+
 
 
 
@@ -60,16 +56,9 @@
 
                     <div class="layui-form">
                         <table class="layui-table">
-                            <colgroup>
-                                @*<col width="150">
-                    <col width="150">
-                    <col width="200">
-                    <col>*@
-                            </colgroup>
+                            
                             <thead>
                                 <tr>
-
-                                    <td>&nbsp;序号</td>
                                     <td>&nbsp;库位编号</td>
                                     <td>&nbsp;库位名</td>
                                     <td>&nbsp;所在仓库</td>
@@ -80,59 +69,35 @@
                                     <td>&nbsp;操作</td>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-
-                                    <td>&nbsp;序号1111</td>
-                                    <td>&nbsp;库位编号</td>
-                                    <td>&nbsp;库位名11</td>
-                                    <td>&nbsp;所在仓库</td>
-                                    <td>&nbsp;库位类型</td>
-                                    <td>&nbsp;是否禁用</td>
-                                    <td>&nbsp;是否默认</td>
-                                    <td>&nbsp;创建时间</td>
-                                    <td>&nbsp;编辑&nbsp; 删除</td>
-
-                                </tr>
+                            <tbody id="tb1">
+                              
                             </tbody>
                         </table>
                     </div>
 
 
                     <div>
-                        共 5 行 ,每页
-                        <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="">5</option>
-                                <option value="产品仓库">10</option>
-                                <option value="产品仓库">15</option>
-                                <option value="产品仓库">20</option>
-                                <option value="产品仓库">25</option>
-                            </select>
-                        </div>
-                        行
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+                        共 <label id="sum"></label> 行
+                        
+                        
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:500px" id="shouye">上一页</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="weiye">下一页</button>
 
                     </div>
                 </div>
 
                 <div id="hideID" hidden>
                     <br />
-                    <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="kuweiName" placeholder="请输入库位名称" /></span>
+                    <span style="margin-left:30px">库位编号&nbsp;&nbsp;<input type="text" name="TID" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                    <span style="margin-left:30px">库位名称&nbsp;&nbsp;<input type="text" name="KNname" placeholder="请输入库位名称" /></span>
                     <br />
                     <br />
                     <span style="margin-left:30px">库位条码&nbsp;&nbsp;<input type="text" name="kuweiName" /></span>
                     <div class="layui-input-inline" style="margin-left:30px">
                         库位类型&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
-                            <option value="产品仓库">xx库区</option>
+                        <select name="Kuweitype">
+                            <option value="0">请选择</option>
+                            
                         </select>
                     </div>
 
@@ -142,9 +107,8 @@
 
                     <div class="layui-input-inline" style="margin-left:30px">
                         仓库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择仓库</option>
-                            <option value="产品仓库">产品仓库</option>
+                        <select name="cangku">
+                            <option value="0">请选择仓库</option>
                         </select>
                     </div>
 
@@ -153,8 +117,8 @@
                         是否默认&nbsp;&nbsp;
                         <select name="quiz3">
                             <option value="">请选择</option>
-                            <option value="产品仓库">是</option>
-                            <option value="产品仓库">否</option>
+                            <option value="是">是</option>
+                            <option value="否">否</option>
                         </select>
                     </div>
                     <br />
@@ -176,30 +140,177 @@
 
 <link href="~/layui/css/layui.css" rel="stylesheet" />
 <link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/layui/layui.js"></script>
 <script src="~/layui/layui.all.js"></script>
-@*<script src="~/layui/layui.js" charset="utf-8"></script>
-    <script src="~/layui/layui.all.js"></script>*@
-<script>
 
+<script>
+    var PageIndex = 1;
+    var PageSize = 2;
+    var PageCount = 0;
+    $(function () {
+        Get_kuweiTypes();
+        Get_kuweiwarehouses();
+        Get_All();
+       
+    })
+
+    $("#shouye").click(function () {
+        if (PageIndex == 1) {
+            alert("当前是首页");
+            return;
+        }
+        PageIndex--;
+        Get_All();
+    })
+
+    $("#weiye").click(function () {
+        if (PageIndex == PageCount) {
+            alert("当前是尾页");
+            return;
+        }
+        PageIndex++;
+        Get_All();
+    })
+
+    
+    
+   
+    //分页
+    function Get_All() {
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiAll",
+            data: "{PageIndex:" + PageIndex + ",PageSize:" + PageSize + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $("#tb1 tr").remove();
+                PageCount = result.PageCount;
+                $.each(result.DateList, function (index, data) {
+                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px'>编辑</button></td></tr>");
+                    $("#sum").html(data.rows)
+                })
+            },
+            error: function (ex) {
+                console.log("ex:" + ex);
+                alert(ex.responseText);
+            }
+
+        });
+    }
+
+    //转换日期
+    function Data(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
+
+
+    //安条件查询所有
+    $("#sousuo").click(function () {
+        var stases = 0;
+        if (stases != 0) {
+            alert("111");
+        }
+        var WID = $("#cangku").val();
+        var Kuweitype = $("#Kuweitype").val();
+        var KName = $("#KName").val();
+        alert(WID);
+        alert(Kuweitype);
+        alert(KName);
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiAllss",
+            data: "{WID:'" + WID + "',KuTypeID:'" + Kuweitype + "',KName:'" + KName +"'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $("#tb1 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr><td>" + data.TID + "</td><td>" + data.KName + "</td><td>" + data.WName + "</td><td>" + data.KuName + "</td><td>" + data.forbidden + "</td><td>" + 11 + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px'>编辑</button></td></tr>");
+                    $("#sum").html(data.rows)
+                })
+            }
+
+        });
+    })
+
+    //查询库位类型
+    function Get_kuweiTypes() {
+     
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiType",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (a, b) {
+                    $("[name='Kuweitype']").append("<option value=" + b.KuTYpeID + ">" + b.KuName+"</option>");
+                })
+            }
+
+        });
+    }
+
+
+    //查询库位仓库
+    function Get_kuweiwarehouses() {
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiwarehouse",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (a, b) {
+                    $("[name='cangku']").append("<option value=" + b.WID + ">" + b.WName + "</option>");
+                    
+                })
+            }
+
+        });
+    }
+
+    //删除库位
+    function Get_kuweiDel(id) {
+        alert(id);
+        if (confirm('确定删除?')) {            
+                        //修改状态
+                        var states = 1;
+                        $.ajax({
+                            type: "POST",
+                            url: "/KL/Get_kuweiupdatestate",
+                            data: "{TID:" + id + ",state:" + states + "}",
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (result) {
+                                if (result > 0) {
+                                    alert("修改状态成功");
+                                    Get_All();
+                                } else {
+                                    alert("修改状态失败");
+                                }
+                            },
+                            error: function (ex) {
+                                alert(ex.responseText);
+                            }
+                        });
+                     
+        }
+    }
+
+
+    //新增
+    function Get_kuweiinsert() {
+
+    }
 
     function show() {
-        //var a = layer.open({
-        //    type: 1,
-        //    area: ['100%', '550px'],
-        //    title: ['添加库位','font-size:18px'],
-        //    shadeClose: true,
-        //    content: ['layer_model.html', 'no']
-        //});
-
-        //layer.open({
-        //    type: 1,
-        //    content: '11' //这里content是一个普通的String
-        //});
-
-
-
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
@@ -213,12 +324,10 @@
         $.post('url', {}, function (str) {
             layer.open({
                 type: 1,
-
                 content: str //注意，如果str是object，那么需要字符拼接。
             });
         });
     }
-
 
 
 </script>
