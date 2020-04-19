@@ -90,7 +90,7 @@ namespace DAL
             kk.state = state;
             return uu.SaveChanges();
         }
-
+        
         //删除
         public static int Get_jiliangdanweiDel2(int id)
         {
