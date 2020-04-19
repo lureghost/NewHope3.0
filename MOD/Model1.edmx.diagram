@@ -4,27 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7addbca76b1f4041a428ad39591b1c12" Name="Diagram1">
+      <Diagram DiagramId="3c59528ea9544902b1f48350e2b7f5ec" Name="Diagram1">
         <EntityTypeShape EntityType="NewHope4Model.Admin" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.baosun" Width="1.5" PointX="8.25" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.baosunType" Width="1.5" PointX="6" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.BSxiang" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.chuku" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.chukuType" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.CKxiang" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.customer" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.chukuType" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.CKxiang" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.customer" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.department" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.dizhi" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.dizhi" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.gysguanli" Width="1.5" PointX="7.5" PointY="41" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.gystype" Width="1.5" PointX="5.25" PointY="41.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.jurisdiction" Width="1.5" PointX="6" PointY="15.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.KuType" Width="1.5" PointX="5.25" PointY="25.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.measurement" Width="1.5" PointX="5.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.KuType" Width="1.5" PointX="5.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.measurement" Width="1.5" PointX="5.25" PointY="33.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.menu" Width="1.5" PointX="3.75" PointY="44.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.MenuType" Width="1.5" PointX="1.5" PointY="44.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.panDian" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.pandianType" Width="1.5" PointX="3" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.pandianxq" Width="1.5" PointX="13.25" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.pandianxq" Width="1.5" PointX="13.25" PointY="30.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.Parentmenu" Width="1.5" PointX="1.5" PointY="46.875" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.productguanli" Width="1.5" PointX="7.5" PointY="27.125" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.productType" Width="1.5" PointX="5.25" PointY="29" IsExpanded="true" />
@@ -33,15 +33,14 @@
         <EntityTypeShape EntityType="NewHope4Model.roleType" Width="1.5" PointX="0.75" PointY="19" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.ruku" Width="1.5" PointX="9.75" PointY="21.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.rukuType" Width="1.5" PointX="7.5" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.storage" Width="1.5" PointX="10.5" PointY="30.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.tuihuo" Width="1.5" PointX="12.75" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.tuihuoType" Width="1.5" PointX="10.5" PointY="26.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.tuihuoxq" Width="1.5" PointX="12.75" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.tuihuoxq" Width="1.5" PointX="12.75" PointY="26.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.warehouse" Width="1.5" PointX="5.25" PointY="36.25" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.yiku" Width="1.5" PointX="12.75" PointY="18.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NewHope4Model.yikuType" Width="1.5" PointX="10.5" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NewHope4Model.yikuxq" Width="1.5" PointX="15.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.yikuxq" Width="1.5" PointX="15.75" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewHope4Model.storage" Width="1.5" PointX="10.5" PointY="30.25" IsExpanded="true" />
         <AssociationConnector Association="NewHope4Model.FK_ADMIN_REFERENCE_DEPARTME" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_ADMIN_REFERENCE_ROLE" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_ADMIN_REFERENCE_ROLETYPE" ManuallyRouted="false" />
@@ -84,9 +83,9 @@
         <AssociationConnector Association="NewHope4Model.FK_YIKU_REFERENCE_PRODUCTG" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_RUKU_REFERENCE_RKXIANG" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_RUKU_REFERENCE_RUKUTYPE" ManuallyRouted="false" />
-        <AssociationConnector Association="NewHope4Model.FK_STORAGE_REFERENCE_WAREHOUS" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_TUIHUO_REFERENCE_TUIHUOTY" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" ManuallyRouted="false" />
+        <AssociationConnector Association="NewHope4Model.FK_STORAGE_REFERENCE_WAREHOUS" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_YIKU_REFERENCE_YIKUTYPE" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_YIKUXQ_REFERENCE_YIKUTYPE" ManuallyRouted="false" />
       </Diagram>

@@ -36,7 +36,7 @@ namespace DAL
                           KuTypeID = p.KuTypeID,
                           KuName = p.KuType.KuName,
                           forbidden = p.forbidden,
-                          defaults = p.@default,
+                          defaults = p.moren,
                           CreationDate = p.CreationDate,
                           state = p.state,
                           rows = context.storage.Count()
