@@ -16,11 +16,6 @@ namespace NewHope.Controllers
         {
             return View();
         }
-        //查询
-        //public ActionResult measurementQurey()
-        //{
-        //    return Json(YQmanager.measurementQurey(),JsonRequestBehavior.AllowGet);
-        //}
         //带条件查询
         public ActionResult dtmeasurementQurey(string MName)
         {
@@ -46,8 +41,20 @@ namespace NewHope.Controllers
         //新增
         public ActionResult measurementadd(measurement k)
         {
+            k.state = 0;
+            k.CreationDate = DateTime.Now;
             return Json(YQmanager.measurementadd(k),JsonRequestBehavior.AllowGet);
         }
+        //根据id查询
+        public ActionResult Get_jiliangdanweiByid(int MID) {
+            return Json(YQmanager.Get_jiliangdanweiByid(MID),JsonRequestBehavior.AllowGet);
+        }
+        //修改
+        public ActionResult Get_jiliangdanweiupdate(measurement m) {
+            return Json(YQmanager.Get_jiliangdanweiupdate(m), JsonRequestBehavior.AllowGet);
+        }
+
+
 
 
         //产品类别

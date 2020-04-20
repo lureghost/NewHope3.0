@@ -189,8 +189,8 @@
           <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MName" Type="varchar" MaxLength="10" />
           <Property Name="state" Type="int" />
-          <Property Name="by2" Type="varchar" MaxLength="10" />
           <Property Name="CreationDate" Type="datetime" />
+          <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="menu">
           <Key>

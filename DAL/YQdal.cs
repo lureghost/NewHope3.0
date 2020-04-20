@@ -8,17 +8,17 @@ using DAL;
 
 namespace DAL
 {
-  public  class YQdal
+    public class YQdal
     {
-    
-        //public static NewHope4Entities uu = new NewHope4Entities();
         //计量单位  普通查询
+        //public static NewHope4Entities uu = new NewHope4Entities();
+
 
         //public static IQueryable measurementQurey()
         //{
         //    //NewHope4Entities uu = new NewHope4Entities()
         //    var obj = from p in uu.measurement
-                     
+
         //              select new
         //              {
         //                  XID = p.XID,
@@ -37,10 +37,10 @@ namespace DAL
                       select new
                       {
                           //XID = p.XID,
-                          
+
                           MID = p.MID,
                           MName = p.MName,
-                          createTime = p.createTime,
+                          CreationDate = p.CreationDate,
                       };
             //if (MID != 0)
             //{
@@ -56,16 +56,17 @@ namespace DAL
         public static PageList fyqureyAll(int pageIndex, int pageSize)
         {
             NewHope4Entities uu = new NewHope4Entities();
-           PageList list = new PageList();
+            PageList list = new PageList();
             var obj = from p in uu.measurement
                       orderby p.MID ascending
+                      where p.state == 0
                       select new
                       {
-                        
+
                           //XID = p.XID,
                           MID = p.MID,
                           MName = p.MName,
-                            createTime = p.createTime,
+                          CreationDate = p.CreationDate,
                       };
             //设置分页数据
             list.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
@@ -90,7 +91,7 @@ namespace DAL
             kk.state = state;
             return uu.SaveChanges();
         }
-        
+
         //删除
         public static int Get_jiliangdanweiDel2(int id)
         {
@@ -109,13 +110,19 @@ namespace DAL
             return uu.SaveChanges();
         }
         //根据id修改
-        public static int Get_jiliangdanweiByid(int ID)
+        public static IQueryable Get_jiliangdanweiByid(int MID)
         {
             NewHope4Entities uu = new NewHope4Entities();
             var obj = from p in uu.measurement
-                      where p.MID == ID
-                      select p;
-            return obj.Count();
+                      where p.MID == MID
+                      select new
+                      {
+                          MID = p.MID,
+                          MName = p.MName,
+                          state = p.state,
+                          CreationDate = p.CreationDate
+                      };
+            return obj;
 
         }
         //修改
@@ -124,8 +131,8 @@ namespace DAL
             NewHope4Entities uu = new NewHope4Entities();
             var obj = uu.measurement.Find(m.MID);
             obj.MName = m.MName;
-            obj.createTime = m.createTime;
-            obj.state = m.state;
+            //obj.CreationDate = m.CreationDate;
+            //obj.state = m.state;
             return uu.SaveChanges();
 
         }
@@ -144,11 +151,11 @@ namespace DAL
 
                           //XID = p.XID,
                           PID = p.PID,
-                          PName =p.PName,
+                          PName = p.PName,
                           //外键对象
                           UName = p.Admin.UserName,
                           CreationDate = p.CreationDate,
-                          remark= p.remark
+                          remark = p.remark
 
                       };
             //设置分页数据

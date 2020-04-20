@@ -49,5 +49,18 @@ namespace BLL
         {
             return YQdal.measurementadd(k);
         }
+        //带id查询
+        public static IQueryable Get_jiliangdanweiByid(int MID)
+        {
+            return YQdal.Get_jiliangdanweiByid(MID);
         }
-}
+        //修改
+        public static int Get_jiliangdanweiupdate(measurement m)
+        {
+            return YQdal.Get_jiliangdanweiupdate(m);
+        }
+    }
+    
+    }
+   
+
