@@ -54,41 +54,26 @@
                         <th style="font-weight:bolder;">操作</th>
                     </tr>
                 </thead>
-                <tbody id="tb1">
-                    <tr>
-                        <td><input id="Checkbox1" type="checkbox" /></td>
-                        <td>000009</td>
-                        <td>杯子</td>
-                        <td>administrator</td>
-                        <td>2020-03-28</td>
-                        <td>admin</td>
-                        <td>编辑 删除</td>
-                    </tr>
-                    <tr>
-                        <td><input id="Checkbox1" type="checkbox" /></td>
-                        <td>000008</td>
-                        <td>牙刷</td>
-                        <td>administrator</td>
-                        <td>2020-03-28</td>
-                        <td>admin</td>
-                        <td>编辑 删除</td>
-                    </tr>
-                    <tr>
-                    </tr>
-                </tbody>
+                <tbody id="tb1"></tbody>
             </table>
-            <br />
-            共12行，每页
-            <div style="margin-top:-28px;margin-left:95px;">
-                <select class="form-control" style="width:50px;height:30px;">
-                    <option value="1">1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-
+            <div id="divBtn" style="text-align:center;">
+                <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
+                <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
+                <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
+                <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
             </div>
+            <br />
+            @*共12行，每页
+        <div style="margin-top:-28px;margin-left:95px;">
+            <select class="form-control" style="width:50px;height:30px;">
+                <option value="1">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+
+        </div>*@
             <div style="float:right;margin-top:-25px;">
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">首页</button>
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
@@ -107,13 +92,13 @@
                 <br />
                 <span style="margin-left:30px">备注&nbsp;&nbsp;<input type="text" name="beizhu" placeholder="" /></span>
                 @*<div class="layui-input-inline" style="margin-left:30px">
-                        供应商类型&nbsp;&nbsp;
-                        <select name="quiz3">
-                            <option value="">请选择</option>
-                            <option value="产品仓库">虚拟供应商</option>
-                            <option value="产品仓库">合作供应商</option>
-                        </select>
-                    </div>*@
+                供应商类型&nbsp;&nbsp;
+                <select name="quiz3">
+                    <option value="">请选择</option>
+                    <option value="产品仓库">虚拟供应商</option>
+                    <option value="产品仓库">合作供应商</option>
+                </select>
+            </div>*@
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-bottom:-80px;margin-left:-100px;">确定</button>
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-bottom:-80px;">关闭</button>
 

@@ -31,53 +31,62 @@
         <div class="layui-card-body">
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="请输入单位编号或名称">
+                    @*<input type="hidden" class="form-control" id="MID" placeholder="请输入单位编号或名称">*@
+                    <input type="text" class="form-control" id="MName" placeholder="请输入单位编号或名称">
                 </div>
-                <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
+                <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" onclick="dtmeasurementQurey()"><span class="glyphicon glyphicon-search"></span>   搜索</button>
             </form>
             <table class="layui-table" style="color: black;">
-            <colgroup>
-                <col width="150">
-                <col width="200">
-                <col>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th style="font-weight:bolder;">序号</th>
-                    <th style="font-weight: bolder;">编号</th>
-                    <th style="font-weight:bolder;">名称</th>
-                    <th style="font-weight:bolder;">操作</th>
-                </tr>
-            </thead>
-            <tbody id="tb1"></tbody>
-        </table>
-           
-            <br />
-            共12行，每页
-            <div style="margin-top:-28px;margin-left:95px;">
-                <select class="form-control" style="width:50px;height:30px;">
-                    <option value="1">1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th style="font-weight: bolder;">编号</th>
+                        <th style="font-weight:bolder;">名称</th>
+                        <th style="font-weight:bolder;">时间</th>
+                        <th style="font-weight:bolder;">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tb1"></tbody>
+            </table>
+            <div id="divBtn" style="text-align:center;">
+                <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
+                <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
+                <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
+                <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
             </div>
-            <div style="float:right;margin-top:-25px;">
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">首页</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
-
-            </div>
-
+            
+            @*<a ></a>*@
             <div id="nb" hidden>
-               
+
                 <br />
                 <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="bh" readonly="readonly" placeholder="自动生成,可不填" /></span>
                 <br />
                 <br />
-                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="mc" placeholder="请输入计量单位名称" /></span>
+                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" id="MName" name="MName" placeholder="请输入计量单位名称" /></span>
+                <br />
+                <br />
+                @*<div class="layui-input-inline" style="margin-left:30px">
+                供应商类型&nbsp;&nbsp;
+                <select name="quiz3">
+                    <option value="">请选择</option>
+                    <option value="产品仓库">虚拟供应商</option>
+                    <option value="产品仓库">合作供应商</option>
+                </select>
+            </div>*@
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:225px" onclick="jlAdd()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi" onclick="guanbianniu()">关闭</button>
+            </div>
+            <div id="nb2" hidden>
+
+                <br />
+                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="MID2" id="MID2"  /></span>
+                <br />
+                <br />
+                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="MName2" id="MName2" placeholder="请输入你要修改的计量单位名称" /></span>
                 <br />
                 <br />
                 @*<div class="layui-input-inline" style="margin-left:30px">
@@ -88,10 +97,10 @@
                     <option value="产品仓库">合作供应商</option>
                 </select>
 
-                    
+
             </div>*@
-                @*<button id="bntSub" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:240px;">确定</button>
-                <button  class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>*@
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:225px"  onclick="Get_jiliangdanweiupdate()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi2" onclick="guanbianniu2()">关闭</button>
 
             </div>
         </div>
@@ -99,31 +108,135 @@
 </div>
 
 <script>
-$(function () {
-     GetAll();
- });
-    //查询所有
+    var pageIndex = 1;
+    var pageSize = 4;
+    var pageCount = 0;
+    //分页按钮
+    $(function () {
+        //GetCount();
+        GetAll();
+        $("#btnFirst").click(function () {
+            pageIndex = 1;
+            GetAll();
+        });
+        $("#btnBack").click(function () {
+            pageIndex--;
+            GetAll();
+        });
+        $("#btnNext").click(function () {
+            pageIndex++;
+            GetAll();
+        });
+        $("#btnLast").click(function () {
+            pageIndex = pageCount;
+            GetAll();
+
+        });
+    });
+    //新增关闭按钮
+    function guanbianniu() {
+        $("#guanbi").click(function () {
+            layer.closeAll('page');
+        })
+    }
+    //修改关闭按钮
+    function guanbianniu2() {
+        $("#guanbi2").click(function () {
+            layer.closeAll('page');
+        })
+    }
+    //分页查询
     function GetAll() {
-        alert("111");
         $.ajax({
             type: "POST",
-            url: "/YQ/measurementQurey",
-            data: "",
+            url: "/YQ/fyqureyAll",
+            data: "{pageIndex:'" + pageIndex + "',pageSize:'" + pageSize + "'}",
             dataType: "json",
             contentType: "Application/json",
             success: function (result) {
-             
                 $("#tb1 tr").remove();
                 //获取总条数
-                $.each(result, function (index, data) {
-
-                    $("#tb1").append("<tr><td>" + data.XID + "</td><td>" + data.MID + "</td><td>" + data.MName + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除' onclick='Dell(" + data.id + ")'  /><a class='btn btn-warning' href='/Demo/Update?id=" + data.id + "'>编辑</a></td></tr>");
+                pageCount = result.PageCount;
+                $.each(result.DateList, function (index, data) {
+                    $("#tb1").append("<tr><td>" + data.MID + "</td><td>" + data.MName + "</td><td>" + Data(data.CreationDate) + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='Get_jiliangdanweiDel(" + data.MID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.MID + ")'>编辑</button></td></tr>");
                 })
             },
         });
-       
+        btnButton();
     }
-    //新增
+    //获取行
+    function GetCount() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/GetCount",
+            data: "{pageSize:'" + pageSize + "'}",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+                pageCount = result;
+            }
+        });
+    }
+    //禁用
+    function btnButton() {
+        $("#divBtn :button").prop("disabled", false);
+        if (pageIndex == 1) {
+            $("#btnFirst").prop("disabled", true);
+            $("#btnBack").prop("disabled", true);
+        }
+        if (pageIndex == pageCount) {
+            $("#btnNext").prop("disabled", true);
+            $("#btnLast").prop("disabled", true);
+        }
+    }
+    //带条件查询所有
+    function dtmeasurementQurey() {
+
+        $.ajax({
+            type: "POST",
+            url: "/YQ/dtmeasurementQurey",
+            data: "{MName:'" + $("#MName").val() + "'}",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+                //console.log(result);
+                $("#tb1 tr").remove();
+                //获取总条数
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr><td>" + data.MID + "</td><td>" + data.MName + "</td><td><td>" + data.createTime + "</td><input id='Button1' class='btn btn- success' type='button' value='删除' onclick='Dell(" + data.XID + ")'  /><a class='btn btn-warning' href='/Demo/Update?id=" + data.id + "'>编辑</a></td></tr>");
+                })
+            },
+        });
+    }
+    //删除状态
+    function Get_jiliangdanweiDel(id) {
+        //alert(id);
+        if (confirm('确定删除?')) {
+            //修改状态
+            var states = 1;
+            $.ajax({
+                type: "POST",
+                url: "/YQ/jiliangdanwei_Del",
+                data: "{MID:" + id + ",state:" + states + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    //console.log();
+                    if (result > 0) {
+                        alert("删除成功");
+                        GetAll();
+                    } else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+
+        }
+    }
+    //新增弹框
     function show() {
         layer.open({
             type: 1,
@@ -132,34 +245,89 @@ $(function () {
             area: ['350px', '235px'],//宽高
             shadeClose: true,//是否允许拖拽
             content: $('#nb'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响 内容
-            id: 'LAY_layuipro', //随便设置一个id防止重复弹出
-            //yes: function (index, layero) {
-            //    $.getJSON(url+'/'+)
-            //}
-            btn: ['提交', '关闭'],
-         
-            //btn1: function (index, layero) {
-            //    var kk = $("#mc").val();
-            //    alert(kk);
-            //},
-            //btn2: function (index, layero) {
-            //    this.closeAll();
-            //    return false;
-            //}
-            //,
-            //cancel: function (index, layero) {
-            //    layer.closeAll();
-            //}
-            
         });
-
-       
-        //Ajax获取
-        //$.post('url', {}, function (str) {
-        //    layer.open({
-        //        type: 1,
-        //        content: str //注意，如果str是object，那么需要字符拼接。
-        //    });
-        //});
     }
+    //新增
+    function jlAdd() {
+        var MName = $("[name='MName']").val();
+        $.ajax({
+            type: "POST",
+            url: "/YQ/measurementadd",
+            data: "{k:{MName:'" + MName + "'}}",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+                if (result > 0) {
+                    console.log();
+                    alert("新增成功");
+                    GetAll();
+                }
+                else {
+                    alert("新增失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //转换日期
+    function Data(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
+    //修改弹框 带id查询
+    function show2(MID){
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['修改计量单位', 'font-size:18px'],//标题名称，和样式
+            area: ['350px', '235px'],//宽高
+            shadeClose: true,//是否允许拖拽
+            content: $('#nb2'), //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响 内容
+        });
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_jiliangdanweiByid",
+            data: "{MID: " + MID + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log($);
+                $.each(result, function (index, data) {
+                    $("[name='MID2']").val(data.MID);
+                    $("[name='MName2']").val(data.MName);
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //修改
+    function Get_jiliangdanweiupdate() {
+        var MID = $("#MID2").val();
+        var MName = $("#MName2").val();
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_jiliangdanweiupdate",
+            data: "{m:{MID:'" + MID + "',MName:'" + MName + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    //console.log();
+                    alert("修改成功");
+                    GetAll();
+
+                } else {
+                    alert("修改失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
 </script>
