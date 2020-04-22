@@ -30,6 +30,8 @@ namespace MOD
         public string faxes { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
         public Nullable<int> state { get; set; }
+        public string Email { get; set; }
+        public string beizhu { get; set; }
         public Nullable<int> dizhiID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="NewHope4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NewHope4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="UserID" />
@@ -118,6 +118,8 @@
           <Property Name="faxes" Type="varchar" MaxLength="50" />
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="state" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="beizhu" Type="varchar" MaxLength="50" />
           <Property Name="dizhiID" Type="int" />
         </EntityType>
         <EntityType Name="department">
@@ -247,6 +249,9 @@
           <Property Name="chanpinpici" Type="varchar" MaxLength="50" />
           <Property Name="pandianTypeID" Type="int" />
           <Property Name="kehuID" Type="int" />
+          <Property Name="zt" Type="varchar" MaxLength="50" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Parentmenu">
           <Key>
@@ -589,7 +594,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
+        <Association Name="FK_customer_dizhi">
           <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1094,7 +1099,7 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
+          <AssociationSet Name="FK_customer_dizhi" Association="Self.FK_customer_dizhi">
             <End Role="dizhi" EntitySet="dizhi" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
@@ -1235,7 +1240,8 @@
             <End Role="yikuxq" EntitySet="yikuxq" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NewHope4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1375,9 +1381,11 @@
           <Property Name="faxes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="beizhu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dizhiID" Type="Int32" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="customer" ToRole="chuku" />
-          <NavigationProperty Name="dizhi" Relationship="Self.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="customer" ToRole="dizhi" />
+          <NavigationProperty Name="dizhi" Relationship="Self.FK_customer_dizhi" FromRole="customer" ToRole="dizhi" />
           <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="customer" ToRole="pandianxq" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
           <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
@@ -1402,7 +1410,7 @@
           <Property Name="linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="Self.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="dizhi" ToRole="customer" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_customer_dizhi" FromRole="dizhi" ToRole="customer" />
         </EntityType>
         <EntityType Name="gysguanli">
           <Key>
@@ -1462,8 +1470,8 @@
           <Property Name="MName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="productguanli" Relationship="Self.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -1529,6 +1537,9 @@
           <Property Name="chanpinpici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pandianTypeID" Type="Int32" />
           <Property Name="kehuID" Type="Int32" />
+          <Property Name="zt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="customer" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="pandianxq" ToRole="customer" />
           <NavigationProperty Name="pandianType" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianxq" ToRole="pandianType" />
         </EntityType>
@@ -1977,7 +1988,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
+        <Association Name="FK_customer_dizhi">
           <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2442,7 +2453,7 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
+          <AssociationSet Name="FK_customer_dizhi" Association="Self.FK_customer_dizhi">
             <End Role="dizhi" EntitySet="dizhi" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
@@ -2688,6 +2699,8 @@
                 <ScalarProperty Name="faxes" ColumnName="faxes" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="beizhu" ColumnName="beizhu" />
                 <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2763,11 +2776,11 @@
           <EntitySetMapping Name="measurement">
             <EntityTypeMapping TypeName="NewHope4Model.measurement">
               <MappingFragment StoreEntitySet="measurement">
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2829,6 +2842,9 @@
                 <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

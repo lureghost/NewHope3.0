@@ -76,13 +76,12 @@
                     </div>
 
 
-                    <div>
-                        共 <label id="sum"></label> 行
-
-
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:500px" id="shouye">上一页</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="weiye">下一页</button>
-
+                    <div id="divBtn">
+                        共<label id="sum"></label>行
+                        <button type="button" class="btn btn-primary" style="margin-left:500px" id="shou">首页</button>
+                        <button type="button" class="btn btn-primary" id="shang">上一页</button>
+                        <button type="button" class="btn btn-primary" id="xia">下一页</button>
+                        <button type="button" class="btn btn-primary" id="wei">尾页</button>
                     </div>
                 </div>
 
@@ -180,13 +179,9 @@
     </div>
 </div>
 
-<link href="~/layui/css/layui.css" rel="stylesheet" />
+
 <link href="~/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
-
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/layui/layui.js"></script>
-<script src="~/layui/layui.all.js"></script>
-
 <script>
     var PageIndex = 1;
     var PageSize = 2;
@@ -195,26 +190,40 @@
         Get_kuweiTypes();
         Get_kuweiwarehouses();
         Get_All();
-        
+        $("#shou").click(function () {
+            PageIndex = 1;
+            Get_All();
+        })
+
+        $("#shang").click(function () {
+            PageIndex--;
+            Get_All();
+        })
+
+        $("#xia").click(function () {
+            PageIndex++;
+            Get_All();
+        })
+
+        $("#wei").click(function () {
+            PageIndex = PageCount;
+            Get_All();
+        })
     })
 
-    $("#shouye").click(function () {
+    //禁用
+    function btnButton() {
+        $("#divBtn :button").prop("disabled", false);
         if (PageIndex == 1) {
-            alert("当前是首页");
-            return;
+            $("#shou").prop("disabled", true);
+            $("#shang").prop("disabled", true);
         }
-        PageIndex--;
-        Get_All();
-    })
-
-    $("#weiye").click(function () {
         if (PageIndex == PageCount) {
-            alert("当前是尾页");
-            return;
+            $("#wei").prop("disabled", true);
+            $("#xia").prop("disabled", true);
         }
-        PageIndex++;
-        Get_All();
-    })
+
+    }
 
     $("#guanbi").click(function () {
         layer.closeAll('page');
@@ -225,9 +234,7 @@
   
 
     function guanbi2() {
-        Get_All();
-        $("#hideID22").hide();
-
+        layer.closeAll('page');
     }
    
     //分页
@@ -253,6 +260,7 @@
             }
 
         });
+        btnButton();
     }
 
     //转换日期
@@ -290,7 +298,10 @@
             }
 
         });
+        btnButton();
     })
+
+    
 
     //查询库位类型
     function Get_kuweiTypes() {
@@ -391,31 +402,8 @@
         });
     })
 
-    //编辑库位
-    function bj(id) {
-        $("#hideID22").show();
-       
-                $.ajax({
-                    type: "POST",
-                    url: "/KL/Get_kuweiByid",
-                    data: "{ID: "+id +"}",
-                    dataType: "json",
-                    contentType: "application/json",
-                    success: function (result) {    
-                        $.each(result, function (index, data) {
-                                $("#TID2").val(data.TID);
-                                $("#KID3").val(data.KID);
-                                $("#Kname3").val(data.KName);
-                                $("#WID3").val(data.WID);
-                                $("#KuTypeID3").val(data.KuTypeID);
-                                $("#moren3").val(data.moren);
-                        })
-                    },
-                    error: function (ex) {
-                        alert(ex.responseText);
-                    }
-                });
-            }
+    
+    
       
     //修改库位
     function xiugai() {
@@ -427,7 +415,7 @@
         var moren = $("#moren3").val();
         var forbidden = "否";
         var state = 0;
-
+        
         $.ajax({
             type: "POST",
             url: "/KL/Get_kuweiupdate",
@@ -437,7 +425,7 @@
             success: function (result) {
                 if (result > 0) {
                     alert("修改成功");
-                    
+                    Get_All();
                 } else {
                     alert("修改失败");
                 }
@@ -449,7 +437,6 @@
     }
      
 
-        
 
     //新增弹窗
     function show() {
@@ -470,6 +457,50 @@
         //    });
         //});
     }
+
+
+    ///编辑库位
+    function bj(id) {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['修改库位', 'font-size:18px'],
+            area: ['600px', '350px'],
+            shadeClose: true,
+            content: $('#hideID22') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+
+        ////Ajax获取
+        //$.post('1', {}, function (str) {
+        //    layer.open({
+        //        type: 1,
+        //        content: str //注意，如果str是object，那么需要字符拼接。
+        //    });
+        //});
+
+
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kuweiByid",
+            data: "{ID: " + id + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#TID2").val(data.TID);
+                    $("#KID3").val(data.KID);
+                    $("#Kname3").val(data.KName);
+                    $("#WID3").val(data.WID);
+                    $("#KuTypeID3").val(data.KuTypeID);
+                    $("#moren3").val(data.moren);
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
 
 
 </script>
