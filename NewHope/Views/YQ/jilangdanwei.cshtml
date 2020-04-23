@@ -32,7 +32,7 @@
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     @*<input type="hidden" class="form-control" id="MID" placeholder="请输入单位编号或名称">*@
-                    <input type="text" class="form-control" id="MName" placeholder="请输入单位编号或名称">
+                    <input type="text" class="form-control" id="MName3" placeholder="请输入单位编号或名称">
                 </div>
                 <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" onclick="dtmeasurementQurey()"><span class="glyphicon glyphicon-search"></span>   搜索</button>
             </form>
@@ -160,6 +160,7 @@
                 $.each(result.DateList, function (index, data) {
                     $("#tb1").append("<tr><td>" + data.MID + "</td><td>" + data.MName + "</td><td>" + Data(data.CreationDate) + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='Get_jiliangdanweiDel(" + data.MID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.MID + ")'>编辑</button></td></tr>");
                 })
+
             },
         });
         btnButton();
@@ -195,7 +196,7 @@
         $.ajax({
             type: "POST",
             url: "/YQ/dtmeasurementQurey",
-            data: "{MName:'" + $("#MName").val() + "'}",
+            data: "{MID:'" + $("#MName3").val() + "',MName:'" + $("#MName3").val() + "'}",
             dataType: "json",
             contentType: "Application/json",
             success: function (result) {
@@ -203,7 +204,7 @@
                 $("#tb1 tr").remove();
                 //获取总条数
                 $.each(result, function (index, data) {
-                    $("#tb1").append("<tr><td>" + data.MID + "</td><td>" + data.MName + "</td><td><td>" + data.createTime + "</td><input id='Button1' class='btn btn- success' type='button' value='删除' onclick='Dell(" + data.XID + ")'  /><a class='btn btn-warning' href='/Demo/Update?id=" + data.id + "'>编辑</a></td></tr>");
+                    $("#tb1").append("<tr><td>" + data.MID + "</td><td>" + data.MName + "</td><td>" + Data(data.CreationDate) + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除' onclick='Dell(" + data.XID + ")'  /><a class='btn btn-warning' href='/Demo/Update?id=" + data.id + "'>编辑</a></td></tr>");
                 })
             },
         });

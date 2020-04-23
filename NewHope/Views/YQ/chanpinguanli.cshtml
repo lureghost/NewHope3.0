@@ -8,7 +8,7 @@
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/layui/layui.js"></script>
 <script src="~/layui/layui.all.js"></script>
-<div style="width:1307px;height:40px;text-align:left;background-color:#EFEFEF;border:1px solid black;">
+<div style="width:1307px;height:40px;text-align:left;background-color:#EFEFEF;">
     <div style="position:relative;top:8px;margin-left:20px;">
         <a style="color: #016fa7;" href="javascript:void(0)"><span class="glyphicon glyphicon-home" style="color:black"></span>   首页</a> <i>></i>
         <a style="color: #016fa7;" href="javascript:void(0)">基本资料</a> <i>></i>
@@ -23,7 +23,7 @@
             <p style="font-weight:bolder"><span class="glyphicon glyphicon-globe"></span>产品管理</p>
             <div style="height:30px;float:right;margin-top:-53px;">
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#006dcc" onclick="show()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
-                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49"><span class="glyphicon glyphicon-trash"></span>  删除</button>
+                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49" onclick="you()"><span class="glyphicon glyphicon-trash"></span>  删除</button>
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#49afcd"><span class="glyphicon glyphicon-download"></span>  导出</button>
 
                 @*<button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
@@ -36,21 +36,19 @@
         <div class="layui-card-body">
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    产品<input type="text" class="form-control" placeholder="">
-                    类别 <select name="quiz" style="height:30px;">
-                        <option value="">请选择类别</option>
-                        <optgroup label="城市记忆">
-                            <option value="你工作的第一个城市">你工作的第一个城市</option>
-                        </optgroup>
-                        <optgroup label="学生时代">
-                            <option value="你的工号">你的工号</option>
-                            <option value="你最喜欢的老师">你最喜欢的老师</option>
-                        </optgroup>
+                    产品<input type="text" class="form-control" id="cpName" placeholder="请输入序号、编号或显示名">
+                    类别 <select name="leibie" id="PID" class="PID" style="height:30px;">
+                        <option value="0">请选择类别</option>
+                        @*<optgroup label="城市记忆">
+                                <option value="你工作的第一个城市">你工作的第一个城市</option>
+                            </optgroup>
+                            <optgroup label="学生时代">
+                                <option value="你的工号">你的工号</option>
+                                <option value="你最喜欢的老师">你最喜欢的老师</option>
+                            </optgroup>*@
                     </select>
-
-
                 </div>
-                <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
+                <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" onclick="tjGetAll()"><span class="glyphicon glyphicon-search"></span>   搜索</button>
             </form>
             <table class="layui-table" style="color: black;">
                 @*<colgroup>
@@ -60,7 +58,8 @@
                     </colgroup>*@
                 <thead>
                     <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
+
+                        <td> <input type="checkbox" id="check1" onclick="quanxuan('checkbox', 'reversecheck')" /> </td>
                         <th style="font-weight:bolder;">序号</th>
                         <th style="font-weight: bolder;">编号</th>
                         <th style="font-weight:bolder;">显示名</th>
@@ -70,71 +69,30 @@
                         <th style="font-weight:bolder;">规格</th>
                         <th style="font-weight:bolder;">类别</th>
                         <th style="font-weight:bolder;">单位</th>
-                        <th style="font-weight:bolder;">备注</th>
+                        <th style="font-weight:bolder;">描述</th>
                         <th style="font-weight:bolder;">操作</th>
                     </tr>
                 </thead>
-                <tbody id="tb1">
-                    <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
-                        <td>0001</td>
-                        <td>20222</td>
-                        <td>人生就像是一场修行</td>
-                        <td>5</td>
-                        <td>4</td>
-                        <td>0</td>
-                        <td>无</td>
-                        <td>杯子</td>
-                        <td>千克</td>
-                        <td>无</td>
-                        <td>修改</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
-                        <td>0002</td>
-                        <td>1111</td>
-                        <td>时间的无涯的荒野里…</td>
-                        <td>5</td>
-                        <td>4</td>
-                        <td>0</td>
-                        <td>无</td>
-                        <td>杯子</td>
-                        <td>千克</td>
-                        <td>无</td>
-                        <td>修改</td>
-                    </tr>
-                    <tr>
-                    </tr>
-                </tbody>
+                <tbody id="tb1"></tbody>
             </table>
             <br />
-            共12行，每页
-            <div style="margin-top:-28px;margin-left:95px;">
-                <select class="form-control" style="width:50px;height:30px;">
-                    <option value="1">1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-
+            <div id="divBtn" style="text-align:center;">
+                <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
+                <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
+                <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
+                <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
             </div>
-            <div style="float:right;margin-top:-25px;">
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">首页</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
 
-            </div>
 
             <div id="nb" hidden>
 
-                <br />
+                <br />@*编号 产品条码*@
                 <div class="layui-row">
                     <div class="layui-col-xs6">
-                        <span style="margin-left:30px">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;<input type="text" name="id" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                        <span style="margin-left:30px">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;<input type="text" name="ID" readonly="readonly" placeholder="自动生成,可不填" /></span>
                     </div>
                     <div class="layui-col-xs6">
-                        <span style="">产品条码&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
+                        <span style="">产品条码&nbsp;&nbsp;<input type="text" name="cpID" placeholder="" /></span>
                     </div>
 
                 </div>
@@ -145,35 +103,29 @@
 
                 <div class="layui-row">
                     <div class="layui-col-xs6">
-                        <span style="margin-left:30px">产品名称&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
+                        <span style="margin-left:30px">产品名称&nbsp;&nbsp;<input type="text" name="cpName" placeholder="" /></span>
                     </div>
                     <div class="layui-col-xs6">
                         <div class="layui-input-inline">
                             产品类别&nbsp;&nbsp;
-                            <select name="quiz1" style="height: 29px;width: 178.4px;">
-                                <option value="">请选择</option>
-                                <option value="浙江" selected="">杯子</option>
-                                <option value="你的工号">家电</option>
+                            <select name="leibie" id="PID2" style="height: 29px;width: 178.4px;">
+                                <option value="0">请选择</option>
+                                @*<option value="浙江" selected="">杯子</option>
+                                    <option value="你的工号">家电</option>*@
 
                             </select>
                         </div>
                     </div>
 
                 </div>
-
-
-
-
-
-
                 <br />
                 <br />
                 <div class="layui-row">
                     <div class="layui-col-xs6">
-                        <span style="margin-left:30px">预警上限&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                        <span style="margin-left:30px">预警上限&nbsp;&nbsp;<input type="text" name="upper" placeholder="0" /></span>
                     </div>
                     <div class="layui-col-xs6">
-                        <span style="">产品下限&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                        <span style="">产品下限&nbsp;&nbsp;<input type="text" name="floor" placeholder="0" /></span>
                     </div>
 
                 </div>
@@ -184,15 +136,15 @@
 
                 <div class="layui-row">
                     <div class="layui-col-xs6">
-                        <span style="margin-left:30px">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                        <span style="margin-left:30px">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="specification" placeholder="0" /></span>
                     </div>
                     <div class="layui-col-xs6">
-                        <div class="layui-input-inline" >
+                        <div class="layui-input-inline">
                             单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;
-                            <select name="quiz3" style=" height: 29px;width: 178.4px;">
+                            <select name="MNames" id="MNames" style=" height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
-                                <option value="产品仓库">米</option>
-                                <option value="产品仓库">吨</option>
+                                @*<option value="产品仓库">米</option>
+                                    <option value="产品仓库">吨</option>*@
                             </select>
                         </div>
                     </div>
@@ -204,15 +156,15 @@
                 <br />
                 <div class="layui-row">
                     <div class="layui-col-xs6">
-                        <span style="margin-left:30px">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                        <span style="margin-left:30px">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="price" placeholder="0" /></span>
                     </div>
                     <div class="layui-col-xs6">
-                        <div class="layui-input-inline" >
+                        <div class="layui-input-inline">
                             客&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;
-                            <select name="quiz3" style="height: 29px;width: 178.4px;">
+                            <select name="KehuNames" id="KehuNames" style="height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
-                                <option value="产品仓库">111</option>
-                                <option value="产品仓库">222</option>
+                                @*<option value="产品仓库">111</option>
+                                    <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -226,34 +178,158 @@
                     <div class="layui-col-xs6">
                         <div class="layui-input-inline" style="margin-left:30px;">
                             默认仓库&nbsp;&nbsp;
-                            <select name="quiz3"  style=" height: 29px;width: 178.4px;" >
+                            <select name="WNames" id="WNames" style=" height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
-                                <option value="产品仓库">111</option>
-                                <option value="产品仓库">222</option>
+                                @*<option value="产品仓库">111</option>
+                                    <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
                     <div class="layui-col-xs6">
-                        <div class="layui-input-inline" >
+                        <div class="layui-input-inline">
                             默认库位&nbsp;&nbsp;
-                            <select name="quiz3"  style="height: 29px;width: 178.4px;">
+                            <select name="KuNames" id="KuNames" style="height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
-                                <option value="产品仓库">111</option>
-                                <option value="产品仓库">222</option>
+                                @*<option value="产品仓库">111</option>
+                                    <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
 
                 </div>
-               
-              
+
+
                 <br />
                 <br />
-                <span style="margin-left:30px">描订单述&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
+                <span style="margin-left:30px">描订单述&nbsp;&nbsp;<input type="text" name="remark" placeholder="" /></span>
                 <br />
                 <br />
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px">确定</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:420px" onclick="add()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi" onclick=" guan()">关闭</button>
+
+            </div>
+            <div id="nb2" hidden>
+
+                <br />@*编号 产品条码*@
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号&nbsp;&nbsp;<input type="text" @*name="ID"*@ id="ID3" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <span style="">产品条码&nbsp;&nbsp;<input type="text" name="cpID3" id="cpID3" @*class="cpID3"*@ placeholder="" /></span>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">产品名称&nbsp;&nbsp;<input type="text" name="cpName3" id="cpName3" class="cpName3"  placeholder="" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline">
+                            产品类别&nbsp;&nbsp;
+                            <select name="leibie" id="PID3" style="height: 29px;width: 178.4px;" class="PID3">
+                                <option value="0">请选择</option>
+                                @*<option value="浙江" selected="">杯子</option>
+                                    <option value="你的工号">家电</option>*@
+
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">预警上限&nbsp;&nbsp;<input type="text" name="upper3" id="upper3" placeholder="0" class="upper3" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <span style="">产品下限&nbsp;&nbsp;<input type="text" name="floor3" id="floor3" placeholder="0" class="floor3"/></span>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">规&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="specification3" id="specification3" class="specification3" placeholder="0" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline">
+                            单&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位&nbsp;&nbsp;
+                            <select id="MNames2" name="MNames" class="MNames3" style=" height: 29px;width: 178.4px;">
+                                <option value="0">请选择</option>
+                                @*<option value="产品仓库">米</option>
+                                    <option value="产品仓库">吨</option>*@
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <span style="margin-left:30px">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格&nbsp;&nbsp;<input type="text" name="price3" id="price3" placeholder="0" class="price3" /></span>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline">
+                            客&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;
+                            <select name="KehuNames" id="KehuNames3" class="KehuNames3" style="height: 29px;width: 178.4px;">
+                                <option value="0">请选择</option>
+                                @*<option value="产品仓库">111</option>
+                                    <option value="产品仓库">222</option>*@
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+                <div class="layui-row">
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline" style="margin-left:30px;">
+                            默认仓库&nbsp;&nbsp;
+                            <select name="WNames" class="WNames3" id="WNames3" style=" height: 29px;width: 178.4px;">
+                                <option value="0">请选择</option>
+                                @*<option value="产品仓库">111</option>
+                                    <option value="产品仓库">222</option>*@
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div class="layui-input-inline">
+                            默认库位&nbsp;&nbsp;
+                            <select name="KuNames" class="KuNames3" id="KuNames3" style="height: 29px;width: 178.4px;">
+                                <option value="0">请选择</option>
+                                @*<option value="产品仓库">111</option>
+                                    <option value="产品仓库">222</option>*@
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br />
+                <br />
+                <span style="margin-left:30px">描订单述&nbsp;&nbsp;<input type="text" name="remark3" id="remark3" placeholder="" class="remark3" /></span>
+                <br />
+                <br />
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:420px" onclick="chanpinglupdate()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi2" onclick=" guan2()">关闭</button>
 
             </div>
         </div>
@@ -261,27 +337,190 @@
 </div>
 
 <script>
+    var pageIndex = 1;
+    var pageSize = 4;
+    var pageCount = 0;
+    //新增关闭
+    function guan() {
+        $("#guanbi").click(function () {
+            layer.closeAll('page');
+        })
+    }
+    //修改关闭
+    function guan2() {
+        $("#guanbi2").click(function () {
+            layer.closeAll('page');
+        })
+    }
+    //分页按钮
+    $(function () {
+        //GetCount();
+        leibie();
+        danwei();
+        kehu();
+        cangku();
+        kuwei();
+        GetAll();
+        $("#btnFirst").click(function () {
+            pageIndex = 1;
+            GetAll();
+        });
+        $("#btnBack").click(function () {
+            pageIndex--;
+            GetAll();
+        });
+        $("#btnNext").click(function () {
+            pageIndex++;
+            GetAll();
+        });
+        $("#btnLast").click(function () {
+            pageIndex = pageCount;
+            GetAll();
 
+        });
+    });
+    //分页查询所有
+    function GetAll() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_chanpingguanliAll",
+            data: "{pageIndex:'" + pageIndex + "',pageSize:'" + pageSize + "'}",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+                //获取总条数
+                pageCount = result.PageCount;
+                $.each(result.DateList, function (index, data) {
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.cpID + "'/></td><td>" + data.ID + "</td><td>" + data.cpID + "</td><td>" + data.cpName + "</td><td>" + data.upper + "</td><td>" + data.floor + "</td><td>" + data.price + "</td><td>" + data.specification + "</td><td>" + data.PNames + "</td><td>" + data.MNames + "</td><td>" + data.remark + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='chanpinguanlidel(" + data.cpID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.cpID + ")'>编辑</button></td></tr>");
+                })
+            },
+        });
+        btnButton();
+    }
+    //禁用
+    function btnButton() {
+        $("#divBtn :button").prop("disabled", false);
+        if (pageIndex == 1) {
+            $("#btnFirst").prop("disabled", true);
+            $("#btnBack").prop("disabled", true);
+        }
+        if (pageIndex == pageCount) {
+            $("#btnNext").prop("disabled", true);
+            $("#btnLast").prop("disabled", true);
+        }
+    }
+    //类别下拉查询
+    function leibie() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_lbxiala",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='leibie']").append("<option value=" + data.PID + ">" + data.PName + "</option>");
 
+                })
+            }
+
+        });
+    }
+    //条件查询  
+    function tjGetAll() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_chanpinguanlimohucha",
+            data: "{cpID:'" + $("#cpName").val() + "',cpName:'" + $("#cpName").val() + "',PID:'" + $(".PID").val() + "'}",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+                console.log(result);
+                $("#tb1 tr").remove();
+                //获取总条数
+                //pageCount = result.PageCount;
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' /></td><td>" + data.ID + "</td><td>" + data.cpID + "</td><td>" + data.cpName + "</td><td>" + data.upper + "</td><td>" + data.floor + "</td><td>" + data.price + "</td><td>" + data.specification + "</td><td>" + data.PNames + "</td><td>" + data.MNames + "</td><td>" + data.remark + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='chanpinlbdel(" + data.ID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.ID + ")'>编辑</button></td></tr>");
+                })
+            },
+        });
+    }
+    //单位下拉
+    function danwei() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_dwxiala",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='MNames']").append("<option value="+ data.MID + ">" + data.MName + "</option>");
+
+                })
+            }
+
+        });
+    }
+    //客户下拉
+    function kehu() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_khxiala",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='KehuNames']").append("<option value=" + data.kehuID + ">" + data.KehuName + "</option>");
+
+                })
+            }
+
+        });
+    }
+    //仓库下拉
+    function cangku() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_ckxiala",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='WNames']").append("<option value=" + data.WID + ">" + data.WName + "</option>");
+
+                })
+            }
+
+        });
+    }
+    //库位下拉
+    function kuwei() {
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_cwxiala",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='KuNames']").append("<option value=" + data.KuTYpeID + ">" + data.KuName + "</option>");
+
+                })
+            }
+
+        });
+    }
+    //新增弹框
     function show() {
-        //var a = layer.open({
-        //    type: 1,
-        //    area: ['100%', '550px'],
-        //    title: ['添加库位','font-size:18px'],
-        //    shadeClose: true,
-        //    content: ['layer_model.html', 'no']
-        //});
-
-        //layer.open({
-        //    type: 1,
-        //    content: '11' //这里content是一个普通的String
-        //});
-
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['添加产品管理', 'font-size:18px'],
-            area: ['600px', '550px'],
+            area: ['610px', '615px'],
             shadeClose: true,
             content: $('#nb') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -295,5 +534,212 @@
         //        content: str //注意，如果str是object，那么需要字符拼接。
         //    });
         //});
+    }
+    //新增
+    function add() {
+        /*   var ID = $("[name='ID']").val();*///序号
+        var cpID = $("[name='cpID']").val();//产品条码
+        var cpName = $("[name='cpName']").val();//产品名称
+        var PNames = $("#PID2").val();//产品类别
+        var upper = $("[name='upper']").val();//上限
+        var floor = $("[name='floor']").val();//下限
+        var specification = $("[name='specification']").val();//规格
+        var MNames = $("[name='MNames']").val();//单位
+        var price = $("[name='price']").val();//价格
+        var KehuNames = $("[name='KehuNames']").val();//客户
+        var WNames = $("[name='WNames']").val();//仓库
+        var KuNames = $("[name='KuNames']").val();//库位
+        var remark = $("[name='remark']").val();//描述
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_guanliAdd",
+            data: "{p:{cpID:'" + cpID + "',cpName:'" + cpName + "',PID:'" + PNames + "',upper:'" + upper + "',floor:'" + floor + "',specification:'" + specification + "',MID:'" + MNames + "',price:'" + price + "',WID:'" + WNames + "',kehuID:'" + KuNames + "',remark:'" + remark + "'}}",
+            dataType: "json",
+            contentType: "Application/json",
+            success: function (result) {
+                if (result > 0) {
+                    console.log();
+                    alert("新增成功");
+                    GetAll();
+                }
+                else {
+                    alert("新增失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //删除
+    function chanpinguanlidel(id) {
+        alert(id);
+        var states = 1;
+        if (confirm('确定删除?')) {
+            //alert(id);
+            $.ajax({
+                type: "POST",
+                url: "/YQ/Get_chanpinguanliDel",
+                data: "{cpID:" + id + ",state:" + states + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    console.log(result);
+                    if (result > 0) {
+                        alert("删除成功");
+                        GetAll();
+                    } else {
+                        alert("删除失败");
+
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+
+
+        }
+
+    }
+    //带id查
+    function show2(cpID) {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['修改产品管理', 'font-size:18px'],
+            area: ['610px', '615px'],
+            shadeClose: true,
+            content: $('#nb2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_chanpinglById",
+            data: "{cpID: " + cpID + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log($);
+                $.each(result, function (index, data) {
+                    //$("[name='PID2']").val(data.PID);
+                    //$("[name='PName2']").val(data.PName);
+                    //$("[name='remark2']").val(data.remark);
+                    $("[name='cpID3']").val(data.cpID);
+                    $("#ID3").val(data.ID);
+                    //$("#cpID3").val(data.cpID);//产品条码
+                    $("#cpName3").val(data.cpName);//产品名称
+                    $("#PID3").val(data.PID);//产品类别
+                    $("#upper3").val(data.upper);//上限
+                    $("#floor3").val(data.floor);//下限
+                    $("#specification3").val(data.specification);//规格
+                    $("#MNames2").val(data.MID);//单位
+                    $("#price3").val(data.price);//价格
+                    $("#KehuNames3").val(data.kehuID);//客户
+                    $("#WNames3").val(data.WID);//仓库
+                    $("#KuNames3").val(data.defaultstorage);//库位
+                    $("#remark3").val(data.remark);//描述
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //修改
+    function chanpinglupdate() {
+        var ID=$("#ID3").val();//编号
+        var cpID = $("#cpID3").val();//产品条码
+        var cpName = $("#cpName3").val();//产品名称
+        var PNames = $("#PID3").val();//产品类别
+        var upper = $("#upper3").val();//上限
+        var floor = $("#floor3").val();//下限
+        var specification = $("#specification3").val();//规格
+        var MNames = $("#MNames2").val();//单位
+        var price = $("#price3").val();//价格
+        var KehuNames = $("#KehuNames3").val();//客户
+        var WNames = $("#WNames3").val();//仓库
+        var KuNames = $("#KuNames3").val();//库位
+        var remark = $("#remark3").val();//描述
+        $.ajax({
+            type: "POST",
+            url: "/YQ/Get_chanpinglupdate",
+            data: "{p:{ID:'" + ID + "',cpID:'" + cpID + "',cpName:'" + cpName + "',PID:'" + PNames + "',upper:'" + upper + "',floor:'" + floor + "',specification:'" + specification + "',MID:'" + MNames + "',price:'" + price + "',KehuID:'" + KehuNames + "',WID:'" + WNames + "',defaultstorage:'" + KuNames + "',remark:'" + remark + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    //console.log();
+                    alert("修改成功");
+                    GetAll();
+
+                } else {
+                    alert("修改失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
+    //全选
+    function quanxuan(objName, type) {
+        var objNameList = document.getElementsByName(objName);
+        if (null != objNameList) {
+            for (var i = 0; i < objNameList.length; i++) {
+                if (objNameList[i].checked == true) {
+                    if (type != 'checkall') {  // 非全选
+                        objNameList[i].checked = false;
+                    }
+                } else {
+                    if (type != 'uncheckall') {  // 非取消全选
+                        objNameList[i].checked = true;
+                        //console.log($("input[name='checkbox']").data("id"));
+                        //alert($("input[name='checkbox']").data("id"));
+
+                    }
+                }
+            }
+        }
+    }
+    function you() {
+        var fan = 0;
+        var states2 = 1;
+        var list = []
+        $.each($("[name='checkbox']"), function (index, result) {
+            //alert($(this).is("checked"));
+            //console.log(result);
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+
+            }
+        });
+        $.each(list, function (index2, result2) {
+            alert(result2);
+            $.ajax({
+                type: "POST",
+                url: "/YQ/Get_chanpinguanliDel",
+                data: "{cpID:" + result2 + ",state:" + states2 + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    //console.log(result);
+                    if (result > 0) {
+                        alert("删除成功2");
+                        GetAll();
+                        //fan = 1;
+                    } else {
+                        alert("删除失败2");
+                        //fan = 0;
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+
+        })
+
+
     }
 </script>
