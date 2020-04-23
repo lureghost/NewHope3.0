@@ -280,7 +280,7 @@
           <Property Name="XID" Type="int" />
           <Property Name="defaultstorage" Type="int" />
           <Property Name="state" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="10" />
+          <Property Name="kucun" Type="int" />
           <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="productType">
@@ -594,7 +594,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_customer_dizhi">
+        <Association Name="FK_customer_customer">
           <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1099,7 +1099,7 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_customer_dizhi" Association="Self.FK_customer_dizhi">
+          <AssociationSet Name="FK_customer_customer" Association="Self.FK_customer_customer">
             <End Role="dizhi" EntitySet="dizhi" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
@@ -1385,7 +1385,7 @@
           <Property Name="beizhu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dizhiID" Type="Int32" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="customer" ToRole="chuku" />
-          <NavigationProperty Name="dizhi" Relationship="Self.FK_customer_dizhi" FromRole="customer" ToRole="dizhi" />
+          <NavigationProperty Name="dizhi" Relationship="Self.FK_customer_customer" FromRole="customer" ToRole="dizhi" />
           <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="customer" ToRole="pandianxq" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
           <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
@@ -1410,7 +1410,7 @@
           <Property Name="linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="Self.FK_customer_dizhi" FromRole="dizhi" ToRole="customer" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_customer_customer" FromRole="dizhi" ToRole="customer" />
         </EntityType>
         <EntityType Name="gysguanli">
           <Key>
@@ -1469,8 +1469,8 @@
           <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
         </EntityType>
         <EntityType Name="menu">
@@ -1571,7 +1571,7 @@
           <Property Name="XID" Type="Int32" />
           <Property Name="defaultstorage" Type="Int32" />
           <Property Name="state" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="kucun" Type="Int32" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="baosun" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="chuku" />
@@ -1988,7 +1988,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_customer_dizhi">
+        <Association Name="FK_customer_customer">
           <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
           <End Role="customer" Type="Self.customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2453,7 +2453,7 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_customer_dizhi" Association="Self.FK_customer_dizhi">
+          <AssociationSet Name="FK_customer_customer" Association="Self.FK_customer_customer">
             <End Role="dizhi" EntitySet="dizhi" />
             <End Role="customer" EntitySet="customer" />
           </AssociationSet>
@@ -2779,8 +2779,8 @@
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="by2" ColumnName="by2" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2875,7 +2875,7 @@
                 <ScalarProperty Name="XID" ColumnName="XID" />
                 <ScalarProperty Name="defaultstorage" ColumnName="defaultstorage" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="kucun" ColumnName="kucun" />
                 <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -40,7 +40,7 @@ namespace MOD
         public Nullable<int> XID { get; set; }
         public Nullable<int> defaultstorage { get; set; }
         public Nullable<int> state { get; set; }
-        public string by1 { get; set; }
+        public Nullable<int> kucun { get; set; }
         public string by2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
