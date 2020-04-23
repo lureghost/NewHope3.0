@@ -23,7 +23,7 @@
                 <div class="layui-card-header">
                     客户管理
                     <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" onclick="you()">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
 
                 </div>
@@ -37,7 +37,7 @@
 
 
 
-                    <div class="layui-form">
+                    <div @*class="layui-form"*@>
                         <table class="layui-table">
                             <colgroup>
                                 @*<col width="150">
@@ -47,7 +47,7 @@
                             </colgroup>
                             <thead>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td><input type="checkbox" id="check1" onclick="quanxuan('checkbox', 'reversecheck')" /></td>
                                     <td>&nbsp;客户编号</td>
                                     <td>&nbsp;客户名称</td>
                                     <td>&nbsp;电话	</td>
@@ -143,7 +143,7 @@
                     <br />
                     <br />
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" id="dizhixinzeng">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi2">关闭</button>
                 </div>
 
 
@@ -190,7 +190,7 @@
                     <br />
                     <br />
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="xg" style="margin-left:300px" onclick="Get_kehuUpdate()">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi">关闭</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi3">关闭</button>
                 </div>
 
 
@@ -214,7 +214,7 @@
                     <br />
                     <br />
                     <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="Get_dizhiUpdate()">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi4">关闭</button>
                 </div>
 
 
@@ -233,7 +233,7 @@
 <script>
     
             var PageIndex = 1;
-            var PageSize = 2;
+            var PageSize = 4;
             var PageCount = 0;
             $(function() {
 
@@ -272,7 +272,7 @@
                 $("#tb1 tr").remove();
                 PageCount = result.PageCount;
                 $.each(result.DateList, function (index, data) {
-                    $("#tb1").append("<tr><td><input id='Checkbox1'style='display:block;' type='checkbox'/></td><td>" + data.kehuID + "</td><td>" + data.KehuName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kehuDel(" + data.kehuID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_kehubyid(" + data.kehuID + ")'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.kehuID + "'/></td><td>" + data.kehuID + "</td><td>" + data.KehuName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kehuDel(" + data.kehuID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_kehubyid(" + data.kehuID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.row)
                 })
             },
@@ -284,6 +284,70 @@
         });
         btnButton();
     }
+
+
+    //全选
+    function quanxuan(objName, type) {
+        var objNameList = document.getElementsByName(objName);
+        if (null != objNameList) {
+            for (var i = 0; i < objNameList.length; i++) {
+                if (objNameList[i].checked == true) {
+                    if (type != 'checkall') {  // 非全选
+                        objNameList[i].checked = false;
+                    }
+                } else {
+                    if (type != 'uncheckall') {  // 非取消全选
+                        objNameList[i].checked = true;
+                        //console.log($("input[name='checkbox']").data("id"));
+                        //alert($("input[name='checkbox']").data("id"));
+
+                    }
+                }
+            }
+        }
+    }
+    function you() {
+        var fan = 0;
+        var states2 = 1;
+        var list = []
+        $.each($("[name='checkbox']"), function (index, result) {
+            //alert($(this).is("checked"));
+            //console.log(result);
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+
+            }
+        });
+        $.each(list, function (index2, result2) {
+            if (confirm('确定删除?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "/KL/Get_kehuDel",
+                    data: "{kehuID:'" + result2 + "',state:'" + states2 + "'}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result > 0) {
+                            alert("修改状态成功");
+                            Get_All();
+                        } else {
+                            alert("修改状态失败");
+                        }
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+            }
+            })
+
+
+        }
+
+
+    
+
+
 
     //转换日期
     function Data(time) {
@@ -507,6 +571,18 @@
     }
 
     $("#guanbi").click(function () {
+        layer.closeAll('page');
+    })
+
+    $("#guanbi2").click(function () {
+        layer.closeAll('page');
+    })
+
+    $("#guanbi3").click(function () {
+        layer.closeAll('page');
+    })
+
+    $("#guanbi4").click(function () {
         layer.closeAll('page');
     })
 

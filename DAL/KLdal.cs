@@ -23,10 +23,9 @@ namespace DAL
 
             NewHope4Entities context = new NewHope4Entities();
             PageList list = new PageList();
-            var states = 0;
             var obj = from p in context.storage
                       orderby p.TID descending
-                      where p.state == states
+                      where p.state == 0
                       select new
                       {
                           TID = p.TID,
@@ -47,6 +46,7 @@ namespace DAL
             int rows = context.storage.Count();
             list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
             return list;
+           
         }
 
 

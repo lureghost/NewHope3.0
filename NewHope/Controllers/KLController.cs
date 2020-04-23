@@ -49,7 +49,7 @@ namespace NewHope.Controllers
         /// <param name="PageIndex"></param>
         /// <param name="PageSize"></param>
         /// <returns></returns>
-        public ActionResult Get_kuweiAll(int PageIndex=1, int PageSize=2)
+        public ActionResult Get_kuweiAll(int PageIndex=1, int PageSize=4)
         {
             return Json(KLmanager.Get_kuweiAll(PageIndex,PageSize),JsonRequestBehavior.AllowGet);
         }
@@ -145,7 +145,7 @@ namespace NewHope.Controllers
         /// <param name="PageIndex"></param>
         /// <param name="Pagesize"></param>
         /// <returns></returns>
-        public ActionResult Get_gongyingshangAll(int PageIndex=1, int PageSize=2)
+        public ActionResult Get_gongyingshangAll(int PageIndex=1, int PageSize=4)
         {
             return Json(KLmanager.Get_gongyingshangAll(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
         }
@@ -217,7 +217,7 @@ namespace NewHope.Controllers
         /// <param name="PageIndex"></param>
         /// <param name="PageSize"></param>
         /// <returns></returns>
-        public ActionResult Get_kehuAll(int PageIndex=1, int PageSize=2)
+        public ActionResult Get_kehuAll(int PageIndex=1, int PageSize=4)
         {
             return Json(KLmanager.Get_kehuAll(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
         }

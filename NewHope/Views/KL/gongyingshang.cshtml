@@ -22,7 +22,7 @@
                 <div class="layui-card-header">
                     供应商管理
                     <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" onclick="you()">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
 
                 </div>
@@ -32,25 +32,23 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="请输入供应商编号或类型" id="tiaojian">
                         </div>
-                        <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" id="sousuo"><span class="glyphicon glyphicon-search" ></span>   搜索</button>
+                        <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" id="sousuo"><span class="glyphicon glyphicon-search"></span>   搜索</button>
                     </form>
 
 
 
 
+                    @*1.新建一个隐藏域*@
 
+                    <input type="hidden" name="checkValue" id="checkValue" value="" />
 
-                    <div class="layui-form">
+                    <div @*class="layui-form"*@>
                         <table class="layui-table">
-                            <colgroup>
-                                @*<col width="150">
-                        <col width="150">
-                        <col width="200">
-                        <col>*@
-                            </colgroup>
+                          
                             <thead>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td><input type="checkbox" id="check1" onclick="quanxuan('checkbox', 'reversecheck')" /></td>
+                                    @*<td> <input id="checkAll" type="checkbox" onclick="swapCheck()" name="checkAll" /> </td>*@
                                     <td>&nbsp;供应商编号</td>
                                     <td>&nbsp;供应商类型</td>
                                     <td>&nbsp;供应商名称</td>
@@ -170,10 +168,9 @@
 
 <script>
     var PageIndex = 1;
-    var PageSize = 2;
+    var PageSize = 4;
     var PageCount = 0;
     $(function () {
-        Get_gysTypeAll();
         Get_All();
         $("#shou").click(function () {
             PageIndex = 1;
@@ -194,7 +191,78 @@
             PageIndex = PageCount;
             Get_All();
         })
+
+        Get_gysTypeAll();
+
     })
+
+    
+
+
+
+
+    //全选
+    function quanxuan(objName, type) {
+        var objNameList = document.getElementsByName(objName);
+        if (null != objNameList) {
+            for (var i = 0; i < objNameList.length; i++) {
+                if (objNameList[i].checked == true) {
+                    if (type != 'checkall') {  // 非全选
+                        objNameList[i].checked = false;
+                    }
+                } else {
+                    if (type != 'uncheckall') {  // 非取消全选
+                        objNameList[i].checked = true;
+                        //console.log($("input[name='checkbox']").data("id"));
+                        //alert($("input[name='checkbox']").data("id"));
+
+                    }
+                }
+            }
+        }
+    }
+    function you() {
+        var fan = 0;
+        var states2 = 1;
+        var list = []
+        $.each($("[name='checkbox']"), function (index, result) {
+            //alert($(this).is("checked"));
+            //console.log(result);
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+
+            }
+        });
+        $.each(list, function (index2, result2) {
+            if (confirm('确定删除?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "/KL/Get_gysDel",
+                    data: "{GID:'" + result2 + "',state:'" + states2 + "'}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result > 0) {
+                            alert("修改状态成功");
+                            Get_All();
+                            fan = 1;
+                        } else {
+                            alert("修改状态失败");
+                            fan = 0;
+                        }
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+            }
+           
+
+        })
+
+
+    }
+
 
     //分页
     function Get_All() {
@@ -209,7 +277,7 @@
                 $("#tb1 tr").remove();
                 PageCount = result.PageCount;
                 $.each(result.DateList, function (index, data) {
-                    $("#tb1").append("<tr><td><input id='Checkbox1'style='display:block;' type='checkbox'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_gysDel(" + data.GID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_gysByid(" + data.GID + ")'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.GID + "'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_gysDel(" + data.GID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_gysByid(" + data.GID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.sum)
                 })
             },
@@ -322,12 +390,11 @@
                     console.log(result);
                     $("#tb1 tr").remove();
                     $.each(result, function (index, data) {
-                        $("#tb1").append("<tr><td><input id='Checkbox1'style='display:block;' type='checkbox'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.TID + ")'>编辑</button></td></tr>");
- 
+                        $("#tb1").append("<tr><td><input name='checkId' id='checkId'style='display:block;' type='checkbox' value='" + data.GID + "' onchange='Getcheckbox()'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.TID + ")'>编辑</button></td></tr>");
                     })
                 },
             });
-        
+
     })
 
     //删除供应商
@@ -425,7 +492,7 @@
     }
 
 
-    
-  
+   
+
 </script>
 
