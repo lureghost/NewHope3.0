@@ -8,7 +8,7 @@
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="~/layui/layui.js"></script>
 <script src="~/layui/layui.all.js"></script>
-<div style="width:1307px;height:40px;text-align:left;background-color:#EFEFEF;">
+<div style="width:1300px;height:40px;text-align:left;background-color:#EFEFEF;">
     <div style="position:relative;top:8px;margin-left:20px;">
         <a style="color: #016fa7;" href="javascript:void(0)"><span class="glyphicon glyphicon-home" style="color:black"></span>   首页</a> <i>></i>
         <a style="color: #016fa7;" href="javascript:void(0)">基本资料</a> <i>></i>
@@ -52,13 +52,15 @@
                 </thead>
                 <tbody id="tb1"></tbody>
             </table>
-            <div id="divBtn" style="text-align:center;">
+            <div id="demo6" style="float:left"></div>
+
+            @*<div id="divBtn" style="text-align:center;float:right;">
                 <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
                 <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
                 <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
                 <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
-            </div>
-            
+            </div>*@
+
             @*<a ></a>*@
             <div id="nb" hidden>
 
@@ -70,36 +72,36 @@
                 <br />
                 <br />
                 @*<div class="layui-input-inline" style="margin-left:30px">
-                供应商类型&nbsp;&nbsp;
-                <select name="quiz3">
-                    <option value="">请选择</option>
-                    <option value="产品仓库">虚拟供应商</option>
-                    <option value="产品仓库">合作供应商</option>
-                </select>
-            </div>*@
+                        供应商类型&nbsp;&nbsp;
+                        <select name="quiz3">
+                            <option value="">请选择</option>
+                            <option value="产品仓库">虚拟供应商</option>
+                            <option value="产品仓库">合作供应商</option>
+                        </select>
+                    </div>*@
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:225px" onclick="jlAdd()">确定</button>
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi" onclick="guanbianniu()">关闭</button>
             </div>
             <div id="nb2" hidden>
 
                 <br />
-                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="MID2" id="MID2"  /></span>
+                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="MID2" id="MID2" /></span>
                 <br />
                 <br />
                 <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="MName2" id="MName2" placeholder="请输入你要修改的计量单位名称" /></span>
                 <br />
                 <br />
                 @*<div class="layui-input-inline" style="margin-left:30px">
-                供应商类型&nbsp;&nbsp;
-                <select name="quiz3">
-                    <option value="">请选择</option>
-                    <option value="产品仓库">虚拟供应商</option>
-                    <option value="产品仓库">合作供应商</option>
-                </select>
+                        供应商类型&nbsp;&nbsp;
+                        <select name="quiz3">
+                            <option value="">请选择</option>
+                            <option value="产品仓库">虚拟供应商</option>
+                            <option value="产品仓库">合作供应商</option>
+                        </select>
 
 
-            </div>*@
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:225px"  onclick="Get_jiliangdanweiupdate()">确定</button>
+                    </div>*@
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:225px" onclick="Get_jiliangdanweiupdate()">确定</button>
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi2" onclick="guanbianniu2()">关闭</button>
 
             </div>
@@ -109,29 +111,50 @@
 
 <script>
     var pageIndex = 1;
-    var pageSize = 4;
+    var pageSize = 5;
     var pageCount = 0;
     //分页按钮
     $(function () {
         //GetCount();
         GetAll();
-        $("#btnFirst").click(function () {
-            pageIndex = 1;
-            GetAll();
+        layui.use(['laypage','layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo6' //ID
+                , count: pageCount
+                //, prev: '上一页'
+                , limit: 10
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    //console.log(obj)
+                    //设置当前页
+                    pageIndex = obj.curr;
+                    //设置每页显示
+                    pageSize = obj.limit;
+                    GetAll();
+                    //dtmeasurementQurey();
+                }
+            });
         });
-        $("#btnBack").click(function () {
-            pageIndex--;
-            GetAll();
-        });
-        $("#btnNext").click(function () {
-            pageIndex++;
-            GetAll();
-        });
-        $("#btnLast").click(function () {
-            pageIndex = pageCount;
-            GetAll();
+        //$("#btnFirst").click(function () {
+        //    pageIndex = 1;
+        //    GetAll();
+        //});
+        //$("#btnBack").click(function () {
+        //    pageIndex--;
+        //    GetAll();
+        //});
+        //$("#btnNext").click(function () {
+        //    pageIndex++;
+        //    GetAll();
+        //});
+        //$("#btnLast").click(function () {
+        //    pageIndex = pageCount;
+        //    GetAll();
 
-        });
+        //});
     });
     //新增关闭按钮
     function guanbianniu() {
@@ -149,6 +172,7 @@
     function GetAll() {
         $.ajax({
             type: "POST",
+            async: false,
             url: "/YQ/fyqureyAll",
             data: "{pageIndex:'" + pageIndex + "',pageSize:'" + pageSize + "'}",
             dataType: "json",
@@ -278,7 +302,7 @@
         return date.toLocaleDateString();
     }
     //修改弹框 带id查询
-    function show2(MID){
+    function show2(MID) {
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名

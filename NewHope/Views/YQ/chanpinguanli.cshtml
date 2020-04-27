@@ -40,22 +40,22 @@
                     类别 <select name="leibie" id="PID" class="PID" style="height:30px;">
                         <option value="0">请选择类别</option>
                         @*<optgroup label="城市记忆">
-                                <option value="你工作的第一个城市">你工作的第一个城市</option>
-                            </optgroup>
-                            <optgroup label="学生时代">
-                                <option value="你的工号">你的工号</option>
-                                <option value="你最喜欢的老师">你最喜欢的老师</option>
-                            </optgroup>*@
+                        <option value="你工作的第一个城市">你工作的第一个城市</option>
+                    </optgroup>
+                    <optgroup label="学生时代">
+                        <option value="你的工号">你的工号</option>
+                        <option value="你最喜欢的老师">你最喜欢的老师</option>
+                    </optgroup>*@
                     </select>
                 </div>
                 <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" onclick="tjGetAll()"><span class="glyphicon glyphicon-search"></span>   搜索</button>
             </form>
             <table class="layui-table" style="color: black;">
                 @*<colgroup>
-                        <col width="150">
-                        <col width="200">
-                        <col>
-                    </colgroup>*@
+                <col width="150">
+                <col width="200">
+                <col>
+            </colgroup>*@
                 <thead>
                     <tr>
 
@@ -75,13 +75,14 @@
                 </thead>
                 <tbody id="tb1"></tbody>
             </table>
+            <div id="demo6" style="float:left"></div>
             <br />
-            <div id="divBtn" style="text-align:center;">
-                <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
-                <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
-                <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
-                <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
-            </div>
+            @*<div id="divBtn" style="text-align:center;">
+            <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
+            <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
+            <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
+            <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
+        </div>*@
 
 
             <div id="nb" hidden>
@@ -111,7 +112,7 @@
                             <select name="leibie" id="PID2" style="height: 29px;width: 178.4px;">
                                 <option value="0">请选择</option>
                                 @*<option value="浙江" selected="">杯子</option>
-                                    <option value="你的工号">家电</option>*@
+                            <option value="你的工号">家电</option>*@
 
                             </select>
                         </div>
@@ -144,7 +145,7 @@
                             <select name="MNames" id="MNames" style=" height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
                                 @*<option value="产品仓库">米</option>
-                                    <option value="产品仓库">吨</option>*@
+                            <option value="产品仓库">吨</option>*@
                             </select>
                         </div>
                     </div>
@@ -164,7 +165,7 @@
                             <select name="KehuNames" id="KehuNames" style="height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
                                 @*<option value="产品仓库">111</option>
-                                    <option value="产品仓库">222</option>*@
+                            <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -181,7 +182,7 @@
                             <select name="WNames" id="WNames" style=" height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
                                 @*<option value="产品仓库">111</option>
-                                    <option value="产品仓库">222</option>*@
+                            <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -191,7 +192,7 @@
                             <select name="KuNames" id="KuNames" style="height: 29px;width: 178.4px;">
                                 <option value="">请选择</option>
                                 @*<option value="产品仓库">111</option>
-                                    <option value="产品仓库">222</option>*@
+                            <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -227,7 +228,7 @@
 
                 <div class="layui-row">
                     <div class="layui-col-xs6">
-                        <span style="margin-left:30px">产品名称&nbsp;&nbsp;<input type="text" name="cpName3" id="cpName3" class="cpName3"  placeholder="" /></span>
+                        <span style="margin-left:30px">产品名称&nbsp;&nbsp;<input type="text" name="cpName3" id="cpName3" class="cpName3" placeholder="" /></span>
                     </div>
                     <div class="layui-col-xs6">
                         <div class="layui-input-inline">
@@ -235,7 +236,7 @@
                             <select name="leibie" id="PID3" style="height: 29px;width: 178.4px;" class="PID3">
                                 <option value="0">请选择</option>
                                 @*<option value="浙江" selected="">杯子</option>
-                                    <option value="你的工号">家电</option>*@
+                            <option value="你的工号">家电</option>*@
 
                             </select>
                         </div>
@@ -249,7 +250,7 @@
                         <span style="margin-left:30px">预警上限&nbsp;&nbsp;<input type="text" name="upper3" id="upper3" placeholder="0" class="upper3" /></span>
                     </div>
                     <div class="layui-col-xs6">
-                        <span style="">产品下限&nbsp;&nbsp;<input type="text" name="floor3" id="floor3" placeholder="0" class="floor3"/></span>
+                        <span style="">产品下限&nbsp;&nbsp;<input type="text" name="floor3" id="floor3" placeholder="0" class="floor3" /></span>
                     </div>
 
                 </div>
@@ -268,7 +269,7 @@
                             <select id="MNames2" name="MNames" class="MNames3" style=" height: 29px;width: 178.4px;">
                                 <option value="0">请选择</option>
                                 @*<option value="产品仓库">米</option>
-                                    <option value="产品仓库">吨</option>*@
+                            <option value="产品仓库">吨</option>*@
                             </select>
                         </div>
                     </div>
@@ -288,7 +289,7 @@
                             <select name="KehuNames" id="KehuNames3" class="KehuNames3" style="height: 29px;width: 178.4px;">
                                 <option value="0">请选择</option>
                                 @*<option value="产品仓库">111</option>
-                                    <option value="产品仓库">222</option>*@
+                            <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -305,7 +306,7 @@
                             <select name="WNames" class="WNames3" id="WNames3" style=" height: 29px;width: 178.4px;">
                                 <option value="0">请选择</option>
                                 @*<option value="产品仓库">111</option>
-                                    <option value="产品仓库">222</option>*@
+                            <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -315,7 +316,7 @@
                             <select name="KuNames" class="KuNames3" id="KuNames3" style="height: 29px;width: 178.4px;">
                                 <option value="0">请选择</option>
                                 @*<option value="产品仓库">111</option>
-                                    <option value="产品仓库">222</option>*@
+                            <option value="产品仓库">222</option>*@
                             </select>
                         </div>
                     </div>
@@ -338,7 +339,7 @@
 
 <script>
     var pageIndex = 1;
-    var pageSize = 4;
+    var pageSize = 5;
     var pageCount = 0;
     //新增关闭
     function guan() {
@@ -361,28 +362,50 @@
         cangku();
         kuwei();
         GetAll();
-        $("#btnFirst").click(function () {
-            pageIndex = 1;
-            GetAll();
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo6' //ID
+                , count: pageCount
+                //, prev: '上一页'
+                , limit: 10
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    //console.log(obj)
+                    //设置当前页
+                    pageIndex = obj.curr;
+                    //设置每页显示
+                    pageSize = obj.limit;
+                    GetAll();
+                    //dtmeasurementQurey();
+                }
+            });
         });
-        $("#btnBack").click(function () {
-            pageIndex--;
-            GetAll();
-        });
-        $("#btnNext").click(function () {
-            pageIndex++;
-            GetAll();
-        });
-        $("#btnLast").click(function () {
-            pageIndex = pageCount;
-            GetAll();
+        //$("#btnFirst").click(function () {
+        //    pageIndex = 1;
+        //    GetAll();
+        //});
+        //$("#btnBack").click(function () {
+        //    pageIndex--;
+        //    GetAll();
+        //});
+        //$("#btnNext").click(function () {
+        //    pageIndex++;
+        //    GetAll();
+        //});
+        //$("#btnLast").click(function () {
+        //    pageIndex = pageCount;
+        //    GetAll();
 
-        });
+        //});
     });
     //分页查询所有
     function GetAll() {
         $.ajax({
             type: "POST",
+            async: false,
             url: "/YQ/Get_chanpingguanliAll",
             data: "{pageIndex:'" + pageIndex + "',pageSize:'" + pageSize + "'}",
             dataType: "json",
@@ -681,7 +704,6 @@
             }
         });
     }
-
     //全选
     function quanxuan(objName, type) {
         var objNameList = document.getElementsByName(objName);

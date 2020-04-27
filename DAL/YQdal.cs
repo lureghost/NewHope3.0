@@ -56,7 +56,7 @@ namespace DAL
         public static PageList fyqureyAll(int pageIndex, int pageSize)
         {
             NewHope4Entities uu = new NewHope4Entities();
-            PageList list = new PageList();
+           
             var obj = from p in uu.measurement
                       orderby p.MID ascending
                       where p.state == 0
@@ -68,11 +68,15 @@ namespace DAL
                           MName = p.MName,
                           CreationDate = p.CreationDate,
                       };
+
             //设置分页数据
+            //var ms = obj.ToString();
+            PageList list = new PageList();
             list.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
             //设置总页数
-            int rows = uu.measurement.Count();
-            list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
+            //int rows = uu.measurement.Count();
+            //list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
 
             return list;
         }
@@ -171,9 +175,10 @@ namespace DAL
                       };
             //设置分页数据
             list.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
             //设置总页数
-            int rows = uu.measurement.Count();
-            list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
+            //int rows = uu.measurement.Count();
+            //list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
 
             return list;
         }
@@ -254,7 +259,7 @@ namespace DAL
 
         /// <summary>
         ///产品管理
-        /// </summary>
+        /// </summary> 
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
@@ -290,9 +295,10 @@ namespace DAL
                       };
             //设置分页数据
             list.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            list.PageCount = obj.Count();
             //设置总页数
-            int rows = uu.measurement.Count();
-            list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
+            //int rows = uu.measurement.Count();
+            //list.PageCount = rows % pageSize == 0 ? rows / pageSize : rows / pageSize + 1;
 
             return list;
         }

@@ -57,12 +57,13 @@
                 </thead>
                 <tbody id="tb1"></tbody>
             </table>
-            <div id="divBtn" style="text-align:center;">
-                <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
-                <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
-                <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
-                <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
-            </div>
+            <div id="demo6" style="float:left"></div>
+            @*<div id="divBtn" style="text-align:center;">
+            <input id="btnFirst" class=" btn btn-primary" type="button" value="首页" />
+            <input id="btnBack" class=" btn btn-primary" type="button" value="上一页" />
+            <input id="btnNext" class=" btn btn-primary" type="button" value="下一页" />
+            <input id="btnLast" class=" btn btn-primary" type="button" value="尾页" />
+        </div>*@
             <br />
 
             <div id="nb" hidden>
@@ -90,10 +91,10 @@
             <div id="nb2" hidden>
 
                 <br />
-                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="PID2"  id="PID2" readonly="readonly" placeholder="自动生成,可不填" /></span>
+                <span style="margin-left:30px">编号&nbsp;&nbsp;<input type="text" name="PID2" id="PID2" readonly="readonly" placeholder="自动生成,可不填" /></span>
                 <br />
                 <br />
-                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="PName2" id="PName2"  placeholder="请输入类别名称" /></span>
+                <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="PName2" id="PName2" placeholder="请输入类别名称" /></span>
                 <br />
                 <br />
                 <span style="margin-left:30px">备注&nbsp;&nbsp;<input type="text" name="remark2" id="remark2" placeholder="" /></span>
@@ -115,29 +116,50 @@
 
 <script>
     var pageIndex = 1;
-    var pageSize = 4;
+    var pageSize = 5;
     var pageCount = 0;
     //分页按钮
     $(function () {
         //GetCount();
         GetAll();
-        $("#btnFirst").click(function () {
-            pageIndex = 1;
-            GetAll();
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'demo6' //ID
+                , count: pageCount
+                //, prev: '上一页'
+                , limit: 10
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    //console.log(obj)
+                    //设置当前页
+                    pageIndex = obj.curr;
+                    //设置每页显示
+                    pageSize = obj.limit;
+                    GetAll();
+                    //dtmeasurementQurey();
+                }
+            });
         });
-        $("#btnBack").click(function () {
-            pageIndex--;
-            GetAll();
-        });
-        $("#btnNext").click(function () {
-            pageIndex++;
-            GetAll();
-        });
-        $("#btnLast").click(function () {
-            pageIndex = pageCount;
-            GetAll();
+        //$("#btnFirst").click(function () {
+        //    pageIndex = 1;
+        //    GetAll();
+        //});
+        //$("#btnBack").click(function () {
+        //    pageIndex--;
+        //    GetAll();
+        //});
+        //$("#btnNext").click(function () {
+        //    pageIndex++;
+        //    GetAll();
+        //});
+        //$("#btnLast").click(function () {
+        //    pageIndex = pageCount;
+        //    GetAll();
 
-        });
+        //});
     });
     //关闭新增
     function guan() {
@@ -155,6 +177,7 @@
     function GetAll() {
         $.ajax({
             type: "POST",
+            async: false,
             url: "/YQ/Get_chanpinglbAll",
             data: "{pageIndex:'" + pageIndex + "',pageSize:'" + pageSize + "'}",
             dataType: "json",
