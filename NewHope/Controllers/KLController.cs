@@ -107,7 +107,6 @@ namespace NewHope.Controllers
         /// <returns></returns>
         public ActionResult Get_kuweiupdate(storage s)
         {
-            s.CreationDate = DateTime.Now;
             return Json(KLmanager.Get_kuweiupdate(s), JsonRequestBehavior.AllowGet);
         }
 
@@ -140,6 +139,16 @@ namespace NewHope.Controllers
         }
 
         /// <summary>
+        /// 库位回收站
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Get_kwhuishouzhan() 
+        {
+            return Json(KLmanager.Get_kwhuishouzhan(),JsonRequestBehavior.AllowGet);
+        }
+
+
+        /// <summary>
         /// 供应商分页
         /// </summary>
         /// <param name="PageIndex"></param>
@@ -169,6 +178,16 @@ namespace NewHope.Controllers
         {
             return Json(KLmanager.Get_gysTypeAll(), JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// 供应商回收站
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Get_gyshuishouzhan()
+        {
+            return Json(KLmanager.Get_gyshuishouzhan(), JsonRequestBehavior.AllowGet);
+        }
+        
 
         /// <summary>
         /// “删除”供应商
@@ -217,7 +236,7 @@ namespace NewHope.Controllers
         /// <param name="PageIndex"></param>
         /// <param name="PageSize"></param>
         /// <returns></returns>
-        public ActionResult Get_kehuAll(int PageIndex=1, int PageSize=4)
+        public ActionResult Get_kehuAll(int PageIndex, int PageSize)
         {
             return Json(KLmanager.Get_kehuAll(PageIndex, PageSize), JsonRequestBehavior.AllowGet);
         }
@@ -295,7 +314,6 @@ namespace NewHope.Controllers
         /// <returns></returns>
         public ActionResult Get_kehuUpdate(customer c)
         {
-            c.CreationDate = DateTime.Now;
             return Json(KLmanager.Get_kehuUpdate(c), JsonRequestBehavior.AllowGet);
         }
 
@@ -330,7 +348,16 @@ namespace NewHope.Controllers
         {
             return Json(KLmanager.Get_dizhiNamecha(kehuID, KehuName), JsonRequestBehavior.AllowGet);
         }
-       
 
+
+        /// <summary>
+        /// 客户回收站
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Get_kehuhuishouzhan()
+        {
+            return Json(KLmanager.Get_kehuhuishouzhan(), JsonRequestBehavior.AllowGet);
+        }
+        
     }
 }

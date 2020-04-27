@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MOD;
@@ -43,8 +44,9 @@ namespace DAL
                       };
 
             list.DateList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
-            int rows = context.storage.Count();
-            list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            
+            //list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            list.PageCount= obj.Count();
             return list;
            
         }
@@ -88,6 +90,33 @@ namespace DAL
             return obj;
         }
 
+
+        /// <summary>
+        /// 库位管理回收站
+        /// </summary>
+        /// <returns></returns>
+        public static IQueryable Get_kwhuishouzhan() {
+            NewHope4Entities entity = new NewHope4Entities();
+            var obj = from p in entity.storage
+                      where p.state == 1
+                      select new
+                      {
+                          TID = p.TID,
+                          KName = p.KName,
+                          WID = p.WID,
+                          KID = p.KID,
+                          WName = p.warehouse.WName,
+                          KuTypeID = p.KuTypeID,
+                          KuName = p.KuType.KuName,
+                          forbidden = p.forbidden,
+                          moren = p.moren,
+                          CreationDate = p.CreationDate,
+                          state = p.state,
+                          rows = entity.storage.Count()
+                      };
+            return obj;
+        }
+
         /// <summary>
         /// 库位新增
         /// </summary>
@@ -127,10 +156,10 @@ namespace DAL
             var obj = entities.storage.Find(s.TID);
             obj.KName = s.KName;
             obj.WID = s.WID;
+            obj.KID = s.KID;
             obj.KuTypeID = s.KuTypeID;
             obj.forbidden = s.forbidden;
             obj.moren = s.moren;
-            obj.CreationDate = s.CreationDate;
             obj.state = s.state;
             return entities.SaveChanges();
 
@@ -245,8 +274,9 @@ namespace DAL
                           sum = context.gysguanli.Count()
                       };
             list.DateList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
-            int rows= context.gysguanli.Count();
-            list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            int rows= obj.Count();
+            //list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            list.PageCount = rows;
             return list;
 
            
@@ -278,6 +308,31 @@ namespace DAL
             {
                 obj = obj.Where(p => p.GID == GID || p.gystypeName.Contains(gystypeName));
             }
+            return obj;
+        }
+
+        /// <summary>
+        /// 供应商回收站
+        /// </summary>
+        /// <returns></returns>
+        public static IQueryable Get_gyshuishouzhan() {
+            NewHope4Entities context = new NewHope4Entities();
+            var obj = from p in context.gysguanli
+                      where p.state == 1
+                      select new
+                      {
+                          GID = p.GID,
+                          GName = p.GName,
+                          gystypeID = p.gystypeID,
+                          gystypeName = p.gystype.gystypeName,
+                          phone = p.phone,
+                          faxes = p.faxes,
+                          Email = p.Email,
+                          linkman = p.linkman,
+                          address = p.address,
+                          describe = p.describe,
+                          state = p.state
+                      };
             return obj;
         }
 
@@ -392,19 +447,19 @@ namespace DAL
                           state = p.state,
                           beizhu=p.beizhu,
                           Email= p.Email,
-                          //dizhis = from pp in context.dizhi
-                          //     select new {
-                          //             dizhiIDs = pp.dizhiID,
-                          //             dizhiNames = pp.dizhiName,
-                          //             linkmans = pp.linkman,
-                          //             phones = pp.phone,
-                          //             states = pp.state
-                          //         },
+                        
+                           dizhiIDs = p.dizhiID,
+                           dizhiNames = p.dizhi.dizhiName,
+                           linkmans = p.dizhi.linkman,
+                           phones = p.dizhi.phone,
+                           states = p.dizhi.state,
+                        
                           row =context.customer.Count()
                       };
             list.DateList = obj.Skip((PageIndex - 1) * PageSize).Take(PageSize);
-            int rows = context.customer.Count();
-            list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            int rows = obj.Count();
+            //list.PageCount = rows % PageSize == 0 ? rows / PageSize : rows / PageSize + 1;
+            list.PageCount = rows;
             return list;
         }
 
@@ -475,7 +530,7 @@ namespace DAL
         public static IQueryable Get_dizhichaid(int dizhiID) {
             NewHope4Entities context = new NewHope4Entities();
             var obj = from p in context.dizhi
-                      where p.dizhiID == dizhiID && p.state == 0
+                      where p.dizhiID == dizhiID /*&& p.state == 0*/
                       select new
                       {
                           dizhiIDs = p.dizhiID,
@@ -542,7 +597,6 @@ namespace DAL
             obj.phone = c.phone;
             obj.faxes = c.faxes;
             obj.state = c.state;
-            obj.CreationDate = c.CreationDate;
             obj.Email = c.Email;
             obj.beizhu = c.beizhu;
             return context.SaveChanges();
@@ -609,7 +663,29 @@ namespace DAL
             return obj;
         }
 
-
+        /// <summary>
+        /// 客户回收站
+        /// </summary>
+        /// <returns></returns>
+        public static IQueryable Get_kehuhuishouzhan() {
+            NewHope4Entities context = new NewHope4Entities();
+            var obj = from p in context.customer
+                      orderby p.kehuID descending
+                      where p.state == 1
+                      select new
+                      {
+                          kehuID = p.kehuID,
+                          KehuName = p.KehuName,
+                          phone = p.phone,
+                          faxes = p.faxes,
+                          CreationDate = p.CreationDate,
+                          state = p.state,
+                          beizhu = p.beizhu,
+                          Email = p.Email,
+                          row = context.customer.Count()
+                      };
+            return obj;
+        }
 
      
 

@@ -9,8 +9,8 @@
 
     <div class="layui-card">
         <div class="layui-card-header">
-            <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
-            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">供应商管理</a>
+            <a href="javascript:;">首页</a>&nbsp;&nbsp;<span class="layui-badge layui-bg-green">></span>&nbsp;&nbsp;
+            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;<span class="layui-badge layui-bg-green">></span>&nbsp;&nbsp;<a href="javascript:;">供应商管理</a>
 
         </div>
         <div class="layui-card-body">
@@ -21,9 +21,12 @@
 
                 <div class="layui-card-header">
                     供应商管理
-                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:750px" onclick="show()">新增</button>
                     <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" onclick="you()">删除</button>
-                    <button type="button" class="layui-btn layui-btn-radius">导出</button>
+                    <button type="button" class="layui-btn layui-btn-warm layui-btn-radius" id="hsz" onclick="hsz()">回收站</button>
+                    <button type="button" class="layui-btn layui-btn-radius" hidden="hidden" id="huifuhuifu" onclick="hf()">恢复</button>
+                    <button type="button" class="layui-btn layui-btn-radius" id="fanhui">返回</button>
+
 
                 </div>
                 <div class="layui-card-body">
@@ -44,7 +47,7 @@
 
                     <div @*class="layui-form"*@>
                         <table class="layui-table">
-                          
+
                             <thead>
                                 <tr>
                                     <td><input type="checkbox" id="check1" onclick="quanxuan('checkbox', 'reversecheck')" /></td>
@@ -65,16 +68,21 @@
                             <tbody id="tb1">
                             </tbody>
                         </table>
+                        <div id="PageDemo">
+                            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                                <legend>显示完整功能</legend>
+                            </fieldset>
+                        </div>
                     </div>
 
 
-                    <div id="divBtn">
+                    @*<div id="divBtn">
                         共<label id="sum"></label>行
                         <button type="button" class="btn btn-primary" style="margin-left:500px" id="shou">首页</button>
                         <button type="button" class="btn btn-primary" id="shang">上一页</button>
                         <button type="button" class="btn btn-primary" id="xia">下一页</button>
                         <button type="button" class="btn btn-primary" id="wei">尾页</button>
-                    </div>
+                    </div>*@
                 </div>
 
                 <div id="hideID" hidden="hidden">
@@ -82,23 +90,28 @@
                         <br />
                         <span style="margin-left:30px">供应商编号&nbsp;&nbsp;<input type="text" class="form-control" name="GID" id="GID" readonly="readonly" placeholder="自动生成,可不填" /></span>
                         <span style="margin-left:30px">供应商名称&nbsp;&nbsp;<input type="text" class="form-control" name="GName" id="GName" placeholder="请输入供应商名称" /></span>
+                        <span class="layui-badge" id="1">*</span>
                         <br />
                         <br />
                         <span style="margin-left:30px">传真&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="faxes" id="faxes" /></span>
+                        @*<span class="layui-badge" id="2">*</span>*@
                         <span style="margin-left:30px">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="Email" id="Email" /></span>
-
+                        <span class="layui-badge" id="3">*</span>
 
 
 
                         <br />
                         <br />
                         <span style="margin-left:30px">电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="phone" id="phone" /></span>
+                        <span class="layui-badge" id="4">*</span>
                         <span style="margin-left:30px">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="linkman" id="linkman" /></span>
-
+                        <span class="layui-badge" id="5">*</span>
                         <br />
                         <br />
                         <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="address" id="address" /></span>
+                        <span class="layui-badge" id="6">*</span>
                         <span style="margin-left:30px">描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="describe" id="describe" /></span>
+                        @*<span class="layui-badge" id="7">*</span>*@
                         <br />
                         <br />
 
@@ -109,6 +122,7 @@
 
                             </select>
                         </div>
+                        <span class="layui-badge" id="8">*</span>
                         <br />
                         <br />
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px" id="xinzeng">确定</button>
@@ -123,21 +137,25 @@
                         <br />
                         <span style="margin-left:30px">供应商编号&nbsp;&nbsp;<input type="text" class="form-control" name="GID" id="GID2" readonly="readonly" placeholder="自动生成,可不填" /></span>
                         <span style="margin-left:30px">供应商名称&nbsp;&nbsp;<input type="text" class="form-control" name="GName" id="GName2" placeholder="请输入供应商名称" /></span>
+                        <span class="layui-badge" id="11" hidden="hidden">*</span>
                         <br />
                         <br />
                         <span style="margin-left:30px">传真&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="faxes" id="faxes2" /></span>
                         <span style="margin-left:30px">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="Email" id="Email2" /></span>
-
+                        <span class="layui-badge" id="33" hidden="hidden">*</span>
 
                         <br />
                         <br />
                         <span style="margin-left:30px">电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="phone" id="phone2" /></span>
+                        <span class="layui-badge" id="44" hidden="hidden">*</span>
                         <span style="margin-left:30px">联系人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="linkman" id="linkman2" /></span>
-
+                        <span class="layui-badge" id="55" hidden="hidden">*</span>
                         <br />
                         <br />
                         <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="address" id="address2" /></span>
+                        <span class="layui-badge" id="66" hidden="hidden">*</span>
                         <span style="margin-left:30px">描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="form-control" name="describe" id="describe2" /></span>
+                        @*<span class="layui-badge" id="77" hidden="hidden">*</span>*@
                         <br />
                         <br />
 
@@ -147,6 +165,7 @@
                                 <option value="0">请选择</option>
                             </select>
                         </div>
+                        <span class="layui-badge" id="88" hidden="hidden">*</span>
                         <br />
                         <br />
                         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px" id="xg" onclick="Get_gysUpdate()">确定</button>
@@ -170,33 +189,203 @@
     var PageIndex = 1;
     var PageSize = 4;
     var PageCount = 0;
+    var rows = 0;
     $(function () {
-        Get_All();
-        $("#shou").click(function () {
-            PageIndex = 1;
-            Get_All();
-        })
-
-        $("#shang").click(function () {
-            PageIndex--;
-            Get_All();
-        })
-
-        $("#xia").click(function () {
-            PageIndex++;
-            Get_All();
-        })
-
-        $("#wei").click(function () {
-            PageIndex = PageCount;
-            Get_All();
-        })
-
         Get_gysTypeAll();
+        Get_All();
+        //分页功能
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'PageDemo'
+                , count: rows
+                , limit: 4
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    PageIndex = obj.curr;
+                    PageSize = obj.limit;
+                    Get_All();
+                }
+            });
+        });
+
+        //xz供应商名称
+        $("#GName").blur(function () {
+            var GName = $("#GName").val();
+            if (GName != "") {
+                $("#1").hide();
+            } else {
+                $("#1").show();
+            }
+        })
+
+        //xz条码
+        $("#Email").blur(function () {
+            var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+            var Email = $("#Email").val();
+            if (Email != "") {
+                if (!(reg.test(Email))) {
+                    alert("您的邮箱格式不正确,请重填");
+                    $("#3").show();
+                    return false;
+                } else {
+                    $("#3").hide();
+                }
+            } else {
+                $("#3").show();
+            }
+        })
+
+      
+        //xz电话
+        $("#phone").blur(function () {
+            var phone = $("#phone").val();
+            if (phone != "") {
+                if (!(/^1[3456789]\d{9}$/.test(phone))) {
+                    alert("手机号码有误，请重填");
+                    $("#4").show();
+                    return false;
+                } else {
+                    $("#4").hide();
+                }
+               
+            } else {
+                $("#4").show();
+            }
+        })
+
+        //xz联系人
+        $("#linkman").blur(function () {
+            var linkman = $("#linkman").val();
+            if (linkman != "") {
+                $("#5").hide();
+            } else {
+                $("#5").show();
+            }
+        })
+
+        //xz地址
+        $("#address").blur(function () {
+            var address = $("#address").val();
+            if (address != "") {
+                $("#6").hide();
+            } else {
+                $("#6").show();
+            }
+        })
+
+        $("#gysType").blur(function () {
+            var gysType = $("#gysType").val();
+            if (gysType != 0) {
+                $("#8").hide();
+            } else {
+                $("#8").show();
+            }
+        })
+        
+        //xg供应商名称
+        $("#GName2").blur(function () {
+            var GName = $("#GName2").val();
+            if (GName != "") {
+                $("#11").hide();
+            } else {
+                $("#11").show();
+            }
+        })
+
+        //xz条码
+        $("#Email2").blur(function () {
+            var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+            var Email2 = $("#Email2").val();
+            if (Email2!= "") {
+                if (!(reg.test(Email2))) {
+                    alert("您的邮箱格式不正确,请重填");
+                    $("#33").show();
+                    return false;
+                } else {
+                    $("#33").hide();
+                }
+            } else {
+                $("#33").show();
+            }
+        })
+
+
+        //xz电话
+        $("#phone2").blur(function () {
+            var phone2 = $("#phone2").val();
+            if (phone2 != "") {
+                if (!(/^1[3456789]\d{9}$/.test(phone2))) {
+                    alert("手机号码有误，请重填");
+                    $("#44").show();
+                    return false;
+                } else {
+                    $("#44").hide();
+                }
+
+            } else {
+                $("#44").show();
+            }
+        })
+
+        //xz联系人
+        $("#linkman2").blur(function () {
+            var linkman2 = $("#linkman2").val();
+            if (linkman2 != "") {
+                $("#55").hide();
+            } else {
+                $("#55").show();
+            }
+        })
+
+        //xz地址
+        $("#address2").blur(function () {
+            var address2 = $("#address2").val();
+            if (address2 != "") {
+                $("#66").hide();
+            } else {
+                $("#66").show();
+            }
+        })
+
+        $("#gysType2").blur(function () {
+            var gysType2 = $("#gysType2").val();
+            if (gysType2 != 0) {
+                $("#88").hide();
+            } else {
+                $("#88").show();
+            }
+        })
+
+        
+
+        //$("#shou").click(function () {
+        //    PageIndex = 1;
+        //    Get_All();
+        //})
+
+        //$("#shang").click(function () {
+        //    PageIndex--;
+        //    Get_All();
+        //})
+
+        //$("#xia").click(function () {
+        //    PageIndex++;
+        //    Get_All();
+        //})
+
+        //$("#wei").click(function () {
+        //    PageIndex = PageCount;
+        //    Get_All();
+        //})
+
+        
 
     })
 
-    
+
 
 
 
@@ -221,20 +410,26 @@
             }
         }
     }
-    function you() {
-        var fan = 0;
-        var states2 = 1;
-        var list = []
-        $.each($("[name='checkbox']"), function (index, result) {
-            //alert($(this).is("checked"));
-            //console.log(result);
-            if ($(this).prop("checked")) {
-                list.push($(this).data("id"));
+    //全选删除
+    function you() {       
+            var fan = 0;
+            var states2 = 1;
+            var list = []
+            $.each($("[name='checkbox']"), function (index, result) {
+                //alert($(this).is("checked"));
+                //console.log(result);
+                if ($(this).prop("checked")) {
+                    list.push($(this).data("id"));
 
-            }
-        });
+                }
+            });
+        if (list == 0) {
+            alert("请选择要删除的供应商记录");
+            return false;
+        }
+        if (confirm('确定删除?')) {
         $.each(list, function (index2, result2) {
-            if (confirm('确定删除?')) {
+            
                 $.ajax({
                     type: "POST",
                     url: "/KL/Get_gysDel",
@@ -255,12 +450,115 @@
                         alert(ex.responseText);
                     }
                 });
+            })
+        }
+            
+        }
+
+    //全选恢复
+    function hf() {
+        var fan = 0;
+        var states2 = 0;
+        var list = []
+        $.each($("[name='checkbox']"), function (index, result) {
+            //alert($(this).is("checked"));
+            //console.log(result);
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+
             }
-           
+        });
+        if (list == 0) {
+            alert("请选择要恢复的供应商记录");
+            return false;
+        }
+        if (confirm('确定恢复?')) {
+            $.each(list, function (index2, result2) {
+                $.ajax({
+                    type: "POST",
+                    url: "/KL/Get_gysDel",
+                    data: "{GID:'" + result2 + "',state:'" + states2 + "'}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result > 0) {
+                            alert("恢复成功");
+                            hsz();
+                            fan = 1;
+                        } else {
+                            alert("恢复失败");
+                            fan = 0;
+                        }
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+            })
+        }
 
-        })
+    }
+
+    //回收站
+    function hsz() {
+    
+    //$("#hsz").click(function () {
+        $("#huifuhuifu").show();
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_gyshuishouzhan",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $("#tb1 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.GID + "'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kugyshuifu(" + data.GID + ")'>恢复</button></td></tr>");
+                })
+            },
+            error: function (ex) {
+                console.log("ex:" + ex);
+                alert(ex.responseText);
+            }
+
+        });
+    //})
+     }
 
 
+
+    $("#fanhui").click(function () {
+        $("#huifuhuifu").hide();
+        Get_All();
+    })
+
+
+    //恢复
+    function Get_kugyshuifu(id) {
+        if (confirm('确定恢复吗?')) {
+            //修改状态
+            var states = 0;
+            $.ajax({
+                type: "POST",
+                url: "/KL/Get_gysDel",
+                data: "{GID:'" + id + "',state:'" + states + "'}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("恢复成功");
+                        hsz();
+                    } else {
+                        alert("恢复失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+
+        }
     }
 
 
@@ -269,35 +567,38 @@
         $.ajax({
             type: "POST",
             url: "/KL/Get_gongyingshangAll",
+            async: false,
             data: "{PageIndex:'" + PageIndex + "',PageSize:'" + PageSize + "'}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 console.log(result);
                 $("#tb1 tr").remove();
-                PageCount = result.PageCount;
+                rows = result.PageCount;
                 $.each(result.DateList, function (index, data) {
                     $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.GID + "'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_gysDel(" + data.GID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_gysByid(" + data.GID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.sum)
                 })
             },
         });
-        btnButton();
+        //btnButton();
     }
 
-    //禁用
-    function btnButton() {
-        $("#divBtn :button").prop("disabled", false);
-        if (PageIndex == 1) {
-            $("#shou").prop("disabled", true);
-            $("#shang").prop("disabled", true);
-        }
-        if (PageIndex == PageCount) {
-            $("#wei").prop("disabled", true);
-            $("#xia").prop("disabled", true);
-        }
+    ////禁用
+    //function btnButton() {
+    //    $("#divBtn :button").prop("disabled", false);
+    //    if (PageIndex == 1) {
+    //        $("#shou").prop("disabled", true);
+    //        $("#shang").prop("disabled", true);
+    //    }
+    //    if (PageIndex == PageCount) {
+    //        $("#wei").prop("disabled", true);
+    //        $("#xia").prop("disabled", true);
+    //    }
 
-    }
+    //}
+
+
 
     //新增供应商
     $("#xinzeng").click(function () {
@@ -310,25 +611,59 @@
         var address = $("#address").val();
         var describe = $("#describe").val();
         var state = 0;
-
-        $.ajax({
-            type: "POST",
-            url: "/KL/Get_gysinsert",
-            data: "{g:{GName:'" + GName + "',gystypeID:'" + gystypeID + "',phone:'" + phone + "',faxes:'" + faxes + "',Email:'" + Email + "',linkman:'" + linkman + "',address:'" + address + "',describe:'" + describe + "',state:'" + state + "'}}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                if (result > 0) {
-                    alert("新增成功");
-                    Get_All();
-                } else {
-                    alert("新增失败");
+        var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+        if (GName == "") {
+            alert("供应商名称不能为空!!");
+            return false;
+        }
+        if (gystypeID == "") {
+            alert("供应商类型不能为空!!");
+            return false;
+        }
+        if (Email == "") {
+            alert("邮箱不能为空!!");
+            return false;
+        }
+        if (!(reg.test(Email))) {
+            alert("您的邮箱格式不正确,请重填");
+            return false;
+        }
+        if (phone == "") {
+            alert("电话不能为空!!");
+            return false;
+        }
+        if (!(/^1[3456789]\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        }
+        if (linkman == "") {
+            alert("联系人不能为空!!");
+            return false;
+        }
+        if (address == "") {
+            alert("地址不能为空!!");
+            return false;
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/KL/Get_gysinsert",
+                data: "{g:{GName:'" + GName + "',gystypeID:'" + gystypeID + "',phone:'" + phone + "',faxes:'" + faxes + "',Email:'" + Email + "',linkman:'" + linkman + "',address:'" + address + "',describe:'" + describe + "',state:'" + state + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("新增成功");
+                        Get_All();
+                    } else {
+                        alert("新增失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
                 }
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
+            });
+        }
     })
 
     //新增弹窗
@@ -337,7 +672,7 @@
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['添加供应商', 'font-size:18px'],
-            area: ['650px', '350px'],
+            area: ['720px', '350px'],
             shadeClose: true,
             content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -390,7 +725,7 @@
                     console.log(result);
                     $("#tb1 tr").remove();
                     $.each(result, function (index, data) {
-                        $("#tb1").append("<tr><td><input name='checkId' id='checkId'style='display:block;' type='checkbox' value='" + data.GID + "' onchange='Getcheckbox()'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.TID + ")'>编辑</button></td></tr>");
+                        $("#tb1").append("<tr><td><input name='checkId' id='checkId'style='display:block;' type='checkbox' value='" + data.GID + "' onchange='Getcheckbox()'/></td><td>" + data.GID + "</td><td>" + data.gystypeName + "</td><td>" + data.GName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + data.Email + "</td><td>" + data.linkman + "</td><td>" + data.address + "</td><td>" + data.describe + "</td><td><button type='button' class='layui-btn layui-btn-#FF6991 layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kuweiDel(" + data.TID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.TID + ")'>编辑</button></td></tr>");
                     })
                 },
             });
@@ -428,7 +763,7 @@
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['修改供应商', 'font-size:18px'],
-            area: ['650px', '350px'],
+            area: ['720px', '350px'],
             shadeClose: true,
             content: $('#hideID22') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -470,29 +805,63 @@
         var address = $("#address2").val();
         var describe = $("#describe2").val();
         var state = 0;
-
-        $.ajax({
-            type: "POST",
-            url: "/KL/Get_gysUpdate",
-            data: "{g:{GID:'" + GID+"',GName:'" + GName + "',gystypeID:'" + gystypeID + "',phone:'" + phone + "',faxes:'" + faxes + "',Email:'" + Email + "',linkman:'" + linkman + "',address:'" + address + "',describe:'" + describe + "',state:'" + state + "'}}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                if (result > 0) {
-                    alert("修改成功");
-                    Get_All();
-                } else {
-                    alert("修改失败");
+        var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+        if (GName == "") {
+            alert("供应商名称不能为空!!");
+            return false;
+        }
+        if (gystypeID == "") {
+            alert("供应商类型不能为空!!");
+            return false;
+        }
+        if (Email == "") {
+            alert("邮箱不能为空!!");
+            return false;
+        }
+        if (!(reg.test(Email))) {
+            alert("您的邮箱格式不正确,请重填");
+            return false;
+        }
+        if (phone == "") {
+            alert("电话不能为空!!");
+            return false;
+        }
+        if (!(/^1[3456789]\d{9}$/.test(phone))) {
+            alert("手机号码有误，请重填");
+            return false;
+        }
+        if (linkman == "") {
+            alert("联系人不能为空!!");
+            return false;
+        }
+        if (address == "") {
+            alert("地址不能为空!!");
+            return false;
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/KL/Get_gysUpdate",
+                data: "{g:{GID:'" + GID + "',GName:'" + GName + "',gystypeID:'" + gystypeID + "',phone:'" + phone + "',faxes:'" + faxes + "',Email:'" + Email + "',linkman:'" + linkman + "',address:'" + address + "',describe:'" + describe + "',state:'" + state + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("修改成功");
+                        Get_All();
+                    } else {
+                        alert("修改失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
                 }
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
+            });
+        }
     }
 
 
-   
+
 
 </script>
 

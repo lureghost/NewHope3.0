@@ -10,8 +10,8 @@
 <div>
     <div class="layui-card">
         <div class="layui-card-header">
-            <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
-            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">客户管理</a>
+            <a href="javascript:;">首页</a>&nbsp;&nbsp;<span class="layui-badge layui-bg-green">></span>&nbsp;&nbsp;
+            <a href="javascript:;">基本资料</a>&nbsp;&nbsp;<span class="layui-badge layui-bg-green">></span>&nbsp;&nbsp;<a href="javascript:;">客户管理</a>
 
         </div>
         <div class="layui-card-body">
@@ -22,9 +22,11 @@
 
                 <div class="layui-card-header">
                     客户管理
-                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:750px" onclick="show()">新增</button>
                     <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" onclick="you()">删除</button>
-                    <button type="button" class="layui-btn layui-btn-radius">导出</button>
+                    <button type="button" class="layui-btn layui-btn-warm layui-btn-radius" id="hsz" onclick="hsz()">回收站</button>
+                    <button type="button" class="layui-btn layui-btn-radius" hidden="hidden" id="huifuhuifu" onclick="hf()">恢复</button>
+                    <button type="button" class="layui-btn layui-btn-radius" id="fanhui">返回</button>
 
                 </div>
                 <div class="layui-card-body">
@@ -41,9 +43,9 @@
                         <table class="layui-table">
                             <colgroup>
                                 @*<col width="150">
-                        <col width="150">
-                        <col width="200">
-                        <col>*@
+                <col width="150">
+                <col width="200">
+                <col>*@
                             </colgroup>
                             <thead>
                                 <tr>
@@ -62,65 +64,74 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div id="PageDemo">
+                            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                                <legend>显示完整功能</legend>
+                            </fieldset>
+                        </div>
                     </div>
 
 
-                    <div id="divBtn">
+                    @*<div id="divBtn">
                         共<label id="sum"></label>行
                         <button type="button" class="btn btn-primary" style="margin-left:500px" id="shou">首页</button>
                         <button type="button" class="btn btn-primary" id="shang">上一页</button>
                         <button type="button" class="btn btn-primary" id="xia">下一页</button>
                         <button type="button" class="btn btn-primary" id="wei">尾页</button>
-                    </div>
+                    </div>*@
                 </div>
 
 
 
                 <div id="hideID" hidden="hidden">
-                    <br />
-                    <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;<input type="text" name="kehuID" id="kehuID" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <span style="margin-left:30px">名称&nbsp;&nbsp;&nbsp;<input type="text" name="kehuName" id="kehuName" placeholder="请输入客户名称" /></span>
-                    <span style="margin-left:30px"> 备注&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" id="beizhu" /></span>
-                    <input hidden="hidden" id="dizhiIDhidden" />
-                    <br />
-                    <br />
+                    <form class="navbar-form navbar-left" role="search">
+                        <br />
+                        <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;<input type="text" name="kehuID" id="kehuID" readonly="readonly" placeholder="自动生成,可不填" class="form-control" /></span>
+                        <span style="margin-left:30px">名称&nbsp;&nbsp;&nbsp;<input type="text" name="kehuName" id="kehuName" placeholder="请输入客户名称" class="form-control" /></span>
+                        <span class="layui-badge" id="1">*</span>
+                        <span style="margin-left:30px">备注&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" id="beizhu" class="form-control" /></span>
+                        <input hidden="hidden" id="dizhiIDhidden" />
+                        <br />
+                        <br />
 
-                    <span style="margin-left:30px"> 传真&nbsp;&nbsp;&nbsp;<input type="text" name="faxes" id="faxes" /></span>
-                    <span style="margin-left:30px"> Email&nbsp;&nbsp;<input type="text" name="Email" id="Email" /></span>
-                    <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phone" /></span>
-
-
-
-                    <br />
-                    <br />
-                    <table class="layui-table">
-                        <colgroup>
-                            @*<col width="150">
-                    <col width="150">
-                    <col width="200">
-                    <col>*@
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <td>&nbsp;地址编号</td>
-                                <td>&nbsp;地址</td>
-                                <td>&nbsp;联系人	</td>
-                                <td>&nbsp;电话	</td>
-                                <td>&nbsp;操作</td>
-
-                            </tr>
-                        </thead>
-                        <tbody id="tb2">
-                        </tbody>
-                    </table>
+                        <span style="margin-left:30px">传真&nbsp;&nbsp;&nbsp;<input type="text" name="faxes" id="faxes" class="form-control" /></span>
+                        <span style="margin-left:30px">Email&nbsp;&nbsp;<input type="text" name="Email" id="Email" class="form-control" /></span>
+                        <span class="layui-badge" id="2">*</span>
+                        <span style="margin-left:30px">电话&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phone" class="form-control" /></span>
+                        <span class="layui-badge" id="3">*</span>
 
 
-                    <br />
-                    <br />
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:550px" onclick="show2()">新增地址</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="xinzeng">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi">关闭</button>
-                </div>
+                        <br />
+                        <br />
+                        <table class="layui-table">
+                            <colgroup>
+                                @*<col width="150">
+                <col width="150">
+                <col width="200">
+                <col>*@
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <td>&nbsp;地址编号</td>
+                                    <td>&nbsp;地址</td>
+                                    <td>&nbsp;联系人	</td>
+                                    <td>&nbsp;电话	</td>
+                                    <td>&nbsp;操作</td>
+
+                                </tr>
+                            </thead>
+                            <tbody id="tb2">
+                            </tbody>
+                        </table>
+
+
+                        <br />
+                        <br />
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:550px" onclick="show2()">新增地址</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="xinzeng">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi">关闭</button>
+                    </form>
+                        </div>
 
 
 
@@ -129,69 +140,78 @@
 
 
                 <div id="hideID2" hidden="hidden">
-                    <br />
-                    <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiID" id="dizhiIDs" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiName" id="dizhiNames"></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px"> 联系人&nbsp;&nbsp;&nbsp;<input type="text" name="linkman" id="linkmans" /></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phones" /></span>
-                    <br />
-                    <br />
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" id="dizhixinzeng">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi2">关闭</button>
-                </div>
+                    <form class="navbar-form navbar-left" role="search">
+                        <br />
+                        <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiID" id="dizhiIDs" readonly="readonly" placeholder="自动生成,可不填" class="form-control" /></span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiName" id="dizhiNames" class="form-control"></span>
+                        <span class="layui-badge" id="4">*</span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px"> 联系人&nbsp;&nbsp;&nbsp;<input type="text" name="linkman" id="linkmans" class="form-control" /></span>
+                        <span class="layui-badge" id="5">*</span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phones" class="form-control" /></span>
+                        <span class="layui-badge" id="6">*</span>
+                        <br />
+                        <br />
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" id="dizhixinzeng">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi2">关闭</button>
+               </form>
+                        </div>
 
 
 
 
                 <div id="hideID33" hidden="hidden">
-                    <br />
-                    <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;<input type="text" name="kehuID" id="kehuID2" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <span style="margin-left:30px">名称&nbsp;&nbsp;&nbsp;<input type="text" name="kehuName" id="kehuName2" placeholder="请输入客户名称" /></span>
-                    <span style="margin-left:30px"> 备注&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" id="beizhu2" /></span>
-                    <input hidden="hidden" id="dizhiIDhidden2" />
-                    <br />
-                    <br />
+                    <form class="navbar-form navbar-left" role="search">
+                        <br />
+                        <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;<input type="text" name="kehuID" id="kehuID2" readonly="readonly" placeholder="自动生成,可不填" class="form-control" /></span>
+                        <span style="margin-left:30px">名称&nbsp;&nbsp;&nbsp;<input type="text" name="kehuName" id="kehuName2" placeholder="请输入客户名称" class="form-control" /></span>
+                        <span class="layui-badge" id="11" hidden="hidden">*</span>
+                        <span style="margin-left:30px"> 备注&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" id="beizhu2" class="form-control" /></span>
+                        <input hidden="hidden" id="dizhiIDhidden2" />
+                        <br />
+                        <br />
 
-                    <span style="margin-left:30px"> 传真&nbsp;&nbsp;&nbsp;<input type="text" name="faxes" id="faxes2" /></span>
-                    <span style="margin-left:30px"> Email&nbsp;&nbsp;<input type="text" name="Email" id="Email2" /></span>
-                    <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phone2" /></span>
-
-
-
-                    <br />
-                    <br />
-                    <table class="layui-table">
-                        <colgroup>
-                            @*<col width="150">
-                    <col width="150">
-                    <col width="200">
-                    <col>*@
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <td>&nbsp;地址编号</td>
-                                <td>&nbsp;地址</td>
-                                <td>&nbsp;联系人	</td>
-                                <td>&nbsp;电话	</td>
-                                <td>&nbsp;操作</td>
-                            </tr>
-                        </thead>
-                        <tbody id="tb3">
-                        </tbody>
-                    </table>
+                        <span style="margin-left:30px"> 传真&nbsp;&nbsp;&nbsp;<input type="text" name="faxes" id="faxes2" class="form-control" /></span>
+                        <span style="margin-left:30px"> Email&nbsp;&nbsp;<input type="text" name="Email" id="Email2" class="form-control" /></span>
+                        <span class="layui-badge" id="22" hidden="hidden">*</span>
+                        <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phone2" class="form-control" /></span>
+                        <span class="layui-badge" id="33" hidden="hidden">*</span>
 
 
-                    <br />
-                    <br />
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="xg" style="margin-left:300px" onclick="Get_kehuUpdate()">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi3">关闭</button>
-                </div>
+                        <br />
+                        <br />
+                        <table class="layui-table">
+                            <colgroup>
+                                @*<col width="150">
+                <col width="150">
+                <col width="200">
+                <col>*@
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <td>&nbsp;地址编号</td>
+                                    <td>&nbsp;地址</td>
+                                    <td>&nbsp;联系人	</td>
+                                    <td>&nbsp;电话	</td>
+                                    <td>&nbsp;操作</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tb3">
+                            </tbody>
+                        </table>
+
+
+                        <br />
+                        <br />
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="xg" style="margin-left:300px" onclick="Get_kehuUpdate()">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi3">关闭</button>
+                    </form>
+                        </div>
 
 
 
@@ -200,22 +220,27 @@
 
 
                 <div id="hideID44" hidden="hidden">
-                    <br />
-                    <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiID" id="dizhiIDs2" readonly="readonly" placeholder="自动生成,可不填" /></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiName" id="dizhiNames2"></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px"> 联系人&nbsp;&nbsp;&nbsp;<input type="text" name="linkman" id="linkmans2" /></span>
-                    <br />
-                    <br />
-                    <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phones2" /></span>
-                    <br />
-                    <br />
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="Get_dizhiUpdate()">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi4">关闭</button>
-                </div>
+                    <form class="navbar-form navbar-left" role="search">
+                        <br />
+                        <span style="margin-left:30px">编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiID" id="dizhiIDs2" readonly="readonly" placeholder="自动生成,可不填" class="form-control" /></span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px">地址&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="dizhiName" id="dizhiNames2" class="form-control"></span>
+                        <span class="layui-badge" id="44" hidden="hidden">*</span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px"> 联系人&nbsp;&nbsp;&nbsp;<input type="text" name="linkman" id="linkmans2" class="form-control" /></span>
+                        <span class="layui-badge" id="55" hidden="hidden">*</span>
+                        <br />
+                        <br />
+                        <span style="margin-left:30px"> 电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="phone" id="phones2" class="form-control" /></span>
+                        <span class="layui-badge" id="66" hidden="hidden">*</span>
+                        <br />
+                        <br />
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="Get_dizhiUpdate()">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi4">关闭</button>
+               </form>
+                        </div>
 
 
             </div>
@@ -235,42 +260,296 @@
             var PageIndex = 1;
             var PageSize = 4;
             var PageCount = 0;
+            var rows = 0;
             $(function() {
 
                 Get_All();
-                $("#shou").click(function () {
-                    PageIndex = 1;
-                    Get_All();
+         
+           
+                //分页功能
+                layui.use(['laypage', 'layer'], function () {
+                    var laypage = layui.laypage
+                        , layer = layui.layer;
+                    //完整功能
+                    laypage.render({
+                        elem: 'PageDemo'
+                        , count: rows
+                        , limit: 4
+                        , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                        , jump: function (obj) {
+                            PageIndex = obj.curr;
+                            PageSize = obj.limit;
+                            Get_All();
+                        }
+                    });
+                });
+
+                    $("#kehuName").blur(function () {
+                        var kehuName = $("#kehuName").val();
+                        if (kehuName != "") {
+                            $("#1").hide();
+                        } else {
+                            $("#1").show();
+                        }
+                    })
+
+                    //xz条码
+                    $("#Email").blur(function () {
+                        var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+                        var Email = $("#Email").val();
+                        if (Email != "") {
+                            if (!(reg.test(Email))) {
+                                alert("您的邮箱格式不正确,请重填");
+                                $("#2").show();
+                            return false;
+                        } else {
+                            $("#2").hide();
+                        }
+                    } else {
+                        $("#2").show();
+                    }
                 })
 
-                $("#shang").click(function () {
-                    PageIndex--;
-                    Get_All();
+
+                //xz电话
+                $("#phone").blur(function () {
+                    var phone = $("#phone").val();
+                    if (phone != "") {
+                        if (!(/^1[3456789]\d{9}$/.test(phone))) {
+                            alert("手机号码有误，请重填");
+                            $("#3").show();
+                            return false;
+                        } else {
+                            $("#3").hide();
+                        }
+
+                    } else {
+                        $("#3").show();
+                    }
                 })
 
-                $("#xia").click(function () {
-                    PageIndex++;
-                    Get_All();
+                $("#dizhiNames").blur(function () {
+                    var dizhiNames = $("#dizhiNames").val();
+                    if (dizhiNames != "") {
+                        $("#4").hide();
+                    } else {
+                        $("#4").show();
+                    }
+                })
+                
+
+                $("#linkmans").blur(function () {
+                    var linkmans = $("#linkmans").val();
+                    if (linkmans != "") {
+                        $("#5").hide();
+                    } else {
+                        $("#5").show();
+                    }
+                })
+               
+
+
+                //xz电话
+                $("#phones").blur(function () {
+                    var phones = $("#phones").val();
+                    if (phones != "") {
+                        if (!(/^1[3456789]\d{9}$/.test(phones))) {
+                            alert("手机号码有误，请重填");
+                            $("#6").show();
+                            return false;
+                        } else {
+                            $("#6").hide();
+                        }
+
+                    } else {
+                        $("#6").show();
+                    }
                 })
 
-                $("#wei").click(function () {
-                    PageIndex = PageCount;
-                    Get_All();
+                $("#kehuName2").blur(function () {
+                    var kehuName2 = $("#kehuName2").val();
+                    if (kehuName2 != "") {
+                        $("#11").hide();
+                    } else {
+                        $("#11").show();
+                    }
                 })
+
+                //xz条码
+                $("#Email2").blur(function () {
+                    var reg = /^[A-Za-z0-9]+([_\.][A-Za-z0-9]+)*@@([A-Za-z0-9\-]+\.)+[A-Za-z]{2,6}$/;
+                    var Email2 = $("#Email2").val();
+                    if (Email2 != "") {
+                        if (!(reg.test(Email2))) {
+                            alert("您的邮箱格式不正确,请重填");
+                            $("#22").show();
+                            return false;
+                        } else {
+                            $("#22").hide();
+                        }
+                    } else {
+                        $("#22").show();
+                    }
+                })
+
+
+                //xz电话
+                $("#phone2").blur(function () {
+                    var phone2 = $("#phone2").val();
+                    if (phone2 != "") {
+                        if (!(/^1[3456789]\d{9}$/.test(phone2))) {
+                            alert("手机号码有误，请重填");
+                            $("#33").show();
+                            return false;
+                        } else {
+                            $("#33").hide();
+                        }
+
+                    } else {
+                        $("#33").show();
+                    }
+                })
+
+                $("#dizhiNames2").blur(function () {
+                    var dizhiNames2 = $("#dizhiNames2").val();
+                    if (dizhiNames2 != "") {
+                        $("#44").hide();
+                    } else {
+                        $("#44").show();
+                    }
+                })
+
+
+                $("#linkmans2").blur(function () {
+                    var linkmans2 = $("#linkmans2").val();
+                    if (linkmans2 != "") {
+                        $("#55").hide();
+                    } else {
+                        $("#55").show();
+                    }
+                })
+
+
+
+                //xz电话
+                $("#phones2").blur(function () {
+                    var phones2 = $("#phones2").val();
+                    if (phones2 != "") {
+                        if (!(/^1[3456789]\d{9}$/.test(phones2))) {
+                            alert("手机号码有误，请重填");
+                            $("#66").show();
+                            return false;
+                        } else {
+                            $("#66").hide();
+                        }
+
+                    } else {
+                        $("#66").show();
+                    }
+                })
+
+                })
+
+                //$("#shou").click(function () {
+                //    PageIndex = 1;
+                //    Get_All();
+                //})
+
+                //$("#shang").click(function () {
+                //    PageIndex--;
+                //    Get_All();
+                //})
+
+                //$("#xia").click(function () {
+                //    PageIndex++;
+                //    Get_All();
+                //})
+
+                //$("#wei").click(function () {
+                //    PageIndex = PageCount;
+                //    Get_All();
+                //})
+           
+
+
+    //回收站
+    function hsz() {
+        //$("#hsz").click(function () {
+        $("#huifuhuifu").show();
+        $.ajax({
+            type: "POST",
+            url: "/KL/Get_kehuhuishouzhan",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $("#tb1 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.kehuID + "'/></td><td>" + data.kehuID + "</td><td>" + data.KehuName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui-btn layui-btn-danger layui-btn-radius' style='margin - left: 900px' id='sc' onclick='Get_kehuhuifu(" + data.kehuID + ")'>还原</button></td></tr>");
+                })
+            },
+            error: function (ex) {
+                console.log("ex:" + ex);
+                alert(ex.responseText);
+            }
+
+        });
+        //})
+    }
+
+
+
+    $("#fanhui").click(function () {
+        $("#huifuhuifu").hide();
+        Get_All();
+        
+       
+        
+    })
+
+
+    //恢复
+    function Get_kehuhuifu(id) {
+        if (confirm('确定恢复吗?')) {
+            //修改状态
+            var states = 0;
+            $.ajax({
+                type: "POST",
+                url: "/KL/Get_kehuDel",
+                data: "{kehuID:'" + id + "',state:'" + states + "'}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("恢复成功");
+                        hsz();
+                    } else {
+                        alert("恢复失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
             });
+
+        }
+    }
+
 
     //分页
     function Get_All() {
         $.ajax({
             type: "POST",
             url: "/KL/Get_kehuAll",
+            async: false,
             data: "{PageIndex:'" + PageIndex + "',PageSize:'" + PageSize + "'}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 console.log(result);
                 $("#tb1 tr").remove();
-                PageCount = result.PageCount;
+                rows = result.PageCount;
                 $.each(result.DateList, function (index, data) {
                     $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.kehuID + "'/></td><td>" + data.kehuID + "</td><td>" + data.KehuName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kehuDel(" + data.kehuID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_kehubyid(" + data.kehuID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.row)
@@ -282,7 +561,7 @@
             }
 
         });
-        btnButton();
+        //btnButton();
     }
 
 
@@ -318,8 +597,56 @@
 
             }
         });
-        $.each(list, function (index2, result2) {
-            if (confirm('确定删除?')) {
+        if (list == 0) {
+            alert("请选择要删除的客户记录");
+            return false;
+        }
+        if (confirm('确定删除?')) {
+            $.each(list, function (index2, result2) {
+                
+                    $.ajax({
+                        type: "POST",
+                        url: "/KL/Get_kehuDel",
+                        data: "{kehuID:'" + result2 + "',state:'" + states2 + "'}",
+                        dataType: "json",
+                        contentType: "application/json",
+                        success: function (result) {
+                            if (result > 0) {
+                                alert("修改状态成功");
+                                Get_All();
+                            } else {
+                                alert("修改状态失败");
+                            }
+                        },
+                        error: function (ex) {
+                            alert(ex.responseText);
+                        }
+                    });
+                })
+            }
+
+        
+        }
+
+    //全选恢复
+    function hf() {
+        var fan = 0;
+        var states2 = 0;
+        var list = []
+        $.each($("[name='checkbox']"), function (index, result) {
+            //alert($(this).is("checked"));
+            //console.log(result);
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+
+            }
+        });
+        if (list == 0) {
+            alert("请选择要恢复的客户记录");
+            return false;
+        }
+        if (confirm('确定恢复?')) {
+            $.each(list, function (index2, result2) {
                 $.ajax({
                     type: "POST",
                     url: "/KL/Get_kehuDel",
@@ -328,22 +655,22 @@
                     contentType: "application/json",
                     success: function (result) {
                         if (result > 0) {
-                            alert("修改状态成功");
-                            Get_All();
+                            alert("恢复成功");
+                            hsz();
+                            fan = 1;
                         } else {
-                            alert("修改状态失败");
+                            alert("恢复失败");
+                            fan = 0;
                         }
                     },
                     error: function (ex) {
                         alert(ex.responseText);
                     }
                 });
-            }
             })
-
-
         }
 
+    }
 
     //转换日期
     function Data(time) {
@@ -383,24 +710,37 @@
         var linkmans = $("#linkmans").val();
         var phones = $("#phones").val();
         var state = 0;
-        $.ajax({
-            type: "POST",
-            url: "/KL/Get_kehuinsertdizhi",
-            data: "{d:{dizhiID:'" + dizhiIDs + "',dizhiName:'" + dizhiNames + "',linkman:'" + linkmans + "',phone:'" + phones + "',state:'" + state + "'}}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                if (result > 0) {
-                    alert("新增成功");
-                    Get_dizhiAll();
-                } else {
-                    alert("新增失败");
+        if (dizhiNames == "") {
+            alert("地址名称不能为空");
+            return false;
+        }
+        if (linkmans == "") {
+            alert("联系人不能为空");
+            return false;
+        }
+        if (phones == "") {
+            alert("电话不能为空");
+            return false;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: "/KL/Get_kehuinsertdizhi",
+                data: "{d:{dizhiID:'" + dizhiIDs + "',dizhiName:'" + dizhiNames + "',linkman:'" + linkmans + "',phone:'" + phones + "',state:'" + state + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("新增成功");
+                        Get_dizhiAll();
+                    } else {
+                        alert("新增失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
                 }
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
+            });
+        }
     })
 
 
@@ -437,26 +777,42 @@
         var dizhiID = $("#dizhiIDhidden").val();
         var Email = $("#Email").val();
         var beizhu = $("#beizhu").val();
- 
-
-        $.ajax({
-            type: "POST",
-            url: "/KL/Get_kehuinsert",
-            data: "{c:{kehuID:'" + kehuID + "',KehuName:'" + KehuName + "',phone:'" + phone + "',faxes:'" + faxes + "',dizhiID:'" + dizhiID + "',Email:'" + Email + "',beizhu:'" + beizhu+"'}}",
-            dataType: "json",
-            contentType: "application/json",
-            success: function (result) {
-                if (result > 0) {
-                    alert("新增成功");
-                    Get_All();
-                } else {
-                    alert("新增失败");
+        if (KehuName == "") {
+            alert("客户名称不能为空!!");
+            return false;
+        }
+        if (phone == "") {
+            alert("电话不能为空!!");
+            return false;
+        }
+        if (Email == "") {
+            alert("Email不能为空!!");
+            return false;
+        }
+        if (dizhiID == "") {
+            alert("地址不能为空!!");
+            return false;
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/KL/Get_kehuinsert",
+                data: "{c:{kehuID:'" + kehuID + "',KehuName:'" + KehuName + "',phone:'" + phone + "',faxes:'" + faxes + "',dizhiID:'" + dizhiID + "',Email:'" + Email + "',beizhu:'" + beizhu + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("新增成功");
+                        Get_All();
+                    } else {
+                        alert("新增失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
                 }
-            },
-            error: function (ex) {
-                alert(ex.responseText);
-            }
-        });
+            });
+        }
     })
 
     //编辑客户
@@ -465,7 +821,7 @@
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['修改客户', 'font-size:18px'],
-            area: ['750px', '350px'],
+            area: ['900px', '350px'],
             shadeClose: true,
             content: $('#hideID33') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -487,7 +843,7 @@
                     $("#Email2").val(data.Email);
                     $("#beizhu2").val(data.beizhu);
                     Get_dizhichaid(data.dizhiIDs);
-                    alert(data.dizhiIDs);
+                    //alert(data.dizhiIDs);
                 })
             },
             error: function (ex) {
@@ -505,7 +861,7 @@
         var phone = $("#phone2").val();
         var faxes = $("#faxes2").val();
         var dizhiID = $("#dizhiIDhidden2").val();
-        alert(dizhiID);
+        //alert(dizhiID);
         var Email= $("#Email2").val();
         var beizhu= $("#beizhu2").val();
         $.ajax({
@@ -526,22 +882,53 @@
                 alert(ex.responseText);
             }
         });
-    }
+        }
+
+        //客户地址恢复
+        function Get_dizhihuifu(dizhiIDs) {
+            var state = 0;
+            if (confirm('确定还原?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "/KL/Get_dizhiDel",
+                    data: "{dizhiID:'" + dizhiIDs + "',state:'" + state + "'}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result > 0) {
+                            alert("恢复成功");
+                            Get_dizhichaid(dizhiIDs);
+                        } else {
+                            alert("恢复失败");
+                        }
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+            }
+        }
 
     //根据客户地址id查询地址
-    function Get_dizhichaid(dizhiID) {
-            $.ajax({
+        function Get_dizhichaid(dizhiID) {
+             $.ajax({
                 type: "POST",
                 url: "/KL/Get_dizhichaid",
-                data: "{dizhiID:'" + dizhiID +"'}",
+                data: "{dizhiID:'" + dizhiID + "'}",
                 dataType: "json",
                 contentType: "application/json",
                 success: function (result) {
                     console.log(result);
                     $("#tb3 tr").remove();
                     $.each(result, function (index, data) {
-                        $("#tb3").append("<tr><td>" + data.dizhiIDs + "</td><td>" + data.dizhiNames + "</td><td>" + data.linkmans + "</td><td>" + data.phones + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_dizhiDel(" + data.dizhiIDs + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.dizhiIDs + ")'>编辑</button></td></tr>");
-                        $("#dizhiIDhidden2").val(data.dizhiIDs);
+                        if (data.states==0) {
+                            $("#tb3").append("<tr><td>" + data.dizhiIDs + "</td><td>" + data.dizhiNames + "</td><td>" + data.linkmans + "</td><td>" + data.phones + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_dizhiDel(" + data.dizhiIDs + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='bj(" + data.dizhiIDs + ")'>编辑</button></td></tr>");
+                            $("#dizhiIDhidden2").val(data.dizhiIDs);
+                        } if (data.states==1) {
+                            $("#tb3").append("<tr><td>" + data.dizhiIDs + "</td><td>" + data.dizhiNames + "</td><td>" + data.linkmans + "</td><td>" + data.phones + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_dizhihuifu(" + data.dizhiIDs + ")'>恢复</button></td></tr>");
+                            $("#dizhiIDhidden2").val(data.dizhiIDs);
+                        }
+                        
                     })
                 },
                 error: function (ex) {
@@ -550,21 +937,23 @@
                 }
 
             });
+       
+           
          }
 
-    //禁用
-    function btnButton() {
-        $("#divBtn :button").prop("disabled", false);
-        if (PageIndex == 1) {
-            $("#shou").prop("disabled", true);
-            $("#shang").prop("disabled", true);
-        }
-        if (PageIndex == PageCount) {
-            $("#wei").prop("disabled", true);
-            $("#xia").prop("disabled", true);
-        }
+    ////禁用
+    //function btnButton() {
+    //    $("#divBtn :button").prop("disabled", false);
+    //    if (PageIndex == 1) {
+    //        $("#shou").prop("disabled", true);
+    //        $("#shang").prop("disabled", true);
+    //    }
+    //    if (PageIndex == PageCount) {
+    //        $("#wei").prop("disabled", true);
+    //        $("#xia").prop("disabled", true);
+    //    }
 
-    }
+    //}
 
     $("#guanbi").click(function () {
         layer.closeAll('page');
@@ -584,7 +973,7 @@
 
     //删除地址，“修改状态”
     function Get_dizhiDel(dizhiIDs) {
-        alert(dizhiIDs);
+        //alert(dizhiIDs);
         var state = 1;
         if (confirm('确定删除?')) {
             $.ajax({
@@ -614,7 +1003,7 @@
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['修改地址', 'font-size:18px'],
-            area: ['300px', '300px'],
+            area: ['380px', '300px'],
             shadeClose: true,
             content: $('#hideID44') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -662,8 +1051,8 @@
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
-            title: ['添加供应商', 'font-size:18px'],
-            area: ['800px', '350px'],
+            title: ['添加客户', 'font-size:18px'],
+            area: ['900px', '350px'],
             shadeClose: true,
             content: $('#hideID') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
@@ -692,7 +1081,7 @@
                 console.log(result);
                 $("#tb1 tr").remove();
                 $.each(result, function (index, data) {
-                    $("#tb1").append("<tr><td><input id='Checkbox1'style='display:block;' type='checkbox'/></td><td>" + data.kehuID + "</td><td>" + data.KehuName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kehuDel(" + data.kehuID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_kehubyid(" + data.kehuID + ")'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td><input id='Checkbox1'style='display:block;' type='checkbox'/></td><td>" + data.kehuID + "</td><td>" + data.KehuName + "</td><td>" + data.phone + "</td><td>" + data.faxes + "</td><td>" + Data(data.CreationDate) + "</td><td><button type='button' class='layui-btn layui-btn-#FF6991 layui - btn - sm' style='margin - left: 900px' id='sc' onclick='Get_kehuDel(" + data.kehuID + ")'>删除</button><button type='button' class='layui - btn layui - btn - primary layui - btn - sm' style='margin - left: 900px' id='sc' style='margin-left:100px' onclick='Get_kehubyid(" + data.kehuID + ")'>编辑</button></td></tr>");
                     $("#sum").html(data.row)
                 })
             },
@@ -711,7 +1100,7 @@
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['新增地址', 'font-size:18px'],
-            area: ['300px', '300px'],
+            area: ['380px', '300px'],
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });

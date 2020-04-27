@@ -93,13 +93,21 @@ namespace BLL
             return KLdal.Get_kuweiwarehouse();
         }
 
-
-
         /// <summary>
-        /// 供应商分页
+        /// 库位管理回收站
         /// </summary>
         /// <returns></returns>
-        public static PageList Get_gongyingshangAll(int PageIndex, int PageSize)
+        public static IQueryable Get_kwhuishouzhan()
+        {
+            return KLdal.Get_kwhuishouzhan();
+        }
+
+
+            /// <summary>
+            /// 供应商分页
+            /// </summary>
+            /// <returns></returns>
+            public static PageList Get_gongyingshangAll(int PageIndex, int PageSize)
         {
             return KLdal.Get_gongyingshangAll(PageIndex, PageSize);
         }
@@ -114,10 +122,19 @@ namespace BLL
         }
 
         /// <summary>
-        /// 查询供应商类型
+        /// 供应商回收站
         /// </summary>
         /// <returns></returns>
-        public static IQueryable Get_gysTypeAll()
+        public static IQueryable Get_gyshuishouzhan()
+        {
+            return KLdal.Get_gyshuishouzhan();
+        }
+
+            /// <summary>
+            /// 查询供应商类型
+            /// </summary>
+            /// <returns></returns>
+            public static IQueryable Get_gysTypeAll()
         {
             return KLdal.Get_gysTypeAll();
         }
@@ -275,6 +292,15 @@ namespace BLL
         public static IQueryable Get_dizhiNamecha(int kehuID, string KehuName)
         {
             return KLdal.Get_dizhiNamecha(kehuID,KehuName);
+        }
+
+        /// <summary>
+        /// 客户回收站
+        /// </summary>
+        /// <returns></returns>
+        public static IQueryable Get_kehuhuishouzhan()
+        {
+            return KLdal.Get_kehuhuishouzhan();
         }
 
         }
