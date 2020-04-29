@@ -16,7 +16,7 @@
 <script src="~/layui/layui.all.js"></script>
 <div style="width:1307px;height:40px;text-align:left;background-color:#EFEFEF;border:1px solid black;">
     <div style="position:relative;top:8px;margin-left:20px;">
-        <a style="color: #016fa7;" href="javascript:void(0)"><span class="glyphicon glyphicon-home" style="color:black"></span>   首页</a> <i>></i>
+        <a style="color: #016fa7;" href="javascript:void(0)"><span class="glyphicon glyphicon-home" style="color:black"></span>首页</a> <i>></i>
         <a style="color: #016fa7;" href="javascript:void(0)">系统设置</a> <i>></i>
         <a style="color:#016fa7;" href="javascript:void(0)">菜单管理</a>
     </div>
@@ -28,8 +28,8 @@
         <div class="layui-card-header" style="width:1260px;">
             <p style="font-weight:bolder"><span class="glyphicon glyphicon-globe"></span>菜单管理</p>
             <div style="height:30px;float:right;margin-top:-53px;">
-                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#006dcc" onclick="show()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
-                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49"><span class="glyphicon glyphicon-trash"></span>  删除</button>
+                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#006dcc" onclick="show2()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
+                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49" onclick="plshanchu()"><span class="glyphicon glyphicon-trash"></span>  删除</button>
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#49afcd"><span class="glyphicon glyphicon-download"></span>  导出</button>
 
                 @*<button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show()">新增</button>
@@ -42,9 +42,9 @@
         <div class="layui-card-body">
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="请输入编号或名称">
+                    <input type="text"id="user" class="form-control" placeholder="请输入编号或名称">
                 </div>
-                <button type="submit" class="btn btn-default" style="background-color:#49afcd;color:white;"><span class="glyphicon glyphicon-search"></span>   搜索</button>
+                <button type="button" class="btn btn-default" style="background-color:#49afcd;color:white;" onclick="menuChaXunByName()"><span class="glyphicon glyphicon-search"></span>   搜索</button>
             </form>
             <table class="layui-table" style="color: black;">
                 <colgroup>
@@ -54,8 +54,7 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
-
+                        <td> <input type="checkbox" id="check1" style="display:block" onclick="quanxuan('checkbox', 'reversecheck')" /> </td>
                         <th style="font-weight: bolder;">编号</th>
                         <th style="font-weight:bolder;">菜单名称</th>
                         <th style="font-weight:bolder;">父级菜单</th>
@@ -67,137 +66,395 @@
                         <th style="font-weight:bolder;">操作</th>
                     </tr>
                 </thead>
-                <tbody id="tb1">
-                    <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
-                        <td>Base_2001</td>
-                        <td>供应商管理</td>
-                        <td>基本资料</td>
-                        <td>页面</td>
-                        <td></td>
-                        <td>0</td>
-                        <td>/Client/Supplier/Index</td>
-                        <td>2016-01-17</td>
-                        <td>修改</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" name="" lay-skin="primary" /></td>
-                        <td>Base_1000</td>
-                        <td>库位管理</td>
-                        <td>仓库部</td>
-
-                        <td>页面</td>
-                        <td></td>
-                        <td>0</td>
-                        <td>/Client/Supplier/Index</td>
-                        <td>2016-01-17</td>
-                        <td>修改</td>
-                    </tr>
-                    <tr>
-                    </tr>
+                <tbody id="tbody1">
                 </tbody>
             </table>
+            <div id="layui"></div>
             <br />
-            共12行，每页
-            <div style="margin-top:-28px;margin-left:95px;">
-                <select class="form-control" style="width:50px;height:30px;">
-                    <option value="1">1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+            @*共12行，每页
+        <div style="margin-top:-28px;margin-left:95px;">
+            <select class="form-control" style="width:50px;height:30px;">
+                <option value="1">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
 
-            </div>
-            <div style="float:right;margin-top:-25px;">
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">首页</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+        </div>
+        <div style="float:right;margin-top:-25px;">
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">首页</button>
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
+            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
 
-            </div>
+        </div>*@
 
-            <div id="nb" hidden>
-
+            <div id="hideID2" hidden>
                 <br />
-                <span style="">菜单名称&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
-                <br />
-                <br />
+                <span style="">菜单名称&nbsp;&nbsp;<input type="text" id="mc" placeholder="" /></span>
+                <br /><br />
                 <div class="layui-col-xs6">
                     <div class="layui-input-inline">
                         父级菜单&nbsp;&nbsp;
-                        <select name="quiz3" style="height: 29px;width: 178.4px;">
+                        <select id="fuji" style="height: 29px;width: 178.4px;">
                             <option value="">请选择</option>
-                            <option value="产品仓库">111</option>
-                            <option value="产品仓库">222</option>
                         </select>
                     </div>
                 </div>
-                <br />
-                <br />
-                <span style="margin-left:30px">排序&nbsp;&nbsp;<input type="text" name="mc" placeholder="0" /></span>
-                <br />
-                <br />
-                <span style="">链接地址&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
-                <br />
-                <br />
-                <span style="margin-left:30px">样式&nbsp;&nbsp;<input type="text" name="mc" placeholder="" /></span>
-                <br />
-                <br />
+                <br /><br />
+                <span style="margin-left:30px">排序&nbsp;&nbsp;<input type="text" id="paixu" placeholder="0" /></span>
+                <br /><br />
+                <span style="">链接地址&nbsp;&nbsp;<input type="text" id="dizhi" /></span>
+                <br /><br />
+                <span style="margin-left:30px">样式&nbsp;&nbsp;<input type="text" id="yangshi" /></span>
+                <br /><br />
                 <div class="layui-col-xs6">
                     <div class="layui-input-inline">
                         菜单类型&nbsp;&nbsp;
-                        <select name="quiz3" style="height: 29px;width: 178.4px;">
+                        <select id="caidan" style="height: 29px;width: 178.4px;">
                             <option value="">请选择</option>
-                            <option value="产品仓库">页面</option>
-                            <option value="产品仓库">对话框</option>
                         </select>
                     </div>
                 </div>
-                <br />
-                <br />
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="">确定</button>
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                <br /><br />
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="" onclick="xinzeng()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
+            </div>
 
+            <div id="hideID3" hidden>
+                <br />
+                <input id="Hid" type="hidden" />
+                <span style="">菜单名称&nbsp;&nbsp;<input type="text" id="mc2" placeholder="" /></span>
+                <br /><br />
+                <div class="layui-col-xs6">
+                    <div class="layui-input-inline">
+                        父级菜单&nbsp;&nbsp;
+                        <select id="fuji2" style="height: 29px;width: 178.4px;">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <br /><br />
+                <span style="margin-left:30px">排序&nbsp;&nbsp;<input type="text" id="paixu2" placeholder="0" /></span>
+                <br /><br />
+                <span style="">链接地址&nbsp;&nbsp;<input type="text" id="dizhi2" /></span>
+                <br /><br />
+                <span style="margin-left:30px">样式&nbsp;&nbsp;<input type="text" id="yangshi2" /></span>
+                <br /><br />
+                <div class="layui-col-xs6">
+                    <div class="layui-input-inline">
+                        菜单类型&nbsp;&nbsp;
+                        <select id="caidan2" style="height: 29px;width: 178.4px;">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <br /><br />
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onclick="xiugai()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
             </div>
         </div>
     </div>
 </div>
-
 <script>
+    var pageIndex = 1;
+    var pageSize = 5;
+    var rowss = 0;
+    //父级菜单查询
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/ZZX/ParentmenuName",
+            data: "{}",
+            async: false,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#fuji").append("<option value='" + data.ID + "'>" + data.UserTypeName + "</option>");
+                    $("#fuji2").append("<option value='" + data.ID + "'>" + data.UserTypeName + "</option>");
+                });
+            }
+        });
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/MenuTypeName",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#caidan").append("<option value='" + data.Id + "'>" + data.MName + "</option>");
+                    $("#caidan2").append("<option value='" + data.Id + "'>" + data.MName + "</option>");
+                });
+            }
+        });
+        menuChaXun()
+        //分页功能
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'layui'
+                , count: rowss
+                , limit: 10
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    pageIndex = obj.curr;
+                    pageSize = obj.limit;
+                    menuChaXun();
+                    menuChaXunByName();
+                }
+            });
+        });
+    });
+    //全选
+    function quanxuan(objName, type) {
+        var objNameList = document.getElementsByName(objName);
+        if (null != objNameList) {
+            for (var i = 0; i < objNameList.length; i++) {
+                if (objNameList[i].checked == true) {
+                    if (type != 'checkall') {  // 非全选
+                        objNameList[i].checked = false;
+                    }
+                } else {
+                    if (type != 'uncheckall') {  // 非取消全选
+                        objNameList[i].checked = true;
+                        //console.log($("input[name='checkbox']").data("id"));
+                        //alert($("input[name='checkbox']").data("id"));
 
-
-    function show() {
-        //var a = layer.open({
-        //    type: 1,
-        //    area: ['100%', '550px'],
-        //    title: ['添加库位','font-size:18px'],
-        //    shadeClose: true,
-        //    content: ['layer_model.html', 'no']
-        //});
-
-        //layer.open({
-        //    type: 1,
-        //    content: '11' //这里content是一个普通的String
-        //});
-
+                    }
+                }
+            }
+        }
+    }
+    function show2() {
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
             title: ['添加菜单管理', 'font-size:18px'],
             area: ['500px', '450px'],
             shadeClose: true,
-            content: $('#nb') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
-
-
-        //Ajax获取
-        //$.post('url', {}, function (str) {
-        //    layer.open({
-        //        type: 1,
-
-        //        content: str //注意，如果str是object，那么需要字符拼接。
-        //    });
-        //});
+    }
+    //根据id查询
+    function show3(id) {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['添加菜单管理', 'font-size:18px'],
+            area: ['500px', '450px'],
+            shadeClose: true,
+            content: $('#hideID3') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/menuById",
+            data: "{id:'" + id + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#Hid").val(data.MID);
+                    $("#mc2").val(data.MNmae);
+                    $("#fuji2").val(data.PID);
+                    $("#paixu2").val(data.sort);
+                    $("#dizhi2").val(data.style);
+                    $("#yangshi2").val(data.path);
+                    $("#caidan2").val(data.TypeID);
+                });
+            }
+        });
+    }
+    function menuChaXun() {
+        var PID;
+        var path;
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/menuChaXun",
+            data: "{pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    if (data.PID == 0) {
+                        PID = "";
+                    } else {
+                        PID = data.PID;
+                    }
+                    if (data.path == null) {
+                        path = "";
+                    } else {
+                        path = data.path;
+                    }
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.MID + "'/></td><td>&nbsp;" + data.MID + "	</td><td>&nbsp;" + data.MNmae + "	</td><td>&nbsp;" + PID + "</td><td>&nbsp;" + data.TypeID + "	</td><td>&nbsp;" + path + "</td><td>&nbsp;" + data.sort + "</td><td>&nbsp;" + data.style + "</td><td>&nbsp;" + ConvertTime(data.CreationDate) + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.MID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='shanchu(" + data.MID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    function menuChaXunByName() {
+        var PID;
+        var path;
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/menuChaXunByName",
+            data: "{user2:'" + $("#user").val() + "',pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    if (data.PID == 0) {
+                        PID = "";
+                    } else {
+                        PID = data.PID;
+                    }
+                    if (data.path == null) {
+                        path = "";
+                    } else {
+                        path = data.path;
+                    }
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.MID + "'/></td><td>&nbsp;" + data.MID + "	</td><td>&nbsp;" + data.MNmae + "	</td><td>&nbsp;" + PID + "</td><td>&nbsp;" + data.TypeID + "	</td><td>&nbsp;" + path + "</td><td>&nbsp;" + data.sort + "</td><td>&nbsp;" + data.style + "</td><td>&nbsp;" + ConvertTime(data.CreationDate) + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.MID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='shanchu(" + data.MID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    //新增
+    function xinzeng() {
+        var fuji = $("#fuji option:selected").val();
+        var caidan = $("#caidan option:selected").val();
+        var yangshi;
+        if ($("#yangshi").val() == null) {
+            yangshi = "";
+        } else {
+            yangshi = $("#yangshi").val();
+        }
+        $.ajax({
+            type: "post",
+            url: "/ZZX/menuXinZeng",
+            data: "{m:{MNmae:'" + $("#mc").val() + "',PID:'" + fuji + "',sort:'" + $("#paixu").val() + "',style:'" + $("#dizhi").val() + "',path:'" + yangshi + "',TypeID:'" + caidan + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("添加成功");
+                    menuChaXun();
+                }
+                else {
+                    alert("添加失败");
+                }
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/ZZX/ParentmenuXinZeng",
+            data: "{p:{UserTypeName:'" + $("#mc").val() + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                }
+                else {
+                    alert("父级添加失败");
+                }
+            }
+        });
+    }
+    //批量删除
+    function shanchu(MID) {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/menuShanChu",
+                data: "{m:{MID:'" + MID + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功");
+                        menuChaXun();
+                    } else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+    }
+    //批量删除
+    function plshanchu() {
+        var fan = 0;
+        var states2 = 1;
+        var list = [];
+        $.each($("[name='checkbox']"), function (index, result) {
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+            }
+        });
+        $.each(list, function (index2, result2) {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/menuShanChu",
+                data: "{m:{MID:'" + result2 + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功");
+                        menuChaXun();
+                        fan = 1;
+                    } else {
+                        alert("删除失败");
+                        fan = 0;
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+        });
+    }
+    //修改
+    function xiugai() {
+        //alert($("#mc2").val() + "," + $("#paixu2").val() + "," + $("#dizhi2").val() + "," + $("#fuji2").val());
+        if ($("#mc2").val() == "" || $("#paixu2").val() == "" || $("#dizhi2").val() == "" || $("#fuji2").val() == "" || $("#caidan2").val() == "") {
+            alert("下拉框不能为请选择，文本框不能为空");
+        }
+        else {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/menuXiuGai",
+                data: "{m:{MID:'" + $("#Hid").val() + "',MNmae:'" + $("#mc2").val() + "',PID:'" + $("#fuji2").val() + "',sort:'" + $("#paixu2").val() + "',style:'" + $("#dizhi2").val() + "',path:'" + $("#yangshi2").val() + "',TypeID:'" + $("#caidan2").val() + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    
+                    if (result > 0) {
+                        alert("修改成功");
+                        menuChaXun();
+                    }
+                    else {
+                        alert("修改失败");
+                    }
+                }
+            });
+        }
+    }
+    //转换时间的方法
+    function ConvertTime(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
     }
 </script>
 

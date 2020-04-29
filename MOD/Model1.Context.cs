@@ -53,7 +53,6 @@ namespace MOD
         public virtual DbSet<roleType> roleType { get; set; }
         public virtual DbSet<ruku> ruku { get; set; }
         public virtual DbSet<rukuType> rukuType { get; set; }
-        public virtual DbSet<storage> storage { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<tuihuo> tuihuo { get; set; }
         public virtual DbSet<tuihuoType> tuihuoType { get; set; }
@@ -62,5 +61,6 @@ namespace MOD
         public virtual DbSet<yiku> yiku { get; set; }
         public virtual DbSet<yikuType> yikuType { get; set; }
         public virtual DbSet<yikuxq> yikuxq { get; set; }
+        public virtual DbSet<storage> storage { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace MOD
     public partial class storage
     {
         public int TID { get; set; }
+        public Nullable<int> KID { get; set; }
         public string KName { get; set; }
         public Nullable<int> WID { get; set; }
         public Nullable<int> KuTypeID { get; set; }

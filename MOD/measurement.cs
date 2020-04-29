@@ -20,7 +20,6 @@ namespace MOD
             this.productguanli = new HashSet<productguanli>();
         }
     
-        public int XID { get; set; }
         public int MID { get; set; }
         public string MName { get; set; }
         public Nullable<int> state { get; set; }
