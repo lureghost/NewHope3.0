@@ -18,7 +18,6 @@ namespace MOD
         public customer()
         {
             this.chuku = new HashSet<chuku>();
-            this.dizhi = new HashSet<dizhi>();
             this.pandianxq = new HashSet<pandianxq>();
             this.productguanli = new HashSet<productguanli>();
             this.tuihuoxq = new HashSet<tuihuoxq>();
@@ -32,12 +31,12 @@ namespace MOD
         public Nullable<System.DateTime> CreationDate { get; set; }
         public Nullable<int> state { get; set; }
         public string Email { get; set; }
-        public string beiyong { get; set; }
+        public string beizhu { get; set; }
+        public Nullable<int> dizhiID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chuku> chuku { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<dizhi> dizhi { get; set; }
+        public virtual dizhi dizhi { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pandianxq> pandianxq { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

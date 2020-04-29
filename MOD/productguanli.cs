@@ -42,6 +42,7 @@ namespace MOD
         public Nullable<int> state { get; set; }
         public Nullable<int> kucun { get; set; }
         public string by2 { get; set; }
+        public Nullable<int> kucun { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<baosun> baosun { get; set; }
