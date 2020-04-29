@@ -20,12 +20,11 @@ namespace MOD
             this.productguanli = new HashSet<productguanli>();
         }
     
-        public int XID { get; set; }
         public int MID { get; set; }
         public string MName { get; set; }
         public Nullable<int> state { get; set; }
-        public string by1 { get; set; }
         public string by2 { get; set; }
+        public Nullable<System.DateTime> CreationDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productguanli> productguanli { get; set; }

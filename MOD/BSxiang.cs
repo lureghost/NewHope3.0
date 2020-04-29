@@ -31,6 +31,7 @@ namespace MOD
         public string by2 { get; set; }
         public string by3 { get; set; }
         public string by4 { get; set; }
+        public Nullable<int> zt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<baosun> baosun { get; set; }

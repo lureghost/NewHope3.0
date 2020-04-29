@@ -9,6 +9,7 @@
 
 
 
+
 <div>
 
     <div class="layui-card">
@@ -32,28 +33,24 @@
                 </div>
                 <div class="layui-tab" lay-filter="test">
                     <ul class="layui-tab-title">
-                        <li class="layui-this" lay-id="11">所有
-                        <li lay-id="22">待审核
-                        <li lay-id="33">审核通过
-                        <li lay-id="44">审核失败
+                        <li class="layui-this" lay-id="11">所有</li>
+                        <li>待审核</li>
+                        <li>审核通过</li>
+                        <li>审核失败</li>
 
                     </ul>
-                    <div class="layui-card-body">
-                        <input type="text" name="kuweiName" placeholder="请输入入库单号" size="36" />
-                        <button type="button" class="layui-btn ">
-                            搜索
-                        </button>
+                    <div class="layui-tab-content">
+                        @*所有*@
+                        <div class="layui-tab-item layui-show">
+                            <div class="layui-card-body">
 
-                        时间
-                        <div class="layui-input-inline">
-                            <input type="text" name="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="width:100px;">
-                        </div>-
-                        <div class="layui-input-inline">
-                            <input type="text" name="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input" style="width:100px;">
-                        </div>
+                                <input id="souid" type="text" name="rukud" placeholder="请输入报损单号" size="36" />
+                                <button id="allsousuo" type="button" class="layui-btn ">
+                                    搜索
+                                </button>
 
-                        <div>
-                            <div class="layui-tab-content">
+                             
+
                                 <div class="layui-form">
                                     <table class="layui-table">
                                         <thead>
@@ -64,160 +61,518 @@
                                                 <td>&nbsp;关联单号</td>
                                                 <td>&nbsp;报损数量</td>
                                                 <td>&nbsp;状态</td>
-                                                <td>&nbsp;创建人</td>
+                                                <td>&nbsp;制单人</td>
                                                 <td>&nbsp;操作方式</td>
                                                 <td>&nbsp;创建时间</td>
                                                 <td>&nbsp;操作</td>
-
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td><input id="Checkbox1" type="checkbox" /></td>
-                                                <td>&nbsp;00005</td>
-                                                <td>&nbsp;生产产品入库</td>
-                                                <td>&nbsp;芯意科技</td>
-                                                <td>&nbsp;4343</td>
-                                                <td>&nbsp;	60</td>
-                                                <td>&nbsp;等待审核</td>
-                                                <td>&nbsp;	administrator</td>
-                                                <td>&nbsp;	电脑</td>
-                                                <td>&nbsp;	2020-03-30</td>
-                                                <td>&nbsp;编辑&nbsp; 删除&nbsp; 查看</td>
-                                            </tr>
+                                        <tbody id="all">
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="layui-tab-item">
+                            </div>
+                        </div>
+                        @*待审核*@
+                        <div class="layui-tab-item">
+                            <input type="text" name="kuweiName" placeholder="请输入入库单号" size="36" />
+                            <button type="button" class="layui-btn ">
+                                搜索
+                            </button>
 
+                            时间
 
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="time3" placeholder="yyyy-MM-dd" style="width:100px;">
+                                </div>-
+                            </div>
 
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="time4" placeholder="yyyy-MM-dd" style="width:100px;">
                                 </div>
-                                <div class="layui-tab-item">
-                                    <table class="layui-table">
-                                        <tr>
-                                            <td><input id="Checkbox0" type="checkbox" /></td>
-                                            <td>&nbsp;00005</td>
-                                            <td>&nbsp;生产产品入库</td>
-                                            <td>&nbsp;芯意科技</td>
-                                            <td>&nbsp;4343</td>
-                                            <td>&nbsp;	60</td>
-                                            <td>&nbsp;等待审核</td>
-                                            <td>&nbsp;	administrator</td>
-                                            <td>&nbsp;	电脑</td>
-                                            <td>&nbsp;	2020-03-30</td>
-                                            <td>&nbsp;编辑&nbsp; 删除&nbsp; 查看</td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="layui-tab-item">
-                                    <table class="layui-table">
+                            </div>
+                            <div class="layui-form">
+                                <table class="layui-table">
+                                    <thead>
                                         <tr>
                                             <td><input id="Checkbox1" type="checkbox" /></td>
-                                            <td>&nbsp;00005</td>
-                                            <td>&nbsp;生产产品入库</td>
-                                            <td>&nbsp;芯意科技</td>
-                                            <td>&nbsp;4343</td>
-                                            <td>&nbsp;	60</td>
-                                            <td>&nbsp;等待审核</td>
-                                            <td>&nbsp;	administrator</td>
-                                            <td>&nbsp;	电脑</td>
-                                            <td>&nbsp;	2020-03-30</td>
-                                            <td>&nbsp;编辑&nbsp; 删除&nbsp; 查看</td>
+                                            <td>&nbsp;单据编号	</td>
+                                            <td>&nbsp;报损类型</td>
+                                            <td>&nbsp;关联单号</td>
+                                            <td>&nbsp;报损数量</td>
+                                            <td>&nbsp;状态</td>
+                                            <td>&nbsp;制单人</td>
+                                            <td>&nbsp;操作方式</td>
+                                            <td>&nbsp;创建时间</td>
+                                            <td>&nbsp;操作</td>
                                         </tr>
-                                        <tr>
-                                            <td><input id="Checkbox2" type="checkbox" /></td>
-                                            <td>&nbsp;00005</td>
-                                            <td>&nbsp;生产产品入库</td>
-                                            <td>&nbsp;芯意科技</td>
-                                            <td>&nbsp;4343</td>
-                                            <td>&nbsp;	60</td>
-                                            <td>&nbsp;等待审核</td>
-                                            <td>&nbsp;	administrator</td>
-                                            <td>&nbsp;	电脑</td>
-                                            <td>&nbsp;	2020-03-30</td>
-                                            <td>&nbsp;编辑&nbsp; 删除&nbsp; 查看</td>
-                                        </tr>
-                                    </table>
-
-                                </div>
-                                <div class="layui-tab-item">
-                                    <table class="layui-table">
-                                        <tr>
-                                            <td><input id="Checkbox3" type="checkbox" /></td>
-                                            <td>&nbsp;00005</td>
-                                            <td>&nbsp;生产产品入库</td>
-                                            <td>&nbsp;芯意科技</td>
-                                            <td>&nbsp;4343</td>
-                                            <td>&nbsp;	60</td>
-                                            <td>&nbsp;等待审核</td>
-                                            <td>&nbsp;	administrator</td>
-                                            <td>&nbsp;	电脑</td>
-                                            <td>&nbsp;	2020-03-30</td>
-                                            <td>&nbsp;编辑&nbsp; 删除&nbsp; 查看</td>
-                                        </tr>
-                                    </table>
-
-                                </div>
+                                    </thead>
+                                    <tbody id="dai">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
 
+                        @*审核通过*@
+                        <div class="layui-tab-item">
+                            <input type="text" name="kuweiName" placeholder="请输入入库单号" size="36" />
+                            <button type="button" class="layui-btn ">
+                                搜索
+                            </button>
 
-                        共 5 行 ,每页
-                        <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="">5</option>
-                                <option value="产品仓库">10</option>
-                                <option value="产品仓库">15</option>
-                                <option value="产品仓库">20</option>
-                                <option value="产品仓库">25</option>
-                            </select>
+                            时间
+
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="time5" placeholder="yyyy-MM-dd" style="width:100px;">
+                                </div>-
+                            </div>
+
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="time6" placeholder="yyyy-MM-dd" style="width:100px;">
+                                </div>
+                            </div>
+                            <div class="layui-form">
+                                <table class="layui-table">
+                                    <thead>
+                                        <tr>
+                                            <td><input id="Checkbox1" type="checkbox" /></td>
+                                            <td>&nbsp;单据编号	</td>
+                                            <td>&nbsp;报损类型</td>
+                                            <td>&nbsp;关联单号</td>
+                                            <td>&nbsp;报损数量</td>
+                                            <td>&nbsp;状态</td>
+                                            <td>&nbsp;制单人</td>
+                                            <td>&nbsp;操作方式</td>
+                                            <td>&nbsp;创建时间</td>
+                                            <td>&nbsp;操作</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tong">
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
-                        行
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+                        @*审核失败*@
+                        <div class="layui-tab-item">
+                            <input type="text" name="kuweiName" placeholder="请输入报损单号" size="36" />
+                            <button type="button" class="layui-btn ">
+                                搜索
+                            </button>
+
+                            时间
+
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="time7" placeholder="yyyy-MM-dd" style="width:100px;">
+                                </div>-
+                            </div>
+
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" id="time8" placeholder="yyyy-MM-dd" style="width:100px;">
+                                </div>
+                            </div>
+                            <div class="layui-form">
+                                <table class="layui-table">
+                                    <thead>
+                                        <tr>
+                                            <td><input id="Checkbox1" type="checkbox" /></td>
+                                            <td>&nbsp;单据编号	</td>
+                                            <td>&nbsp;报损类型</td>
+                                            <td>&nbsp;关联单号</td>
+                                            <td>&nbsp;报损数量</td>
+                                            <td>&nbsp;状态</td>
+                                            <td>&nbsp;制单人</td>
+                                            <td>&nbsp;操作方式</td>
+                                            <td>&nbsp;创建时间</td>
+                                            <td>&nbsp;操作</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bai">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="layui1">
 
                     </div>
-                </div>
 
 
-
-
-
-
-
-
-                <div id="hideID2" hidden="hidden">
-                    <br />
-                    <span style="margin-left:30px">
-                        部门名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="请输入部门名称" />
-                    </span>
-                    <br />
-                    <br />
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
                 </div>
 
 
             </div>
 
+            <div id="hideID2" hidden="hidden">
+                <br />
+                <span style="margin-left:30px">
+                    部门名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="kuweiName" readonly="readonly" placeholder="请输入部门名称" />
+                </span>
+                <br />
+                <br />
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+            </div>
+
 
         </div>
+
+
+    </div>
+    @*查看的弹窗*@
+    <div id="hideID3" hidden="hidden">
+
+        <br />
+        <input id="rxid" type="hidden" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">报损单号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="rid" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">类型</label>
+        <div class="layui-input-inline">
+            <input type="text" id="type" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">状态</label>
+        <div class="layui-input-inline">
+            <input type="text" id="zt" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <br />
+        <br />
+
+       
+       
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">关联单号</label>
+        <div class="layui-input-inline">
+            <input type="text" id="chakancpid" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+
+        <label class="layui-input-inline">创建人</label>
+        <div class="layui-input-inline">
+            <input type="text" id="user" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">创建时间</label>
+        <div class="layui-input-inline">
+            <input type="text" id="time" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+
+        <br />
+        <br />
+       
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">备注</label>
+        <div class="layui-input-inline">
+            <input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+        <br />
+        <br />
+        <br />
+        @*<table class="layui-table">
+            <thead>
+                <tr>
+                    <td><input id="Checkbox1" type="checkbox" /></td>
+                    <td>&nbsp;产品名称	</td>
+                    <td>&nbsp;产品条码</td>
+                    <td>&nbsp;规格	</td>
+                    <td>&nbsp;批次</td>
+                    <td>&nbsp;单价</td>
+                    <td>&nbsp;入库数</td>
+                    <td>&nbsp;总价</td>
+                    <td>&nbsp;库位</td>
+
+                </tr>
+            </thead>
+            <tbody id="T1">
+            </tbody>
+        </table>*@
+
+
+
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <span style="margin-left:30px">
+            <button type="button" id="tongguo" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:600px; ">
+                审核通过
+            </button>
+            <button type="button" id="buguo" class="layui-btn layui-btn-primary layui-btn-sm">
+                审核失败
+            </button>
+            <button type="button" id="guanbi" class="layui-btn layui-btn-primary layui-btn-sm">
+                关闭
+            </button>
+
+        </span>
+    </div>
+
+    @*修改的弹窗*@
+
+    <div id="hideID4" hidden="hidden">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">报损单号</label>
+        <div class="layui-input-inline">
+            <input type="text" id="xrid" lay-verify="required" placeholder="不可修改" autocomplete="off" readonly="readonly" class="layui-input">
+        </div>
+        <br />
+
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">报损类型</label>
+        <div class="layui-input-inline">
+            <div class="layui-input-inline">
+                <select name="modules" lay-verify="required" lay-search="" style="height:30px">
+                    <option value="">请选择报损类型</option>
+
+                </select>
+            </div>
+        </div>
+
+        <br />
+        <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label class="layui-input-inline">关联单号</label>
+        <div class="layui-input-inline">
+
+            <select name="xcpid" lay-verify="required" lay-search="" style="height:30px">
+            </select>
+        </div>
+        <br />
+        <br />
+      
+        <label class="layui-form-label">制单时间</label>
+        <div class="layui-input-inline">
+            <input type="text" class="layui-input" id="test19" placeholder="yyyy-MM-dd" lay-key="26">
+        </div>
+        <br />
+        <button type="button" id="xiugai" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:150px; ">
+            确认修改
+        </button>
+        <button type="button" id="guanbi2" class="layui-btn layui-btn-primary layui-btn-sm">
+            关闭
+        </button>
     </div>
 </div>
 
 
-@*<script src="~/layui/layui.js" charset="utf-8"></script>
-    <script src="~/layui/layui.all.js"></script>*@
+
+
 <script>
+    var pageIndex = 1;
+    var pageSize = 3;
+    var rowss = 0;
+    var dd = '2020-1-1'
+
+    //laydate.render({
+    //    elem: '#time4'
+    //});
+
+    //var cpid;
+
+    var rid = 0;
+    var init_date;
+    function show3(rid) {
+        layui.use('layer', function () { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
 
 
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-demo', //样式类名
+                title: ['报损单详细', 'font-size:18px'],
+                area: ['850px', '600px'],
+                shadeClose: true,
+                content: $('#hideID3') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            });
+
+        });
+        $.ajax({
+            type: "post",
+            url: "/NX/baosunchakan",
+            data: "{rid:'" + rid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name=rid]").val(data.rukuid);
+                    $("#type").val(data.rukuType);
+                    $("#zt").val(data.zt);
+                    $("#cpid").val(data.cpid);
+                    $("#user").val(data.userid);
+                    $("#time").val(ConvertTime2(data.time));
+                    $("#rxid").val(data.rxid);
+                    $("#chakancpid").val(data.cpid);
+                })
 
 
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+
+    }
+
+    function show4(id) {
+        layui.use('layer', function () { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-demo', //样式类名
+                title: ['修改入库单', 'font-size:18px'],
+                area: ['300px', '400px'],
+                shadeClose: true,
+                content: $('#hideID4') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            });
+
+        });
+
+        rid = id;
+        $("#xrid").val(id);
+        xgcha(id);
+
+
+    }
+
+    //修改功能的关联单号的下拉框
+    function xgcpcha() {
+        $.ajax({
+            type: "post",
+            url: "/NX/rukucpcha",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                $.each(result, function (index, data) {
+                    $("[name=xcpid]").append("<option value=" + data.cpid + ">" + data.cpid + "</option>")
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //修改的查询
+    function xgcha(rukuid) {
+
+        $.ajax({
+            type: "post",
+            url: "/NX/rukuallsou",
+            async: false,
+            data: "{rukuid:'" + rukuid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                $.each(result, function (index, data) {
+                    $("[name=modules] ").val(data.rukutypeid);
+                    $("[name=xgysid] ").val(data.gysid);
+                    $("[name=xcpid] ").val(data.cpid);
+                    init_date = ConvertTime(data.time);
+                    alert(init_date);
+                    //初始赋值
+                    dd = init_date;
+                    layui.use(['laydate'], function () {
+                        var $ = layui.jquery
+                            //  , element = layui.element
+                            , laydate = layui.laydate;
+                        ; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+
+                        laydate.render({
+                            elem: '#time1'
+                        });
+                        laydate.render({
+                            elem: '#time2'
+                        });
+                        laydate.render({
+                            elem: '#test19'
+                            , value: ConvertTime(data.time)
+                            , isInitValue: true
+                        });
+
+                    });
+
+
+                });
+
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    function chaxiang(rxid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosunchakanx",
+            data: "{rxid:'" + rxid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#T1 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#T1").append("<tr><td><input style='display:blook;' type='checkbox'></td><td>" + data.pname + "<input name='rxid' type='hidden' value='" + data.rxid + "' /></td><td>" + data.pid + "</td><td>" + data.pguige + "</td><td>" + data.ppici + "</td><td name='tprice'>" + data.price + "</td><td name='kucun'>" + data.psum + "</td><td>" + data.kuwei + "</td></tr>");
+
+                })
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
+    layui.use(['laydate'], function () {
+        var $ = layui.jquery
+            //  , element = layui.element
+            , laydate = layui.laydate;
+        ; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+
+        laydate.render({
+            elem: '#time1'
+        });
+        laydate.render({
+            elem: '#time2'
+        });
+        //laydate.render({
+        //    elem: '#time4'
+        //});
+        laydate.render({
+            elem: '#time4'
+            , value: init_date
+            , isInitValue: true
+        });
+
+
+    });
 
     function show2() {
+
         layer.open({
             type: 1,
             skin: 'layui-layer-demo', //样式类名
@@ -225,7 +580,8 @@
             area: ['300px', '200px'],
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-        });
+        })
+            ;
 
         //Ajax获取
         $.post('url', {}, function (str) {
@@ -235,62 +591,399 @@
             });
         });
     }
-    <script>
-        layui.use('element', function(){
-  var $ = layui.jquery
-  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 
-  //触发事件
-  var active = {
-            tabAdd: function(){
-            //新增一个Tab项
-            element.tabAdd('demo', {
-                title: '新选项' + (Math.random() * 1000 | 0) //用于演示
-                , content: '内容' + (Math.random() * 1000 | 0)
-                , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
-            })
+    layui.use(['element', 'layer'], function () {
+        var element = layui.element;
+        var layer = layui.layer;
+
+        //监听折叠
+        element.on('collapse(test)', function (data) {
+            //layer.msg('展开状态：' + data.show);
+        });
+    });
+
+
+
+
+
+
+    $(function () {
+        chaall();
+        daicha();
+        tongcha();
+        baicha();
+        anniu();
+        rukutype();
+        gaoanniu();
+        $("#guanbi").click(function () {
+
+            layer.closeAll('page');
+
+        })
+        $("#guanbi2").click(function () {
+
+            layer.closeAll('page');
+
+        })
+        rukutype();
+
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+
+            //完整功能
+            laypage.render({
+                elem: 'layui1'
+                , count: rowss
+                , limit: 4
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    pageIndex = obj.curr;
+                    pageSize = obj.limit;
+                    chaall();
+                }
+            });
+        });
+        xgcpcha()
+
+        $("#xiugai").click(function () {
+            //alert(init_date);
+            var typeid = $("[name=modules]").val();
+
+            var gysid = $("[name=xgysid]").val();
+            var time = $("#test19").val();
+
+            var cpid = $("[name=xcpid]").val();
+            rukugai(rid, typeid, cpid, gysid, time);
+
+
+
+
+
+        })
+
+
+    })
+    //搜索的方法
+    function anniu() {
+
+        $("#allsousuo").click(function () {
+            var rid = $("#souid").val();
+            if (rid == "") {
+                chaall();
+            }
+            else {
+                allsou(rid);
+            }
+
+
+        });
+
+    }
+    //高级查询的按钮
+    function gaoanniu() {
+        $("#gaosou").click(function () {
+
+            var gysid = $("#gys option:selected").val();
+            var typeid = $("#danjutype option:selected").val();
+            var cpid = $("#cpid").val();
+
+            gaocha(gysid, typeid, cpid);
+            if (gysid == null && typeid == null && cpid == null) {
+                chaall();
+            }
+        })
+
+    }
+
+    //查询所有的方法
+    function chaall() {
+
+        $.ajax({
+            type: "post",
+            url: "/NX/baosunchaall",
+            data: "{pageIndex:'" + pageIndex + "',pageSize:'" + pageSize + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#all tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.zt + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+
+                })
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+
+    }
+
+    //所有搜索的方法
+    function allsou(rukuid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosunallsou",
+            data: "{rukuid:'" + rukuid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#all tr").remove();
+                $.each(result, function (index, data) {
+                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.zt + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    //查询入库类型的方法
+    function rukutype() {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosuntypecha",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#modules option").remove();
+                $("#danjutype option").remove();
+                $.each(result, function (index, data) {
+                    $("[name=modules]").append(" <option value=" + data.typeid + ">" + data.typename + "</option>");
+                    $("#danjutype").append(" <option value=" + data.typeid + ">" + data.typename + "</option>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //高级查询的方法
+    function gaocha(gysid, typeid, cpid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/rukugaocha",
+            data: "{gysid:'" + gysid + "',typeid:'" + typeid + "',cpid:'" + cpid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#all tr").remove();
+                if (result != null) {
+                    $.each(result, function (index, data) {
+                        $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.gysname + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.price + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /></td></tr>");
+
+                    })
+                }
+                else {
+                    alert("不存在此数据，请重新输入");
+                }
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    //查询待审核的方法
+    function daicha() {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosundaicha",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#dai tr").remove();
+                $.each(result, function (index, data) {
+                    $("#dai").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //查询通过审核的方法
+    function tongcha() {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosuntongcha",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tong tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tong").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    //删除的方法
+    function shanchu(rukuid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosundel",
+            data: "{rukuid:'" + rukuid + "',zt:'" + 4 + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("删除成功");
+                    chaall();
+                    daicha();
+                    tongcha();
+                    baicha();
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //查询审核失败的方法
+    function baicha() {
+        $.ajax({
+            type: "post",
+            url: "/NX/baosunbaicha",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#bai tr").remove();
+                $.each(result, function (index, data) {
+                    $("#bai").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+
+    //审核的方法
+    function shenghe(rid, zt) {
+
+        var ztid = zt;
+        if (ztid == 2) {
+            $("#tongguo").html("已审核成功");
         }
-    ,tabDelete: function(othis){
-            //删除指定Tab项
-            element.tabDelete('demo', '44'); //删除：“商品管理”
+        if (ztid == 3) {
+            $("#tongguo").html("已审核失败");
+        }
 
+        if (zt == 1) {
+            $("#tongguo").click(function () {
 
-      othis.addClass('layui-btn-disabled');
+                $.ajax({
+                    type: "post",
+                    url: "/NX/baosunsheng",
+                    data: "{rr:{baosunID:'" + rid + "',zt:" + 2 + "}}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result > 0) {
+                            alert("审核成功");
+                            layer.closeAll('page');
+                            chaall();
+                        }
+                        else {
+                            alert(rid);
+                        }
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+
+            });
+            $("#buguo").click(function () {
+
+                $.ajax({
+                    type: "post",
+                    url: "/NX/rukusheng",
+                    data: "{rr:{rukuID:'" + rid + "',zt:" + 3 + "}}",
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (result) {
+                        if (result > 0) {
+                            alert("审核结果为失败");
+                            layer.closeAll('page');
+                            chaall();
+                        }
+                    },
+                    error: function (ex) {
+                        alert(ex.responseText);
+                    }
+                });
+
+            });
+
+        }
     }
-    ,tabChange: function(){
-            //切换到指定Tab项
-            element.tabChange('demo', '22'); //切换到：用户管理
+
+    //修改入库单的方法
+    function rukugai(rid, typeid, cpid, time) {
+
+        $.ajax({
+            type: "post",
+            url: "/NX/baosungai",
+            data: "{rr:{baosunID:'" + rid + "',baosunTypeID:'" + typeid + "',cpid:'" + cpid + "',createTime:'" + time + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("修改成功");
+                    layer.closeAll('page');
+                    chaall();
+                }
+                else {
+                    alert("修改失败")
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
     }
-  };
-
-  $('.site-demo-active').on('click', function(){
-    var othis = $(this), type = othis.data('type');
-    active[type] ? active[type].call(this, othis) : '';
-  });
-
-  //Hash地址的定位
-  var layid = location.hash.replace(/^#test=/, '');
-  element.tabChange('test', layid);
-
-  element.on('tab(test)', function(elem){
-            location.hash = 'test=' + $(this).attr('lay-id');
-  });
-
-});
 
 
- //日期
-  laydate.render({
-            elem: '#date'
-  });
-  laydate.render({
-            elem: '#date1'
-  });
+    //转换时间的方法
+    function ConvertTime(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDay();
+    }
 
+    //转换时间的方法
+    function ConvertTime2(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
 </script>
 
 
-</script>
+
+
+
 
 
 

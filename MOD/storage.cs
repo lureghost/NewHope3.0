@@ -15,11 +15,12 @@ namespace MOD
     public partial class storage
     {
         public int TID { get; set; }
+        public Nullable<int> kid { get; set; }
         public string KName { get; set; }
         public Nullable<int> WID { get; set; }
         public Nullable<int> KuTypeID { get; set; }
         public string forbidden { get; set; }
-        public string @default { get; set; }
+        public string moren { get; set; }
         public Nullable<System.DateTime> CreationDate { get; set; }
         public Nullable<int> state { get; set; }
         public string by1 { get; set; }

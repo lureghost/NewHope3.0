@@ -12,29 +12,21 @@ namespace MOD
     using System;
     using System.Collections.Generic;
     
-    public partial class CKxiang
+    public partial class rukuZT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CKxiang()
+        public rukuZT()
         {
+            this.ruku = new HashSet<ruku>();
             this.chuku = new HashSet<chuku>();
         }
     
-        public int ckID { get; set; }
-        public Nullable<int> Pid { get; set; }
-        public string Ptiaoma { get; set; }
-        public string Pguige { get; set; }
-        public Nullable<decimal> Pprice { get; set; }
-        public Nullable<int> ckpici { get; set; }
-        public Nullable<int> Tid { get; set; }
-        public Nullable<int> chuSum { get; set; }
-        public string by2 { get; set; }
-        public string by3 { get; set; }
-        public string by4 { get; set; }
-        public Nullable<int> zt { get; set; }
+        public int rzID { get; set; }
+        public string rzName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ruku> ruku { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chuku> chuku { get; set; }
-        public virtual chukuType chukuType { get; set; }
     }
 }

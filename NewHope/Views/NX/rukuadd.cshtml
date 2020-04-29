@@ -8,219 +8,654 @@
 
 
 
-    <div>
+<div>
 
-        <div class="layui-card">
-            <div class="layui-card-header">
-                <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
-                <a href="javascript:;">仓库作业</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">入库管理</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">新增入库单</a>
-
-
-
-            </div>
-            <div style="border:solid 1px;">
-                <div class="layui-input-inline">
-                    入库单编号
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-                入库单类型
-                <div class="layui-inline">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
+            <a href="javascript:;">仓库作业</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">入库管理</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">新增入库单</a>
 
 
-                    <div class="layui-input-inline">
-                        <select name="modules" lay-verify="required" lay-search="" style="height:30px">
-                            <option value="">请选择入库单类型</option>
-                            <option value="1">采购收货入库</option>
-                            <option value="2">销售退货入库</option>
-                            <option value="3">生产产品入库</option>
-
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-input-inline">
-                    关联单号
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-input-inline">
-                    制单人
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
-                </div>
-                <br />
-                <div class="layui-input-inline">
-                    供应商编号
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <div class="layui-input-inline">
-                    供应商名称
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <div class="layui-input-inline">
-                    供应商联系人
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <div class="layui-input-inline">
-                    供应商联系方式
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <br />
-                <div class="layui-inline">
-                    <label class="layui-form-label">制单时间</label>
-                    <div class="layui-input-inline">
-                        <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-
-                <div class="layui-input-inline">
-                    备注
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-            </div>
 
         </div>
-        <table class="layui-table">
-            <thead>
-                <tr>
-                    <td><input id="Checkbox1" type="checkbox" /></td>
-                    <td>&nbsp;产品名称	</td>
-                    <td>&nbsp;产品条码</td>
-                    <td>&nbsp;规格	</td>
-                    <td>&nbsp;批次</td>
-                    <td>&nbsp;单价</td>
-                    <td>&nbsp;入库数</td>
-                    <td>&nbsp;总价</td>
-                    <td>&nbsp;库位</td>
-                    <td>&nbsp;操作</td>
+        <div style="border:solid 1px;">
+            入库单编号
+            <div class="layui-input-inline">
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    @*放数据的地方*@
-                </tr>
-            </tbody>
-        </table>
-        
+                <input type="tel" id="rukuid" lay-verify="required|phone" autocomplete="off" class="layui-input" readonly="readonly" placeholder="自动生成">
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            入库单类型
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <select id="modules" lay-verify="required" lay-search="" style="height:30px">
+                        <option value="">请选择入库单类型</option>
+
+                    </select>
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            关联单号
+            <div class="layui-input-inline">
+
+                <input type="tel" id="cpid" lay-verify="required|phone" autocomplete="off" class="layui-input">
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+            制单人
+            <div class="layui-input-inline">
+
+                <input type="tel" id="man" lay-verify="required|phone" autocomplete="off" class="layui-input">
+            </div>
+            <br />
+
+            供应商编号
+            <div class="layui-input-inline">
+
+                <div class="layui-input-inline">
+                    <select id="gysid" lay-verify="required" lay-search="" style="height:30px">
+                        <option value="">请选择供应商编号</option>
+
+                    </select>
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            供应商名称
+            <div class="layui-input-inline">
+
+                <input type="text" id="gname" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            供应商联系人
+            <div class="layui-input-inline">
+
+                <input type="text" id="gman" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            供应商联系方式
+            <div class="layui-input-inline">
+
+                <input type="text" id="gphone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
+            </div>
+            <br />
+            制单时间
+            <div class="layui-inline">
+                <div class="layui-input-inline">
+                    <input type="text" name="date" id="time1" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+            备注
+            <div class="layui-input-inline">
+
+                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:600px;">
+            </div>
+        </div>
+
+    </div>
+    <table class="layui-table">
+        <thead>
+            <tr>
+                <td><input id="Checkbox1" type="checkbox" /></td>
+                <td>&nbsp;产品名称	</td>
+                <td>&nbsp;产品条码</td>
+                <td>&nbsp;规格	</td>
+                <td>&nbsp;批次</td>
+                <td>&nbsp;单价</td>
+                <td>&nbsp;入库数</td>
+                <td>&nbsp;总价</td>
+                <td>&nbsp;库位</td>
+                <td>&nbsp;操作</td>
+
+            </tr>
+        </thead>
+        <tbody id="T1">
+        </tbody>
+    </table>
+
+
+</div>
+<div class="layui-collapse" lay-filter="test">
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title"><button type="button" class="layui-btn layui-btn-lg">新增产品</button>  </h2>
+        <div class="layui-colla-content">
+
+            <div class="layui-input-inline">
+                产品编码
+                <select id="Pid">
+                    <option>请选择商品编码</option>
+                </select>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            产品名称
+            <div class="layui-input-inline">
+
+                <input type="tel" id="pname" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;" readonly>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            产品规格
+            <div class="layui-input-inline">
+
+                <input type="tel" id="Pguige" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;" readonly>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            产品单价
+            <div class="layui-input-inline">
+                <input type="tel" id="Pprice" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
+            </div>
+            元
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            现有库存
+            <div class="layui-input-inline">
+
+                <input type="tel" id="kucun" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;" readonly>
+            </div>
+            <br />
+            产品批次
+            <div class="layui-input-inline">
+
+                <input type="tel" id="Ppici" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            入库库位
+            <div class="layui-input-inline">
+
+                <select id="rukutype">
+                    <option></option>
+
+                </select>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            入库数量
+            <div class="layui-input-inline">
+
+                <input type="tel" id="psum" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
+            </div>
+            <br />
+            <br />
+            <button type="button" id="T1add" class="layui-btn layui-btn-lg">保存</button>
+        </div>
+
+        <button  type="button" id="T2" class="layui-btn layui-btn-lg">保存</button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-lg">取消</button>
         
     </div>
-    <div class="layui-collapse" lay-filter="test">
-        <div class="layui-colla-item">
-            <h2 class="layui-colla-title"><button type="button" class="layui-btn layui-btn-lg">新增产品</button>  </h2>
-            <div class="layui-colla-content">
-                <div class="layui-input-block">
-                    产品编码
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <div class="layui-input-block">
-                    产品名称
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;" readonly>
-                </div>
-                <div class="layui-input-block">
-                    产品规格
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;" readonly>
-                </div>
-                <div class="layui-input-block">
-                    产品单价
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">元
-                </div>
-                <div class="layui-input-block">
-                    现有库存
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;" readonly>
-                </div>
-                <div class="layui-input-block">
-                    产品批次
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">元
-                </div>
-                <div class="layui-input-block">
-                    入库库位
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <div class="layui-input-block">
-                    入库数量
-                    <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" style="width:150px;">
-                </div>
-                <button type="button" class="layui-btn layui-btn-lg">保存</button>
-            </div>
+</div>
+<div id="hideID3" hidden="hidden">
+    <br />
+    <span style="margin-left:30px">
+        <input name="updrxid" type="hidden" />
+        数量&nbsp;&nbsp;&nbsp;<input type="text" name="T1sum" />
+    </span>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <span style="margin-left:30px">
+        <button type="button" id="sumgai" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:90px;margin-bottom:2px;" >
+            确定
+        </button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
+    </span>
+</div>
 
-            <button type="button" class="layui-btn layui-btn-lg">保存</button>
-            <button type="button" class="layui-btn layui-btn-primary layui-btn-lg">取消</button>
-        </div>
-        </div>
-        <script>
+<script>
 
 
 
 
 
-            function show2() {
-                layer.open({
-                    type: 1,
-                    skin: 'layui-layer-demo', //样式类名
-                    title: ['添加部门', 'font-size:18px'],
-                    area: ['300px', '200px'],
-                    shadeClose: true,
-                    content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
-                });
+    
+       
 
-                //Ajax获取
-                $.post('url', {}, function (str) {
-                    layer.open({
-                        type: 1,
-                        content: str //注意，如果str是object，那么需要字符拼接。
-                    });
-                });
+    function show3(rxid) {
+        layui.use('layer', function () { //独立版的layer无需执行这一句
+            var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-demo', //样式类名
+                title: ['修改数量', 'font-size:18px'],
+                area: ['350px', '250px'],
+                shadeClose: true,
+                content: $('#hideID3') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            });
+            
+        });
+        $.ajax({
+            type: "post",
+            url: "/NX/T1byid",
+            data: "{rxid:'" + rxid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='updrxid']").val(rxid);
+                    $("[name='T1sum']").val(data.kucun);
+                })
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
             }
-            layui.use('element', function () {
-                var $ = layui.jquery
-                    , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        });
+        
 
-                //触发事件
-                var active = {
-                    tabAdd: function () {
-                        //新增一个Tab项
-                        element.tabAdd('demo', {
-                            title: '新选项' + (Math.random() * 1000 | 0) //用于演示
-                            , content: '内容' + (Math.random() * 1000 | 0)
-                            , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
-                        })
-                    }
-                    , tabDelete: function (othis) {
-                        //删除指定Tab项
-                        element.tabDelete('demo', '44'); //删除：“商品管理”
+    }
 
 
-                        othis.addClass('layui-btn-disabled');
-                    }
-                    , tabChange: function () {
-                        //切换到指定Tab项
-                        element.tabChange('demo', '22'); //切换到：用户管理
-                    }
-                };
+    layui.use('element', function () {
+        var $ = layui.jquery
+            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 
-                $('.site-demo-active').on('click', function () {
-                    var othis = $(this), type = othis.data('type');
-                    active[type] ? active[type].call(this, othis) : '';
-                });
-
-                //Hash地址的定位
-                var layid = location.hash.replace(/^#test=/, '');
-                element.tabChange('test', layid);
-
-                element.on('tab(test)', function (elem) {
-                    location.hash = 'test=' + $(this).attr('lay-id');
-                });
-
-            });
+        //触发事件
+        var active = {
+            tabAdd: function () {
+                //新增一个Tab项
+                element.tabAdd('demo', {
+                    title: '新选项' + (Math.random() * 1000 | 0) //用于演示
+                    , content: '内容' + (Math.random() * 1000 | 0)
+                    , id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+                })
+            }
+            , tabDelete: function (othis) {
+                //删除指定Tab项
+                element.tabDelete('demo', '44'); //删除：“商品管理”
 
 
-            //日期
-            laydate.render({
-                elem: '#date'
-            });
-            laydate.render({
-                elem: '#date1'
-            });
+                othis.addClass('layui-btn-disabled');
+            }
+            , tabChange: function () {
+                //切换到指定Tab项
+                element.tabChange('demo', '22'); //切换到：用户管理
+            }
+        };
 
-        </script>
+        $('.site-demo-active').on('click', function () {
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function (elem) {
+            location.hash = 'test=' + $(this).attr('lay-id');
+        });
+
+    });
+
+
+    layui.use(['laydate'], function () {
+        var $ = layui.jquery
+            , laydate = layui.laydate;
+        ; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+
+        laydate.render({
+            elem: '#time1'
+        });
+
+
+
+
+
+    });
+    $(function () {
+
+        rukutype();
+        rukugys();
+        //供应商的change事件
+        $("#gysid").change(function () {
+            var gysid = $("#gysid option:selected").val();
+            topcha(gysid);
+
+        });
+        $("#Pid").change(function () {
+            var pid = $("#Pid option:selected").val();
+            alert(pid);
+            downcha(pid);
+            downcha2(pid);
+            $("#Ppici").val("");
+            $("#psum").val("");
+        });
+        $("#T1add").click(function () {
+            pandianadd();
+
+        })
+        pbianma();
+        kutype();
+        T1cha();
+        $("#sumgai").click(function () {
+            var rxid = $("[name='updrxid']").val();
+            var kucun = $("[name='T1sum']").val();
+           
+            T1upd(rxid, kucun);
+            layer.closeAll('page');
+
+        });
+        $("#T2").click(function () {
+            
+            T2add();
+
+        })
+
+        
+    })
+
+    //查询入库类型的方法
+    function rukutype() {
+        $.ajax({
+            type: "post",
+            url: "/NX/rukutype",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                $.each(result, function (index, data) {
+                    $("#modules").append(" <option value=" + data.typeid + ">" + data.typename + "</option>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //查询供应商的方法
+    function rukugys() {
+        $.ajax({
+            type: "post",
+            url: "/NX/rukugys",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                $.each(result, function (index, data) {
+                    $("#gysid").append(" <option value=" + data.gysid + ">" + data.gysid + "</option>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //根据供应商id查询的方法
+    function topcha(gysid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/gysidcha",
+            data: "{gysid:'" + gysid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                $.each(result, function (index, data) {
+                    $("#gname").val(data.gysname);
+                    $("#gman").val(data.gysman);
+                    $("#gphone").val(data.gysphone);
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //查询产品编号的方法
+    function pbianma() {
+        $.ajax({
+            type: "post",
+            url: "/NX/pbianma",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#Pid").append(" <option value=" + data.downid + ">" + data.downid + "</option>");
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    //根据产品编号查询到其他信息的方法
+    function downcha(pid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/pidcha",
+            data: "{pid:'" + pid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $.each(result, function (index, data) {
+
+                    $("#Pprice").val(data.pprice);
+                    $("#Pguige").val(data.pguige);
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    function downcha2(pid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/pidcha2",
+            data: "{pid:'" + pid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $.each(result, function (index, data) {
+                    $("#pname").val(data.pname);
+                    $("#kucun").val(data.kucun);
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+
+    //查询库位类型的方法
+    function kutype() {
+        $.ajax({
+            type: "post",
+            url: "/NX/kutype",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#rukutype option").remove();
+                $.each(result, function (index, data) {
+                    $("#rukutype").append(" <option value=" + data.kuid + ">" + data.kuname + "</option>");
+
+                })
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    //第一层新增的方法
+    function pandianadd() {
+        var by1 = $("#pname").val();
+        var by2 = $("#kucun").val();
+        var by3 = $("#rukutype option:selected").val();
+        var by4 = $("#psum").val();
+        var pid = $("#Pid option:selected").val();
+        var pguige = $("#Pguige").val();
+        var price = $("#Pprice").val();
+        var ppici = $("#Ppici").val();
+        var zt = "0";
+        var s = "Pid:'" + pid + "',Pguige:'" + pguige + "',Pprice:'" + price + "',Ppici:'" + ppici + "',zt:'" + zt + "',by1:'" + by1 + "',by22:'" + by2 + "',by3:'" + by3 + "',by4:'" + by4 + "'";
+        $.ajax({
+            type: "post",
+            url: "/NX/RKxiangadd",
+            data: "{pd:{" + s + "}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("添加成功");
+                    T1cha();
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    //查询第一层添加成功后的数据
+    function T1cha() {
+        $.ajax({
+            type: "post",
+            url: "/NX/T1cha",
+            data: "",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#T1 tr").remove();
+                $.each(result, function (index, data) {
+                    
+                    $("#T1").append("<tr><td><input style='display:blook;' type='checkbox'></td><td>" + data.pname + "<input name='rxid' type='hidden' value='" + data.rxid + "' /></td><td>" + data.pid + "</td><td>" + data.pguige + "</td><td>" + data.ppici + "</td><td name='tprice'>" + data.price + "</td><td name='kucun'>" + data.psum + "</td><td name='zongjia'>"+data.total+"</td><td>" + data.kuwei + "</td><td><input id='del' type='button' value='删除' onclick='T1del(" + data.rxid + ")'/><input id='gai' type='button' value='修改' onclick='show3(" + data.rxid + ");' /></td></tr>");
+
+                })
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    //删除的方法
+    function T1del(rxid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/T1del",
+            data: "{rxid:'" + rxid + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("删除成功");
+                    T1cha();
+                }
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+    
+    //修改数量的方法
+    function T1upd(rxid, kucun) {
+
+        $.ajax({
+            type: "post",
+            url: "/NX/T1upd",
+            data: "{rk:{rxID:'" + rxid + "',by4:'" + kucun + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    
+                    alert("修改成功");
+                    
+                    T1cha();
+                    
+                }
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //第二层添加的方法
+    function T2add() {
+        var rid = 99;
+        var rukutype = $("#modules option:selected").val();
+        var gysid = $("#gysid option:selected").val();
+        var cpid = $("#cpid").val();
+        var price = $("[name='tprice']").val();
+        var zt = 1;
+        var userid = 4;
+        var caozuofs = "电脑";
+        var rxid = $("[name='rxid']").val();
+        var by1 = $("[name='kucun']").val();
+        var time = $("[name='date']").val();
+        var s = "rid:'" + rid + "',rukuTypeID:'" + rukutype + "',gysID:'" + gysid + "',cpID:'" + cpid + "',price:'" + price + "',zt:'" + zt + "',UserID:'" + userid + "',createTime:'" + time + "',caozuofs:'" + caozuofs + "',rxID:'" + rxid + "',by1:'" + by1 + "'";
+        $.ajax({
+            type: "post",
+            url: "/NX/T2add",
+            data: "{rr:{" + s + "}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    T2ztupd(rxid);
+                    alert("入库成功");
+                }
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+    //第二层添加的同时修改RKxiang表中的状态为1
+    function T2ztupd(rxid) {
+        $.ajax({
+            type: "post",
+            url: "/NX/T2ztupd",
+            data: "{rr:{rxid:'" + rxid + "',zt:'" + 1 + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                   
+                    alert("状态修改成功");
+                   window.location.href = ('ruku');
+                }
+
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+
+    }
+
+</script>
 
 
 
