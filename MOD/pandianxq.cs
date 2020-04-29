@@ -23,6 +23,9 @@ namespace MOD
         public string chanpinpici { get; set; }
         public Nullable<int> pandianTypeID { get; set; }
         public Nullable<int> kehuID { get; set; }
+        public string zt { get; set; }
+        public string by1 { get; set; }
+        public string by2 { get; set; }
     
         public virtual customer customer { get; set; }
         public virtual pandianType pandianType { get; set; }

@@ -18,6 +18,7 @@ namespace MOD
         public chukuType()
         {
             this.chuku = new HashSet<chuku>();
+            this.CKxiang = new HashSet<CKxiang>();
         }
     
         public int chukuTypeID { get; set; }
@@ -25,5 +26,7 @@ namespace MOD
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chuku> chuku { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CKxiang> CKxiang { get; set; }
     }
 }

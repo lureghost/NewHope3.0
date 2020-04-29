@@ -7,24 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Models
+namespace MOD
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Parentmenu
+    public partial class rukuZT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Parentmenu()
+        public rukuZT()
         {
-            this.menu = new HashSet<menu>();
+            this.ruku = new HashSet<ruku>();
+            this.chuku = new HashSet<chuku>();
         }
     
-        public int ID { get; set; }
-        public string UserTypeName { get; set; }
-        public Nullable<int> state { get; set; }
+        public int rzID { get; set; }
+        public string rzName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<menu> menu { get; set; }
+        public virtual ICollection<ruku> ruku { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chuku> chuku { get; set; }
     }
 }

@@ -59,6 +59,7 @@
           <Property Name="Pprice" Type="money" />
           <Property Name="bsSum" Type="int" />
           <Property Name="bspici" Type="int" />
+          <Property Name="zt" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
@@ -103,7 +104,7 @@
           <Property Name="ckpici" Type="int" />
           <Property Name="Tid" Type="int" />
           <Property Name="chuSum" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="zt" Type="int" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
           <Property Name="by4" Type="varchar" MaxLength="50" />
@@ -118,7 +119,8 @@
           <Property Name="faxes" Type="varchar" MaxLength="50" />
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="state" Type="int" />
-          <Property Name="dizhiID" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="beiyong" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -138,6 +140,7 @@
           <Property Name="linkman" Type="varchar" MaxLength="50" />
           <Property Name="phone" Type="varchar" MaxLength="50" />
           <Property Name="state" Type="int" />
+          <Property Name="KehuID" Type="int" />
         </EntityType>
         <EntityType Name="gysguanli">
           <Key>
@@ -186,10 +189,10 @@
           <Key>
             <PropertyRef Name="MID" />
           </Key>
-          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MID" Type="int" Nullable="false" />
           <Property Name="MName" Type="varchar" MaxLength="10" />
           <Property Name="state" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="10" />
+          <Property Name="CreationDate" Type="datetime" />
           <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="menu">
@@ -247,6 +250,9 @@
           <Property Name="chanpinpici" Type="varchar" MaxLength="50" />
           <Property Name="pandianTypeID" Type="int" />
           <Property Name="kehuID" Type="int" />
+          <Property Name="zt" Type="varchar" MaxLength="50" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Parentmenu">
           <Key>
@@ -275,7 +281,7 @@
           <Property Name="XID" Type="int" />
           <Property Name="defaultstorage" Type="int" />
           <Property Name="state" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="10" />
+          <Property Name="kucun" Type="int" />
           <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="productType">
@@ -304,15 +310,15 @@
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
-          <Property Name="by4" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="int" />
         </EntityType>
         <EntityType Name="role">
           <Key>
             <PropertyRef Name="RID" />
           </Key>
-          <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RID" Type="int" Nullable="false" />
           <Property Name="RName" Type="varchar" MaxLength="50" />
-          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" />
           <Property Name="remark" Type="varchar" MaxLength="50" />
           <Property Name="state" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
@@ -331,6 +337,7 @@
             <PropertyRef Name="rukuID" />
           </Key>
           <Property Name="rukuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rid" Type="int" />
           <Property Name="rukuTypeID" Type="int" />
           <Property Name="gysID" Type="int" />
           <Property Name="cpID" Type="varchar" MaxLength="50" />
@@ -352,19 +359,24 @@
           <Property Name="rukuTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="rukuName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“NewHope4.dbo.storage”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="rukuZT">
+          <Key>
+            <PropertyRef Name="rzID" />
+          </Key>
+          <Property Name="rzID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rzName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="storage">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KID" Type="int" />
+          <Property Name="kid" Type="int" />
           <Property Name="KName" Type="varchar" MaxLength="50" />
           <Property Name="WID" Type="int" />
           <Property Name="KuTypeID" Type="int" />
           <Property Name="forbidden" Type="varchar" MaxLength="50" />
-          <Property Name="default" Type="varchar" MaxLength="50" />
+          <Property Name="moren" Type="varchar" MaxLength="50" />
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="state" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
@@ -601,15 +613,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
-          <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
-          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+        <Association Name="FK_chuku_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="dizhi">
-              <PropertyRef Name="dizhiID" />
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
             </Principal>
-            <Dependent Role="customer">
-              <PropertyRef Name="dizhiID" />
+            <Dependent Role="chuku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CKxiang_chukuType">
+          <End Role="chukuType" Type="Self.chukuType" Multiplicity="0..1" />
+          <End Role="CKxiang" Type="Self.CKxiang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chukuType">
+              <PropertyRef Name="chukuTypeID" />
+            </Principal>
+            <Dependent Role="CKxiang">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dizhi_dizhi">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="dizhi" Type="Self.dizhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="dizhi">
+              <PropertyRef Name="KehuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -877,6 +913,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ruku_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STORAGE_REFERENCE_KUTYPE">
           <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
           <End Role="storage" Type="Self.storage" Multiplicity="*" />
@@ -1050,6 +1098,8 @@
           <EntitySet Name="roleType" EntityType="Self.roleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ruku" EntityType="Self.ruku" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rukuType" EntityType="Self.rukuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rukuZT" EntityType="Self.rukuZT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="storage" EntityType="Self.storage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuo" EntityType="Self.tuihuo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" Schema="dbo" store:Type="Tables" />
@@ -1058,21 +1108,6 @@
           <EntitySet Name="yiku" EntityType="Self.yiku" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="yikuType" EntityType="Self.yikuType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="yikuxq" EntityType="Self.yikuxq" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="storage" EntityType="Self.storage" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [storage].[TID] AS [TID], 
-    [storage].[KID] AS [KID], 
-    [storage].[KName] AS [KName], 
-    [storage].[WID] AS [WID], 
-    [storage].[KuTypeID] AS [KuTypeID], 
-    [storage].[forbidden] AS [forbidden], 
-    [storage].[default] AS [default], 
-    [storage].[CreationDate] AS [CreationDate], 
-    [storage].[state] AS [state], 
-    [storage].[by1] AS [by1], 
-    [storage].[by2] AS [by2]
-    FROM [dbo].[storage] AS [storage]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_ADMIN_REFERENCE_DEPARTME" Association="Self.FK_ADMIN_REFERENCE_DEPARTME">
             <End Role="department" EntitySet="department" />
             <End Role="Admin" EntitySet="Admin" />
@@ -1121,9 +1156,17 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
-            <End Role="dizhi" EntitySet="dizhi" />
+          <AssociationSet Name="FK_chuku_rukuZT" Association="Self.FK_chuku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CKxiang_chukuType" Association="Self.FK_CKxiang_chukuType">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="CKxiang" EntitySet="CKxiang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dizhi_dizhi" Association="Self.FK_dizhi_dizhi">
             <End Role="customer" EntitySet="customer" />
+            <End Role="dizhi" EntitySet="dizhi" />
           </AssociationSet>
           <AssociationSet Name="FK_GYSGUANL_REFERENCE_GYSTYPE" Association="Self.FK_GYSGUANL_REFERENCE_GYSTYPE">
             <End Role="gystype" EntitySet="gystype" />
@@ -1213,6 +1256,10 @@
             <End Role="rukuType" EntitySet="rukuType" />
             <End Role="ruku" EntitySet="ruku" />
           </AssociationSet>
+          <AssociationSet Name="FK_ruku_rukuZT" Association="Self.FK_ruku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
           <AssociationSet Name="FK_STORAGE_REFERENCE_KUTYPE" Association="Self.FK_STORAGE_REFERENCE_KUTYPE">
             <End Role="KuType" EntitySet="KuType" />
             <End Role="storage" EntitySet="storage" />
@@ -1266,233 +1313,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="NewHope4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="NewHope4Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admin" EntityType="NewHope4Model.Admin" />
-          <EntitySet Name="baosun" EntityType="NewHope4Model.baosun" />
-          <EntitySet Name="baosunType" EntityType="NewHope4Model.baosunType" />
-          <EntitySet Name="BSxiang" EntityType="NewHope4Model.BSxiang" />
-          <EntitySet Name="chuku" EntityType="NewHope4Model.chuku" />
-          <EntitySet Name="chukuType" EntityType="NewHope4Model.chukuType" />
-          <EntitySet Name="CKxiang" EntityType="NewHope4Model.CKxiang" />
-          <EntitySet Name="customer" EntityType="NewHope4Model.customer" />
-          <EntitySet Name="department" EntityType="NewHope4Model.department" />
-          <EntitySet Name="dizhi" EntityType="NewHope4Model.dizhi" />
-          <EntitySet Name="gysguanli" EntityType="NewHope4Model.gysguanli" />
-          <EntitySet Name="gystype" EntityType="NewHope4Model.gystype" />
-          <EntitySet Name="jurisdiction" EntityType="NewHope4Model.jurisdiction" />
-          <EntitySet Name="KuType" EntityType="NewHope4Model.KuType" />
-          <EntitySet Name="measurement" EntityType="NewHope4Model.measurement" />
-          <EntitySet Name="menu" EntityType="NewHope4Model.menu" />
-          <EntitySet Name="MenuType" EntityType="NewHope4Model.MenuType" />
-          <EntitySet Name="panDian" EntityType="NewHope4Model.panDian" />
-          <EntitySet Name="pandianType" EntityType="NewHope4Model.pandianType" />
-          <EntitySet Name="pandianxq" EntityType="NewHope4Model.pandianxq" />
-          <EntitySet Name="Parentmenu" EntityType="NewHope4Model.Parentmenu" />
-          <EntitySet Name="productguanli" EntityType="NewHope4Model.productguanli" />
-          <EntitySet Name="productType" EntityType="NewHope4Model.productType" />
-          <EntitySet Name="RKxiang" EntityType="NewHope4Model.RKxiang" />
-          <EntitySet Name="role" EntityType="NewHope4Model.role" />
-          <EntitySet Name="roleType" EntityType="NewHope4Model.roleType" />
-          <EntitySet Name="ruku" EntityType="NewHope4Model.ruku" />
-          <EntitySet Name="rukuType" EntityType="NewHope4Model.rukuType" />
-          <EntitySet Name="sysdiagrams" EntityType="NewHope4Model.sysdiagrams" />
-          <EntitySet Name="tuihuo" EntityType="NewHope4Model.tuihuo" />
-          <EntitySet Name="tuihuoType" EntityType="NewHope4Model.tuihuoType" />
-          <EntitySet Name="tuihuoxq" EntityType="NewHope4Model.tuihuoxq" />
-          <EntitySet Name="warehouse" EntityType="NewHope4Model.warehouse" />
-          <EntitySet Name="yiku" EntityType="NewHope4Model.yiku" />
-          <EntitySet Name="yikuType" EntityType="NewHope4Model.yikuType" />
-          <EntitySet Name="yikuxq" EntityType="NewHope4Model.yikuxq" />
-          <EntitySet Name="storage" EntityType="NewHope4Model.storage" />
-          <AssociationSet Name="FK_ADMIN_REFERENCE_DEPARTME" Association="NewHope4Model.FK_ADMIN_REFERENCE_DEPARTME">
-            <End Role="department" EntitySet="department" />
-            <End Role="Admin" EntitySet="Admin" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLE" Association="NewHope4Model.FK_ADMIN_REFERENCE_ROLE">
-            <End Role="role" EntitySet="role" />
-            <End Role="Admin" EntitySet="Admin" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLETYPE" Association="NewHope4Model.FK_ADMIN_REFERENCE_ROLETYPE">
-            <End Role="roleType" EntitySet="roleType" />
-            <End Role="Admin" EntitySet="Admin" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BAOSUN_REFERENCE_ADMIN" Association="NewHope4Model.FK_BAOSUN_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="baosun" EntitySet="baosun" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CHUKU_REFERENCE_ADMIN" Association="NewHope4Model.FK_CHUKU_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="chuku" EntitySet="chuku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PANDIAN_REFERENCE_ADMIN" Association="NewHope4Model.FK_PANDIAN_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="panDian" EntitySet="panDian" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTT_REFERENCE_ADMIN" Association="NewHope4Model.FK_PRODUCTT_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="productType" EntitySet="productType" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RUKU_REFERENCE_ADMIN" Association="NewHope4Model.FK_RUKU_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="ruku" EntitySet="ruku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TUIHUO_REFERENCE_ADMIN" Association="NewHope4Model.FK_TUIHUO_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="tuihuo" EntitySet="tuihuo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_YIKU_REFERENCE_ADMIN" Association="NewHope4Model.FK_YIKU_REFERENCE_ADMIN">
-            <End Role="Admin" EntitySet="Admin" />
-            <End Role="yiku" EntitySet="yiku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BAOSUN_REFERENCE_BAOSUNTY" Association="NewHope4Model.FK_BAOSUN_REFERENCE_BAOSUNTY">
-            <End Role="baosunType" EntitySet="baosunType" />
-            <End Role="baosun" EntitySet="baosun" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BAOSUN_REFERENCE_BSXIANG" Association="NewHope4Model.FK_BAOSUN_REFERENCE_BSXIANG">
-            <End Role="BSxiang" EntitySet="BSxiang" />
-            <End Role="baosun" EntitySet="baosun" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BAOSUN_REFERENCE_PRODUCTG" Association="NewHope4Model.FK_BAOSUN_REFERENCE_PRODUCTG">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="baosun" EntitySet="baosun" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CHUKU_REFERENCE_CHUKUTYP" Association="NewHope4Model.FK_CHUKU_REFERENCE_CHUKUTYP">
-            <End Role="chukuType" EntitySet="chukuType" />
-            <End Role="chuku" EntitySet="chuku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CHUKU_REFERENCE_CKXIANG" Association="NewHope4Model.FK_CHUKU_REFERENCE_CKXIANG">
-            <End Role="CKxiang" EntitySet="CKxiang" />
-            <End Role="chuku" EntitySet="chuku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CHUKU_REFERENCE_CUSTOMER" Association="NewHope4Model.FK_CHUKU_REFERENCE_CUSTOMER">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="chuku" EntitySet="chuku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CHUKU_REFERENCE_PRODUCTG" Association="NewHope4Model.FK_CHUKU_REFERENCE_PRODUCTG">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="chuku" EntitySet="chuku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="NewHope4Model.FK_CUSTOMER_REFERENCE_DIZHI">
-            <End Role="dizhi" EntitySet="dizhi" />
-            <End Role="customer" EntitySet="customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PANDIANX_REFERENCE_CUSTOMER" Association="NewHope4Model.FK_PANDIANX_REFERENCE_CUSTOMER">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="pandianxq" EntitySet="pandianxq" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTG_REFERENCE_CUSTOMER" Association="NewHope4Model.FK_PRODUCTG_REFERENCE_CUSTOMER">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="productguanli" EntitySet="productguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER" Association="NewHope4Model.FK_TUIHUOXQ_REFERENCE_CUSTOMER">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
-          </AssociationSet>
-          <AssociationSet Name="FK_YIKUXQ_REFERENCE_CUSTOMER" Association="NewHope4Model.FK_YIKUXQ_REFERENCE_CUSTOMER">
-            <End Role="customer" EntitySet="customer" />
-            <End Role="yikuxq" EntitySet="yikuxq" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GYSGUANL_REFERENCE_GYSTYPE" Association="NewHope4Model.FK_GYSGUANL_REFERENCE_GYSTYPE">
-            <End Role="gystype" EntitySet="gystype" />
-            <End Role="gysguanli" EntitySet="gysguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RUKU_REFERENCE_GYSGUANL" Association="NewHope4Model.FK_RUKU_REFERENCE_GYSGUANL">
-            <End Role="gysguanli" EntitySet="gysguanli" />
-            <End Role="ruku" EntitySet="ruku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JURISDIC_REFERENCE_MENU" Association="NewHope4Model.FK_JURISDIC_REFERENCE_MENU">
-            <End Role="menu" EntitySet="menu" />
-            <End Role="jurisdiction" EntitySet="jurisdiction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_JURISDIC_REFERENCE_ROLE" Association="NewHope4Model.FK_JURISDIC_REFERENCE_ROLE">
-            <End Role="role" EntitySet="role" />
-            <End Role="jurisdiction" EntitySet="jurisdiction" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTG_REFERENCE_KUTYPE" Association="NewHope4Model.FK_PRODUCTG_REFERENCE_KUTYPE">
-            <End Role="KuType" EntitySet="KuType" />
-            <End Role="productguanli" EntitySet="productguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STORAGE_REFERENCE_KUTYPE" Association="NewHope4Model.FK_STORAGE_REFERENCE_KUTYPE">
-            <End Role="KuType" EntitySet="KuType" />
-            <End Role="storage" EntitySet="storage" />
-          </AssociationSet>
-          <AssociationSet Name="FK_productguanli_measurement" Association="NewHope4Model.FK_productguanli_measurement">
-            <End Role="measurement" EntitySet="measurement" />
-            <End Role="productguanli" EntitySet="productguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_menu_MenuType" Association="NewHope4Model.FK_menu_MenuType">
-            <End Role="MenuType" EntitySet="MenuType" />
-            <End Role="menu" EntitySet="menu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MENU_REFERENCE_PARENTME" Association="NewHope4Model.FK_MENU_REFERENCE_PARENTME">
-            <End Role="Parentmenu" EntitySet="Parentmenu" />
-            <End Role="menu" EntitySet="menu" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PANDIAN_REFERENCE_PANDIANT" Association="NewHope4Model.FK_PANDIAN_REFERENCE_PANDIANT">
-            <End Role="pandianType" EntitySet="pandianType" />
-            <End Role="panDian" EntitySet="panDian" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PANDIAN_REFERENCE_PRODUCTG" Association="NewHope4Model.FK_PANDIAN_REFERENCE_PRODUCTG">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="panDian" EntitySet="panDian" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PANDIANX_REFERENCE_PANDIANT" Association="NewHope4Model.FK_PANDIANX_REFERENCE_PANDIANT">
-            <End Role="pandianType" EntitySet="pandianType" />
-            <End Role="pandianxq" EntitySet="pandianxq" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTG_REFERENCE_PRODUCTT" Association="NewHope4Model.FK_PRODUCTG_REFERENCE_PRODUCTT">
-            <End Role="productType" EntitySet="productType" />
-            <End Role="productguanli" EntitySet="productguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTG_REFERENCE_WAREHOUS" Association="NewHope4Model.FK_PRODUCTG_REFERENCE_WAREHOUS">
-            <End Role="warehouse" EntitySet="warehouse" />
-            <End Role="productguanli" EntitySet="productguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_productguanli_productguanli" Association="NewHope4Model.FK_productguanli_productguanli">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="productguanli1" EntitySet="productguanli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RUKU_REFERENCE_PRODUCTG" Association="NewHope4Model.FK_RUKU_REFERENCE_PRODUCTG">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="ruku" EntitySet="ruku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TUIHUO_REFERENCE_PRODUCTG" Association="NewHope4Model.FK_TUIHUO_REFERENCE_PRODUCTG">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="tuihuo" EntitySet="tuihuo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_YIKU_REFERENCE_PRODUCTG" Association="NewHope4Model.FK_YIKU_REFERENCE_PRODUCTG">
-            <End Role="productguanli" EntitySet="productguanli" />
-            <End Role="yiku" EntitySet="yiku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RUKU_REFERENCE_RKXIANG" Association="NewHope4Model.FK_RUKU_REFERENCE_RKXIANG">
-            <End Role="RKxiang" EntitySet="RKxiang" />
-            <End Role="ruku" EntitySet="ruku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RUKU_REFERENCE_RUKUTYPE" Association="NewHope4Model.FK_RUKU_REFERENCE_RUKUTYPE">
-            <End Role="rukuType" EntitySet="rukuType" />
-            <End Role="ruku" EntitySet="ruku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TUIHUO_REFERENCE_TUIHUOTY" Association="NewHope4Model.FK_TUIHUO_REFERENCE_TUIHUOTY">
-            <End Role="tuihuoType" EntitySet="tuihuoType" />
-            <End Role="tuihuo" EntitySet="tuihuo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY" Association="NewHope4Model.FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
-            <End Role="tuihuoType" EntitySet="tuihuoType" />
-            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
-          </AssociationSet>
-          <AssociationSet Name="FK_STORAGE_REFERENCE_WAREHOUS" Association="NewHope4Model.FK_STORAGE_REFERENCE_WAREHOUS">
-            <End Role="warehouse" EntitySet="warehouse" />
-            <End Role="storage" EntitySet="storage" />
-          </AssociationSet>
-          <AssociationSet Name="FK_YIKU_REFERENCE_YIKUTYPE" Association="NewHope4Model.FK_YIKU_REFERENCE_YIKUTYPE">
-            <End Role="yikuType" EntitySet="yikuType" />
-            <End Role="yiku" EntitySet="yiku" />
-          </AssociationSet>
-          <AssociationSet Name="FK_YIKUXQ_REFERENCE_YIKUTYPE" Association="NewHope4Model.FK_YIKUXQ_REFERENCE_YIKUTYPE">
-            <End Role="yikuType" EntitySet="yikuType" />
-            <End Role="yikuxq" EntitySet="yikuxq" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="UserID" />
@@ -1510,16 +1330,16 @@
           <Property Name="state" Type="Int32" />
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="department" Relationship="NewHope4Model.FK_ADMIN_REFERENCE_DEPARTME" FromRole="Admin" ToRole="department" />
-          <NavigationProperty Name="role" Relationship="NewHope4Model.FK_ADMIN_REFERENCE_ROLE" FromRole="Admin" ToRole="role" />
-          <NavigationProperty Name="roleType" Relationship="NewHope4Model.FK_ADMIN_REFERENCE_ROLETYPE" FromRole="Admin" ToRole="roleType" />
-          <NavigationProperty Name="baosun" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_ADMIN" FromRole="Admin" ToRole="baosun" />
-          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="chuku" />
-          <NavigationProperty Name="panDian" Relationship="NewHope4Model.FK_PANDIAN_REFERENCE_ADMIN" FromRole="Admin" ToRole="panDian" />
-          <NavigationProperty Name="productType" Relationship="NewHope4Model.FK_PRODUCTT_REFERENCE_ADMIN" FromRole="Admin" ToRole="productType" />
-          <NavigationProperty Name="ruku" Relationship="NewHope4Model.FK_RUKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="ruku" />
-          <NavigationProperty Name="tuihuo" Relationship="NewHope4Model.FK_TUIHUO_REFERENCE_ADMIN" FromRole="Admin" ToRole="tuihuo" />
-          <NavigationProperty Name="yiku" Relationship="NewHope4Model.FK_YIKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="yiku" />
+          <NavigationProperty Name="department" Relationship="Self.FK_ADMIN_REFERENCE_DEPARTME" FromRole="Admin" ToRole="department" />
+          <NavigationProperty Name="role" Relationship="Self.FK_ADMIN_REFERENCE_ROLE" FromRole="Admin" ToRole="role" />
+          <NavigationProperty Name="roleType" Relationship="Self.FK_ADMIN_REFERENCE_ROLETYPE" FromRole="Admin" ToRole="roleType" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_ADMIN" FromRole="Admin" ToRole="baosun" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="chuku" />
+          <NavigationProperty Name="panDian" Relationship="Self.FK_PANDIAN_REFERENCE_ADMIN" FromRole="Admin" ToRole="panDian" />
+          <NavigationProperty Name="productType" Relationship="Self.FK_PRODUCTT_REFERENCE_ADMIN" FromRole="Admin" ToRole="productType" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="ruku" />
+          <NavigationProperty Name="tuihuo" Relationship="Self.FK_TUIHUO_REFERENCE_ADMIN" FromRole="Admin" ToRole="tuihuo" />
+          <NavigationProperty Name="yiku" Relationship="Self.FK_YIKU_REFERENCE_ADMIN" FromRole="Admin" ToRole="yiku" />
         </EntityType>
         <EntityType Name="baosun">
           <Key>
@@ -1538,10 +1358,10 @@
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_ADMIN" FromRole="baosun" ToRole="Admin" />
-          <NavigationProperty Name="baosunType" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosun" ToRole="baosunType" />
-          <NavigationProperty Name="BSxiang" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="baosun" ToRole="BSxiang" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="baosun" ToRole="productguanli" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_BAOSUN_REFERENCE_ADMIN" FromRole="baosun" ToRole="Admin" />
+          <NavigationProperty Name="baosunType" Relationship="Self.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosun" ToRole="baosunType" />
+          <NavigationProperty Name="BSxiang" Relationship="Self.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="baosun" ToRole="BSxiang" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="baosun" ToRole="productguanli" />
         </EntityType>
         <EntityType Name="baosunType">
           <Key>
@@ -1549,7 +1369,7 @@
           </Key>
           <Property Name="baosunTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="baosunTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="baosun" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosunType" ToRole="baosun" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosunType" ToRole="baosun" />
         </EntityType>
         <EntityType Name="BSxiang">
           <Key>
@@ -1566,7 +1386,8 @@
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="baosun" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="BSxiang" ToRole="baosun" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="BSxiang" ToRole="baosun" />
+          <Property Name="zt" Type="Int32" />
         </EntityType>
         <EntityType Name="chuku">
           <Key>
@@ -1587,11 +1408,12 @@
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_ADMIN" FromRole="chuku" ToRole="Admin" />
-          <NavigationProperty Name="chukuType" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chuku" ToRole="chukuType" />
-          <NavigationProperty Name="CKxiang" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_CKXIANG" FromRole="chuku" ToRole="CKxiang" />
-          <NavigationProperty Name="customer" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="chuku" ToRole="customer" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="chuku" ToRole="productguanli" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_CHUKU_REFERENCE_ADMIN" FromRole="chuku" ToRole="Admin" />
+          <NavigationProperty Name="chukuType" Relationship="Self.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chuku" ToRole="chukuType" />
+          <NavigationProperty Name="CKxiang" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="chuku" ToRole="CKxiang" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="chuku" ToRole="customer" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="chuku" ToRole="productguanli" />
+          <NavigationProperty Name="rukuZT" Relationship="NewHope4Model.FK_chuku_rukuZT" FromRole="chuku" ToRole="rukuZT" />
         </EntityType>
         <EntityType Name="chukuType">
           <Key>
@@ -1599,7 +1421,8 @@
           </Key>
           <Property Name="chukuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="chukuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chukuType" ToRole="chuku" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chukuType" ToRole="chuku" />
+          <NavigationProperty Name="CKxiang" Relationship="NewHope4Model.FK_CKxiang_chukuType" FromRole="chukuType" ToRole="CKxiang" />
         </EntityType>
         <EntityType Name="CKxiang">
           <Key>
@@ -1613,11 +1436,12 @@
           <Property Name="ckpici" Type="Int32" />
           <Property Name="Tid" Type="Int32" />
           <Property Name="chuSum" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_CKXIANG" FromRole="CKxiang" ToRole="chuku" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="CKxiang" ToRole="chuku" />
+          <Property Name="zt" Type="Int32" />
+          <NavigationProperty Name="chukuType" Relationship="NewHope4Model.FK_CKxiang_chukuType" FromRole="CKxiang" ToRole="chukuType" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -1629,23 +1453,24 @@
           <Property Name="faxes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <Property Name="dizhiID" Type="Int32" />
-          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="customer" ToRole="chuku" />
-          <NavigationProperty Name="dizhi" Relationship="NewHope4Model.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="customer" ToRole="dizhi" />
-          <NavigationProperty Name="pandianxq" Relationship="NewHope4Model.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="customer" ToRole="pandianxq" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
-          <NavigationProperty Name="tuihuoxq" Relationship="NewHope4Model.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
-          <NavigationProperty Name="yikuxq" Relationship="NewHope4Model.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="yikuxq" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="beiyong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="customer" ToRole="chuku" />
+          <NavigationProperty Name="dizhi" Relationship="Self.FK_dizhi_dizhi" FromRole="customer" ToRole="dizhi" />
+          <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="customer" ToRole="pandianxq" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
+          <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
+          <NavigationProperty Name="yikuxq" Relationship="Self.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="yikuxq" />
         </EntityType>
         <EntityType Name="department">
           <Key>
             <PropertyRef Name="Did" />
           </Key>
-          <Property Name="Did" Type="Int32" Nullable="false" />
+          <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_ADMIN_REFERENCE_DEPARTME" FromRole="department" ToRole="Admin" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ADMIN_REFERENCE_DEPARTME" FromRole="department" ToRole="Admin" />
         </EntityType>
         <EntityType Name="dizhi">
           <Key>
@@ -1656,7 +1481,8 @@
           <Property Name="linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="NewHope4Model.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="dizhi" ToRole="customer" />
+          <Property Name="KehuID" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_dizhi_dizhi" FromRole="dizhi" ToRole="customer" />
         </EntityType>
         <EntityType Name="gysguanli">
           <Key>
@@ -1674,8 +1500,8 @@
           <Property Name="state" Type="Int32" />
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="gystype" Relationship="NewHope4Model.FK_GYSGUANL_REFERENCE_GYSTYPE" FromRole="gysguanli" ToRole="gystype" />
-          <NavigationProperty Name="ruku" Relationship="NewHope4Model.FK_RUKU_REFERENCE_GYSGUANL" FromRole="gysguanli" ToRole="ruku" />
+          <NavigationProperty Name="gystype" Relationship="Self.FK_GYSGUANL_REFERENCE_GYSTYPE" FromRole="gysguanli" ToRole="gystype" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_GYSGUANL" FromRole="gysguanli" ToRole="ruku" />
         </EntityType>
         <EntityType Name="gystype">
           <Key>
@@ -1684,7 +1510,7 @@
           <Property Name="gystypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="gystypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="gysguanli" Relationship="NewHope4Model.FK_GYSGUANL_REFERENCE_GYSTYPE" FromRole="gystype" ToRole="gysguanli" />
+          <NavigationProperty Name="gysguanli" Relationship="Self.FK_GYSGUANL_REFERENCE_GYSTYPE" FromRole="gystype" ToRole="gysguanli" />
         </EntityType>
         <EntityType Name="jurisdiction">
           <Key>
@@ -1694,8 +1520,8 @@
           <Property Name="RID" Type="Int32" />
           <Property Name="MID" Type="Int32" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="menu" Relationship="NewHope4Model.FK_JURISDIC_REFERENCE_MENU" FromRole="jurisdiction" ToRole="menu" />
-          <NavigationProperty Name="role" Relationship="NewHope4Model.FK_JURISDIC_REFERENCE_ROLE" FromRole="jurisdiction" ToRole="role" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_JURISDIC_REFERENCE_MENU" FromRole="jurisdiction" ToRole="menu" />
+          <NavigationProperty Name="role" Relationship="Self.FK_JURISDIC_REFERENCE_ROLE" FromRole="jurisdiction" ToRole="role" />
         </EntityType>
         <EntityType Name="KuType">
           <Key>
@@ -1705,19 +1531,19 @@
           <Property Name="KuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_KUTYPE" FromRole="KuType" ToRole="productguanli" />
-          <NavigationProperty Name="storage" Relationship="NewHope4Model.FK_STORAGE_REFERENCE_KUTYPE" FromRole="KuType" ToRole="storage" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_KUTYPE" FromRole="KuType" ToRole="productguanli" />
+          <NavigationProperty Name="storage" Relationship="Self.FK_STORAGE_REFERENCE_KUTYPE" FromRole="KuType" ToRole="storage" />
         </EntityType>
         <EntityType Name="measurement">
           <Key>
             <PropertyRef Name="MID" />
           </Key>
-          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MID" Type="Int32" Nullable="false" />
           <Property Name="MName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -1732,9 +1558,9 @@
           <Property Name="path" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="jurisdiction" Relationship="NewHope4Model.FK_JURISDIC_REFERENCE_MENU" FromRole="menu" ToRole="jurisdiction" />
-          <NavigationProperty Name="MenuType" Relationship="NewHope4Model.FK_menu_MenuType" FromRole="menu" ToRole="MenuType" />
-          <NavigationProperty Name="Parentmenu" Relationship="NewHope4Model.FK_MENU_REFERENCE_PARENTME" FromRole="menu" ToRole="Parentmenu" />
+          <NavigationProperty Name="jurisdiction" Relationship="Self.FK_JURISDIC_REFERENCE_MENU" FromRole="menu" ToRole="jurisdiction" />
+          <NavigationProperty Name="MenuType" Relationship="Self.FK_menu_MenuType" FromRole="menu" ToRole="MenuType" />
+          <NavigationProperty Name="Parentmenu" Relationship="Self.FK_MENU_REFERENCE_PARENTME" FromRole="menu" ToRole="Parentmenu" />
         </EntityType>
         <EntityType Name="MenuType">
           <Key>
@@ -1743,7 +1569,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="menu" Relationship="NewHope4Model.FK_menu_MenuType" FromRole="MenuType" ToRole="menu" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_menu_MenuType" FromRole="MenuType" ToRole="menu" />
         </EntityType>
         <EntityType Name="panDian">
           <Key>
@@ -1756,9 +1582,9 @@
           <Property Name="caozuofs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_PANDIAN_REFERENCE_ADMIN" FromRole="panDian" ToRole="Admin" />
-          <NavigationProperty Name="pandianType" Relationship="NewHope4Model.FK_PANDIAN_REFERENCE_PANDIANT" FromRole="panDian" ToRole="pandianType" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_PANDIAN_REFERENCE_PRODUCTG" FromRole="panDian" ToRole="productguanli" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_PANDIAN_REFERENCE_ADMIN" FromRole="panDian" ToRole="Admin" />
+          <NavigationProperty Name="pandianType" Relationship="Self.FK_PANDIAN_REFERENCE_PANDIANT" FromRole="panDian" ToRole="pandianType" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PANDIAN_REFERENCE_PRODUCTG" FromRole="panDian" ToRole="productguanli" />
         </EntityType>
         <EntityType Name="pandianType">
           <Key>
@@ -1767,8 +1593,8 @@
           <Property Name="pandianTypeID" Type="Int32" Nullable="false" />
           <Property Name="pandianTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="panDian" Relationship="NewHope4Model.FK_PANDIAN_REFERENCE_PANDIANT" FromRole="pandianType" ToRole="panDian" />
-          <NavigationProperty Name="pandianxq" Relationship="NewHope4Model.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianType" ToRole="pandianxq" />
+          <NavigationProperty Name="panDian" Relationship="Self.FK_PANDIAN_REFERENCE_PANDIANT" FromRole="pandianType" ToRole="panDian" />
+          <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianType" ToRole="pandianxq" />
         </EntityType>
         <EntityType Name="pandianxq">
           <Key>
@@ -1783,8 +1609,11 @@
           <Property Name="chanpinpici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pandianTypeID" Type="Int32" />
           <Property Name="kehuID" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="NewHope4Model.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="pandianxq" ToRole="customer" />
-          <NavigationProperty Name="pandianType" Relationship="NewHope4Model.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianxq" ToRole="pandianType" />
+          <Property Name="zt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="pandianxq" ToRole="customer" />
+          <NavigationProperty Name="pandianType" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianxq" ToRole="pandianType" />
         </EntityType>
         <EntityType Name="Parentmenu">
           <Key>
@@ -1793,14 +1622,14 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="menu" Relationship="NewHope4Model.FK_MENU_REFERENCE_PARENTME" FromRole="Parentmenu" ToRole="menu" />
+          <NavigationProperty Name="menu" Relationship="Self.FK_MENU_REFERENCE_PARENTME" FromRole="Parentmenu" ToRole="menu" />
         </EntityType>
         <EntityType Name="productguanli">
           <Key>
             <PropertyRef Name="cpID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="cpID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cpID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="cpName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="upper" Type="Int32" />
           <Property Name="floor" Type="Int32" />
@@ -1814,21 +1643,21 @@
           <Property Name="XID" Type="Int32" />
           <Property Name="defaultstorage" Type="Int32" />
           <Property Name="state" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="kucun" Type="Int32" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="baosun" Relationship="NewHope4Model.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="baosun" />
-          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="chuku" />
-          <NavigationProperty Name="customer" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="productguanli" ToRole="customer" />
-          <NavigationProperty Name="KuType" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_KUTYPE" FromRole="productguanli" ToRole="KuType" />
-          <NavigationProperty Name="measurement" Relationship="NewHope4Model.FK_productguanli_measurement" FromRole="productguanli" ToRole="measurement" />
-          <NavigationProperty Name="panDian" Relationship="NewHope4Model.FK_PANDIAN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="panDian" />
-          <NavigationProperty Name="productType" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_PRODUCTT" FromRole="productguanli" ToRole="productType" />
-          <NavigationProperty Name="warehouse" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_WAREHOUS" FromRole="productguanli" ToRole="warehouse" />
-          <NavigationProperty Name="productguanli1" Relationship="NewHope4Model.FK_productguanli_productguanli" FromRole="productguanli" ToRole="productguanli1" />
-          <NavigationProperty Name="productguanli2" Relationship="NewHope4Model.FK_productguanli_productguanli" FromRole="productguanli1" ToRole="productguanli" />
-          <NavigationProperty Name="ruku" Relationship="NewHope4Model.FK_RUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="ruku" />
-          <NavigationProperty Name="tuihuo" Relationship="NewHope4Model.FK_TUIHUO_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="tuihuo" />
-          <NavigationProperty Name="yiku" Relationship="NewHope4Model.FK_YIKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="yiku" />
+          <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="baosun" />
+          <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="chuku" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="productguanli" ToRole="customer" />
+          <NavigationProperty Name="KuType" Relationship="Self.FK_PRODUCTG_REFERENCE_KUTYPE" FromRole="productguanli" ToRole="KuType" />
+          <NavigationProperty Name="measurement" Relationship="Self.FK_productguanli_measurement" FromRole="productguanli" ToRole="measurement" />
+          <NavigationProperty Name="panDian" Relationship="Self.FK_PANDIAN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="panDian" />
+          <NavigationProperty Name="productType" Relationship="Self.FK_PRODUCTG_REFERENCE_PRODUCTT" FromRole="productguanli" ToRole="productType" />
+          <NavigationProperty Name="warehouse" Relationship="Self.FK_PRODUCTG_REFERENCE_WAREHOUS" FromRole="productguanli" ToRole="warehouse" />
+          <NavigationProperty Name="productguanli1" Relationship="Self.FK_productguanli_productguanli" FromRole="productguanli" ToRole="productguanli1" />
+          <NavigationProperty Name="productguanli2" Relationship="Self.FK_productguanli_productguanli" FromRole="productguanli1" ToRole="productguanli" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="ruku" />
+          <NavigationProperty Name="tuihuo" Relationship="Self.FK_TUIHUO_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="tuihuo" />
+          <NavigationProperty Name="yiku" Relationship="Self.FK_YIKU_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="yiku" />
         </EntityType>
         <EntityType Name="productType">
           <Key>
@@ -1842,8 +1671,8 @@
           <Property Name="state" Type="Int32" />
           <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_PRODUCTT_REFERENCE_ADMIN" FromRole="productType" ToRole="Admin" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_PRODUCTT" FromRole="productType" ToRole="productguanli" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_PRODUCTT_REFERENCE_ADMIN" FromRole="productType" ToRole="Admin" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_PRODUCTT" FromRole="productType" ToRole="productguanli" />
         </EntityType>
         <EntityType Name="RKxiang">
           <Key>
@@ -1858,8 +1687,8 @@
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ruku" Relationship="NewHope4Model.FK_RUKU_REFERENCE_RKXIANG" FromRole="RKxiang" ToRole="ruku" />
+          <Property Name="by4" Type="Int32" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RKXIANG" FromRole="RKxiang" ToRole="ruku" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -1867,13 +1696,13 @@
           </Key>
           <Property Name="RID" Type="Int32" Nullable="false" />
           <Property Name="RName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreationDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="remark" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_ADMIN_REFERENCE_ROLE" FromRole="role" ToRole="Admin" />
-          <NavigationProperty Name="jurisdiction" Relationship="NewHope4Model.FK_JURISDIC_REFERENCE_ROLE" FromRole="role" ToRole="jurisdiction" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ADMIN_REFERENCE_ROLE" FromRole="role" ToRole="Admin" />
+          <NavigationProperty Name="jurisdiction" Relationship="Self.FK_JURISDIC_REFERENCE_ROLE" FromRole="role" ToRole="jurisdiction" />
         </EntityType>
         <EntityType Name="roleType">
           <Key>
@@ -1882,13 +1711,14 @@
           <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_ADMIN_REFERENCE_ROLETYPE" FromRole="roleType" ToRole="Admin" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_ADMIN_REFERENCE_ROLETYPE" FromRole="roleType" ToRole="Admin" />
         </EntityType>
         <EntityType Name="ruku">
           <Key>
             <PropertyRef Name="rukuID" />
           </Key>
           <Property Name="rukuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rid" Type="Int32" />
           <Property Name="rukuTypeID" Type="Int32" />
           <Property Name="gysID" Type="Int32" />
           <Property Name="cpID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1902,11 +1732,12 @@
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_RUKU_REFERENCE_ADMIN" FromRole="ruku" ToRole="Admin" />
-          <NavigationProperty Name="gysguanli" Relationship="NewHope4Model.FK_RUKU_REFERENCE_GYSGUANL" FromRole="ruku" ToRole="gysguanli" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_RUKU_REFERENCE_PRODUCTG" FromRole="ruku" ToRole="productguanli" />
-          <NavigationProperty Name="RKxiang" Relationship="NewHope4Model.FK_RUKU_REFERENCE_RKXIANG" FromRole="ruku" ToRole="RKxiang" />
-          <NavigationProperty Name="rukuType" Relationship="NewHope4Model.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="ruku" ToRole="rukuType" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_RUKU_REFERENCE_ADMIN" FromRole="ruku" ToRole="Admin" />
+          <NavigationProperty Name="gysguanli" Relationship="Self.FK_RUKU_REFERENCE_GYSGUANL" FromRole="ruku" ToRole="gysguanli" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_RUKU_REFERENCE_PRODUCTG" FromRole="ruku" ToRole="productguanli" />
+          <NavigationProperty Name="RKxiang" Relationship="Self.FK_RUKU_REFERENCE_RKXIANG" FromRole="ruku" ToRole="RKxiang" />
+          <NavigationProperty Name="rukuType" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="ruku" ToRole="rukuType" />
+          <NavigationProperty Name="rukuZT" Relationship="Self.FK_ruku_rukuZT" FromRole="ruku" ToRole="rukuZT" />
         </EntityType>
         <EntityType Name="rukuType">
           <Key>
@@ -1914,13 +1745,40 @@
           </Key>
           <Property Name="rukuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="rukuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ruku" Relationship="NewHope4Model.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="rukuType" ToRole="ruku" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="rukuType" ToRole="ruku" />
+        </EntityType>
+        <EntityType Name="rukuZT">
+          <Key>
+            <PropertyRef Name="rzID" />
+          </Key>
+          <Property Name="rzID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rzName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_ruku_rukuZT" FromRole="rukuZT" ToRole="ruku" />
+          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_chuku_rukuZT" FromRole="rukuZT" ToRole="chuku" />
+        </EntityType>
+        <EntityType Name="storage">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kid" Type="Int32" />
+          <Property Name="KName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WID" Type="Int32" />
+          <Property Name="KuTypeID" Type="Int32" />
+          <Property Name="forbidden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="moren" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Int32" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KuType" Relationship="Self.FK_STORAGE_REFERENCE_KUTYPE" FromRole="storage" ToRole="KuType" />
+          <NavigationProperty Name="warehouse" Relationship="Self.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="storage" ToRole="warehouse" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -1937,9 +1795,9 @@
           <Property Name="UserID" Type="Int32" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_TUIHUO_REFERENCE_ADMIN" FromRole="tuihuo" ToRole="Admin" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_TUIHUO_REFERENCE_PRODUCTG" FromRole="tuihuo" ToRole="productguanli" />
-          <NavigationProperty Name="tuihuoType" Relationship="NewHope4Model.FK_TUIHUO_REFERENCE_TUIHUOTY" FromRole="tuihuo" ToRole="tuihuoType" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_TUIHUO_REFERENCE_ADMIN" FromRole="tuihuo" ToRole="Admin" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_TUIHUO_REFERENCE_PRODUCTG" FromRole="tuihuo" ToRole="productguanli" />
+          <NavigationProperty Name="tuihuoType" Relationship="Self.FK_TUIHUO_REFERENCE_TUIHUOTY" FromRole="tuihuo" ToRole="tuihuoType" />
         </EntityType>
         <EntityType Name="tuihuoType">
           <Key>
@@ -1948,8 +1806,8 @@
           <Property Name="tuihuoTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tuihuoTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="tuihuo" Relationship="NewHope4Model.FK_TUIHUO_REFERENCE_TUIHUOTY" FromRole="tuihuoType" ToRole="tuihuo" />
-          <NavigationProperty Name="tuihuoxq" Relationship="NewHope4Model.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" FromRole="tuihuoType" ToRole="tuihuoxq" />
+          <NavigationProperty Name="tuihuo" Relationship="Self.FK_TUIHUO_REFERENCE_TUIHUOTY" FromRole="tuihuoType" ToRole="tuihuo" />
+          <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" FromRole="tuihuoType" ToRole="tuihuoxq" />
         </EntityType>
         <EntityType Name="tuihuoxq">
           <Key>
@@ -1964,8 +1822,8 @@
           <Property Name="chanpinpici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tuihuoTypeID" Type="Int32" />
           <Property Name="kehuID" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="NewHope4Model.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="tuihuoxq" ToRole="customer" />
-          <NavigationProperty Name="tuihuoType" Relationship="NewHope4Model.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" FromRole="tuihuoxq" ToRole="tuihuoType" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="tuihuoxq" ToRole="customer" />
+          <NavigationProperty Name="tuihuoType" Relationship="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY" FromRole="tuihuoxq" ToRole="tuihuoType" />
         </EntityType>
         <EntityType Name="warehouse">
           <Key>
@@ -1975,8 +1833,8 @@
           <Property Name="WName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_PRODUCTG_REFERENCE_WAREHOUS" FromRole="warehouse" ToRole="productguanli" />
-          <NavigationProperty Name="storage" Relationship="NewHope4Model.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="warehouse" ToRole="storage" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_WAREHOUS" FromRole="warehouse" ToRole="productguanli" />
+          <NavigationProperty Name="storage" Relationship="Self.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="warehouse" ToRole="storage" />
         </EntityType>
         <EntityType Name="yiku">
           <Key>
@@ -1989,9 +1847,9 @@
           <Property Name="UserID" Type="Int32" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="Admin" Relationship="NewHope4Model.FK_YIKU_REFERENCE_ADMIN" FromRole="yiku" ToRole="Admin" />
-          <NavigationProperty Name="productguanli" Relationship="NewHope4Model.FK_YIKU_REFERENCE_PRODUCTG" FromRole="yiku" ToRole="productguanli" />
-          <NavigationProperty Name="yikuType" Relationship="NewHope4Model.FK_YIKU_REFERENCE_YIKUTYPE" FromRole="yiku" ToRole="yikuType" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_YIKU_REFERENCE_ADMIN" FromRole="yiku" ToRole="Admin" />
+          <NavigationProperty Name="productguanli" Relationship="Self.FK_YIKU_REFERENCE_PRODUCTG" FromRole="yiku" ToRole="productguanli" />
+          <NavigationProperty Name="yikuType" Relationship="Self.FK_YIKU_REFERENCE_YIKUTYPE" FromRole="yiku" ToRole="yikuType" />
         </EntityType>
         <EntityType Name="yikuType">
           <Key>
@@ -2000,8 +1858,8 @@
           <Property Name="yikuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="yikuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="yiku" Relationship="NewHope4Model.FK_YIKU_REFERENCE_YIKUTYPE" FromRole="yikuType" ToRole="yiku" />
-          <NavigationProperty Name="yikuxq" Relationship="NewHope4Model.FK_YIKUXQ_REFERENCE_YIKUTYPE" FromRole="yikuType" ToRole="yikuxq" />
+          <NavigationProperty Name="yiku" Relationship="Self.FK_YIKU_REFERENCE_YIKUTYPE" FromRole="yikuType" ToRole="yiku" />
+          <NavigationProperty Name="yikuxq" Relationship="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE" FromRole="yikuType" ToRole="yikuxq" />
         </EntityType>
         <EntityType Name="yikuxq">
           <Key>
@@ -2016,30 +1874,12 @@
           <Property Name="chanpinpici" Type="Int32" />
           <Property Name="yikuTypeID" Type="Int32" />
           <Property Name="kehuID" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="NewHope4Model.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="yikuxq" ToRole="customer" />
-          <NavigationProperty Name="yikuType" Relationship="NewHope4Model.FK_YIKUXQ_REFERENCE_YIKUTYPE" FromRole="yikuxq" ToRole="yikuType" />
-        </EntityType>
-        <EntityType Name="storage">
-          <Key>
-            <PropertyRef Name="TID" />
-          </Key>
-          <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KID" Type="Int32" />
-          <Property Name="KName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="WID" Type="Int32" />
-          <Property Name="KuTypeID" Type="Int32" />
-          <Property Name="forbidden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="default" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreationDate" Type="DateTime" Precision="3" />
-          <Property Name="state" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="KuType" Relationship="NewHope4Model.FK_STORAGE_REFERENCE_KUTYPE" FromRole="storage" ToRole="KuType" />
-          <NavigationProperty Name="warehouse" Relationship="NewHope4Model.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="storage" ToRole="warehouse" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="yikuxq" ToRole="customer" />
+          <NavigationProperty Name="yikuType" Relationship="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE" FromRole="yikuxq" ToRole="yikuType" />
         </EntityType>
         <Association Name="FK_ADMIN_REFERENCE_DEPARTME">
-          <End Type="NewHope4Model.department" Role="department" Multiplicity="0..1" />
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="*" />
+          <End Role="department" Type="Self.department" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="department">
               <PropertyRef Name="Did" />
@@ -2050,8 +1890,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADMIN_REFERENCE_ROLE">
-          <End Type="NewHope4Model.role" Role="role" Multiplicity="0..1" />
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="*" />
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="role">
               <PropertyRef Name="RID" />
@@ -2062,8 +1902,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ADMIN_REFERENCE_ROLETYPE">
-          <End Type="NewHope4Model.roleType" Role="roleType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="*" />
+          <End Role="roleType" Type="Self.roleType" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="roleType">
               <PropertyRef Name="UserTypeID" />
@@ -2074,8 +1914,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BAOSUN_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.baosun" Role="baosun" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2086,8 +1926,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CHUKU_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2098,8 +1938,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PANDIAN_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.panDian" Role="panDian" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2110,8 +1950,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRODUCTT_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.productType" Role="productType" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="productType" Type="Self.productType" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2122,8 +1962,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RUKU_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.ruku" Role="ruku" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2134,8 +1974,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TUIHUO_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.tuihuo" Role="tuihuo" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2146,8 +1986,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_YIKU_REFERENCE_ADMIN">
-          <End Type="NewHope4Model.Admin" Role="Admin" Multiplicity="0..1" />
-          <End Type="NewHope4Model.yiku" Role="yiku" Multiplicity="*" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="UserID" />
@@ -2158,8 +1998,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BAOSUN_REFERENCE_BAOSUNTY">
-          <End Type="NewHope4Model.baosunType" Role="baosunType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.baosun" Role="baosun" Multiplicity="*" />
+          <End Role="baosunType" Type="Self.baosunType" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="baosunType">
               <PropertyRef Name="baosunTypeID" />
@@ -2170,8 +2010,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BAOSUN_REFERENCE_BSXIANG">
-          <End Type="NewHope4Model.BSxiang" Role="BSxiang" Multiplicity="0..1" />
-          <End Type="NewHope4Model.baosun" Role="baosun" Multiplicity="*" />
+          <End Role="BSxiang" Type="Self.BSxiang" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BSxiang">
               <PropertyRef Name="bsID" />
@@ -2182,8 +2022,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BAOSUN_REFERENCE_PRODUCTG">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.baosun" Role="baosun" Multiplicity="*" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2194,8 +2034,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CHUKU_REFERENCE_CHUKUTYP">
-          <End Type="NewHope4Model.chukuType" Role="chukuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <End Role="chukuType" Type="Self.chukuType" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="chukuType">
               <PropertyRef Name="chukuTypeID" />
@@ -2206,8 +2046,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CHUKU_REFERENCE_CKXIANG">
-          <End Type="NewHope4Model.CKxiang" Role="CKxiang" Multiplicity="0..1" />
-          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <End Role="CKxiang" Type="Self.CKxiang" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CKxiang">
               <PropertyRef Name="ckID" />
@@ -2218,8 +2058,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CHUKU_REFERENCE_CUSTOMER">
-          <End Type="NewHope4Model.customer" Role="customer" Multiplicity="0..1" />
-          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="customer">
               <PropertyRef Name="kehuID" />
@@ -2230,8 +2070,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CHUKU_REFERENCE_PRODUCTG">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2241,21 +2081,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
-          <End Type="NewHope4Model.dizhi" Role="dizhi" Multiplicity="0..1" />
-          <End Type="NewHope4Model.customer" Role="customer" Multiplicity="*" />
+        <Association Name="FK_dizhi_dizhi">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="dizhi" Type="Self.dizhi" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="dizhi">
-              <PropertyRef Name="dizhiID" />
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
             </Principal>
-            <Dependent Role="customer">
-              <PropertyRef Name="dizhiID" />
+            <Dependent Role="dizhi">
+              <PropertyRef Name="KehuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PANDIANX_REFERENCE_CUSTOMER">
-          <End Type="NewHope4Model.customer" Role="customer" Multiplicity="0..1" />
-          <End Type="NewHope4Model.pandianxq" Role="pandianxq" Multiplicity="*" />
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="pandianxq" Type="Self.pandianxq" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="customer">
               <PropertyRef Name="kehuID" />
@@ -2266,8 +2106,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRODUCTG_REFERENCE_CUSTOMER">
-          <End Type="NewHope4Model.customer" Role="customer" Multiplicity="0..1" />
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="*" />
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="customer">
               <PropertyRef Name="kehuID" />
@@ -2278,8 +2118,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER">
-          <End Type="NewHope4Model.customer" Role="customer" Multiplicity="0..1" />
-          <End Type="NewHope4Model.tuihuoxq" Role="tuihuoxq" Multiplicity="*" />
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="tuihuoxq" Type="Self.tuihuoxq" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="customer">
               <PropertyRef Name="kehuID" />
@@ -2290,8 +2130,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_YIKUXQ_REFERENCE_CUSTOMER">
-          <End Type="NewHope4Model.customer" Role="customer" Multiplicity="0..1" />
-          <End Type="NewHope4Model.yikuxq" Role="yikuxq" Multiplicity="*" />
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="yikuxq" Type="Self.yikuxq" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="customer">
               <PropertyRef Name="kehuID" />
@@ -2302,8 +2142,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GYSGUANL_REFERENCE_GYSTYPE">
-          <End Type="NewHope4Model.gystype" Role="gystype" Multiplicity="0..1" />
-          <End Type="NewHope4Model.gysguanli" Role="gysguanli" Multiplicity="*" />
+          <End Role="gystype" Type="Self.gystype" Multiplicity="0..1" />
+          <End Role="gysguanli" Type="Self.gysguanli" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="gystype">
               <PropertyRef Name="gystypeID" />
@@ -2314,8 +2154,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RUKU_REFERENCE_GYSGUANL">
-          <End Type="NewHope4Model.gysguanli" Role="gysguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.ruku" Role="ruku" Multiplicity="*" />
+          <End Role="gysguanli" Type="Self.gysguanli" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="gysguanli">
               <PropertyRef Name="GID" />
@@ -2326,8 +2166,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JURISDIC_REFERENCE_MENU">
-          <End Type="NewHope4Model.menu" Role="menu" Multiplicity="0..1" />
-          <End Type="NewHope4Model.jurisdiction" Role="jurisdiction" Multiplicity="*" />
+          <End Role="menu" Type="Self.menu" Multiplicity="0..1" />
+          <End Role="jurisdiction" Type="Self.jurisdiction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="menu">
               <PropertyRef Name="MID" />
@@ -2338,8 +2178,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_JURISDIC_REFERENCE_ROLE">
-          <End Type="NewHope4Model.role" Role="role" Multiplicity="0..1" />
-          <End Type="NewHope4Model.jurisdiction" Role="jurisdiction" Multiplicity="*" />
+          <End Role="role" Type="Self.role" Multiplicity="0..1" />
+          <End Role="jurisdiction" Type="Self.jurisdiction" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="role">
               <PropertyRef Name="RID" />
@@ -2350,8 +2190,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRODUCTG_REFERENCE_KUTYPE">
-          <End Type="NewHope4Model.KuType" Role="KuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="*" />
+          <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KuType">
               <PropertyRef Name="KuTYpeID" />
@@ -2362,8 +2202,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_STORAGE_REFERENCE_KUTYPE">
-          <End Type="NewHope4Model.KuType" Role="KuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.storage" Role="storage" Multiplicity="*" />
+          <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="KuType">
               <PropertyRef Name="KuTYpeID" />
@@ -2374,8 +2214,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_productguanli_measurement">
-          <End Type="NewHope4Model.measurement" Role="measurement" Multiplicity="0..1" />
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="*" />
+          <End Role="measurement" Type="Self.measurement" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="measurement">
               <PropertyRef Name="MID" />
@@ -2386,8 +2226,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_menu_MenuType">
-          <End Type="NewHope4Model.MenuType" Role="MenuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.menu" Role="menu" Multiplicity="*" />
+          <End Role="MenuType" Type="Self.MenuType" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MenuType">
               <PropertyRef Name="Id" />
@@ -2398,8 +2238,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MENU_REFERENCE_PARENTME">
-          <End Type="NewHope4Model.Parentmenu" Role="Parentmenu" Multiplicity="0..1" />
-          <End Type="NewHope4Model.menu" Role="menu" Multiplicity="*" />
+          <End Role="Parentmenu" Type="Self.Parentmenu" Multiplicity="0..1" />
+          <End Role="menu" Type="Self.menu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Parentmenu">
               <PropertyRef Name="ID" />
@@ -2410,8 +2250,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PANDIAN_REFERENCE_PANDIANT">
-          <End Type="NewHope4Model.pandianType" Role="pandianType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.panDian" Role="panDian" Multiplicity="*" />
+          <End Role="pandianType" Type="Self.pandianType" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pandianType">
               <PropertyRef Name="pandianTypeID" />
@@ -2422,8 +2262,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PANDIAN_REFERENCE_PRODUCTG">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.panDian" Role="panDian" Multiplicity="*" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="panDian" Type="Self.panDian" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2434,8 +2274,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PANDIANX_REFERENCE_PANDIANT">
-          <End Type="NewHope4Model.pandianType" Role="pandianType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.pandianxq" Role="pandianxq" Multiplicity="*" />
+          <End Role="pandianType" Type="Self.pandianType" Multiplicity="0..1" />
+          <End Role="pandianxq" Type="Self.pandianxq" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="pandianType">
               <PropertyRef Name="pandianTypeID" />
@@ -2446,8 +2286,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRODUCTG_REFERENCE_PRODUCTT">
-          <End Type="NewHope4Model.productType" Role="productType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="*" />
+          <End Role="productType" Type="Self.productType" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productType">
               <PropertyRef Name="PID" />
@@ -2458,8 +2298,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PRODUCTG_REFERENCE_WAREHOUS">
-          <End Type="NewHope4Model.warehouse" Role="warehouse" Multiplicity="0..1" />
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="*" />
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="warehouse">
               <PropertyRef Name="WID" />
@@ -2470,8 +2310,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_productguanli_productguanli">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="1" />
-          <End Type="NewHope4Model.productguanli" Role="productguanli1" Multiplicity="0..1" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="1" />
+          <End Role="productguanli1" Type="Self.productguanli" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2482,8 +2322,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RUKU_REFERENCE_PRODUCTG">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.ruku" Role="ruku" Multiplicity="*" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2494,8 +2334,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TUIHUO_REFERENCE_PRODUCTG">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.tuihuo" Role="tuihuo" Multiplicity="*" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2506,8 +2346,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_YIKU_REFERENCE_PRODUCTG">
-          <End Type="NewHope4Model.productguanli" Role="productguanli" Multiplicity="0..1" />
-          <End Type="NewHope4Model.yiku" Role="yiku" Multiplicity="*" />
+          <End Role="productguanli" Type="Self.productguanli" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="productguanli">
               <PropertyRef Name="cpID" />
@@ -2518,8 +2358,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RUKU_REFERENCE_RKXIANG">
-          <End Type="NewHope4Model.RKxiang" Role="RKxiang" Multiplicity="0..1" />
-          <End Type="NewHope4Model.ruku" Role="ruku" Multiplicity="*" />
+          <End Role="RKxiang" Type="Self.RKxiang" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RKxiang">
               <PropertyRef Name="rxID" />
@@ -2530,8 +2370,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RUKU_REFERENCE_RUKUTYPE">
-          <End Type="NewHope4Model.rukuType" Role="rukuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.ruku" Role="ruku" Multiplicity="*" />
+          <End Role="rukuType" Type="Self.rukuType" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="rukuType">
               <PropertyRef Name="rukuTypeID" />
@@ -2541,9 +2381,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ruku_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_STORAGE_REFERENCE_WAREHOUS">
+          <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
+          <End Role="storage" Type="Self.storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warehouse">
+              <PropertyRef Name="WID" />
+            </Principal>
+            <Dependent Role="storage">
+              <PropertyRef Name="WID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TUIHUO_REFERENCE_TUIHUOTY">
-          <End Type="NewHope4Model.tuihuoType" Role="tuihuoType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.tuihuo" Role="tuihuo" Multiplicity="*" />
+          <End Role="tuihuoType" Type="Self.tuihuoType" Multiplicity="0..1" />
+          <End Role="tuihuo" Type="Self.tuihuo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tuihuoType">
               <PropertyRef Name="tuihuoTypeID" />
@@ -2554,8 +2418,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
-          <End Type="NewHope4Model.tuihuoType" Role="tuihuoType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.tuihuoxq" Role="tuihuoxq" Multiplicity="*" />
+          <End Role="tuihuoType" Type="Self.tuihuoType" Multiplicity="0..1" />
+          <End Role="tuihuoxq" Type="Self.tuihuoxq" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tuihuoType">
               <PropertyRef Name="tuihuoTypeID" />
@@ -2565,21 +2429,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_STORAGE_REFERENCE_WAREHOUS">
-          <End Type="NewHope4Model.warehouse" Role="warehouse" Multiplicity="0..1" />
-          <End Type="NewHope4Model.storage" Role="storage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="warehouse">
-              <PropertyRef Name="WID" />
-            </Principal>
-            <Dependent Role="storage">
-              <PropertyRef Name="WID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_YIKU_REFERENCE_YIKUTYPE">
-          <End Type="NewHope4Model.yikuType" Role="yikuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.yiku" Role="yiku" Multiplicity="*" />
+          <End Role="yikuType" Type="Self.yikuType" Multiplicity="0..1" />
+          <End Role="yiku" Type="Self.yiku" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="yikuType">
               <PropertyRef Name="yikuTypeID" />
@@ -2590,8 +2442,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_YIKUXQ_REFERENCE_YIKUTYPE">
-          <End Type="NewHope4Model.yikuType" Role="yikuType" Multiplicity="0..1" />
-          <End Type="NewHope4Model.yikuxq" Role="yikuxq" Multiplicity="*" />
+          <End Role="yikuType" Type="Self.yikuType" Multiplicity="0..1" />
+          <End Role="yikuxq" Type="Self.yikuxq" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="yikuType">
               <PropertyRef Name="yikuTypeID" />
@@ -2601,7 +2453,271 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="NewHope4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="baosun" EntityType="Self.baosun" />
+          <EntitySet Name="baosunType" EntityType="Self.baosunType" />
+          <EntitySet Name="BSxiang" EntityType="Self.BSxiang" />
+          <EntitySet Name="chuku" EntityType="Self.chuku" />
+          <EntitySet Name="chukuType" EntityType="Self.chukuType" />
+          <EntitySet Name="CKxiang" EntityType="Self.CKxiang" />
+          <EntitySet Name="customer" EntityType="Self.customer" />
+          <EntitySet Name="department" EntityType="Self.department" />
+          <EntitySet Name="dizhi" EntityType="Self.dizhi" />
+          <EntitySet Name="gysguanli" EntityType="Self.gysguanli" />
+          <EntitySet Name="gystype" EntityType="Self.gystype" />
+          <EntitySet Name="jurisdiction" EntityType="Self.jurisdiction" />
+          <EntitySet Name="KuType" EntityType="Self.KuType" />
+          <EntitySet Name="measurement" EntityType="Self.measurement" />
+          <EntitySet Name="menu" EntityType="Self.menu" />
+          <EntitySet Name="MenuType" EntityType="Self.MenuType" />
+          <EntitySet Name="panDian" EntityType="Self.panDian" />
+          <EntitySet Name="pandianType" EntityType="Self.pandianType" />
+          <EntitySet Name="pandianxq" EntityType="Self.pandianxq" />
+          <EntitySet Name="Parentmenu" EntityType="Self.Parentmenu" />
+          <EntitySet Name="productguanli" EntityType="Self.productguanli" />
+          <EntitySet Name="productType" EntityType="Self.productType" />
+          <EntitySet Name="RKxiang" EntityType="Self.RKxiang" />
+          <EntitySet Name="role" EntityType="Self.role" />
+          <EntitySet Name="roleType" EntityType="Self.roleType" />
+          <EntitySet Name="ruku" EntityType="Self.ruku" />
+          <EntitySet Name="rukuType" EntityType="Self.rukuType" />
+          <EntitySet Name="rukuZT" EntityType="Self.rukuZT" />
+          <EntitySet Name="storage" EntityType="Self.storage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tuihuo" EntityType="Self.tuihuo" />
+          <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" />
+          <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" />
+          <EntitySet Name="warehouse" EntityType="Self.warehouse" />
+          <EntitySet Name="yiku" EntityType="Self.yiku" />
+          <EntitySet Name="yikuType" EntityType="Self.yikuType" />
+          <EntitySet Name="yikuxq" EntityType="Self.yikuxq" />
+          <AssociationSet Name="FK_ADMIN_REFERENCE_DEPARTME" Association="Self.FK_ADMIN_REFERENCE_DEPARTME">
+            <End Role="department" EntitySet="department" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLE" Association="Self.FK_ADMIN_REFERENCE_ROLE">
+            <End Role="role" EntitySet="role" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ADMIN_REFERENCE_ROLETYPE" Association="Self.FK_ADMIN_REFERENCE_ROLETYPE">
+            <End Role="roleType" EntitySet="roleType" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_ADMIN" Association="Self.FK_BAOSUN_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_ADMIN" Association="Self.FK_CHUKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_ADMIN" Association="Self.FK_PANDIAN_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTT_REFERENCE_ADMIN" Association="Self.FK_PRODUCTT_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="productType" EntitySet="productType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_ADMIN" Association="Self.FK_RUKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_ADMIN" Association="Self.FK_TUIHUO_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_ADMIN" Association="Self.FK_YIKU_REFERENCE_ADMIN">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_BAOSUNTY" Association="Self.FK_BAOSUN_REFERENCE_BAOSUNTY">
+            <End Role="baosunType" EntitySet="baosunType" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_BSXIANG" Association="Self.FK_BAOSUN_REFERENCE_BSXIANG">
+            <End Role="BSxiang" EntitySet="BSxiang" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BAOSUN_REFERENCE_PRODUCTG" Association="Self.FK_BAOSUN_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CHUKUTYP" Association="Self.FK_CHUKU_REFERENCE_CHUKUTYP">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CKXIANG" Association="Self.FK_CHUKU_REFERENCE_CKXIANG">
+            <End Role="CKxiang" EntitySet="CKxiang" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_CUSTOMER" Association="Self.FK_CHUKU_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHUKU_REFERENCE_PRODUCTG" Association="Self.FK_CHUKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dizhi_dizhi" Association="Self.FK_dizhi_dizhi">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="dizhi" EntitySet="dizhi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIANX_REFERENCE_CUSTOMER" Association="Self.FK_PANDIANX_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="pandianxq" EntitySet="pandianxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_CUSTOMER" Association="Self.FK_PRODUCTG_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_CUSTOMER" Association="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKUXQ_REFERENCE_CUSTOMER" Association="Self.FK_YIKUXQ_REFERENCE_CUSTOMER">
+            <End Role="customer" EntitySet="customer" />
+            <End Role="yikuxq" EntitySet="yikuxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GYSGUANL_REFERENCE_GYSTYPE" Association="Self.FK_GYSGUANL_REFERENCE_GYSTYPE">
+            <End Role="gystype" EntitySet="gystype" />
+            <End Role="gysguanli" EntitySet="gysguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_GYSGUANL" Association="Self.FK_RUKU_REFERENCE_GYSGUANL">
+            <End Role="gysguanli" EntitySet="gysguanli" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JURISDIC_REFERENCE_MENU" Association="Self.FK_JURISDIC_REFERENCE_MENU">
+            <End Role="menu" EntitySet="menu" />
+            <End Role="jurisdiction" EntitySet="jurisdiction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JURISDIC_REFERENCE_ROLE" Association="Self.FK_JURISDIC_REFERENCE_ROLE">
+            <End Role="role" EntitySet="role" />
+            <End Role="jurisdiction" EntitySet="jurisdiction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_KUTYPE" Association="Self.FK_PRODUCTG_REFERENCE_KUTYPE">
+            <End Role="KuType" EntitySet="KuType" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORAGE_REFERENCE_KUTYPE" Association="Self.FK_STORAGE_REFERENCE_KUTYPE">
+            <End Role="KuType" EntitySet="KuType" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productguanli_measurement" Association="Self.FK_productguanli_measurement">
+            <End Role="measurement" EntitySet="measurement" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_menu_MenuType" Association="Self.FK_menu_MenuType">
+            <End Role="MenuType" EntitySet="MenuType" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_REFERENCE_PARENTME" Association="Self.FK_MENU_REFERENCE_PARENTME">
+            <End Role="Parentmenu" EntitySet="Parentmenu" />
+            <End Role="menu" EntitySet="menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_PANDIANT" Association="Self.FK_PANDIAN_REFERENCE_PANDIANT">
+            <End Role="pandianType" EntitySet="pandianType" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIAN_REFERENCE_PRODUCTG" Association="Self.FK_PANDIAN_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="panDian" EntitySet="panDian" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PANDIANX_REFERENCE_PANDIANT" Association="Self.FK_PANDIANX_REFERENCE_PANDIANT">
+            <End Role="pandianType" EntitySet="pandianType" />
+            <End Role="pandianxq" EntitySet="pandianxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_PRODUCTT" Association="Self.FK_PRODUCTG_REFERENCE_PRODUCTT">
+            <End Role="productType" EntitySet="productType" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTG_REFERENCE_WAREHOUS" Association="Self.FK_PRODUCTG_REFERENCE_WAREHOUS">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="productguanli" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productguanli_productguanli" Association="Self.FK_productguanli_productguanli">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="productguanli1" EntitySet="productguanli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_PRODUCTG" Association="Self.FK_RUKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_PRODUCTG" Association="Self.FK_TUIHUO_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_PRODUCTG" Association="Self.FK_YIKU_REFERENCE_PRODUCTG">
+            <End Role="productguanli" EntitySet="productguanli" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_RKXIANG" Association="Self.FK_RUKU_REFERENCE_RKXIANG">
+            <End Role="RKxiang" EntitySet="RKxiang" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RUKU_REFERENCE_RUKUTYPE" Association="Self.FK_RUKU_REFERENCE_RUKUTYPE">
+            <End Role="rukuType" EntitySet="rukuType" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ruku_rukuZT" Association="Self.FK_ruku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_STORAGE_REFERENCE_WAREHOUS" Association="Self.FK_STORAGE_REFERENCE_WAREHOUS">
+            <End Role="warehouse" EntitySet="warehouse" />
+            <End Role="storage" EntitySet="storage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUO_REFERENCE_TUIHUOTY" Association="Self.FK_TUIHUO_REFERENCE_TUIHUOTY">
+            <End Role="tuihuoType" EntitySet="tuihuoType" />
+            <End Role="tuihuo" EntitySet="tuihuo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TUIHUOXQ_REFERENCE_TUIHUOTY" Association="Self.FK_TUIHUOXQ_REFERENCE_TUIHUOTY">
+            <End Role="tuihuoType" EntitySet="tuihuoType" />
+            <End Role="tuihuoxq" EntitySet="tuihuoxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKU_REFERENCE_YIKUTYPE" Association="Self.FK_YIKU_REFERENCE_YIKUTYPE">
+            <End Role="yikuType" EntitySet="yikuType" />
+            <End Role="yiku" EntitySet="yiku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_YIKUXQ_REFERENCE_YIKUTYPE" Association="Self.FK_YIKUXQ_REFERENCE_YIKUTYPE">
+            <End Role="yikuType" EntitySet="yikuType" />
+            <End Role="yikuxq" EntitySet="yikuxq" />
+          </AssociationSet>
+          <AssociationSet Name="FK_chuku_rukuZT" Association="NewHope4Model.FK_chuku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CKxiang_chukuType" Association="NewHope4Model.FK_CKxiang_chukuType">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="CKxiang" EntitySet="CKxiang" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_chuku_rukuZT">
+          <End Type="NewHope4Model.rukuZT" Role="rukuZT" Multiplicity="0..1" />
+          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CKxiang_chukuType">
+          <End Type="NewHope4Model.chukuType" Role="chukuType" Multiplicity="0..1" />
+          <End Type="NewHope4Model.CKxiang" Role="CKxiang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chukuType">
+              <PropertyRef Name="chukuTypeID" />
+            </Principal>
+            <Dependent Role="CKxiang">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -2610,487 +2726,502 @@
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="NewHope4Model.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
-                <ScalarProperty Name="Userpwd" ColumnName="Userpwd" />
-                <ScalarProperty Name="RID" ColumnName="RID" />
-                <ScalarProperty Name="Did" ColumnName="Did" />
-                <ScalarProperty Name="LoginNum" ColumnName="LoginNum" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LoginNum" ColumnName="LoginNum" />
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="Userpwd" ColumnName="Userpwd" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="baosun">
             <EntityTypeMapping TypeName="NewHope4Model.baosun">
               <MappingFragment StoreEntitySet="baosun">
-                <ScalarProperty Name="by4" ColumnName="by4" />
-                <ScalarProperty Name="by3" ColumnName="by3" />
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="createTime" ColumnName="createTime" />
-                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="zt" ColumnName="zt" />
-                <ScalarProperty Name="baosunSum" ColumnName="baosunSum" />
-                <ScalarProperty Name="cpid" ColumnName="cpid" />
-                <ScalarProperty Name="bsID" ColumnName="bsID" />
-                <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
                 <ScalarProperty Name="baosunID" ColumnName="baosunID" />
+                <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
+                <ScalarProperty Name="bsID" ColumnName="bsID" />
+                <ScalarProperty Name="cpid" ColumnName="cpid" />
+                <ScalarProperty Name="baosunSum" ColumnName="baosunSum" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="baosunType">
             <EntityTypeMapping TypeName="NewHope4Model.baosunType">
               <MappingFragment StoreEntitySet="baosunType">
-                <ScalarProperty Name="baosunTypeName" ColumnName="baosunTypeName" />
                 <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
+                <ScalarProperty Name="baosunTypeName" ColumnName="baosunTypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BSxiang">
             <EntityTypeMapping TypeName="NewHope4Model.BSxiang">
               <MappingFragment StoreEntitySet="BSxiang">
-                <ScalarProperty Name="by4" ColumnName="by4" />
-                <ScalarProperty Name="by3" ColumnName="by3" />
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="bspici" ColumnName="bspici" />
-                <ScalarProperty Name="bsSum" ColumnName="bsSum" />
-                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
-                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
-                <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
-                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
                 <ScalarProperty Name="bsID" ColumnName="bsID" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
+                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
+                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
+                <ScalarProperty Name="bsSum" ColumnName="bsSum" />
+                <ScalarProperty Name="bspici" ColumnName="bspici" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="chuku">
             <EntityTypeMapping TypeName="NewHope4Model.chuku">
               <MappingFragment StoreEntitySet="chuku">
-                <ScalarProperty Name="by4" ColumnName="by4" />
-                <ScalarProperty Name="by3" ColumnName="by3" />
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="createTime" ColumnName="createTime" />
-                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="zt" ColumnName="zt" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="chukuSum" ColumnName="chukuSum" />
-                <ScalarProperty Name="cpID" ColumnName="cpID" />
-                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
-                <ScalarProperty Name="ckID" ColumnName="ckID" />
-                <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
                 <ScalarProperty Name="chukuID" ColumnName="chukuID" />
+                <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
+                <ScalarProperty Name="ckID" ColumnName="ckID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
+                <ScalarProperty Name="chukuSum" ColumnName="chukuSum" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="chukuType">
             <EntityTypeMapping TypeName="NewHope4Model.chukuType">
               <MappingFragment StoreEntitySet="chukuType">
-                <ScalarProperty Name="chukuTypeName" ColumnName="chukuTypeName" />
                 <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
+                <ScalarProperty Name="chukuTypeName" ColumnName="chukuTypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CKxiang">
             <EntityTypeMapping TypeName="NewHope4Model.CKxiang">
               <MappingFragment StoreEntitySet="CKxiang">
-                <ScalarProperty Name="by4" ColumnName="by4" />
-                <ScalarProperty Name="by3" ColumnName="by3" />
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="chuSum" ColumnName="chuSum" />
-                <ScalarProperty Name="Tid" ColumnName="Tid" />
-                <ScalarProperty Name="ckpici" ColumnName="ckpici" />
-                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
-                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
-                <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
-                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
                 <ScalarProperty Name="ckID" ColumnName="ckID" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
+                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
+                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
+                <ScalarProperty Name="ckpici" ColumnName="ckpici" />
+                <ScalarProperty Name="Tid" ColumnName="Tid" />
+                <ScalarProperty Name="chuSum" ColumnName="chuSum" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customer">
             <EntityTypeMapping TypeName="NewHope4Model.customer">
               <MappingFragment StoreEntitySet="customer">
-                <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="faxes" ColumnName="faxes" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="KehuName" ColumnName="KehuName" />
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="KehuName" ColumnName="KehuName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="faxes" ColumnName="faxes" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="beiyong" ColumnName="beiyong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="department">
             <EntityTypeMapping TypeName="NewHope4Model.department">
               <MappingFragment StoreEntitySet="department">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="DName" ColumnName="DName" />
                 <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="dizhi">
             <EntityTypeMapping TypeName="NewHope4Model.dizhi">
               <MappingFragment StoreEntitySet="dizhi">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="linkman" ColumnName="linkman" />
-                <ScalarProperty Name="dizhiName" ColumnName="dizhiName" />
                 <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
+                <ScalarProperty Name="dizhiName" ColumnName="dizhiName" />
+                <ScalarProperty Name="linkman" ColumnName="linkman" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="KehuID" ColumnName="KehuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="gysguanli">
             <EntityTypeMapping TypeName="NewHope4Model.gysguanli">
               <MappingFragment StoreEntitySet="gysguanli">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="describe" ColumnName="describe" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="linkman" ColumnName="linkman" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="faxes" ColumnName="faxes" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="GName" ColumnName="GName" />
-                <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
                 <ScalarProperty Name="GID" ColumnName="GID" />
+                <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
+                <ScalarProperty Name="GName" ColumnName="GName" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="faxes" ColumnName="faxes" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="linkman" ColumnName="linkman" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="describe" ColumnName="describe" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="gystype">
             <EntityTypeMapping TypeName="NewHope4Model.gystype">
               <MappingFragment StoreEntitySet="gystype">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="gystypeName" ColumnName="gystypeName" />
                 <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
+                <ScalarProperty Name="gystypeName" ColumnName="gystypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="jurisdiction">
             <EntityTypeMapping TypeName="NewHope4Model.jurisdiction">
               <MappingFragment StoreEntitySet="jurisdiction">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="MID" ColumnName="MID" />
-                <ScalarProperty Name="RID" ColumnName="RID" />
                 <ScalarProperty Name="JID" ColumnName="JID" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KuType">
             <EntityTypeMapping TypeName="NewHope4Model.KuType">
               <MappingFragment StoreEntitySet="KuType">
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="KuName" ColumnName="KuName" />
                 <ScalarProperty Name="KuTYpeID" ColumnName="KuTYpeID" />
+                <ScalarProperty Name="KuName" ColumnName="KuName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="measurement">
             <EntityTypeMapping TypeName="NewHope4Model.measurement">
               <MappingFragment StoreEntitySet="measurement">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="menu">
             <EntityTypeMapping TypeName="NewHope4Model.menu">
               <MappingFragment StoreEntitySet="menu">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="path" ColumnName="path" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="style" ColumnName="style" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="PID" ColumnName="PID" />
-                <ScalarProperty Name="MNmae" ColumnName="MNmae" />
                 <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="MNmae" ColumnName="MNmae" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="style" ColumnName="style" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MenuType">
             <EntityTypeMapping TypeName="NewHope4Model.MenuType">
               <MappingFragment StoreEntitySet="MenuType">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="MName" ColumnName="MName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="panDian">
             <EntityTypeMapping TypeName="NewHope4Model.panDian">
               <MappingFragment StoreEntitySet="panDian">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
-                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
                 <ScalarProperty Name="pandianID" ColumnName="pandianID" />
+                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pandianType">
             <EntityTypeMapping TypeName="NewHope4Model.pandianType">
               <MappingFragment StoreEntitySet="pandianType">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="pandianTypeName" ColumnName="pandianTypeName" />
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
+                <ScalarProperty Name="pandianTypeName" ColumnName="pandianTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pandianxq">
             <EntityTypeMapping TypeName="NewHope4Model.pandianxq">
               <MappingFragment StoreEntitySet="pandianxq">
-                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
-                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
-                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
-                <ScalarProperty Name="pandiansum" ColumnName="pandiansum" />
-                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
-                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
-                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
-                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
                 <ScalarProperty Name="pandianxqID" ColumnName="pandianxqID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
+                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
+                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
+                <ScalarProperty Name="pandiansum" ColumnName="pandiansum" />
+                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
+                <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Parentmenu">
             <EntityTypeMapping TypeName="NewHope4Model.Parentmenu">
               <MappingFragment StoreEntitySet="Parentmenu">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productguanli">
             <EntityTypeMapping TypeName="NewHope4Model.productguanli">
               <MappingFragment StoreEntitySet="productguanli">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="defaultstorage" ColumnName="defaultstorage" />
-                <ScalarProperty Name="XID" ColumnName="XID" />
-                <ScalarProperty Name="WID" ColumnName="WID" />
-                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="MID" ColumnName="MID" />
-                <ScalarProperty Name="PID" ColumnName="PID" />
-                <ScalarProperty Name="specification" ColumnName="specification" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="floor" ColumnName="floor" />
-                <ScalarProperty Name="upper" ColumnName="upper" />
-                <ScalarProperty Name="cpName" ColumnName="cpName" />
-                <ScalarProperty Name="cpID" ColumnName="cpID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
+                <ScalarProperty Name="cpName" ColumnName="cpName" />
+                <ScalarProperty Name="upper" ColumnName="upper" />
+                <ScalarProperty Name="floor" ColumnName="floor" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="specification" ColumnName="specification" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="MID" ColumnName="MID" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="WID" ColumnName="WID" />
+                <ScalarProperty Name="XID" ColumnName="XID" />
+                <ScalarProperty Name="defaultstorage" ColumnName="defaultstorage" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="kucun" ColumnName="kucun" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productType">
             <EntityTypeMapping TypeName="NewHope4Model.productType">
               <MappingFragment StoreEntitySet="productType">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="PName" ColumnName="PName" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="PName" ColumnName="PName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RKxiang">
             <EntityTypeMapping TypeName="NewHope4Model.RKxiang">
               <MappingFragment StoreEntitySet="RKxiang">
-                <ScalarProperty Name="by4" ColumnName="by4" />
-                <ScalarProperty Name="by3" ColumnName="by3" />
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="zt" ColumnName="zt" />
-                <ScalarProperty Name="Ppici" ColumnName="Ppici" />
-                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
-                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
-                <ScalarProperty Name="Pid" ColumnName="Pid" />
                 <ScalarProperty Name="rxID" ColumnName="rxID" />
+                <ScalarProperty Name="Pid" ColumnName="Pid" />
+                <ScalarProperty Name="Pguige" ColumnName="Pguige" />
+                <ScalarProperty Name="Pprice" ColumnName="Pprice" />
+                <ScalarProperty Name="Ppici" ColumnName="Ppici" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="role">
             <EntityTypeMapping TypeName="NewHope4Model.role">
               <MappingFragment StoreEntitySet="role">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="RName" ColumnName="RName" />
                 <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="RName" ColumnName="RName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roleType">
             <EntityTypeMapping TypeName="NewHope4Model.roleType">
               <MappingFragment StoreEntitySet="roleType">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ruku">
             <EntityTypeMapping TypeName="NewHope4Model.ruku">
               <MappingFragment StoreEntitySet="ruku">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by3" ColumnName="by3" />
-                <ScalarProperty Name="by4" ColumnName="by4" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="rxID" ColumnName="rxID" />
-                <ScalarProperty Name="createTime" ColumnName="createTime" />
-                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="zt" ColumnName="zt" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="cpID" ColumnName="cpID" />
-                <ScalarProperty Name="gysID" ColumnName="gysID" />
-                <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
                 <ScalarProperty Name="rukuID" ColumnName="rukuID" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
+                <ScalarProperty Name="gysID" ColumnName="gysID" />
+                <ScalarProperty Name="cpID" ColumnName="cpID" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="caozuofs" ColumnName="caozuofs" />
+                <ScalarProperty Name="createTime" ColumnName="createTime" />
+                <ScalarProperty Name="rxID" ColumnName="rxID" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by4" ColumnName="by4" />
+                <ScalarProperty Name="by3" ColumnName="by3" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rukuType">
             <EntityTypeMapping TypeName="NewHope4Model.rukuType">
               <MappingFragment StoreEntitySet="rukuType">
-                <ScalarProperty Name="rukuName" ColumnName="rukuName" />
                 <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
+                <ScalarProperty Name="rukuName" ColumnName="rukuName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="NewHope4Model.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tuihuo">
-            <EntityTypeMapping TypeName="NewHope4Model.tuihuo">
-              <MappingFragment StoreEntitySet="tuihuo">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
-                <ScalarProperty Name="sum" ColumnName="sum" />
-                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
-                <ScalarProperty Name="tuihuoID" ColumnName="tuihuoID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tuihuoType">
-            <EntityTypeMapping TypeName="NewHope4Model.tuihuoType">
-              <MappingFragment StoreEntitySet="tuihuoType">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="tuihuoTypeName" ColumnName="tuihuoTypeName" />
-                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tuihuoxq">
-            <EntityTypeMapping TypeName="NewHope4Model.tuihuoxq">
-              <MappingFragment StoreEntitySet="tuihuoxq">
-                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
-                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
-                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
-                <ScalarProperty Name="tuihuosum" ColumnName="tuihuosum" />
-                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
-                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
-                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
-                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
-                <ScalarProperty Name="tuihuoxqID" ColumnName="tuihuoxqID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="warehouse">
-            <EntityTypeMapping TypeName="NewHope4Model.warehouse">
-              <MappingFragment StoreEntitySet="warehouse">
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="WName" ColumnName="WName" />
-                <ScalarProperty Name="WID" ColumnName="WID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="yiku">
-            <EntityTypeMapping TypeName="NewHope4Model.yiku">
-              <MappingFragment StoreEntitySet="yiku">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="count" ColumnName="count" />
-                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
-                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
-                <ScalarProperty Name="yikuID" ColumnName="yikuID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="yikuType">
-            <EntityTypeMapping TypeName="NewHope4Model.yikuType">
-              <MappingFragment StoreEntitySet="yikuType">
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="yikuTypeName" ColumnName="yikuTypeName" />
-                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="yikuxq">
-            <EntityTypeMapping TypeName="NewHope4Model.yikuxq">
-              <MappingFragment StoreEntitySet="yikuxq">
-                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
-                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
-                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
-                <ScalarProperty Name="yikusum" ColumnName="yikusum" />
-                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
-                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
-                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
-                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
-                <ScalarProperty Name="yikuxqID" ColumnName="yikuxqID" />
+          <EntitySetMapping Name="rukuZT">
+            <EntityTypeMapping TypeName="NewHope4Model.rukuZT">
+              <MappingFragment StoreEntitySet="rukuZT">
+                <ScalarProperty Name="rzID" ColumnName="rzID" />
+                <ScalarProperty Name="rzName" ColumnName="rzName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="storage">
             <EntityTypeMapping TypeName="NewHope4Model.storage">
               <MappingFragment StoreEntitySet="storage">
-                <ScalarProperty Name="by2" ColumnName="by2" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="default" ColumnName="default" />
-                <ScalarProperty Name="forbidden" ColumnName="forbidden" />
-                <ScalarProperty Name="KuTypeID" ColumnName="KuTypeID" />
-                <ScalarProperty Name="WID" ColumnName="WID" />
-                <ScalarProperty Name="KName" ColumnName="KName" />
-                <ScalarProperty Name="KID" ColumnName="KID" />
                 <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="kid" ColumnName="kid" />
+                <ScalarProperty Name="KName" ColumnName="KName" />
+                <ScalarProperty Name="WID" ColumnName="WID" />
+                <ScalarProperty Name="KuTypeID" ColumnName="KuTypeID" />
+                <ScalarProperty Name="forbidden" ColumnName="forbidden" />
+                <ScalarProperty Name="moren" ColumnName="moren" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NewHope4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tuihuo">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuo">
+              <MappingFragment StoreEntitySet="tuihuo">
+                <ScalarProperty Name="tuihuoID" ColumnName="tuihuoID" />
+                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
+                <ScalarProperty Name="sum" ColumnName="sum" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tuihuoType">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoType">
+              <MappingFragment StoreEntitySet="tuihuoType">
+                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
+                <ScalarProperty Name="tuihuoTypeName" ColumnName="tuihuoTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tuihuoxq">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoxq">
+              <MappingFragment StoreEntitySet="tuihuoxq">
+                <ScalarProperty Name="tuihuoxqID" ColumnName="tuihuoxqID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
+                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
+                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
+                <ScalarProperty Name="tuihuosum" ColumnName="tuihuosum" />
+                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
+                <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warehouse">
+            <EntityTypeMapping TypeName="NewHope4Model.warehouse">
+              <MappingFragment StoreEntitySet="warehouse">
+                <ScalarProperty Name="WID" ColumnName="WID" />
+                <ScalarProperty Name="WName" ColumnName="WName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yiku">
+            <EntityTypeMapping TypeName="NewHope4Model.yiku">
+              <MappingFragment StoreEntitySet="yiku">
+                <ScalarProperty Name="yikuID" ColumnName="yikuID" />
+                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yikuType">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuType">
+              <MappingFragment StoreEntitySet="yikuType">
+                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
+                <ScalarProperty Name="yikuTypeName" ColumnName="yikuTypeName" />
+                <ScalarProperty Name="state" ColumnName="state" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yikuxq">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuxq">
+              <MappingFragment StoreEntitySet="yikuxq">
+                <ScalarProperty Name="yikuxqID" ColumnName="yikuxqID" />
+                <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
+                <ScalarProperty Name="chanpinName" ColumnName="chanpinName" />
+                <ScalarProperty Name="chanpintiaoma" ColumnName="chanpintiaoma" />
+                <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
+                <ScalarProperty Name="yikusum" ColumnName="yikusum" />
+                <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
+                <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
+                <ScalarProperty Name="kehuID" ColumnName="kehuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
