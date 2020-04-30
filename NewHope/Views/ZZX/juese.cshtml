@@ -3,105 +3,59 @@
     ViewBag.Title = "juese";
     Layout = "~/Views/New/Index.cshtml";
 }
-
-
-
-
-
-
-
 <div>
-
     <div class="layui-card">
         <div class="layui-card-header">
             <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
             <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">角色管理</a>
-
         </div>
         <div class="layui-card-body">
-
-
             <div class="layui-card" style="border: 1px solid #E1DFDF">
-
-
                 <div class="layui-card-header">
                     角色管理
-                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button id="xz" type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" onclick="plshanchu()">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
-
                 </div>
                 <div class="layui-card-body">
-
-
                     <input type="text" name="jueseName" placeholder="请输入角色编号或角色名称" size="36" />
-                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
-
-
-
-
-
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="roleChaXunByName()">搜索</button>
                     <div class="layui-form">
                         <table class="layui-table">
                             <colgroup>
-                               
                             </colgroup>
                             <thead>
                                 <tr>
-
-
-
-
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;序号	</td>
+                                    <td> <input type="checkbox" id="check1" style="display:block" onclick="quanxuan('checkbox', 'reversecheck')" /> </td>
                                     <td>&nbsp;角色编号</td>
                                     <td>&nbsp;角色名	</td>
                                     <td>&nbsp;创建时间</td>
+                                    <td>&nbsp;备注</td>
                                     <td>&nbsp;操作</td>
-                                    <td>&nbsp;操作</td>
-
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;序号1111</td>
-                                    <td>&nbsp;库位编号</td>
-                                    <td>&nbsp;库位名11</td>
-                                    <td>&nbsp;库位类型</td>
-                                    <td>&nbsp;编辑&nbsp; 删除</td>
-                                </tr>
+                            <tbody id="tbody1">
                             </tbody>
                         </table>
+                        <div id="layui"></div>
                     </div>
-
-
-                    <div>
-                        共 5 行 ,每页
-                        <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="">5</option>
-                                <option value="产品仓库">10</option>
-                                <option value="产品仓库">15</option>
-                                <option value="产品仓库">20</option>
-                                <option value="产品仓库">25</option>
-                            </select>
-                        </div>
-                        行
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
-
-                    </div>
+                    @*<div>
+                共 5 行 ,每页
+                <div class="layui-input-inline">
+                    <select name="quiz3">
+                        <option value="">5</option>
+                        <option value="产品仓库">10</option>
+                        <option value="产品仓库">15</option>
+                        <option value="产品仓库">20</option>
+                        <option value="产品仓库">25</option>
+                    </select>
                 </div>
-
-
-
-
-
-
-
-
+                行
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
+            </div>*@
+                </div>
                 <div id="hideID2" hidden="hidden">
                     <br />
                     <span style="margin-left:30px">
@@ -109,34 +63,85 @@
                     </span>
                     <br />
                     <span style="margin-left:30px">
-                        角色名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jueseName" />
+                        角色名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jueseName" />
                     </span>
                     <br />
                     <span style="margin-left:30px">
                         备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
                     </span>
-                    <br/>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
-                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
+                    <br />
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="xinzeng()">确定</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
                 </div>
 
-
+                <div id="hideID3" hidden="hidden">
+                    <br />
+                    <span style="margin-left:30px">
+                        角色编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jueseID2" readonly="readonly" placeholder="自动生成，不可填" />
+                    </span>
+                    <br />
+                    <span style="margin-left:30px">
+                        角色名称&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="jueseName2" />
+                    </span>
+                    <br />
+                    <span style="margin-left:30px">
+                        备注&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="beizhu2" />
+                    </span>
+                    <br />
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="xiugai()">确定</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
+                </div>
             </div>
-
-
         </div>
     </div>
 </div>
-
-
-@*<script src="~/layui/layui.js" charset="utf-8"></script>
-    <script src="~/layui/layui.all.js"></script>*@
+@*<script src="~/layui/layui.all.js"></script>*@
 <script>
+    var pageIndex = 1;
+    var pageSize = 5;
+    var rowss = 0;
+    $(function () {
+        roleChaXun();
+        //分页功能
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'layui'
+                , count: rowss
+                , limit: 10
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    console.log(rowss);
+                    pageIndex = obj.curr;
+                    pageSize = obj.limit;
+                    roleChaXun();
+                    roleChaXunByName();
+                }
+            });
+        });
+    });
+    //全选
+    function quanxuan(objName, type) {
+        var objNameList = document.getElementsByName(objName);
+        if (null != objNameList) {
+            for (var i = 0; i < objNameList.length; i++) {
+                if (objNameList[i].checked == true) {
+                    if (type != 'checkall') {  // 非全选
+                        objNameList[i].checked = false;
+                    }
+                } else {
+                    if (type != 'uncheckall') {  // 非取消全选
+                        objNameList[i].checked = true;
+                        //console.log($("input[name='checkbox']").data("id"));
+                        //alert($("input[name='checkbox']").data("id"));
 
-
-
-
-
+                    }
+                }
+            }
+        }
+    }
     function show2() {
         layer.open({
             type: 1,
@@ -146,17 +151,172 @@
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
-
-        //Ajax获取
-        $.post('url', {}, function (str) {
-            layer.open({
-                type: 1,
-                content: str //注意，如果str是object，那么需要字符拼接。
+    }
+    function show3(id) {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['修改角色', 'font-size:18px'],
+            area: ['350px', '250px'],
+            shadeClose: true,
+            content: $('#hideID3') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/roleById",
+            data: "{id:'" + id + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                console.log(result);
+                $.each(result, function (index, data) {
+                    $("#jueseID2").val(data.RID);
+                    $("#jueseName2").val(data.RName);
+                    $("#beizhu2").val(data.remark);
+                });
+            }
+        });
+    }
+    //修改
+    function xiugai(id) {
+        if ($("#jueseName2").val() == "" || $("#beizhu2").val()=="") {
+            alert("文本框不能为空");
+        }
+        else {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/roleXiuGai",
+                data: "{r:{RID:'" + $("#jueseID2").val()+"',RName:'" + $("#jueseName2").val() + "',remark:'" + $("#beizhu2").val() + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("修改成功");
+                        roleChaXun();
+                    }
+                    else {
+                        alert("修改失败");
+                    }
+                }
+            });
+        }
+    }
+    function roleChaXun() {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/roleChaXun",
+            data: "{pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                console.log("rowss:"+rowss);
+                $.each(result.list, function (index, data) {
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.RID + "'/></td><td>&nbsp;" + data.RID + "	</td><td>&nbsp;" + data.RName + "</td><td>&nbsp;" + ConvertTime(data.CreationDate) + "	</td><td>&nbsp;" + data.remark + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.RID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='shanchu(" + data.RID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    function roleChaXunByName() {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/roleChaXunByName",
+            data: "{user2:'" + $("[name=jueseName]").val() + "',pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.RID + "'/></td><td>&nbsp;" + data.RID + "	</td><td>&nbsp;" + data.RName + "</td><td>&nbsp;" + ConvertTime(data.CreationDate) + "	</td><td>&nbsp;" + data.remark + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.RID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='shanchu(" + data.RID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    //新增
+    function xinzeng() {
+        $.ajax({
+            type: "post",
+            url: "/ZZX/roleXinZeng",
+            data: "{r:{RName:'" + $("#jueseName").val() + "',remark:'" + $("[name=beizhu]").val() + "'}}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                if (result > 0) {
+                    alert("添加成功");
+                    roleChaXun();
+                }
+                else {
+                    alert("添加失败");
+                }
+            }
+        });
+    }
+    //删除
+    function shanchu(RID) {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/roleShanChu",
+                data: "{r:{RID:'" + RID + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功");
+                        roleChaXun();
+                    } else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+    }
+    //批量删除
+    function plshanchu() {
+        var fan = 0;
+        var states2 = 1;
+        var list = [];
+        $.each($("[name='checkbox']"), function (index, result) {
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+            }
+        });
+        $.each(list, function (index2, result2) {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/roleShanChu",
+                data: "{r:{RID:'" + result2 + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功");
+                        roleChaXun();
+                        fan = 1;
+                    } else {
+                        alert("删除失败");
+                        fan = 0;
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
             });
         });
     }
-
-
+    //转换时间的方法
+    function ConvertTime(time) {
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
 </script>
 
 

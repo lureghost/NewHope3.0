@@ -35,5 +35,6 @@ namespace MOD
         public virtual CKxiang CKxiang { get; set; }
         public virtual customer customer { get; set; }
         public virtual productguanli productguanli { get; set; }
+        public virtual rukuZT rukuZT { get; set; }
     }
 }

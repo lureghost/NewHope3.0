@@ -29,7 +29,7 @@ namespace MOD
         public string by1 { get; set; }
         public string by2 { get; set; }
         public string by3 { get; set; }
-        public string by4 { get; set; }
+        public Nullable<int> by4 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ruku> ruku { get; set; }

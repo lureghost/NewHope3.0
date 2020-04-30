@@ -3,53 +3,48 @@
     ViewBag.Title = "yuangong";
     Layout = "~/Views/New/Index.cshtml";
 }
-
-
-
-
 <div>
-
     <div class="layui-card">
         <div class="layui-card-header">
             <a href="javascript:;">首页</a>&nbsp;&nbsp;>&nbsp;&nbsp;
             <a href="javascript:;">基本资料</a>&nbsp;&nbsp;>&nbsp;&nbsp;<a href="javascript:;">员工管理</a>
-
         </div>
         <div class="layui-card-body">
-
-
             <div class="layui-card" style="border: 1px solid #E1DFDF">
-
-
                 <div class="layui-card-header">
                     员工管理
-                    <button type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
-                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius">删除</button>
+                    <button id="xz" type="button" class="layui-btn layui-btn-normal layui-btn-radius" style="margin-left:920px" onclick="show2()">新增</button>
+                    <button type="button" class="layui-btn layui-btn-danger layui-btn-radius" onclick="plAdminDel()">删除</button>
                     <button type="button" class="layui-btn layui-btn-radius">导出</button>
-
                 </div>
                 <div class="layui-card-body">
-
-
                     <input type="text" name="yuangongName" placeholder="请输入员工编号或员工名称" size="36" />
-                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">搜索</button>
-                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">高级搜索</button>
-
-
-
-
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="AdminChaXunByIdName()">搜索</button>
+                    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal" onclick="xs()">高级搜索</button>
+                    <div id="hh">
+                        员工编号：<input id="bh" type="text" />
+                        员工姓名：<input id="xm" type="text" />
+                        部门：<select name="DId" id="did" lay-verify="required" lay-search=""><option value="0">请选择部门</option></select>
+                        角色：<select name="RId" id="rid" lay-verify="required" lay-search=""><option value="0">请选择部门</option></select>
+                        <button type="button" id="gjss" class="layui-btn layui-btn-sm layui-btn-normal" onclick="AdminHouseChaXun()">搜索</button>
+                        <button type="button" id="gjss" class="layui-btn layui-btn-sm layui-btn-normal" onclick="yc()">取消</button>
+                    </div>
+                    @*<div id="s" class="layui-collapse" lay-filter="test">
+                            <div class="layui-colla-item">
+                                <h2 class="layui-colla-title">为什么JS社区大量采用未发布或者未广泛支持的语言特性？</h2>
+                                <div class="layui-colla-content">
+                                    <p>有不少其他答案说是因为JS太差。我下面的答案已经说了，这不是根本性的原因。但除此之外，我还要纠正一些对JS具体问题的误解。JS当初是被作为脚本语言设计的，所以某些问题并不是JS设计得差或者是JS设计者的失误。比如var的作用域问题，并不是“错误”，而是当时绝大部分脚本语言都是这样的，如perl/php/sh等。模块的问题也是，脚本语言几乎都没有模块/命名空间功能。弱类型、for-in之类的问题也是，只不过现在用那些老的脚本语言的人比较少，所以很多人都误以为是JS才有的坑。另外有人说JS是半残语言，满足不了开发需求，1999年就该死。半残这个嘛，就夸张了。JS虽然有很多问题，但是设计总体还是优秀的。——来自知乎@贺师俊</p>
+                                </div>
+                            </div>
+                        </div>*@
                     <div class="layui-form">
                         <table class="layui-table">
                             <colgroup>
                             </colgroup>
                             <thead>
                                 <tr>
-
-
-
-
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;用户名	</td>
+                                    <td> <input type="checkbox" id="check1" style="display:block" onclick="quanxuan('checkbox', 'reversecheck')" /> </td>
+                                    <td>&nbsp;用户名</td>
                                     <td>&nbsp;编号</td>
                                     <td>&nbsp;真名	</td>
                                     <td>&nbsp;Email</td>
@@ -58,115 +53,182 @@
                                     <td>&nbsp;部门</td>
                                     <td>&nbsp;角色</td>
                                     <td>&nbsp;操作</td>
-
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;序号1111</td>
-                                    <td>&nbsp;库位编号</td>
-                                    <td>&nbsp;库位名11</td>
-                                    <td>&nbsp;库位类型</td>
-                                    <td>&nbsp;编辑&nbsp; 删除</td>
-                                </tr>
+                            <tbody id="tbody1">
                             </tbody>
                         </table>
-                    </div>
-
-
-                    <div>
-                        共 5 行 ,每页
-                        <div class="layui-input-inline">
-                            <select name="quiz3">
-                                <option value="">5</option>
-                                <option value="产品仓库">10</option>
-                                <option value="产品仓库">15</option>
-                                <option value="产品仓库">20</option>
-                                <option value="产品仓库">25</option>
-                            </select>
-                        </div>
-                        行
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:900px">首页</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">1</button>
-                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">尾页</button>
-
+                        <div id="layui"></div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-
                 <div id="hideID2" hidden="hidden">
                     <br />
                     <span style="margin-left:30px">
                         用户编号&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID" readonly="readonly" placeholder="自动生成，不可填" />
                     </span>
-
-                    <span style="margin-left:30px">
-                        用户名&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jueseName" />
+                    <span style="margin-left:44px">
+                        用户名&nbsp;&nbsp;&nbsp;<input type="text" name="UserName" />
                     </span>
                     <br />
-                    <span style="margin-left:30px">
-                        密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" placeholder="请输入密码" />
+                    <span style="margin-left:58px">
+                        密码&nbsp;&nbsp;&nbsp;<input type="password" name="Userpwd1" placeholder="请输入密码" />
                     </span>
-                    <span style="margin-left:30px">
-                        确认密码&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" placeholder="请确认输入密码" />
-                    </span>
-                    <br />
-                    <span style="margin-left:30px">
-                        真名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
-                    </span>
-                    <span style="margin-left:30px">
-                        Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    <span style="margin-left:44px">
+                        确认密码&nbsp;&nbsp;&nbsp;<input type="password" name="Userpwd2" placeholder="请确认输入密码" />
                     </span>
                     <br />
-                    <span style="margin-left:30px">
-                        电话&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    <span style="margin-left:58px">
+                        真名&nbsp;&nbsp;&nbsp;<input type="text" name="Name" />
                     </span>
-                    <span style="margin-left:30px">
-                        手机&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                    <span style="margin-left:50px">
+                        Email&nbsp;&nbsp;&nbsp;<input type="text" name="Email" />
                     </span>
                     <br />
-                    <div class="layui-input-inline">
-                        部门 <select name="modules" lay-verify="required" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-
+                    <span style="margin-left:58px">
+                        电话&nbsp;&nbsp;&nbsp;<input type="text" name="Phone" />
+                    </span>
+                    @*<span style="margin-left:58px">
+                            手机&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                        </span>*@
+                    <br />
+                    <div class="layui-input-inline" style="margin-left:58px">
+                        部门&nbsp;&nbsp; <select id="DId" lay-verify="required" lay-search="">
+                            <option value="">请选择部门</option>
                         </select>
                     </div>
-                    <div class="layui-input-inline">
-                        角色 <select name="modules" lay-verify="required" lay-search="">
-                            <option value="">直接选择或搜索选择</option>
-
+                    <div class="layui-input-inline" style="margin-left:58px">
+                        角色 &nbsp;&nbsp;<select id="RId" lay-verify="required" lay-search="">
+                            <option value="">请选择角色</option>
                         </select>
                     </div>
+                    <br />
+                    <span style="margin-left:30px">
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="xinzeng()">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
+                    </span>
+                </div>
+
+                <div id="hideID3" hidden="hidden">
+                    <br />
+                    <span style="margin-left:30px">
+                        用户编号&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID2" readonly="readonly" placeholder="自动生成，不可填" />
+                    </span>
+                    <span style="margin-left:44px">
+                        用户名&nbsp;&nbsp;&nbsp;<input type="text" name="UserName2" />
+                    </span>
+                    <br />
+                    <span style="margin-left:58px">
+                        真名&nbsp;&nbsp;&nbsp;<input type="text" name="Name2" />
+                    </span>
+                    <span style="margin-left:50px">
+                        Email&nbsp;&nbsp;&nbsp;<input type="text" name="Email2" />
+                    </span>
+                    <br />
+                    <span style="margin-left:58px">
+                        电话&nbsp;&nbsp;&nbsp;<input type="text" name="Phone2" />
+                    </span>
+                    @*<span style="margin-left:58px">
+                            手机&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
+                        </span>*@
+                    <br />
+                    <div class="layui-input-inline" style="margin-left:58px">
+                        部门&nbsp;&nbsp; <select name="DId2" lay-verify="required" lay-search="">
+                            <option value="">请选择部门</option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline" style="margin-left:58px">
+                        角色 &nbsp;&nbsp;<select name="RId2" lay-verify="required" lay-search="">
+                            <option value="">请选择角色</option>
+                        </select>
+                    </div>
+                    <br />
+                    <span style="margin-left:30px">
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="xiugai()">确定</button>
+                        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
+                    </span>
                 </div>
             </div>
-
-            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px">确定</button>
-            <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">关闭</button>
-        </div>
-
-
-            </div>
-
-
         </div>
     </div>
 </div>
 
-
-@*<script src="~/layui/layui.js" charset="utf-8"></script>
-    <script src="~/layui/layui.all.js"></script>*@
 <script>
+    var pageIndex = 1;
+    var pageSize = 5;
+    var rowss = 0;
+    $(function () {
+        yc();
+        $.ajax({
+            type: "post",
+            url: "/ZZX/departmentName",
+            data: "{}",
+            async: false,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("#DId").append("<option value='" + data.Did + "'>" + data.DName + "</option>");
+                    $("[name=DId2]").append("<option value='" + data.Did + "'>" + data.DName + "</option>");
+                    $("#did").append("<option value='" + data.Did + "'>" + data.DName + "</option>");
+                });
+            }
+        });
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/roleName",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name=RId2]").append("<option value='" + data.RID + "'>" + data.RName + "</option>");
+                    $("#RId").append("<option value='" + data.RID + "'>" + data.RName + "</option>");
+                    $("#rid").append("<option value='" + data.RID + "'>" + data.RName + "</option>");
+                });
+            }
+        });
+        adminChaXun();
+        //分页功能
+        layui.use(['laypage', 'layer'], function () {
+            var laypage = layui.laypage
+                , layer = layui.layer;
+            //完整功能
+            laypage.render({
+                elem: 'layui'
+                , count: rowss
+                , limit: 10
+                , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                , jump: function (obj) {
+                    pageIndex = obj.curr;
+                    pageSize = obj.limit;
+                    adminChaXun();
+                    AdminHouseChaXun();
+                    AdminChaXunByIdName();
+                }
+            });
+        });
+    });
+    //全选
+    function quanxuan(objName, type) {
+        var objNameList = document.getElementsByName(objName);
+        if (null != objNameList) {
+            for (var i = 0; i < objNameList.length; i++) {
+                if (objNameList[i].checked == true) {
+                    if (type != 'checkall') {  // 非全选
+                        objNameList[i].checked = false;
+                    }
+                } else {
+                    if (type != 'uncheckall') {  // 非取消全选
+                        objNameList[i].checked = true;
+                        //console.log($("input[name='checkbox']").data("id"));
+                        //alert($("input[name='checkbox']").data("id"));
 
-
-
-
+                    }
+                }
+            }
+        }
+    }
 
     function show2() {
         layer.open({
@@ -177,17 +239,226 @@
             shadeClose: true,
             content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
         });
-
-        //Ajax获取
-        $.post('url', {}, function (str) {
-            layer.open({
-                type: 1,
-                content: str //注意，如果str是object，那么需要字符拼接。
+    }
+    //新增
+    function xinzeng() {
+        //$("[name=UserName]").val().remove();
+        //$("[name=Userpwd1]").val(" ");
+        //$("[name=Userpwd2]").val(" ");
+        //$("[name=DId]").val("请选择部门");
+        //$("[name=RId]").val("请选择角色");
+        //$("[name=Name]").val(" ");
+        //$("[name=Email]").val(" ");
+        //$("[name=Phone]").val(" ");
+        var mima = $("[name=Userpwd1]").val();
+        var mima2 = $("[name=Userpwd2]").val();
+        if (mima != mima2) {
+            alert("确认密码和密码不一致");
+        }
+        else {
+        var rid = $("#RId option:selected").val();
+        var did = $("#DId option:selected").val();
+            $.ajax({
+                type: "post",
+                url: "/ZZX/AdminXinZeng",
+                data: "{a:{UserName:'" + $("[name=UserName]").val() + "',Name:'" + $("[name=Name]").val() + "',Userpwd:'" + mima2 + "',Email:'" + $("[name=Email]").val() + "',Phone:'" + $("[name=Phone]").val() + "',Did:'" + did + "',RID:'" + rid + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("添加成功");
+                        adminChaXun();
+                    }
+                    else {
+                        alert("添加失败");
+                    }
+                }
+            });
+        }
+    }
+    function adminChaXun() {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/AdminChaXun",
+            data: "{pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.UserID + "'/></td><td>&nbsp;" + data.UserName + "	</td><td>&nbsp;" + data.UserID + "</td><td>&nbsp;" + data.Name + "	</td><td>&nbsp;" + data.Email + "</td><td>&nbsp;" + data.Phone + "</td><td>&nbsp;" + data.LoginNum + "</td><td>&nbsp;" + data.Did + "</td><td>&nbsp;" + data.RID + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.UserID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='AdminDel(" + data.UserID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    function AdminChaXunByIdName() {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/AdminChaXunByIdName",
+            data: "{user2:'" + $("[name=yuangongName]").val() + "',pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.UserID + "'/></td><td>&nbsp;" + data.UserName + "	</td><td>&nbsp;" + data.UserID + "</td><td>&nbsp;" + data.Name + "	</td><td>&nbsp;" + data.Email + "</td><td>&nbsp;" + data.Phone + "</td><td>&nbsp;" + data.LoginNum + "</td><td>&nbsp;" + data.Did + "</td><td>&nbsp;" + data.RID + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.UserID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='AdminDel(" + data.UserID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    //删除
+    function AdminDel(id) {
+            $.ajax({
+                type: "POST",
+                url: "/ZZX/AdminDel",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    console.log(result);
+                    if (result > 0) {
+                        alert("删除成功");
+                        adminChaXun();
+                    } else {
+                        alert("删除失败");
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+    }
+    //批量删除
+    function plAdminDel(id) {
+        var fan = 0;
+        var states2 = 1;
+        var list = [];
+        $.each($("[name='checkbox']"), function (index, result) {
+            //alert($(this).is("checked"));
+            //console.log(result);
+            if ($(this).prop("checked")) {
+                list.push($(this).data("id"));
+            }
+        });
+        $.each(list, function (index2, result2) {
+            $.ajax({
+                type: "POST",
+                url: "/ZZX/AdminDel",
+                data: "{id:" + result2 + ",state:" + states2 + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    console.log(result);
+                    if (result > 0) {
+                        alert("删除成功");
+                        adminChaXun();
+                        fan = 1;
+                    } else {
+                        alert("删除失败");
+                        fan = 0;
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
             });
         });
     }
+    //根据id查询
+    function show3(id) {
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            title: ['修改角色', 'font-size:18px'],
+            area: ['350px', '250px'],
+            shadeClose: true,
+            content: $('#hideID3') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        });
+        //Ajax获取
+        //$.post('/ZZX/ggx', {}, function (str) {
+        //    layer.open({
+        //        type: 1,
+        //        content: str //注意，如果str是object，那么需要字符拼接。
+        //    });
+        //});
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/AdminById",
+            data: "{id:'" + id + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='jueseID2']").val(data.UserID);
+                    $("[name=UserName2]").val(data.UserName);
+                    $("[name=Name2]").val(data.Name);
+                    $("[name=Email2]").val(data.Email);
+                    $("[name=Phone2]").val(data.Phone);
+                    $("[name=DId2]").val(data.Did);
+                    $("[name=RId2]").val(data.RID);
+                });
+            }
+        });
 
-
+    }
+    //修改
+    function xiugai() {
+        if ($("[name=DId2]").val() == "") {
+            $("[name=DId2]").val("NULL");
+        }
+        if ($("[name=UserName2]").val() == "" || $("[name=Name2]").val() == "" || $("[name=Email2]").val() == "" || $("[name=Phone2]").val() == "") {
+            alert("文本框不能为空");
+        }
+        else {
+            $.ajax({
+                type: "post",
+                url: "/ZZX/AdminXiuGai",
+                data: "{a:{UserID:'" + $("[name=jueseID2]").val() + "',UserName:'" + $("[name=UserName2]").val() + "',Name:'" + $("[name=Name2]").val() + "',Email:'" + $("[name=Email2]").val() + "',Phone:'" + $("[name=Phone2]").val() + "',Did:'" + $("[name=DId2]").val() + "',RID:'" + $("[name=RId2]").val() + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("修改成功");
+                        adminChaXun();
+                    }
+                    else {
+                        alert("修改失败");
+                    }
+                }
+            });
+        }
+    }
+    function AdminHouseChaXun() {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/ZZX/AdminHouseChaXun",
+            data: "{userId:'" + $("#bh").val() + "',name:'" + $("#xm").val() + "',BuMen:'" + $("#did").val() + "',JueSe:'" + $("#rid").val() + "',pageindex:'" + pageIndex + "',pagesize:'" + pageSize + "'}",//
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tbody1 tr").remove();
+                rowss = result.PageCount;
+                $.each(result.list, function (index, data) {
+                    $("#tbody1").append("<tr><td><input type='checkbox' style='display:inline-block' name='checkbox' class='check' data-id='" + data.UserID + "'/></td><td>&nbsp;" + data.UserName + "	</td><td>&nbsp;" + data.UserID + "</td><td>&nbsp;" + data.Name + "	</td><td>&nbsp;" + data.Email + "</td><td>&nbsp;" + data.Phone + "</td><td>&nbsp;" + data.LoginNum + "</td><td>&nbsp;" + data.Did + "</td><td>&nbsp;" + data.RID + "</td>" +
+                        "<td><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='show3(" + data.UserID + ")'>编辑</button><button type='button' class='layui-btn layui-btn-primary layui-btn-sm' onclick='AdminDel(" + data.UserID + ")'>删除</button></td ></tr > ");
+                });
+            }
+        });
+    }
+    function yc() {
+        $("#hh").hide();
+    }
+    function xs() {
+        $("#hh").show();
+    }
 </script>
 
 

@@ -10,6 +10,10 @@
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <link href="~/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    @*<script src="~/layui/layui.all.js"></script>*@
+    <link href="~/layui/bootstrap-theme.min.css" rel="stylesheet" />
 </head>
 <body>
     <div>
@@ -22,97 +26,146 @@
             <li class="layui-nav-item" lay-unselect="" style="float:right;">
                 <a href="javascript:;"><img src="//t.cn/RCzsdCq" class="layui-nav-img">当前登录</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;">administrator</a></dd>
-                    <dd><a href="javascript:;">修改密码</a></dd>
+                    <dd><a><strong onclick="show2()"> @ViewBag.name</strong></a></dd>
+                    <dd><a>修改密码</a></dd>
                     <dd><a href="javascript:;">退出系统</a></dd>
                 </dl>
             </li>
         </ul>
-
-        @*最大div*@
-        <div>
-
-            @*菜单栏的div*@
-            <div style="float:left;">
-                <ul class="layui-nav layui-nav-tree layui-inline layui-show" lay-filter="demo" style="margin-right: 10px;">
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;">系统设置</a>
-                        <dl class="layui-nav-child ">
-                            <dd><a href="javascript:;">员工管理</a></dd>
-                            <dd><a href="javascript:;">角色管理</a></dd>
-                            <dd><a href="/New/bumen">部门管理</a></dd>
-                            <dd><a href="/New/caidanuanli">菜单管理</a></dd>
-                            <dd><a href="/New/QuanXianFenPei">权限分配</a></dd>
-                            <dd><a href="/New/BiaoShiFuGuanLi">标识符管理</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;">基本资料</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="/KL/kuwei">库位管理</a></dd>
-                            <dd><a href="/KL/gongyingshang">供应商管理</a></dd>
-                            <dd><a href="/KL/kehu">客户管理</a></dd>
-                            <dd><a href="/YQ/jilangdanwei">计量单位</a></dd>
-                            <dd><a href="/YQ/chanpinlb">产品类别</a></dd>
-                            <dd><a href="/YQ/chanpinguanli">产品管理</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;">仓库作业</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="/New/ruku">入库管理</a></dd>
-                            <dd><a href="/New/chuku">出库管理</a></dd>
-                            <dd><a href="/New/baosun">报损管理</a></dd>
-                            <dd><a href="/New/yiku">移库单位</a></dd>
-                            <dd><a href="/New/pandian">盘点管理</a></dd>
-                            <dd><a href="/New/tuihuo">退货管理</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;">报表管理</a>
-                        <dl class="layui-nav-child">
-                            <dd><a href="javascript:;">库存清单</a></dd>
-                            <dd><a href="javascript:;">货品统计</a></dd>
-                        </dl>
-                    </li>
-                    <li class="layui-nav-item layui-nav-itemed">
-                        <a href="javascript:;">退出系统</a>
-                    </li>
-                </ul>
+        @*<div class="layui-card-body">
+            <div id="hideID2" hidden="hidden">
+                <br />
+                <span style="margin-left:30px">
+                    请输入密码：&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID" readonly="readonly" placeholder="自动生成，不可填" />
+                </span>
+                <br />
+                <span style="margin-left:30px">
+                    请输入确认密码：&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID" readonly="readonly" placeholder="自动生成，不可填" />
+                </span>
+                <br />
+                <span style="margin-left:30px">
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:100px" onclick="xinzeng()">确定</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm layui-layer-close layui-layer-close1">关闭</button>
+                </span>
             </div>
+        </div>*@
+            
 
-            @*子页面的div*@
-            <div style="float:left; border:1px solid red; width:1300px">
-                @RenderBody()
+            @*最大div*@
+            <div>
 
+                @*菜单栏的div*@
+                <div style="float:left;">
+                    <ul id="ui1" class="layui-nav layui-nav-tree layui-inline layui-show" lay-filter="demo" style="margin-right: 10px;">
+                        @*<li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;">系统设置</a>
+                            <dl class="layui-nav-child ">
+                                <dd><a href="/ZZX/yuangong">员工管理</a></dd>
+                                <dd><a href="/ZZX/juese">角色管理</a></dd>
+                                <dd><a href="/ZZX/bumen">部门管理</a></dd>
+                                <dd><a href="/ZZX/caidanuanli">菜单管理</a></dd>
+                                <dd><a href="/ZZX/QuanXianFenPei">权限分配</a></dd>
+                                <dd><a href="/ZZX/BiaoShiFuGuanLi">标识符管理</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;">基本资料</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="/New/kuwei">库位管理</a></dd>
+                                <dd><a href="/New/gongyingshang">供应商管理</a></dd>
+                                <dd><a href="/New/kehu">客户管理</a></dd>
+                                <dd><a href="/YQ/jilangdanwei">计量单位</a></dd>
+                                <dd><a href="/YQ/chanpinlb">产品类别</a></dd>
+                                <dd><a href="/YQ/chanpinguanli">产品管理</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;">仓库作业</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="/New/ruku">入库管理</a></dd>
+                                <dd><a href="/New/chuku">出库管理</a></dd>
+                                <dd><a href="/New/baosun">报损管理</a></dd>
+                                <dd><a href="/New/yiku">移库单位</a></dd>
+                                <dd><a href="/New/pandian">盘点管理</a></dd>
+                                <dd><a href="/New/tuihuo">退货管理</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;">报表管理</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="javascript:;">库存清单</a></dd>
+                                <dd><a href="javascript:;">货品统计</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item layui-nav-itemed">
+                            <a href="javascript:;">退出系统</a>
+                        </li>*@
+                    </ul>
+                </div>
+
+                @*子页面的div*@
+                <div style="float:left; width:1680px">
+                    @RenderBody()
+
+                </div>
+            </div>
+            <div class="layui-collapse" lay-accordion>
             </div>
         </div>
 
+        <script>
+            var mid;
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "/ZZX/menuBarChaXun",
+                data: "{}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    //$("#ui1 a").remove();
+                    $.each(result, function (index, data) {
+                        var str = "<li class='layui-nav-item layui-nav-itemed'><a href='javascript:;'>" + data.MNmae + "</a>";
+                        str += "<dl class= 'layui-nav-child' >";
+                        $.each(data.obj2, function (index, value) {
+                            str += "<dd><a href=" + value.style2 + ">" + value.MNmae2 + "</a></dd>";
+                        });
+                        str += "</dl>";
+                        str += "</li >";
+                        $("#ui1").append(str);
+                    });
+                    
+                }
+            });
+            layui.use('element', function () {
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+            });
+            //function show2() {
+            //    layer.open({
+            //        type: 1,
+            //        skin: 'layui-layer-demo', //样式类名
+            //        title: ['修改密码', 'font-size:18px'],
+            //        area: ['350px', '250px'],
+            //        shadeClose: true,
+            //        content: $('#hideID2') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+            //    });
+            //}
+            //function xiugainima() {
+            //    $.ajax({
+            //        type: "post",
+            //        async: false,
+            //        url: "/ZZX/IndexByName",
+            //        data: "{userName:'" + $("#name").val() + "'}",
+            //        dataType: "json",
+            //        contentType: "application/json",
+            //        success: function (result) {
+            //            $.each(result, function (index, data) {
 
+            //            });
+            //        }
+            //    });
+            //}
 
-
-
-        <div class="layui-collapse" lay-accordion>
-
-
-        </div>
-    </div>
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/layui/layui.js" charset="utf-8"></script>
-    <script src="~/layui/layui.all.js"></script>
-    <script>
-
-
-        layui.use('element', function () {
-            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
-
-            ////监听导航点击
-            //element.on('nav(demo)', function (elem) {
-            //    //console.log(elem)
-            //    layer.msg(elem.text());
-            //});
-        });
-
-    </script>
+        </script>
 </body>
 </html>

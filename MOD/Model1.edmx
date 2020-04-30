@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NewHopeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="NewHope4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="UserID" />
@@ -59,6 +59,7 @@
           <Property Name="Pprice" Type="money" />
           <Property Name="bsSum" Type="int" />
           <Property Name="bspici" Type="int" />
+          <Property Name="zt" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
@@ -103,7 +104,7 @@
           <Property Name="ckpici" Type="int" />
           <Property Name="Tid" Type="int" />
           <Property Name="chuSum" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="zt" Type="int" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
           <Property Name="by4" Type="varchar" MaxLength="50" />
@@ -118,7 +119,8 @@
           <Property Name="faxes" Type="varchar" MaxLength="50" />
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="state" Type="int" />
-          <Property Name="dizhiID" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="beiyong" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -138,6 +140,7 @@
           <Property Name="linkman" Type="varchar" MaxLength="50" />
           <Property Name="phone" Type="varchar" MaxLength="50" />
           <Property Name="state" Type="int" />
+          <Property Name="KehuID" Type="int" />
         </EntityType>
         <EntityType Name="gysguanli">
           <Key>
@@ -186,10 +189,10 @@
           <Key>
             <PropertyRef Name="MID" />
           </Key>
-          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MID" Type="int" Nullable="false" />
           <Property Name="MName" Type="varchar" MaxLength="10" />
           <Property Name="state" Type="int" />
-          <Property Name="CreationDate" Type="varchar" MaxLength="10" />
+          <Property Name="CreationDate" Type="datetime" />
           <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="menu">
@@ -245,9 +248,11 @@
           <Property Name="chanpinPrice" Type="int" />
           <Property Name="pandiansum" Type="int" />
           <Property Name="chanpinpici" Type="varchar" MaxLength="50" />
-          <Property Name="pandianType" Type="varchar" MaxLength="50" />
           <Property Name="pandianTypeID" Type="int" />
           <Property Name="kehuID" Type="int" />
+          <Property Name="zt" Type="varchar" MaxLength="50" />
+          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="by2" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Parentmenu">
           <Key>
@@ -305,7 +310,7 @@
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
-          <Property Name="by4" Type="varchar" MaxLength="50" />
+          <Property Name="by4" Type="int" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -332,6 +337,7 @@
             <PropertyRef Name="rukuID" />
           </Key>
           <Property Name="rukuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rid" Type="int" />
           <Property Name="rukuTypeID" Type="int" />
           <Property Name="gysID" Type="int" />
           <Property Name="cpID" Type="varchar" MaxLength="50" />
@@ -353,12 +359,19 @@
           <Property Name="rukuTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="rukuName" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="rukuZT">
+          <Key>
+            <PropertyRef Name="rzID" />
+          </Key>
+          <Property Name="rzID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rzName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="storage">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="KID" Type="int" />
+          <Property Name="kid" Type="int" />
           <Property Name="KName" Type="varchar" MaxLength="50" />
           <Property Name="WID" Type="int" />
           <Property Name="KuTypeID" Type="int" />
@@ -368,6 +381,16 @@
           <Property Name="state" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="tuihuo">
           <Key>
@@ -590,15 +613,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
-          <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
-          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+        <Association Name="FK_chuku_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="dizhi">
-              <PropertyRef Name="dizhiID" />
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
             </Principal>
-            <Dependent Role="customer">
-              <PropertyRef Name="dizhiID" />
+            <Dependent Role="chuku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CKxiang_chukuType">
+          <End Role="chukuType" Type="Self.chukuType" Multiplicity="0..1" />
+          <End Role="CKxiang" Type="Self.CKxiang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chukuType">
+              <PropertyRef Name="chukuTypeID" />
+            </Principal>
+            <Dependent Role="CKxiang">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dizhi_dizhi">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="dizhi" Type="Self.dizhi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
+            </Principal>
+            <Dependent Role="dizhi">
+              <PropertyRef Name="KehuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -866,6 +913,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ruku_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STORAGE_REFERENCE_KUTYPE">
           <End Role="KuType" Type="Self.KuType" Multiplicity="0..1" />
           <End Role="storage" Type="Self.storage" Multiplicity="*" />
@@ -1010,7 +1069,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NewHopeModelStoreContainer">
+        <EntityContainer Name="NewHope4ModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="baosun" EntityType="Self.baosun" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="baosunType" EntityType="Self.baosunType" Schema="dbo" store:Type="Tables" />
@@ -1039,7 +1098,9 @@
           <EntitySet Name="roleType" EntityType="Self.roleType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ruku" EntityType="Self.ruku" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rukuType" EntityType="Self.rukuType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rukuZT" EntityType="Self.rukuZT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="storage" EntityType="Self.storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuo" EntityType="Self.tuihuo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" Schema="dbo" store:Type="Tables" />
@@ -1095,9 +1156,17 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
-            <End Role="dizhi" EntitySet="dizhi" />
+          <AssociationSet Name="FK_chuku_rukuZT" Association="Self.FK_chuku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CKxiang_chukuType" Association="Self.FK_CKxiang_chukuType">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="CKxiang" EntitySet="CKxiang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dizhi_dizhi" Association="Self.FK_dizhi_dizhi">
             <End Role="customer" EntitySet="customer" />
+            <End Role="dizhi" EntitySet="dizhi" />
           </AssociationSet>
           <AssociationSet Name="FK_GYSGUANL_REFERENCE_GYSTYPE" Association="Self.FK_GYSGUANL_REFERENCE_GYSTYPE">
             <End Role="gystype" EntitySet="gystype" />
@@ -1187,6 +1256,10 @@
             <End Role="rukuType" EntitySet="rukuType" />
             <End Role="ruku" EntitySet="ruku" />
           </AssociationSet>
+          <AssociationSet Name="FK_ruku_rukuZT" Association="Self.FK_ruku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
           <AssociationSet Name="FK_STORAGE_REFERENCE_KUTYPE" Association="Self.FK_STORAGE_REFERENCE_KUTYPE">
             <End Role="KuType" EntitySet="KuType" />
             <End Role="storage" EntitySet="storage" />
@@ -1236,11 +1309,10 @@
             <End Role="yikuxq" EntitySet="yikuxq" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NewHopeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NewHope4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="UserID" />
@@ -1315,6 +1387,7 @@
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="BSxiang" ToRole="baosun" />
+          <Property Name="zt" Type="Int32" />
         </EntityType>
         <EntityType Name="chuku">
           <Key>
@@ -1340,6 +1413,7 @@
           <NavigationProperty Name="CKxiang" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="chuku" ToRole="CKxiang" />
           <NavigationProperty Name="customer" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="chuku" ToRole="customer" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_CHUKU_REFERENCE_PRODUCTG" FromRole="chuku" ToRole="productguanli" />
+          <NavigationProperty Name="rukuZT" Relationship="NewHope4Model.FK_chuku_rukuZT" FromRole="chuku" ToRole="rukuZT" />
         </EntityType>
         <EntityType Name="chukuType">
           <Key>
@@ -1348,6 +1422,7 @@
           <Property Name="chukuTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="chukuTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CHUKUTYP" FromRole="chukuType" ToRole="chuku" />
+          <NavigationProperty Name="CKxiang" Relationship="NewHope4Model.FK_CKxiang_chukuType" FromRole="chukuType" ToRole="CKxiang" />
         </EntityType>
         <EntityType Name="CKxiang">
           <Key>
@@ -1361,11 +1436,12 @@
           <Property Name="ckpici" Type="Int32" />
           <Property Name="Tid" Type="Int32" />
           <Property Name="chuSum" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="CKxiang" ToRole="chuku" />
+          <Property Name="zt" Type="Int32" />
+          <NavigationProperty Name="chukuType" Relationship="NewHope4Model.FK_CKxiang_chukuType" FromRole="CKxiang" ToRole="chukuType" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -1377,9 +1453,10 @@
           <Property Name="faxes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreationDate" Type="DateTime" Precision="3" />
           <Property Name="state" Type="Int32" />
-          <Property Name="dizhiID" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="beiyong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CUSTOMER" FromRole="customer" ToRole="chuku" />
-          <NavigationProperty Name="dizhi" Relationship="Self.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="customer" ToRole="dizhi" />
+          <NavigationProperty Name="dizhi" Relationship="Self.FK_dizhi_dizhi" FromRole="customer" ToRole="dizhi" />
           <NavigationProperty Name="pandianxq" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="customer" ToRole="pandianxq" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
           <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
@@ -1404,7 +1481,8 @@
           <Property Name="linkman" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <NavigationProperty Name="customer" Relationship="Self.FK_CUSTOMER_REFERENCE_DIZHI" FromRole="dizhi" ToRole="customer" />
+          <Property Name="KehuID" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="Self.FK_dizhi_dizhi" FromRole="dizhi" ToRole="customer" />
         </EntityType>
         <EntityType Name="gysguanli">
           <Key>
@@ -1460,12 +1538,12 @@
           <Key>
             <PropertyRef Name="MID" />
           </Key>
-          <Property Name="MID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MID" Type="Int32" Nullable="false" />
           <Property Name="MName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="state" Type="Int32" />
-          <Property Name="CreationDate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_productguanli_measurement" FromRole="measurement" ToRole="productguanli" />
+          <Property Name="CreationDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -1529,11 +1607,13 @@
           <Property Name="chanpinPrice" Type="Int32" />
           <Property Name="pandiansum" Type="Int32" />
           <Property Name="chanpinpici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="pandianType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="pandianTypeID" Type="Int32" />
           <Property Name="kehuID" Type="Int32" />
+          <Property Name="zt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="customer" Relationship="Self.FK_PANDIANX_REFERENCE_CUSTOMER" FromRole="pandianxq" ToRole="customer" />
-          <NavigationProperty Name="pandianType1" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianxq" ToRole="pandianType" />
+          <NavigationProperty Name="pandianType" Relationship="Self.FK_PANDIANX_REFERENCE_PANDIANT" FromRole="pandianxq" ToRole="pandianType" />
         </EntityType>
         <EntityType Name="Parentmenu">
           <Key>
@@ -1607,7 +1687,7 @@
           <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="by4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="by4" Type="Int32" />
           <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RKXIANG" FromRole="RKxiang" ToRole="ruku" />
         </EntityType>
         <EntityType Name="role">
@@ -1638,6 +1718,7 @@
             <PropertyRef Name="rukuID" />
           </Key>
           <Property Name="rukuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rid" Type="Int32" />
           <Property Name="rukuTypeID" Type="Int32" />
           <Property Name="gysID" Type="Int32" />
           <Property Name="cpID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1656,6 +1737,7 @@
           <NavigationProperty Name="productguanli" Relationship="Self.FK_RUKU_REFERENCE_PRODUCTG" FromRole="ruku" ToRole="productguanli" />
           <NavigationProperty Name="RKxiang" Relationship="Self.FK_RUKU_REFERENCE_RKXIANG" FromRole="ruku" ToRole="RKxiang" />
           <NavigationProperty Name="rukuType" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="ruku" ToRole="rukuType" />
+          <NavigationProperty Name="rukuZT" Relationship="Self.FK_ruku_rukuZT" FromRole="ruku" ToRole="rukuZT" />
         </EntityType>
         <EntityType Name="rukuType">
           <Key>
@@ -1665,12 +1747,21 @@
           <Property Name="rukuName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ruku" Relationship="Self.FK_RUKU_REFERENCE_RUKUTYPE" FromRole="rukuType" ToRole="ruku" />
         </EntityType>
+        <EntityType Name="rukuZT">
+          <Key>
+            <PropertyRef Name="rzID" />
+          </Key>
+          <Property Name="rzID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rzName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ruku" Relationship="Self.FK_ruku_rukuZT" FromRole="rukuZT" ToRole="ruku" />
+          <NavigationProperty Name="chuku" Relationship="NewHope4Model.FK_chuku_rukuZT" FromRole="rukuZT" ToRole="chuku" />
+        </EntityType>
         <EntityType Name="storage">
           <Key>
             <PropertyRef Name="TID" />
           </Key>
           <Property Name="TID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KID" Type="Int32" />
+          <Property Name="kid" Type="Int32" />
           <Property Name="KName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="WID" Type="Int32" />
           <Property Name="KuTypeID" Type="Int32" />
@@ -1682,6 +1773,16 @@
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="KuType" Relationship="Self.FK_STORAGE_REFERENCE_KUTYPE" FromRole="storage" ToRole="KuType" />
           <NavigationProperty Name="warehouse" Relationship="Self.FK_STORAGE_REFERENCE_WAREHOUS" FromRole="storage" ToRole="warehouse" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="tuihuo">
           <Key>
@@ -1980,15 +2081,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CUSTOMER_REFERENCE_DIZHI">
-          <End Role="dizhi" Type="Self.dizhi" Multiplicity="0..1" />
-          <End Role="customer" Type="Self.customer" Multiplicity="*" />
+        <Association Name="FK_dizhi_dizhi">
+          <End Role="customer" Type="Self.customer" Multiplicity="0..1" />
+          <End Role="dizhi" Type="Self.dizhi" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="dizhi">
-              <PropertyRef Name="dizhiID" />
+            <Principal Role="customer">
+              <PropertyRef Name="kehuID" />
             </Principal>
-            <Dependent Role="customer">
-              <PropertyRef Name="dizhiID" />
+            <Dependent Role="dizhi">
+              <PropertyRef Name="KehuID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2280,6 +2381,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ruku_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="ruku" Type="Self.ruku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="ruku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_STORAGE_REFERENCE_WAREHOUS">
           <End Role="warehouse" Type="Self.warehouse" Multiplicity="0..1" />
           <End Role="storage" Type="Self.storage" Multiplicity="*" />
@@ -2369,7 +2482,9 @@
           <EntitySet Name="roleType" EntityType="Self.roleType" />
           <EntitySet Name="ruku" EntityType="Self.ruku" />
           <EntitySet Name="rukuType" EntityType="Self.rukuType" />
+          <EntitySet Name="rukuZT" EntityType="Self.rukuZT" />
           <EntitySet Name="storage" EntityType="Self.storage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="tuihuo" EntityType="Self.tuihuo" />
           <EntitySet Name="tuihuoType" EntityType="Self.tuihuoType" />
           <EntitySet Name="tuihuoxq" EntityType="Self.tuihuoxq" />
@@ -2445,9 +2560,9 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="chuku" EntitySet="chuku" />
           </AssociationSet>
-          <AssociationSet Name="FK_CUSTOMER_REFERENCE_DIZHI" Association="Self.FK_CUSTOMER_REFERENCE_DIZHI">
-            <End Role="dizhi" EntitySet="dizhi" />
+          <AssociationSet Name="FK_dizhi_dizhi" Association="Self.FK_dizhi_dizhi">
             <End Role="customer" EntitySet="customer" />
+            <End Role="dizhi" EntitySet="dizhi" />
           </AssociationSet>
           <AssociationSet Name="FK_PANDIANX_REFERENCE_CUSTOMER" Association="Self.FK_PANDIANX_REFERENCE_CUSTOMER">
             <End Role="customer" EntitySet="customer" />
@@ -2545,6 +2660,10 @@
             <End Role="rukuType" EntitySet="rukuType" />
             <End Role="ruku" EntitySet="ruku" />
           </AssociationSet>
+          <AssociationSet Name="FK_ruku_rukuZT" Association="Self.FK_ruku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="ruku" EntitySet="ruku" />
+          </AssociationSet>
           <AssociationSet Name="FK_STORAGE_REFERENCE_WAREHOUS" Association="Self.FK_STORAGE_REFERENCE_WAREHOUS">
             <End Role="warehouse" EntitySet="warehouse" />
             <End Role="storage" EntitySet="storage" />
@@ -2565,15 +2684,47 @@
             <End Role="yikuType" EntitySet="yikuType" />
             <End Role="yikuxq" EntitySet="yikuxq" />
           </AssociationSet>
+          <AssociationSet Name="FK_chuku_rukuZT" Association="NewHope4Model.FK_chuku_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="chuku" EntitySet="chuku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CKxiang_chukuType" Association="NewHope4Model.FK_CKxiang_chukuType">
+            <End Role="chukuType" EntitySet="chukuType" />
+            <End Role="CKxiang" EntitySet="CKxiang" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_chuku_rukuZT">
+          <End Type="NewHope4Model.rukuZT" Role="rukuZT" Multiplicity="0..1" />
+          <End Type="NewHope4Model.chuku" Role="chuku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="chuku">
+              <PropertyRef Name="zt" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CKxiang_chukuType">
+          <End Type="NewHope4Model.chukuType" Role="chukuType" Multiplicity="0..1" />
+          <End Type="NewHope4Model.CKxiang" Role="CKxiang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="chukuType">
+              <PropertyRef Name="chukuTypeID" />
+            </Principal>
+            <Dependent Role="CKxiang">
+              <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NewHopeModelStoreContainer" CdmEntityContainer="NewHope4Entities">
+        <EntityContainerMapping StorageEntityContainer="NewHope4ModelStoreContainer" CdmEntityContainer="NewHope4Entities">
           <EntitySetMapping Name="Admin">
-            <EntityTypeMapping TypeName="NewHopeModel.Admin">
+            <EntityTypeMapping TypeName="NewHope4Model.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -2592,7 +2743,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="baosun">
-            <EntityTypeMapping TypeName="NewHopeModel.baosun">
+            <EntityTypeMapping TypeName="NewHope4Model.baosun">
               <MappingFragment StoreEntitySet="baosun">
                 <ScalarProperty Name="baosunID" ColumnName="baosunID" />
                 <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
@@ -2611,7 +2762,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="baosunType">
-            <EntityTypeMapping TypeName="NewHopeModel.baosunType">
+            <EntityTypeMapping TypeName="NewHope4Model.baosunType">
               <MappingFragment StoreEntitySet="baosunType">
                 <ScalarProperty Name="baosunTypeID" ColumnName="baosunTypeID" />
                 <ScalarProperty Name="baosunTypeName" ColumnName="baosunTypeName" />
@@ -2619,8 +2770,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BSxiang">
-            <EntityTypeMapping TypeName="NewHopeModel.BSxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.BSxiang">
               <MappingFragment StoreEntitySet="BSxiang">
+                <ScalarProperty Name="zt" ColumnName="zt" />
                 <ScalarProperty Name="bsID" ColumnName="bsID" />
                 <ScalarProperty Name="Pid" ColumnName="Pid" />
                 <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
@@ -2636,7 +2788,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="chuku">
-            <EntityTypeMapping TypeName="NewHopeModel.chuku">
+            <EntityTypeMapping TypeName="NewHope4Model.chuku">
               <MappingFragment StoreEntitySet="chuku">
                 <ScalarProperty Name="chukuID" ColumnName="chukuID" />
                 <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
@@ -2657,7 +2809,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="chukuType">
-            <EntityTypeMapping TypeName="NewHopeModel.chukuType">
+            <EntityTypeMapping TypeName="NewHope4Model.chukuType">
               <MappingFragment StoreEntitySet="chukuType">
                 <ScalarProperty Name="chukuTypeID" ColumnName="chukuTypeID" />
                 <ScalarProperty Name="chukuTypeName" ColumnName="chukuTypeName" />
@@ -2665,8 +2817,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CKxiang">
-            <EntityTypeMapping TypeName="NewHopeModel.CKxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.CKxiang">
               <MappingFragment StoreEntitySet="CKxiang">
+                <ScalarProperty Name="zt" ColumnName="zt" />
                 <ScalarProperty Name="ckID" ColumnName="ckID" />
                 <ScalarProperty Name="Pid" ColumnName="Pid" />
                 <ScalarProperty Name="Ptiaoma" ColumnName="Ptiaoma" />
@@ -2675,7 +2828,6 @@
                 <ScalarProperty Name="ckpici" ColumnName="ckpici" />
                 <ScalarProperty Name="Tid" ColumnName="Tid" />
                 <ScalarProperty Name="chuSum" ColumnName="chuSum" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
                 <ScalarProperty Name="by2" ColumnName="by2" />
                 <ScalarProperty Name="by3" ColumnName="by3" />
                 <ScalarProperty Name="by4" ColumnName="by4" />
@@ -2683,7 +2835,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customer">
-            <EntityTypeMapping TypeName="NewHopeModel.customer">
+            <EntityTypeMapping TypeName="NewHope4Model.customer">
               <MappingFragment StoreEntitySet="customer">
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
                 <ScalarProperty Name="KehuName" ColumnName="KehuName" />
@@ -2691,12 +2843,13 @@
                 <ScalarProperty Name="faxes" ColumnName="faxes" />
                 <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="beiyong" ColumnName="beiyong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="department">
-            <EntityTypeMapping TypeName="NewHopeModel.department">
+            <EntityTypeMapping TypeName="NewHope4Model.department">
               <MappingFragment StoreEntitySet="department">
                 <ScalarProperty Name="Did" ColumnName="Did" />
                 <ScalarProperty Name="DName" ColumnName="DName" />
@@ -2706,18 +2859,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="dizhi">
-            <EntityTypeMapping TypeName="NewHopeModel.dizhi">
+            <EntityTypeMapping TypeName="NewHope4Model.dizhi">
               <MappingFragment StoreEntitySet="dizhi">
                 <ScalarProperty Name="dizhiID" ColumnName="dizhiID" />
                 <ScalarProperty Name="dizhiName" ColumnName="dizhiName" />
                 <ScalarProperty Name="linkman" ColumnName="linkman" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="KehuID" ColumnName="KehuID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="gysguanli">
-            <EntityTypeMapping TypeName="NewHopeModel.gysguanli">
+            <EntityTypeMapping TypeName="NewHope4Model.gysguanli">
               <MappingFragment StoreEntitySet="gysguanli">
                 <ScalarProperty Name="GID" ColumnName="GID" />
                 <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
@@ -2735,7 +2889,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="gystype">
-            <EntityTypeMapping TypeName="NewHopeModel.gystype">
+            <EntityTypeMapping TypeName="NewHope4Model.gystype">
               <MappingFragment StoreEntitySet="gystype">
                 <ScalarProperty Name="gystypeID" ColumnName="gystypeID" />
                 <ScalarProperty Name="gystypeName" ColumnName="gystypeName" />
@@ -2744,7 +2898,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="jurisdiction">
-            <EntityTypeMapping TypeName="NewHopeModel.jurisdiction">
+            <EntityTypeMapping TypeName="NewHope4Model.jurisdiction">
               <MappingFragment StoreEntitySet="jurisdiction">
                 <ScalarProperty Name="JID" ColumnName="JID" />
                 <ScalarProperty Name="RID" ColumnName="RID" />
@@ -2754,7 +2908,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KuType">
-            <EntityTypeMapping TypeName="NewHopeModel.KuType">
+            <EntityTypeMapping TypeName="NewHope4Model.KuType">
               <MappingFragment StoreEntitySet="KuType">
                 <ScalarProperty Name="KuTYpeID" ColumnName="KuTYpeID" />
                 <ScalarProperty Name="KuName" ColumnName="KuName" />
@@ -2764,18 +2918,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="measurement">
-            <EntityTypeMapping TypeName="NewHopeModel.measurement">
+            <EntityTypeMapping TypeName="NewHope4Model.measurement">
               <MappingFragment StoreEntitySet="measurement">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
                 <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="menu">
-            <EntityTypeMapping TypeName="NewHopeModel.menu">
+            <EntityTypeMapping TypeName="NewHope4Model.menu">
               <MappingFragment StoreEntitySet="menu">
                 <ScalarProperty Name="MID" ColumnName="MID" />
                 <ScalarProperty Name="MNmae" ColumnName="MNmae" />
@@ -2790,7 +2944,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MenuType">
-            <EntityTypeMapping TypeName="NewHopeModel.MenuType">
+            <EntityTypeMapping TypeName="NewHope4Model.MenuType">
               <MappingFragment StoreEntitySet="MenuType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="MName" ColumnName="MName" />
@@ -2799,7 +2953,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="panDian">
-            <EntityTypeMapping TypeName="NewHopeModel.panDian">
+            <EntityTypeMapping TypeName="NewHope4Model.panDian">
               <MappingFragment StoreEntitySet="panDian">
                 <ScalarProperty Name="pandianID" ColumnName="pandianID" />
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
@@ -2812,7 +2966,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pandianType">
-            <EntityTypeMapping TypeName="NewHopeModel.pandianType">
+            <EntityTypeMapping TypeName="NewHope4Model.pandianType">
               <MappingFragment StoreEntitySet="pandianType">
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
                 <ScalarProperty Name="pandianTypeName" ColumnName="pandianTypeName" />
@@ -2821,7 +2975,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="pandianxq">
-            <EntityTypeMapping TypeName="NewHopeModel.pandianxq">
+            <EntityTypeMapping TypeName="NewHope4Model.pandianxq">
               <MappingFragment StoreEntitySet="pandianxq">
                 <ScalarProperty Name="pandianxqID" ColumnName="pandianxqID" />
                 <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
@@ -2830,14 +2984,16 @@
                 <ScalarProperty Name="chanpinPrice" ColumnName="chanpinPrice" />
                 <ScalarProperty Name="pandiansum" ColumnName="pandiansum" />
                 <ScalarProperty Name="chanpinpici" ColumnName="chanpinpici" />
-                <ScalarProperty Name="pandianType" ColumnName="pandianType" />
                 <ScalarProperty Name="pandianTypeID" ColumnName="pandianTypeID" />
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
+                <ScalarProperty Name="zt" ColumnName="zt" />
+                <ScalarProperty Name="by1" ColumnName="by1" />
+                <ScalarProperty Name="by2" ColumnName="by2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Parentmenu">
-            <EntityTypeMapping TypeName="NewHopeModel.Parentmenu">
+            <EntityTypeMapping TypeName="NewHope4Model.Parentmenu">
               <MappingFragment StoreEntitySet="Parentmenu">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
@@ -2846,7 +3002,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productguanli">
-            <EntityTypeMapping TypeName="NewHopeModel.productguanli">
+            <EntityTypeMapping TypeName="NewHope4Model.productguanli">
               <MappingFragment StoreEntitySet="productguanli">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="cpID" ColumnName="cpID" />
@@ -2869,7 +3025,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="productType">
-            <EntityTypeMapping TypeName="NewHopeModel.productType">
+            <EntityTypeMapping TypeName="NewHope4Model.productType">
               <MappingFragment StoreEntitySet="productType">
                 <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="PName" ColumnName="PName" />
@@ -2883,7 +3039,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RKxiang">
-            <EntityTypeMapping TypeName="NewHopeModel.RKxiang">
+            <EntityTypeMapping TypeName="NewHope4Model.RKxiang">
               <MappingFragment StoreEntitySet="RKxiang">
                 <ScalarProperty Name="rxID" ColumnName="rxID" />
                 <ScalarProperty Name="Pid" ColumnName="Pid" />
@@ -2899,7 +3055,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="role">
-            <EntityTypeMapping TypeName="NewHopeModel.role">
+            <EntityTypeMapping TypeName="NewHope4Model.role">
               <MappingFragment StoreEntitySet="role">
                 <ScalarProperty Name="RID" ColumnName="RID" />
                 <ScalarProperty Name="RName" ColumnName="RName" />
@@ -2912,7 +3068,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="roleType">
-            <EntityTypeMapping TypeName="NewHopeModel.roleType">
+            <EntityTypeMapping TypeName="NewHope4Model.roleType">
               <MappingFragment StoreEntitySet="roleType">
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
@@ -2921,9 +3077,10 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ruku">
-            <EntityTypeMapping TypeName="NewHopeModel.ruku">
+            <EntityTypeMapping TypeName="NewHope4Model.ruku">
               <MappingFragment StoreEntitySet="ruku">
                 <ScalarProperty Name="rukuID" ColumnName="rukuID" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
                 <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
                 <ScalarProperty Name="gysID" ColumnName="gysID" />
                 <ScalarProperty Name="cpID" ColumnName="cpID" />
@@ -2941,18 +3098,26 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rukuType">
-            <EntityTypeMapping TypeName="NewHopeModel.rukuType">
+            <EntityTypeMapping TypeName="NewHope4Model.rukuType">
               <MappingFragment StoreEntitySet="rukuType">
                 <ScalarProperty Name="rukuTypeID" ColumnName="rukuTypeID" />
                 <ScalarProperty Name="rukuName" ColumnName="rukuName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="rukuZT">
+            <EntityTypeMapping TypeName="NewHope4Model.rukuZT">
+              <MappingFragment StoreEntitySet="rukuZT">
+                <ScalarProperty Name="rzID" ColumnName="rzID" />
+                <ScalarProperty Name="rzName" ColumnName="rzName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="storage">
-            <EntityTypeMapping TypeName="NewHopeModel.storage">
+            <EntityTypeMapping TypeName="NewHope4Model.storage">
               <MappingFragment StoreEntitySet="storage">
                 <ScalarProperty Name="TID" ColumnName="TID" />
-                <ScalarProperty Name="KID" ColumnName="KID" />
+                <ScalarProperty Name="kid" ColumnName="kid" />
                 <ScalarProperty Name="KName" ColumnName="KName" />
                 <ScalarProperty Name="WID" ColumnName="WID" />
                 <ScalarProperty Name="KuTypeID" ColumnName="KuTypeID" />
@@ -2965,8 +3130,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NewHope4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tuihuo">
-            <EntityTypeMapping TypeName="NewHopeModel.tuihuo">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuo">
               <MappingFragment StoreEntitySet="tuihuo">
                 <ScalarProperty Name="tuihuoID" ColumnName="tuihuoID" />
                 <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
@@ -2979,7 +3155,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tuihuoType">
-            <EntityTypeMapping TypeName="NewHopeModel.tuihuoType">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoType">
               <MappingFragment StoreEntitySet="tuihuoType">
                 <ScalarProperty Name="tuihuoTypeID" ColumnName="tuihuoTypeID" />
                 <ScalarProperty Name="tuihuoTypeName" ColumnName="tuihuoTypeName" />
@@ -2988,7 +3164,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tuihuoxq">
-            <EntityTypeMapping TypeName="NewHopeModel.tuihuoxq">
+            <EntityTypeMapping TypeName="NewHope4Model.tuihuoxq">
               <MappingFragment StoreEntitySet="tuihuoxq">
                 <ScalarProperty Name="tuihuoxqID" ColumnName="tuihuoxqID" />
                 <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
@@ -3003,7 +3179,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="warehouse">
-            <EntityTypeMapping TypeName="NewHopeModel.warehouse">
+            <EntityTypeMapping TypeName="NewHope4Model.warehouse">
               <MappingFragment StoreEntitySet="warehouse">
                 <ScalarProperty Name="WID" ColumnName="WID" />
                 <ScalarProperty Name="WName" ColumnName="WName" />
@@ -3013,7 +3189,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="yiku">
-            <EntityTypeMapping TypeName="NewHopeModel.yiku">
+            <EntityTypeMapping TypeName="NewHope4Model.yiku">
               <MappingFragment StoreEntitySet="yiku">
                 <ScalarProperty Name="yikuID" ColumnName="yikuID" />
                 <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
@@ -3026,7 +3202,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="yikuType">
-            <EntityTypeMapping TypeName="NewHopeModel.yikuType">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuType">
               <MappingFragment StoreEntitySet="yikuType">
                 <ScalarProperty Name="yikuTypeID" ColumnName="yikuTypeID" />
                 <ScalarProperty Name="yikuTypeName" ColumnName="yikuTypeName" />
@@ -3035,7 +3211,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="yikuxq">
-            <EntityTypeMapping TypeName="NewHopeModel.yikuxq">
+            <EntityTypeMapping TypeName="NewHope4Model.yikuxq">
               <MappingFragment StoreEntitySet="yikuxq">
                 <ScalarProperty Name="yikuxqID" ColumnName="yikuxqID" />
                 <ScalarProperty Name="chanpinID" ColumnName="chanpinID" />
