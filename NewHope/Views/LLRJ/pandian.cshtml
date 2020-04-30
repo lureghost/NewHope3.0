@@ -19,20 +19,18 @@
 
             </ul>
             <form class="layui-form" action="" lay-filter="example">
-                <div>
-                    <h3>盘点单管理</h3>
-                </div>
+              
 
                 <div class="layui-btn-group">
-                    <button type="button" class="layui-btn">所有</button>
-                    <button type="button" class="layui-btn ">待审核</button>
-                    <button type="button" class="layui-btn">审核通过</button>
-                    <button type="button" class="layui-btn">审核失败</button>
+                    <button type="button" onclick="GetALL()" class="layui-btn">所有</button>
+                    <button type="button" onclick="GetpandianSH3()" class="layui-btn ">待审核</button>
+                    <button type="button" onclick="GetpandianSH()" class="layui-btn">审核通过</button>
+                    <button type="button" onclick="GetpandianSH2()" class="layui-btn">审核失败</button>
 
                 </div>
                 <div style="float:right">
-                    <button type="button" onclick="location.href='/New/addpandian'" class="layui-btn"><i class="layui-icon"> </i>新增</button>
-                    <button type="button" class="layui-btn"><i class="layui-icon"></i>删除</button>
+                    <button type="button" onclick="location.href='/LLRJ/addpandian'" class="layui-btn"><i class="layui-icon"> </i>新增</button>
+                    <button type="button" onclick="delAllProduct()" class="layui-btn"><i class="layui-icon"></i>删除</button>
                     <button type="button" class="layui-btn"><i class="layui-icon"></i>导出</button>
                 </div>
 
@@ -47,10 +45,7 @@
                         <div class="layui-input-inline" style="width: 100px;">
                             <input type="text" name="time_min" placeholder="开始时间" autocomplete="off" class="layui-input">
                         </div>
-                        <div class="layui-form-mid">-</div>
-                        <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="time_max" placeholder="结束时间" autocomplete="off" class="layui-input">
-                        </div>
+                     
                         <button type="button" class="layui-btn layui-btn-normal">搜索</button>
                     </div>
                     <div class="table">
@@ -58,9 +53,9 @@
 
                             <thead>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td><input id="Checkbox1" checked="checked" type="checkbox" /></td>
                                     <td>&nbsp;盘点编号</td>
-                                    <td>&nbsp;盘点类型</td>
+                                    <td>&nbsp;类型</td>
                                     <td>&nbsp;关联单号</td>
                                     <td>&nbsp;状态</td>
                                     <td>&nbsp;制单人</td>
@@ -71,24 +66,21 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;单号1111</td>
-                                    <td>&nbsp;产品盘点</td>
-                                    <td>&nbsp;23</td>
-                                    <td>&nbsp;待审核</td>
-                                    <td>&nbsp;admin</td>
-                                    <td>&nbsp;电脑</td>
-                                    <td>&nbsp;2020/4/9</td>
-                                    <td>&nbsp;新增删除查看审核</td>
-
-                                </tr>
+                            <tbody id="tb1">
                             </tbody>
                         </table>
 
-                        <div id="demo8"></div>
 
+                        @*<div class="layui-btn-group">
+            <button type="button" id="First" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>首页</button>
+            <button type="button" id="Back" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>上一页</button>
+            <button type="button" id="Next" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>下一页</button>
+            <button type="button" id="Last" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>尾页</button>
+
+        </div>*@
+                        <div id="demo8">
+
+                        </div>
                     </div>
 
                 </div>
@@ -107,7 +99,7 @@
     <script src="~/layui/layui.js"></script>
     <script src="~/layui/layui.all.js"></script>
     <script>
-        //JavaScript代码区域
+        JavaScript代码区域
         layui.use(['laypage', 'layer'], function () {
             var laypage = layui.laypage
                 , layer = layui.layer;
@@ -116,6 +108,350 @@
             , count: 1000
             , layout: ['limit', 'prev', 'page', 'next']
         });
+        });
 
     </script>
 </body>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        GetALL();
+    });
+    function GetALL() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/Getpandian",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var pandianType = "家电";
+                    if (data.pandianTypeID == 2) {
+                        pandianType = "珠宝";
+                    }
+                    if (data.pandianTypeID == 3) {
+                        pandianType = "女装";
+                    }
+                    if (data.pandianTypeID == 4) {
+                        pandianType = "男装";
+                    }
+                    if (data.pandianTypeID == 5) {
+                        pandianType = "建材";
+                    }
+                    if (data.pandianTypeID == 6) {
+                        pandianType = "电子产品";
+                    }
+                    if (data.pandianTypeID == 7) {
+                        pandianType = "钢材";
+                    }
+                    if (data.pandianTypeID == 8) {
+                        pandianType = "纸张";
+                    }
+
+
+
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.pandianID + "' /></td><td>" + data.pandianID + "</td><td>" + pandianType + "</td><td>" + data.chanpinID + "</td><td>" + zt + "</td><td>" + User + "</td><td>" + data.caozuofs + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='/LLRJ/addpandian?id=" + data.pandianID + "'>编辑</a><a href='#' onclick='Delpandian(" + data.pandianID + ")'>删除</a></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    var pageIndex = 1;
+    var pageSize = 3;
+    var pageCount = 0;
+
+    //$("#First").click(function () {
+    //    pageIndex = 1;
+    //    PageList();
+    //    return false;
+    //});
+    //$("#Back").click(function () {
+    //    pageIndex--;
+    //    PageList();
+    //    return false;
+    //});
+    //$("#Next").click(function () {
+    //    pageIndex++;
+    //    PageList();
+    //    return false;
+    //});
+    //$("#Last").click(function () {
+    //    pageIndex = pageCount;
+    //    PageList();
+    //    return false;
+    //});
+    function PageList() {
+        $.ajax({
+            type: "post",
+            url: "/LLRJ/GetpdPage",
+            data: "{PageIndex:'" + pageIndex + "',PageSize:'" + pageSize + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                //获取总页数
+                pageCount = result.PageCount;
+                $("#tb1 tr").remove();
+                $.each(result.DataList, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var pandianType = "家电";
+                    if (data.pandianTypeID == 2) {
+                        pandianType = "珠宝";
+                    }
+                    if (data.pandianTypeID == 3) {
+                        pandianType = "女装";
+                    }
+                    if (data.pandianTypeID == 4) {
+                        pandianType = "男装";
+                    }
+                    if (data.pandianTypeID == 5) {
+                        pandianType = "建材";
+                    }
+                    if (data.pandianTypeID == 6) {
+                        pandianType = "电子产品";
+                    }
+                    if (data.pandianTypeID == 7) {
+                        pandianType = "钢材";
+                    }
+                    if (data.pandianTypeID == 8) {
+                        pandianType = "纸张";
+                    }
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.pandianID + "' /></td><td>" + data.pandianID + "</td><td>" + pandianType + "</td><td>" + data.chanpinID + "</td><td>" + zt + "</td><td>" + User + "</td><td>" + data.caozuofs + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='/LLRJ/addpandian?id=" + data.pandianID + "'>编辑</a><a href='#' onclick='Delpandian(" + data.pandianID + ")'>删除</a></td></tr>");
+
+
+
+                });
+
+
+            }
+
+        });
+    }
+    function GetpandianSH() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetpandianSH",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var pandianType = "家电";
+                    if (data.pandianTypeID == 2) {
+                        pandianType = "珠宝";
+                    }
+                    if (data.pandianTypeID == 3) {
+                        pandianType = "女装";
+                    }
+                    if (data.pandianTypeID == 4) {
+                        pandianType = "男装";
+                    }
+                    if (data.pandianTypeID == 5) {
+                        pandianType = "建材";
+                    }
+                    if (data.pandianTypeID == 6) {
+                        pandianType = "电子产品";
+                    }
+                    if (data.pandianTypeID == 7) {
+                        pandianType = "钢材";
+                    }
+                    if (data.pandianTypeID == 8) {
+                        pandianType = "纸张";
+                    }
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.pandianID + "' /></td><td>" + data.pandianID + "</td><td>" + pandianType + "</td><td>" + data.chanpinID + "</td><td>" + zt + "</td><td>" + User + "</td><td>" + data.caozuofs + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='/LLRJ/addpandian?id=" + data.pandianID + "'>编辑</a><a href='#' onclick='Delpandian(" + data.pandianID + ")'>删除</a></td></tr>");
+
+
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetpandianSH2() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetpandianSH2",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var pandianType = "家电";
+                    if (data.pandianTypeID == 2) {
+                        pandianType = "珠宝";
+                    }
+                    if (data.pandianTypeID == 3) {
+                        pandianType = "女装";
+                    }
+                    if (data.pandianTypeID == 4) {
+                        pandianType = "男装";
+                    }
+                    if (data.pandianTypeID == 5) {
+                        pandianType = "建材";
+                    }
+                    if (data.pandianTypeID == 6) {
+                        pandianType = "电子产品";
+                    }
+                    if (data.pandianTypeID == 7) {
+                        pandianType = "钢材";
+                    }
+                    if (data.pandianTypeID == 8) {
+                        pandianType = "纸张";
+                    }
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.pandianID + "' /></td><td>" + data.pandianID + "</td><td>" + pandianType + "</td><td>" + data.chanpinID + "</td><td>" + zt + "</td><td>" + User + "</td><td>" + data.caozuofs + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='/LLRJ/addpandian?id=" + data.pandianID + "'>编辑</a><a href='#' onclick='Delpandian(" + data.pandianID + ")'>删除</a></td></tr>");
+
+
+
+
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetpandianSH3() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetpandianSH3",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var pandianType = "家电";
+                    if (data.pandianTypeID == 2) {
+                        pandianType = "珠宝";
+                    }
+                    if (data.pandianTypeID == 3) {
+                        pandianType = "女装";
+                    }
+                    if (data.pandianTypeID == 4) {
+                        pandianType = "男装";
+                    }
+                    if (data.pandianTypeID == 5) {
+                        pandianType = "建材";
+                    }
+                    if (data.pandianTypeID == 6) {
+                        pandianType = "电子产品";
+                    }
+                    if (data.pandianTypeID == 7) {
+                        pandianType = "钢材";
+                    }
+                    if (data.pandianTypeID == 8) {
+                        pandianType = "纸张";
+                    }
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.pandianID + "' /></td><td>" + data.pandianID + "</td><td>" + pandianType + "</td><td>" + data.chanpinID + "</td><td>" + zt + "</td><td>" + User + "</td><td>" + data.caozuofs + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='/LLRJ/addpandian?id=" + data.pandianID + "'>编辑</a><a href='#' onclick='Delpandian(" + data.pandianID + ")'>删除</a></td></tr>");
+
+
+
+
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function delAllProduct() {
+
+        $("#tb1 tr ").remove();
+
+    }
+   
+    function Delpandian(id) {
+
+
+
+        if (confirm('确定删除?')) {
+            $.ajax({
+
+                type: "POST",
+                url: "/LLRJ/Delpandian",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    $("#tb1 tr").remove();
+                    if (result > 0) {
+                        alert("删除成功！");
+                        GetALL();
+
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+        }
+
+
+
+
+    }
+
+    function ConvertTime(time) {
+
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
+</script>

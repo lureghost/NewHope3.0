@@ -92,8 +92,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\MOD.dll" />
     <Content Include="bin\NewHope.dll" />
     <Content Include="bin\NewHope.pdb" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
+    <Content Include="bin\System.Web.Webpages.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
     <Content Include="bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
     <Content Include="bootstrap-3.3.7-dist\css\bootstrap.css" />
@@ -342,6 +351,7 @@
     <Content Include="Views\ZZX\yuangong.cshtml" />
     <Content Include="Views\New\BiaoShiFuGuanLi.cshtml" />
     <Content Include="Views\New\QuanXianFenPei.cshtml" />
+    <Content Include="Views\LLRJ\yikuSH.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -351,6 +361,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\roslyn\" />
+    <Folder Include="bin\zh-Hans\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="obj\Release\" />
   </ItemGroup>

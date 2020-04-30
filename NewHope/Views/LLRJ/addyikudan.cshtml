@@ -16,7 +16,7 @@
 
             </ul>
 
-            <form class="layui-form" action="" lay-filter="example">
+            <form class="layui-form" id="form1" action="" lay-filter="example">
                 <div>
                     <h3>新增移库单</h3>
                 </div>
@@ -24,33 +24,35 @@
 
                 <div class="layui-inline">
                     <div class="layui-input-inline" style="width: 200px;">
+
+
                         移库单编号
-                        <input type="text" name="danhao" lay-verify="title" autocomplete="off" placeholder="可不填,自动生成" readonly="readonly" class="layui-input">
+                        <input type="text" name="yikuID" lay-verify="title" autocomplete="off" placeholder="可不填,自动生成" readonly="readonly" class="layui-input">
                     </div>
                     <div class="layui-input-inline">
                         移库类型
-                        <select name="quiz2">
+                        <select name="yikuTypeID">
                             <option value="">请选择仓库类型</option>
-                            <option value="仓库移库">仓库移库</option>
-                            <option value="报损移库">报损移库</option>
-                            <option value="移库上架">移库上架</option>
+                            <option value="1">仓库移库</option>
+                            <option value="2">报损移库</option>
+                            <option value="3">移库上架</option>
 
                         </select>
                     </div>
 
                     <div class="layui-input-inline" style="width: 200px;">
                         关联订单
-                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                        <input type="text" name="chanpinID" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width: 200px;">
                         订单时间
-                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                        <input type="text" name="CreationDate" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <div class="layui-input-inline" style="width: 200px;">
                         制单人
-                        <input type="text" name="time_max" placeholder="admin" autocomplete="off" class="layui-input">
+                        <input type="text" name="UserID" placeholder="5" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width: 400px;">
                         备注
@@ -62,31 +64,33 @@
 
                         <thead>
                             <tr>
-                              
+
                                 <td>&nbsp;产品编号</td>
                                 <td>&nbsp;产品条码</td>
                                 <td>&nbsp;产品名称</td>
                                 <td>&nbsp;批次</td>
                                 <td>&nbsp;数量</td>
                                 <td>&nbsp;当前库位</td>
-                                <td>&nbsp;移入库位</td>
+
                                 <td>&nbsp;操作</td>
 
 
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                            </tr>
+                        <tbody id="tb2">
                         </tbody>
                     </table>
                     <div class="layui-btn-group">
-                        <button type="button"onclick="show('light')" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>添加移库产品</button>
-                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>提交</button>
+                        <button type="button" onclick="show('light')" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>添加移库产品</button>
+                        <button type="button" onclick="Addyiku()" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>提交</button>
+                        <button type="button" onclick="Edit()"  class="layui-btn layui-btn-sm"><i class="layui-icon"></i>编辑</button>
+                        <button type="button" onclick="quxiao()" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>取消</button>
 
-                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>取消</button>
+
+
                     </div>
                 </div>
+              
             </form>
            
 
@@ -95,32 +99,29 @@
 
                 <div style="height:450px;">
                     <div class="layui-input-inline" style="width: 200px;">
-                        产品编号： <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                        产品编号： <input type="text" onkeydown="GetALL()" id="chanpintiaoma" placeholder="" autocomplete="off" class="layui-input">
                         </div>
                         <table class="layui-table">
                             <thead>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
                                     <td>&nbsp;产品名称</td>
                                     <td>&nbsp;产品条码</td>
                                     <td>&nbsp;产品编码</td>
                                     <td>&nbsp;批次</td>
                                     <td>&nbsp;当前库位</td>
-                                    <td>&nbsp;现有库位</td>
                                     <td>&nbsp;移库数量</td>
-                                    <td>&nbsp;移入库位</td>
+                                    <td>&nbsp;操作</td>
+
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                </tr>
-
+                            <tbody id="tb1">
+                             
 
                             </tbody>
                         </table>
                         <div  style="float:right">
                             
-                              <div class="close"> <button>确定</button><button onclick="hide('light')">关闭</button> </div>
+                              <div class="close"> <button onclick="hide('light')">关闭</button> </div>
                         </div>
                     </div>
 
@@ -138,8 +139,55 @@
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
     $(function () {
-
+        GetyikuID(id);
     });
+    function quxiao() {
+        $("#tb2 tr").remove()
+    }
+    function GetyikuxqID(id) {
+
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetyikuxqID",
+            data: "{id:" + id + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb2 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tb2").append("<tr> <td>" + data.chanpinID + "</td><td>" + data.chanpintiaoma + "</td><td>" + data.chanpinName + "</td><td>" + data.chanpinpici + "</td><td>" + data.yikusum + "</td><td>" + data.yikuTypeID + "</td><td><a href='#' onclick='quxiao()'>删除</a></td></tr>");
+
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    function GetALL() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/Getyikuxq",
+            data: "{y:'" + $("#chanpintiaoma").val() + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+                $.each(result, function (index, data) {
+
+
+
+
+                    $("#tb1").append("<tr> <td>" + data.chanpinName + "</td><td>" + data.chanpinID + "</td><td>" + data.chanpintiaoma + "</td><td>" + data.chanpinpici + "</td><td>" + data.yikuTypeID + "</td><td>" + data.yikusum + "</td><td><button  onclick='return GetyikuxqID(" + data.yikuxqID + ")'>确定</button></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
     function show(tag) {
         var light = document.getElementById(tag);
         light.style.display = 'block';
@@ -150,5 +198,107 @@
         light.style.display = 'none';
         $("#fade").css('display', 'none');
     }
+    function Delyikuxq(id) {
+        if (confirm('确定删除?')) {
+            $.ajax({
+                type: "POST",
+                url: "/LLRJ/Delyikuxq",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("删除成功！");
 
+
+                    }
+                },
+
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+        }
+    }
+    function Addyiku() {
+        var data = $("#form1").serializeArray();
+        var obj = {};
+        $.each(data, function (a, b) {
+            obj[b.name] = b.value;
+        });
+        var jsons = JSON.stringify(obj);
+
+
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/Addyiku",
+            data: "{y:" + jsons + " }",
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function (result) {
+                if (result > 0) {
+                    alert("新增成功");
+
+                }
+                else {
+                    alert("新增失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetyikuID(id) {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetyikuID",
+            data: "{id:" + id + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='yikuID ']").val(data.yikuID);
+                    $("[name='yikuTypeID ']").val(data.yikuTypeID);
+                    $("[name='chanpinID ']").val(data.chanpinID);
+                    $("[name='CreationDate ']").val(data.CreationDate);
+                    $("[name='UserID ']").val(data.UserID);
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    function Edit() {
+        var id =@Request.QueryString["id"]
+            $("[name='yikuID']").val(id);
+    
+     
+            $.ajax({
+
+                type: "POST",
+                url: "/LLRJ/Edit",
+                data: "{y:{yikuID:" + id + ",yikuTypeID:'" + $("[name='yikuTypeID']").val() + "',chanpinID:'" + $("[name='chanpinID']").val() + "',CreationDate:'" + $("[name='CreationDate']").val() + "',UserID:'" + $("[name='UserID']").val() + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("修改成功");
+                    }
+                    else {
+                        alert("修改失败");
+
+                    }
+                },
+                //
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+       
+    }
 </script>

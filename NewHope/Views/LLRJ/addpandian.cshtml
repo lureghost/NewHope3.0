@@ -17,30 +17,27 @@
 
             </ul>
 
-            <form class="layui-form" action="" lay-filter="example">
-                <div>
-                    <h3>新增盘点</h3>
-                </div>
-
+            <form class="layui-form" id="form1" action="" lay-filter="example">
+             
 
                 <div class="layui-inline">
                     <div class="layui-input-inline" style="width: 200px;">
                         盘点单号
-                        <input type="text" name="danhao" lay-verify="title" autocomplete="off" placeholder="可不填,自动生成" readonly="readonly" class="layui-input">
+                        <input type="text" name="pandianID" lay-verify="title" autocomplete="off" placeholder="可不填,自动生成" readonly="readonly" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width: 200px;">
                         关联订单
-                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                        <input type="text" name="chanpinID" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width: 200px;">
                         订单时间
-                        <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                        <input type="text" name="CreationDate" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <div class="layui-input-inline" style="width: 200px;">
                         制单人
-                        <input type="text" name="time_max" placeholder="admin" autocomplete="off" class="layui-input">
+                        <input type="text" name="UserID" placeholder="admin" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline" style="width: 400px;">
                         备注
@@ -56,72 +53,72 @@
                                 <td>&nbsp;产品编号</td>
                                 <td>&nbsp;产品名称</td>
                                 <td>&nbsp;产品条码</td>
-                                <td>&nbsp;规格</td>
+                                <td>&nbsp;批次</td>
                                 <td>&nbsp;类别</td>
                               
 
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                            </tr>
+                        <tbody id="tb2">
+                            
                         </tbody>
                     </table>
                     <div class="layui-btn-group">
                         <button type="button" onclick="show('light')" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>添加盘点目标</button>
-                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>保存</button>
+                        <button type="button" onclick="Addpd()" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>保存</button>
+                        <button type="button" onclick="Edit()" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>编辑</button>
 
-                        <button type="button" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>取消</button>
+                        <button type="button" onclick="" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>取消</button>
                     </div>
                 </div>
             </form>
 
 
-            <div id="light" class="white_content">
+            <div id="light" class="layui-inline">
 
 
                 <div style="height:450px;">
 
                     <div class="layui-input-inline" style="width: 200px;">
-                        类别编号/名称： <input type="text" name="time_max" placeholder="" autocomplete="off" class="layui-input">
+                        类别编号： <input type="text" id="name"name="time_max" placeholder="" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-input-inline">
-                        移库类型
-                        <select name="quiz2">
+                        产品类型
+                        <select name="quiz2" id="xiala">
                             <option value="">请选择类别</option>
-                            <option value="家电">家电</option>
-                            <option value="珠宝">珠宝</option>
-                            <option value="女装">女装</option>
-
+                            <option value="1">家电</option>
+                            <option value="2">珠宝</option>
+                            <option value="3">女装</option>
+                            <option value="4">男装</option>
+                            <option value="5">建材</option>
+                            <option value="6">电子产品</option>
+                            <option value="7">钢材</option>
+                            <option value="8">纸张</option>
                         </select>
                     </div>
 
-                    <button type="button" class="layui-btn layui-btn-normal">搜索</button>
+                    <button type="button" onclick="GetALL();" class="layui-btn layui-btn-normal">搜索</button>
 
                     <table class="layui-table">
                         <thead>
                             <tr>
-                                <td><input id="Checkbox1" type="checkbox" /></td>
                                 <td>&nbsp;产品编号</td>
                                 <td>&nbsp;产品名称</td>
                                 <td>&nbsp;产品类别</td>
-                                <td>&nbsp;单位</td>
-                                <td>&nbsp;单价</td>
-                                <td>&nbsp;规格</td>
-                                <td>&nbsp;描述</td>
-                                <td>&nbsp;备注</td>
+                                <td>&nbsp;操作</td>
+
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                            </tr>
+                        <tbody id="tb1">
+                            
+                            
 
 
                         </tbody>
                     </table>
                     <div style="float:right">
 
-                        <div class="close"><button>全部</button><button>确定</button><button onclick="hide('light')">关闭</button> </div>
+                        <div class="close"><button onclick="hide('light')">关闭</button> </div>
                     </div>
                 </div>
 
@@ -139,7 +136,7 @@
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 <script>
     $(function () {
-
+        GetpdID(id);
     });
     function show(tag) {
         var light = document.getElementById(tag);
@@ -151,5 +148,131 @@
         light.style.display = 'none';
         $("#fade").css('display', 'none');
     }
+    function quxiao() {
+        $("#tb2 tr").remove()
+    }
+    function GetBypdxqId(id) {
 
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetBypdxqId",
+            data: "{id:" + id + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb2 tr").remove();
+                $.each(result, function (index, data) {
+                    $("#tb2").append("<tr> <td>" + data.pandianxqID + "</td><td>" + data.chanpinName + "</td><td>" + data.chanpintiaoma + "</td><td>" + data.chanpinpici + "</td><td>" + data.pandianTypeID + "</td><td><a href='#' onclick='quxiao()'>删除</a></td></tr>");
+
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    function GetALL() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/Getzuhepandian",
+            data: "{name:'" + $("#name").val() + "',leibie:'" + $("#xiala").val() + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr").remove();
+                $.each(result, function (index, data) {
+
+
+
+
+                    $("#tb1").append("<tr> <td>" + data.pandianxqID + "</td><td>" + data.chanpinName + "</td><td>" + data.pandianTypeID + "</td><td><button  onclick='return GetBypdxqId(" + data.pandianxqID + ")'>确定</button></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function Addpd() {
+        var data = $("#form1").serializeArray();
+        var obj = {};
+        $.each(data, function (a, b) {
+            obj[b.name] = b.value;
+        });
+        var jsons = JSON.stringify(obj);
+
+
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/Addpd",
+            data: "{y:" + jsons + " }",
+            dataType: "json",
+            contentType: "application/json",
+
+            success: function (result) {
+                if (result > 0) {
+                    alert("新增成功");
+
+                }
+                else {
+                    alert("新增失败");
+                }
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetpdID(id) {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetpdID",
+            data: "{id:" + id + "}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $.each(result, function (index, data) {
+                    $("[name='pandianID ']").val(data.pandianID); 
+                    $("[name='chanpinID ']").val(data.chanpinID);
+                    $("[name='CreationDate ']").val(data.CreationDate);
+                    $("[name='UserID ']").val(data.UserID);
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+            }
+        });
+    }
+    function Edit() {
+        var id =@Request.QueryString["id"]
+            $("[name='pandianID']").val(id);
+
+
+            $.ajax({
+
+                type: "POST",
+                url: "/LLRJ/Editpd",
+                data: "{pan:{pandianID:" + id + ",chanpinID:'" + $("[name='chanpinID']").val() + "',CreationDate:'" + $("[name='CreationDate']").val() + "',UserID:'" + $("[name='UserID']").val() + "'}}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result > 0) {
+                        alert("修改成功");
+                    }
+                    else {
+                        alert("修改失败");
+
+                    }
+                },
+                //
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+
+    }
 </script>

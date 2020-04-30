@@ -13,7 +13,7 @@
     <div class="layui-layout layui-layout-admin" >
       
 
-        <div class="layui-body" >
+        <div class="layui-body">
             <!-- 内容主体区域 -->
 
             <ul class="">
@@ -21,47 +21,44 @@
 
 
             </ul>
-            <form class="layui-form" action="" lay-filter="example">
+            <form class="layui-form" id="form1" action="" lay-filter="example">
                 <div>
-                    <h3 >移库管理</h3>
+                    <h3>移库管理</h3>
                 </div>
 
                 <div class="layui-btn-group">
-                    <button type="button" class="layui-btn">所有</button>
-                    <button type="button" class="layui-btn ">待审核</button>
-                    <button type="button" class="layui-btn">审核通过</button>
-                    <button type="button" class="layui-btn">审核失败</button>
+                    <button type="button" onclick="GetALL()" class="layui-btn">所有</button>
+                    <button type="button" onclick="GetyikuSH3()" class="layui-btn ">待审核</button>
+                    <button type="button" onclick="GetyikuSH()" class="layui-btn">审核通过</button>
+                    <button type="button" onclick="GetyikuSH2()" class="layui-btn">审核失败</button>
 
                 </div>
                 <div style="float:right">
-                    <button type="button" onclick="location.href='/New/addyikudan'" class="layui-btn" ><i class="layui-icon" > </i>新增</button>
-                    <button type="button" class="layui-btn"><i class="layui-icon"></i>删除</button>
+                    <button type="button" onclick="location.href='/LLRJ/addyikudan'" class="layui-btn"><i class="layui-icon"> </i>新增</button>
+                    <button type="button" onclick="delAllProduct()" class="layui-btn"><i class="layui-icon"></i>删除</button>
                     <button type="button" class="layui-btn"><i class="layui-icon"></i>导出</button>
                 </div>
-              
+
                 <div class="layui-form-item">
 
 
 
                     <div class="layui-inline">
                         <div class="layui-input-inline" style="width: 200px;">
-                            <input type="text" name="danhao" lay-verify="title" autocomplete="off" placeholder="请输入报损单号" class="layui-input">
+                            <input type="text" id="id" name="chanpinID" lay-verify="title" autocomplete="off" placeholder="请输入报损单号" class="layui-input">
                         </div>
                         <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="time_min" placeholder="开始时间" autocomplete="off" class="layui-input">
+                            <input type="text" id="startime" name="CreationDate" placeholder="开始时间" autocomplete="off" class="layui-input">
                         </div>
-                        <div class="layui-form-mid">-</div>
-                        <div class="layui-input-inline" style="width: 100px;">
-                            <input type="text" name="time_max" placeholder="结束时间" autocomplete="off" class="layui-input">
-                        </div>
-                        <button type="button" class="layui-btn layui-btn-normal">搜索</button>
+
+                        <button type="button" onclick="Getzuheyiku()" class="layui-btn layui-btn-normal">搜索</button>
                     </div>
                     <div class="table">
                         <table class="layui-table">
 
                             <thead>
                                 <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
+                                    <td><input id="allChecks" checked="checked" type="checkbox" /></td>
                                     <td>&nbsp;移库单编号</td>
                                     <td>&nbsp;移库类型</td>
                                     <td>&nbsp;关联单号</td>
@@ -74,33 +71,31 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input id="Checkbox1" type="checkbox" /></td>
-                                    <td>&nbsp;单号1111</td>
-                                    <td>&nbsp;移库上架</td>
-                                    <td>&nbsp;23</td>
-                                    <td>&nbsp;3</td>
-                                    <td>&nbsp;admin</td>
-                                    <td>&nbsp;等待审核</td>
-                                    <td>&nbsp;2020/4/9</td>
-                                    <td>&nbsp;新增删除查看审核</td>
-
-                                </tr>
+                            <tbody id="tb1">
                             </tbody>
                         </table>
-                       
-                        <div id="demo8"></div>
+
+                        
+                        @*<div class="layui-btn-group">
+                            <button type="button" id="First" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>首页</button>
+                            <button type="button" id="Back" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>上一页</button>
+                            <button type="button"id="Next"class="layui-btn layui-btn-sm"><i class="layui-icon"></i>下一页</button>
+                            <button type="button"id="Last" class="layui-btn layui-btn-sm"><i class="layui-icon"></i>尾页</button>
+
+                        </div>*@
+                        <div id="demo8">
+
+                        </div>
+                        </div>
 
                     </div>
-                   
-                </div>
+
 
 
 
             </form>
-            
-            </div>
+       
+        </div>
 
 
         </div>
@@ -114,11 +109,299 @@
         layui.use(['laypage', 'layer'], function () {
             var laypage = layui.laypage
                 , layer = layui.layer;
-        laypage.render({
-            elem: 'demo8'
-            , count: 1000
-            , layout: ['limit', 'prev', 'page', 'next']
+            laypage.render({
+                elem: 'demo8'
+                , count: 1000
+                , layout: ['limit', 'prev', 'page', 'next']
+            });
         });
           
     </script>
 </body>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    var pageIndex = 1;
+    var pageSize = 3;
+    var pageCount = 0;
+  
+    $(function () {
+       
+        GetALL();
+    });
+    //$("#First").click(function () {
+    //    pageIndex = 1;
+    //    PageList();
+    //    return false;
+    //});
+    //$("#Back").click(function () {
+    //    pageIndex--;
+    //    PageList();
+    //    return false;
+    //});
+    //$("#Next").click(function () {
+    //    pageIndex++;
+    //    PageList();
+    //    return false;
+    //});
+    //$("#Last").click(function () {
+    //    pageIndex = pageCount;
+    //    PageList();
+    //    return false;
+    //});
+    function PageList() {
+        $.ajax({
+            type: "post",
+            url: "/LLRJ/GetyikuPage",
+            data: "{PageIndex:'" + pageIndex + "',PageSize:'" + pageSize + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+
+                //获取总页数
+                pageCount = result.PageCount;
+                $("#tb1 tr").remove();
+                $.each(result.DataList, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var yikuType = "移库上架";
+                    if (data.yikuTypeID == 2) {
+                        yikuType = "仓库移库";
+                    }
+                    if (data.yikuTypeID == 3) {
+                        yikuType = "移库报损";
+                    }
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.yikuID + "' /></td><td>" + data.yikuID + "</td><td>" + yikuType + "</td><td>" + data.chanpinID + "</td><td>" + data.count + "</td><td>" + User + "</td><td>" + zt + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='#' onclick=''>编辑</a><a href='#' onclick=''>删除</a><a href='#' onclick='show('light')'>审核</a></td></tr>");
+
+
+
+                });
+
+
+            }
+
+        });
+    }
+    function GetyikuSH() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetyikuSH",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var yikuType = "移库上架";
+                    if (data.yikuTypeID == 2) {
+                        yikuType = "仓库移库";
+                    }
+                    if (data.yikuTypeID == 3) {
+                        yikuType = "移库报损";
+                    }
+
+
+
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.yikuID + "' /></td><td>" + data.yikuID + "</td><td>" + yikuType + "</td><td>" + data.chanpinID + "</td><td>" + data.count + "</td><td>" + User + "</td><td>" + zt + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='#' onclick=''>编辑</a><a href='#' onclick=''>删除</a><a href='#' onclick='show('light')'>审核</a></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetyikuSH2() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetyikuSH2",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var yikuType = "移库上架";
+                    if (data.yikuTypeID == 2) {
+                        yikuType = "仓库移库";
+                    }
+                    if (data.yikuTypeID == 3) {
+                        yikuType = "移库报损";
+                    }
+
+
+
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.yikuID + "' /></td><td>" + data.yikuID + "</td><td>" + yikuType + "</td><td>" + data.chanpinID + "</td><td>" + data.count + "</td><td>" + User + "</td><td>" + zt + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='#' onclick=''>编辑</a><a href='#' onclick=''>删除</a><a href='#' onclick=''>审核</a></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetyikuSH3() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/GetyikuSH3",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var yikuType = "移库上架";
+                    if (data.yikuTypeID == 2) {
+                        yikuType = "仓库移库";
+                    }
+                    if (data.yikuTypeID == 3) {
+                        yikuType = "移库报损";
+                    }
+
+
+
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.yikuID + "' /></td><td>" + data.yikuID + "</td><td>" + yikuType + "</td><td>" + data.chanpinID + "</td><td>" + data.count + "</td><td>" + User + "</td><td>" + zt + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='#' onclick=''>编辑</a><a href='#' onclick=''>删除</a><a href='#' onclick=''>审核</a></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function GetALL() {
+        $.ajax({
+            type: "POST",
+            url: "/LLRJ/Getyiku",
+            data: "{}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    var zt = "待审核";
+                    if (data.state == 1) {
+                        zt = "审核通过"
+                    }
+                    if (data.state == 2) {
+                        zt = "审核失败"
+                    }
+                    var User = "刘绕菁";
+                    var yikuType = "移库上架";
+                    if (data.yikuTypeID == 2) {
+                        yikuType = "仓库移库";
+                    }
+                    if (data.yikuTypeID == 3) {
+                        yikuType = "移库报损";
+                    }
+
+
+
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.yikuID + "' /></td><td>" + data.yikuID + "</td><td>" + yikuType + "</td><td>" + data.chanpinID + "</td><td>" + data.count + "</td><td>" + User + "</td><td>" + zt + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='/LLRJ/addyikudan?id=" + data.yikuID + "'>编辑</a><a href='#' onclick='Delyiku(" + data.yikuID + ")'>删除</a><a href='/LLRJ/yikuSH?id=" + data.yikuID + "'>审核</a></td></tr>");
+                });
+            },
+            error: function (ex) {
+                alert(ex.responseText);
+
+            }
+            ,
+        });
+    }
+    function delAllProduct() {
+
+        $("#tb1 tr ").remove();
+
+    }
+    function Getzuheyiku() {
+
+        $.ajax({
+            type: "post",
+            url: "/LLRJ/Getzuheyiku",
+            data: "{id:'" + $("#id").val() + "',startime:'" + $("#startime").val() + "'}",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (result) {
+                $("#tb1 tr ").remove();
+
+                $.each(result, function (index, data) {
+                    $("#tb1").append("<tr> <td><input style='display:block;' checked='checked' type='checkbox' value='" + data.yikuID + "' /></td><td>" + data.yikuID + "</td><td>" + yikuType + "</td><td>" + data.chanpinID + "</td><td>" + data.count + "</td><td>" + User + "</td><td>" + zt + "</td><td>" + ConvertTime(data.CreationDate) + "</td><td><a href='#' onclick=''>编辑</a><a href='#' onclick=''>删除</a><a href='#' onclick=''>审核</a></td></tr>");
+
+                });
+            }
+
+        });
+
+    }
+    function Delyiku(id) {
+
+
+
+        if (confirm('确定删除?')) {
+            $.ajax({
+
+                type: "POST",
+                url: "/LLRJ/Delyiku",
+                data: "{id:" + id + "}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    $("#tb1 tr").remove();
+                    if (result > 0) {
+                        alert("删除成功！");
+                        GetALL();
+
+                    }
+                },
+                error: function (ex) {
+                    alert(ex.responseText);
+                }
+            });
+        }
+
+
+
+
+    }
+
+    function ConvertTime(time) {
+
+        var date = new Date(parseInt(time.substr(6)));
+        return date.toLocaleDateString();
+    }
+</script>
