@@ -44,7 +44,7 @@ namespace DAL
              
             };
             PageList fy = new PageList();
-            fy.list = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            fy.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             fy.PageCount = obj.Count();
             return fy;
         }
@@ -498,7 +498,7 @@ namespace DAL
 
                       };
             PageList fy = new PageList();
-            fy.list = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            fy.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             fy.PageCount = obj.Count();
             return fy;
         }
@@ -936,7 +936,7 @@ namespace DAL
 
                       };
             PageList fy = new PageList();
-            fy.list = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+            fy.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
             fy.PageCount = obj.Count();
             return fy;
         }

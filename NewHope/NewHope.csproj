@@ -370,6 +370,8 @@
     <Content Include="Views\ZZX\caidanuanli.cshtml" />
     <Content Include="Views\ZZX\juese.cshtml" />
     <Content Include="Views\ZZX\yuangong.cshtml" />
+    <Content Include="Views\ZZX\Login.cshtml" />
+    <Content Include="Views\ZZX\ShouYe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
