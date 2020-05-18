@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/layui/css/layui.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div  style="height:100%;width:100%;">
+        <form class="layui-form" style="margin:0px auto;height:200px;width:500px;">
+            <div style="color:royalblue;font-weight:bolder;font-size:30px;margin-top:50px;">
+                大&nbsp;&nbsp;&nbsp;家&nbsp;&nbsp;&nbsp;的&nbsp;&nbsp;&nbsp;项&nbsp;&nbsp;&nbsp;目
+            </div>
+            <br /><br /><br />
+            <div class="layui-form-item">
+                <label class="layui-form-label">请输入账号</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" lay-verify="pass" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <br />
+            <div class="layui-form-item">
+                <label class="layui-form-label">请输入密码</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+            </div>
+            <br />
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button type="button" class="layui-btn" onclick="login()">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/layui/layui.js" charset="utf-8"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+        $(function () {
+            layui.use(['form', 'layedit', 'laydate'], function () {
+                var form = layui.form
+                    , layer = layui.layer
+                    , layedit = layui.layedit
+                    , laydate = layui.laydate;
+                //自定义验证规则
+                form.verify({
+                    title: function (value) {
+                        if (value.length < 3) {
+                            return '标题至少得5个字符啊';
+                        }
+                    }
+                    , pass: [
+                        /^[\S]{3,18}$/
+                        , '密码必须3到18位，且不能出现空格'
+                    ]
+                    , content: function (value) {
+                        layedit.sync(editIndex);
+                    }
+                });
+            });
+        });
+        function login() {
+            var name = $("[name=username]").val();
+            $.ajax({
+                type: "post",
+                url: "/ZZX/LoginBynamepwd",
+                data: "{UserName:'" + $("[name=username]").val() + "',UserPwd:'" + $("[name=password]").val() +"'}",
+                dataType: "json",
+                contentType: "application/json",
+                success: function (result) {
+                    if (result == 1) {
+                        alert("登录成功");
+                        location.href = "/ZZX/ShouYe?name=" + name;
+                    }
+                    else {
+                        alert("登录失败");
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -21,6 +21,7 @@ namespace MOD
         public Nullable<int> chanpinPrice { get; set; }
         public Nullable<int> pandiansum { get; set; }
         public string chanpinpici { get; set; }
+        public string pandianType { get; set; }
         public Nullable<int> pandianTypeID { get; set; }
         public Nullable<int> kehuID { get; set; }
         public string zt { get; set; }
@@ -28,6 +29,6 @@ namespace MOD
         public string by2 { get; set; }
     
         public virtual customer customer { get; set; }
-        public virtual pandianType pandianType { get; set; }
+        public virtual pandianType pandianType1 { get; set; }
     }
 }
