@@ -149,7 +149,8 @@
         <br />
         <br />
         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px" id="xinzeng">确定</button>
-        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" id="guanbi" onclick="guanbi()">关闭</button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="" id="guanbi" onclick="guan()">关闭</button>
+
     </form>
 </div>
 
@@ -194,7 +195,7 @@
         <br />
         <br />
         <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:400px" id="xiugaiha" onclick="xiugai()">确定</button>
-        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onclick="guanbi2()">关闭</button>
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="" onclick="guan2()">关闭</button>
     </form>
 </div>
 
@@ -367,15 +368,15 @@
 
     //}
 
-    $("#guanbi").click(function () {
+    
+
+
+    function guan() {
         layer.closeAll('page');
-    })
-
-
-
+    }
 
     //关闭
-    function guanbi2() {
+    function guan2() {
         layer.closeAll('page');
     }
 
