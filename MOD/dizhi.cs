@@ -14,13 +14,19 @@ namespace MOD
     
     public partial class dizhi
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public dizhi()
+        {
+            this.customer = new HashSet<customer>();
+        }
+    
         public int dizhiID { get; set; }
         public string dizhiName { get; set; }
         public string linkman { get; set; }
         public string phone { get; set; }
         public Nullable<int> state { get; set; }
-        public Nullable<int> KehuID { get; set; }
     
-        public virtual customer customer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customer> customer { get; set; }
     }
 }

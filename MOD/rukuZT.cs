@@ -17,16 +17,16 @@ namespace MOD
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public rukuZT()
         {
-            this.ruku = new HashSet<ruku>();
             this.chuku = new HashSet<chuku>();
+            this.ruku = new HashSet<ruku>();
         }
     
         public int rzID { get; set; }
         public string rzName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ruku> ruku { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chuku> chuku { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ruku> ruku { get; set; }
     }
 }

@@ -15,7 +15,6 @@ namespace MOD
     public partial class ruku
     {
         public int rukuID { get; set; }
-        public Nullable<int> rid { get; set; }
         public Nullable<int> rukuTypeID { get; set; }
         public Nullable<int> gysID { get; set; }
         public string cpID { get; set; }
@@ -29,6 +28,7 @@ namespace MOD
         public string by4 { get; set; }
         public string by3 { get; set; }
         public string by2 { get; set; }
+        public Nullable<int> rid { get; set; }
     
         public virtual Admin Admin { get; set; }
         public virtual gysguanli gysguanli { get; set; }
