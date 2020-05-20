@@ -464,11 +464,12 @@
             });
 
         });
-
+        
         $.ajax({
+            
             type: "post",
             url: "/NX/chukuchakan",
-            data: "{ckid:'" + 1 + "'}",
+            data: "{ckid:'" + rid + "'}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
@@ -713,7 +714,7 @@
             success: function (result) {
                 $("#all tr").remove();
                 rowss = result.PageCount;
-                $.each(result.list, function (index, data) {
+                $.each(result.DateList, function (index, data) {
                     $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.chukuid + "</td><td>&nbsp;" + data.chukuType + "</td><td>&nbsp;" + data.kuhu + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.price + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.chukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.chukuid + ");chaxiang(" + data.ckid + ");shenghe(" + data.chukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.chukuid + ")'/></td></tr>");
 
                 })

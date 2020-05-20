@@ -654,6 +654,7 @@
             var time = $("#test19").val();
 
             var cpid = $("[name=xcpid]").val();
+            alert(time);
             rukugai(rid, typeid, cpid, gysid, time);
 
 
@@ -708,8 +709,8 @@
             success: function (result) {
                 $("#all tr").remove();
                 rowss = result.PageCount;
-                $.each(result.list, function (index, data) {
-                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.zt + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                $.each(result.DateList, function (index, data) {
+                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                 })
 
@@ -733,7 +734,7 @@
             success: function (result) {
                 $("#all tr").remove();
                 $.each(result, function (index, data) {
-                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.zt + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                 })
             },
@@ -941,7 +942,7 @@
         }
     }
 
-    //修改入库单的方法
+    //修改报损单的方法
     function rukugai(rid, typeid, cpid, time) {
 
         $.ajax({
@@ -951,6 +952,7 @@
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
+                alert(time);
                 if (result > 0) {
                     alert("修改成功");
                     layer.closeAll('page');

@@ -32,5 +32,6 @@ namespace MOD
         public virtual baosunType baosunType { get; set; }
         public virtual BSxiang BSxiang { get; set; }
         public virtual productguanli productguanli { get; set; }
+        public virtual rukuZT rukuZT { get; set; }
     }
 }

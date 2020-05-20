@@ -35,7 +35,7 @@
             <div class="layui-inline">
                 <div class="layui-input-inline">
                     <select id="modules" lay-verify="required" lay-search="" style="height:30px">
-                        <option value="">请选择入库单类型</option>
+                        <option value="">请选择报损单类型</option>
 
                     </select>
                 </div>
@@ -77,7 +77,7 @@
                 <td><input id="Checkbox1" type="checkbox" /></td>
                 <td>&nbsp;产品名称	</td>
                 <td>&nbsp;产品条码</td>
-                <td>&nbsp;产品编号	</td>
+                
                 <td>&nbsp;批次</td>
                 <td>&nbsp;报损数量</td>
                 <td>&nbsp;库位</td>
@@ -469,15 +469,15 @@
         var by2 = $("#kucun").val();
         var by3 = $("#rukutype option:selected").val();
         var by4 = $("#psum").val();
-        var pid = $("#Pid option:selected").val();
+        var pid = $("#Pid").val();
         var pguige = $("#Pguige").val();
         var price = $("#Pprice").val();
         var ppici = $("#Ppici").val();
         var zt = "0";
-        var s = "Pid:'" + pid + "',Pguige:'" + pguige + "',Pprice:'" + price + "',Ppici:'" + ppici + "',zt:'" + zt + "',by1:'" + by1 + "',by22:'" + by2 + "',by3:'" + by3 + "',by4:'" + by4 + "'";
+        var s = "Pid:'" + pid + "',Ptiaoma:'" + by1 + "',Pguige:'" + pguige + "',bspici:'" + ppici + "',zt:'" + zt + "',Pprice:'" + price + "',by22:'" + by2 + "',by3:'" + by3 + "',bsSum:'" + by4 + "'";
         $.ajax({
             type: "post",
-            url: "/NX/RKxiangadd",
+            url: "/NX/BSxiangadd",
             data: "{pd:{" + s + "}}",
             dataType: "json",
             contentType: "application/json",
@@ -498,7 +498,7 @@
     function T1cha() {
         $.ajax({
             type: "post",
-            url: "/NX/T1cha",
+            url: "/NX/bsT1cha",
             data: "",
             dataType: "json",
             contentType: "application/json",
@@ -506,7 +506,7 @@
                 $("#T1 tr").remove();
                 $.each(result, function (index, data) {
 
-                    $("#T1").append("<tr><td><input style='display:blook;' type='checkbox'></td><td>" + data.pname + "<input name='rxid' type='hidden' value='" + data.rxid + "' /></td><td>" + data.pid + "</td><td>" + data.pguige + "</td><td>" + data.ppici + "</td><td name='tprice'>" + data.price + "</td><td name='kucun'>" + data.psum + "</td><td name='zongjia'>" + data.total + "</td><td>" + data.kuwei + "</td><td><input id='del' type='button' value='删除' onclick='T1del(" + data.rxid + ")'/><input id='gai' type='button' value='修改' onclick='show3(" + data.rxid + ");' /></td></tr>");
+                    $("#T1").append("<tr><td><input style='display:blook;' type='checkbox'></td><td name='namedd'>" + data.pname + "<input name='rxid' type='hidden' value='" + data.rxid + "' /></td><td>" + data.pid + "</td><td>" + data.ppici + "</td><td name='kucun'>" + data.bssum + "</td><td>" + data.kuwei + "</td><td><input id='del' type='button' value='删除' onclick='T1del(" + data.rxid + ")'/><input id='gai' type='button' value='修改' onclick='show3(" + data.rxid + ");' /></td></tr>");
 
                 })
 
@@ -522,8 +522,8 @@
     function T1del(rxid) {
         $.ajax({
             type: "post",
-            url: "/NX/T1del",
-            data: "{rxid:'" + rxid + "'}",
+            url: "/NX/bsT1del",
+            data: "{rr:{bsID:'" + rxid + "',zt:'"+3+"'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
@@ -546,8 +546,8 @@
 
         $.ajax({
             type: "post",
-            url: "/NX/T1upd",
-            data: "{rk:{rxID:'" + rxid + "',by4:'" + kucun + "'}}",
+            url: "/NX/bsT1upd",
+            data: "{rk:{rxID:'" + rxid + "',bsSum:'" + kucun + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
@@ -577,19 +577,20 @@
         var userid = 4;
         var caozuofs = "电脑";
         var rxid = $("[name='rxid']").val();
-        var by1 = $("[name='kucun']").val();
+        var by1 = $("[name='kucun']").text();
         var time = $("[name='date']").val();
-        var s = "rid:'" + rid + "',rukuTypeID:'" + rukutype + "',gysID:'" + gysid + "',cpID:'" + cpid + "',price:'" + price + "',zt:'" + zt + "',UserID:'" + userid + "',createTime:'" + time + "',caozuofs:'" + caozuofs + "',rxID:'" + rxid + "',by1:'" + by1 + "'";
+       
+        var s = "baosunTypeID:'" + rukutype + "',gysID:'" + gysid + "',cpID:'" + cpid + "',price:'" + price + "',zt:'" + zt + "',UserID:'" + userid + "',createTime:'" + time + "',caozuofs:'" + caozuofs + "',rxID:'" + rxid + "',baosunSum:'" + by1 + "'";
         $.ajax({
             type: "post",
-            url: "/NX/T2add",
+            url: "/NX/bsT2add",
             data: "{rr:{" + s + "}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
                     T2ztupd(rxid);
-                    alert("入库成功");
+                    alert("报损新增成功");
                 }
 
             },
@@ -603,15 +604,15 @@
     function T2ztupd(rxid) {
         $.ajax({
             type: "post",
-            url: "/NX/T2ztupd",
-            data: "{rr:{rxid:'" + rxid + "',zt:'" + 1 + "'}}",
+            url: "/NX/bsT2ztupd",
+            data: "{rr:{bsID:'" + rxid + "',zt:'" + 1 + "'}}",
             dataType: "json",
             contentType: "application/json",
             success: function (result) {
                 if (result > 0) {
 
                     alert("状态修改成功");
-                    window.location.href = ('ruku');
+                    window.location.href = ('baosun');
                 }
 
             },

@@ -40,7 +40,6 @@ namespace MOD
         public Nullable<int> XID { get; set; }
         public Nullable<int> defaultstorage { get; set; }
         public Nullable<int> state { get; set; }
-        public string by1 { get; set; }
         public string by2 { get; set; }
         public Nullable<int> kucun { get; set; }
     

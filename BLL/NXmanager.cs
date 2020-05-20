@@ -335,6 +335,34 @@ namespace BLL
         {
             return NXdal.baosunchakanx(rxid);
         }
-       
+        //报损新增页面的第一层添加
+        public static int BSxiangadd(BSxiang pd)
+        {
+            return NXdal.BSxiangadd(pd);
+        }
+        //报损新增页面添加后查询所有状态为0的数据
+        public static IQueryable bsT1cha()
+        {
+            return NXdal.bsT1cha();
+        }
+        public static int bsT1del(BSxiang rr)
+        {
+            return NXdal.bsT1del(rr);
+        }
+        //报损新增页面第一次查询的修改数量
+        public static int bsT1upd(BSxiang rk)
+        {
+            return NXdal.bsT1upd(rk);
+        }
+        //报损新增页面-第二次添加
+        public static int bsT2add(baosun rr)
+        {
+            return NXdal.bsT2add(rr);
+        }
+        //报损新增页面-第二次添加时修改rkxiang表中的zt为1
+        public static int bsT2ztupd(BSxiang rzt)
+        {
+            return NXdal.bsT2ztupd(rzt);
+        }
         }
 }

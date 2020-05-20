@@ -721,7 +721,7 @@ namespace DAL
 
             NewHope4Entities context = new NewHope4Entities();
             var obj = from p in context.chuku
-                      where ckid == p.ckID
+                      where ckid == p.chukuID
                       select new
                       {
                           rukuid = p.chukuID,
@@ -932,8 +932,8 @@ namespace DAL
                           caozuofs = p.caozuofs,
                           time = p.createTime,
                           rxid = p.bsID,
-                          zt = p.zt
-
+                          zt = p.rukuZT.rzName,
+                          ztid=p.zt
                       };
             PageList fy = new PageList();
             fy.DateList = obj.Skip((pageIndex - 1) * pageSize).Take(pageSize);
@@ -1020,7 +1020,7 @@ namespace DAL
             // context.Configuration.ProxyCreationEnabled = false;
             return obj;
         }
-        //入库管理删除的方法（实际为修改状态为3起到隐藏效果）
+        //报损管理删除的方法（实际为修改状态为3起到隐藏效果）
         public static int baosundel(baosun rr)
         {
 
@@ -1118,5 +1118,71 @@ namespace DAL
                       };
             return obj;
         }
+        //报损新增页面的第一层添加
+        public static int BSxiangadd(BSxiang pd)
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            context.BSxiang.Add(pd);
+            return context.SaveChanges();
+
+        }
+        //报损新增页面添加后查询所有状态为0的数据
+        public static IQueryable bsT1cha()
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            var obj = from p in context.BSxiang
+                      where p.zt == 0
+                      select new
+                      {
+                          rxid = p.bsID,
+                          pname = p.Ptiaoma,
+                          pid = p.Pid,
+                          pguige = p.Pguige,
+                          ppici = p.bspici,
+                          price = p.Pprice,
+                          bssum = p.bsSum,
+                          kuwei = p.by3,
+                          total = p.bsSum * p.Pprice
+
+                      };
+            return obj;
+        }
+        public static int bsT1del(BSxiang rr)
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            BSxiang rd = context.BSxiang.Find(rr.bsID);
+            rd.zt = 3;
+            return context.SaveChanges();
+        }
+        //报损新增页面第一次查询的修改数量
+        public static int bsT1upd(BSxiang rk)
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            BSxiang ru = context.BSxiang.Find(rk.bsID);
+            ru.bsSum = rk.bsSum;
+            return context.SaveChanges();
+        }
+        //报损新增页面-第二次添加
+        public static int bsT2add(baosun rr)
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            context.baosun.Add(rr);
+            return context.SaveChanges();
+        }
+        //报损新增页面-第二次添加时修改rkxiang表中的zt为1
+        public static int bsT2ztupd(BSxiang rzt)
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            BSxiang rz = context.BSxiang.Find(rzt.bsID);
+            rz.zt = rzt.zt;
+            return context.SaveChanges();
+        }
+
     }
 }
