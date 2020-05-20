@@ -66,21 +66,21 @@
                     <span style="margin-left:30px">
                         用户编号&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID" readonly="readonly" placeholder="自动生成，不可填" />
                     </span>
-                    <span style="margin-left:44px">
-                        用户名&nbsp;&nbsp;&nbsp;<input type="text" name="UserName" />
+                    <span style="margin-left:59px">
+                        用户名<input type="text" name="UserName" />
                     </span>
                     <br />
                     <span style="margin-left:58px">
                         密码&nbsp;&nbsp;&nbsp;<input type="password" name="Userpwd1" placeholder="请输入密码" />
                     </span>
-                    <span style="margin-left:44px">
-                        确认密码&nbsp;&nbsp;&nbsp;<input type="password" name="Userpwd2" placeholder="请确认输入密码" />
+                    <span style="margin-left:59px">
+                        确认密码<input type="password" name="Userpwd2" placeholder="请确认输入密码" />
                     </span>
                     <br />
                     <span style="margin-left:58px">
                         真名&nbsp;&nbsp;&nbsp;<input type="text" name="Name" />
                     </span>
-                    <span style="margin-left:50px">
+                    <span style="margin-left:52px">
                         Email&nbsp;&nbsp;&nbsp;<input type="text" name="Email" />
                     </span>
                     <br />
@@ -113,13 +113,15 @@
                     <span style="margin-left:30px">
                         用户编号&nbsp;&nbsp;&nbsp;<input type="text" name="jueseID2" readonly="readonly" placeholder="自动生成，不可填" />
                     </span>
-                    <span style="margin-left:44px">
-                        用户名&nbsp;&nbsp;&nbsp;<input type="text" name="UserName2" />
+                    <br />
+                    <span style="margin-left:49px">
+                        用户名&nbsp;&nbsp;<input type="text" name="UserName2" />
                     </span>
                     <br />
                     <span style="margin-left:58px">
                         真名&nbsp;&nbsp;&nbsp;<input type="text" name="Name2" />
                     </span>
+                    <br />
                     <span style="margin-left:50px">
                         Email&nbsp;&nbsp;&nbsp;<input type="text" name="Email2" />
                     </span>
@@ -127,9 +129,6 @@
                     <span style="margin-left:58px">
                         电话&nbsp;&nbsp;&nbsp;<input type="text" name="Phone2" />
                     </span>
-                    @*<span style="margin-left:58px">
-                            手机&nbsp;&nbsp;&nbsp;<input type="text" name="beizhu" />
-                        </span>*@
                     <br />
                     <div class="layui-input-inline" style="margin-left:58px">
                         部门&nbsp;&nbsp; <select name="DId2" lay-verify="required" lay-search="">
@@ -242,14 +241,6 @@
     }
     //新增
     function xinzeng() {
-        //$("[name=UserName]").val().remove();
-        //$("[name=Userpwd1]").val(" ");
-        //$("[name=Userpwd2]").val(" ");
-        //$("[name=DId]").val("请选择部门");
-        //$("[name=RId]").val("请选择角色");
-        //$("[name=Name]").val(" ");
-        //$("[name=Email]").val(" ");
-        //$("[name=Phone]").val(" ");
         var mima = $("[name=Userpwd1]").val();
         var mima2 = $("[name=Userpwd2]").val();
         if (mima != mima2) {

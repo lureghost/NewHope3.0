@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using MOD;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace NewHope.Controllers
 {
@@ -116,6 +117,8 @@ namespace NewHope.Controllers
         }
         public ActionResult roleXinZeng(role r)
         {
+            r.CreationDate = DateTime.Now;
+            r.state = 0;
             return Json(ZZXmanager.roleXinZeng(r), JsonRequestBehavior.AllowGet);
         }
         public ActionResult roleShanChu(role r)
