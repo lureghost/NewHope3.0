@@ -410,5 +410,40 @@ namespace NewHope.Controllers
 
             return Json(NXmanager.baosunallsou(rukuid), JsonRequestBehavior.AllowGet);
         }
+        //报损添加的第一次添加
+        public ActionResult BSxiangadd(BSxiang pd) {
+
+            return Json(NXmanager.BSxiangadd(pd), JsonRequestBehavior.AllowGet);
+        }
+        //入库新增-查询第一次新增的数据
+        public ActionResult bsT1cha()
+        {
+
+            return Json(NXmanager.bsT1cha(), JsonRequestBehavior.AllowGet);
+        }
+        //报损新增-第一次查询的删除
+        public ActionResult bsT1del(BSxiang rr)
+        {
+
+            return Json(NXmanager.bsT1del(rr), JsonRequestBehavior.AllowGet);
+        }
+        //报损新增修改数量的方法
+        public ActionResult bsT1upd(BSxiang rk) {
+
+            return Json(NXmanager.bsT1upd(rk), JsonRequestBehavior.AllowGet);
+        }
+        //报损新增-第二次添加
+        public ActionResult bsT2add(baosun rr)
+        {
+
+            return Json(NXmanager.bsT2add(rr), JsonRequestBehavior.AllowGet);
+        }
+        //入库新增页面-第二次添加时修改rkxiang表中的zt为1
+        public ActionResult bsT2ztupd(BSxiang rr)
+        {
+
+            return Json(NXmanager.bsT2ztupd(rr), JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

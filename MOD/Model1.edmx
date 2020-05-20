@@ -59,11 +59,11 @@
           <Property Name="Pprice" Type="money" />
           <Property Name="bsSum" Type="int" />
           <Property Name="bspici" Type="int" />
+          <Property Name="zt" Type="int" />
           <Property Name="by1" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
           <Property Name="by4" Type="varchar" MaxLength="50" />
-          <Property Name="zt" Type="int" />
         </EntityType>
         <EntityType Name="chuku">
           <Key>
@@ -104,11 +104,10 @@
           <Property Name="ckpici" Type="int" />
           <Property Name="Tid" Type="int" />
           <Property Name="chuSum" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="50" />
+          <Property Name="zt" Type="int" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
-          <Property Name="by4" Type="int" />
-          <Property Name="zt" Type="int" />
+          <Property Name="by4" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -121,6 +120,7 @@
           <Property Name="CreationDate" Type="datetime" />
           <Property Name="state" Type="int" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="beiyong" Type="varchar" MaxLength="50" />
           <Property Name="beizhu" Type="varchar" MaxLength="50" />
           <Property Name="dizhiID" Type="int" />
         </EntityType>
@@ -190,11 +190,11 @@
           <Key>
             <PropertyRef Name="MID" />
           </Key>
-          <Property Name="MID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MName" Type="varchar" MaxLength="10" />
           <Property Name="state" Type="int" />
-          <Property Name="by2" Type="varchar" MaxLength="10" />
           <Property Name="CreationDate" Type="datetime" />
+          <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="menu">
           <Key>
@@ -282,9 +282,8 @@
           <Property Name="XID" Type="int" />
           <Property Name="defaultstorage" Type="int" />
           <Property Name="state" Type="int" />
-          <Property Name="by1" Type="varchar" MaxLength="10" />
-          <Property Name="by2" Type="varchar" MaxLength="10" />
           <Property Name="kucun" Type="int" />
+          <Property Name="by2" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="productType">
           <Key>
@@ -339,6 +338,7 @@
             <PropertyRef Name="rukuID" />
           </Key>
           <Property Name="rukuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rid" Type="int" />
           <Property Name="rukuTypeID" Type="int" />
           <Property Name="gysID" Type="int" />
           <Property Name="cpID" Type="varchar" MaxLength="50" />
@@ -352,7 +352,6 @@
           <Property Name="by4" Type="varchar" MaxLength="50" />
           <Property Name="by3" Type="varchar" MaxLength="50" />
           <Property Name="by2" Type="varchar" MaxLength="50" />
-          <Property Name="rid" Type="int" />
         </EntityType>
         <EntityType Name="rukuType">
           <Key>
@@ -545,15 +544,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_chuku_chukuType">
-          <End Role="chukuType" Type="Self.chukuType" Multiplicity="0..1" />
-          <End Role="chuku" Type="Self.chuku" Multiplicity="*" />
+        <Association Name="FK_baosun_rukuZT">
+          <End Role="rukuZT" Type="Self.rukuZT" Multiplicity="0..1" />
+          <End Role="baosun" Type="Self.baosun" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="chukuType">
-              <PropertyRef Name="chukuTypeID" />
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
             </Principal>
-            <Dependent Role="chuku">
-              <PropertyRef Name="chukuTypeID" />
+            <Dependent Role="baosun">
+              <PropertyRef Name="zt" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1139,9 +1138,9 @@
             <End Role="productguanli" EntitySet="productguanli" />
             <End Role="baosun" EntitySet="baosun" />
           </AssociationSet>
-          <AssociationSet Name="FK_chuku_chukuType" Association="Self.FK_chuku_chukuType">
-            <End Role="chukuType" EntitySet="chukuType" />
-            <End Role="chuku" EntitySet="chuku" />
+          <AssociationSet Name="FK_baosun_rukuZT" Association="Self.FK_baosun_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="baosun" EntitySet="baosun" />
           </AssociationSet>
           <AssociationSet Name="FK_CHUKU_REFERENCE_ADMIN" Association="Self.FK_CHUKU_REFERENCE_ADMIN">
             <End Role="Admin" EntitySet="Admin" />
@@ -1369,6 +1368,7 @@
           <NavigationProperty Name="baosunType" Relationship="Self.FK_BAOSUN_REFERENCE_BAOSUNTY" FromRole="baosun" ToRole="baosunType" />
           <NavigationProperty Name="BSxiang" Relationship="Self.FK_BAOSUN_REFERENCE_BSXIANG" FromRole="baosun" ToRole="BSxiang" />
           <NavigationProperty Name="productguanli" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="baosun" ToRole="productguanli" />
+          <NavigationProperty Name="rukuZT" Relationship="NewHope4Model.FK_baosun_rukuZT" FromRole="baosun" ToRole="rukuZT" />
         </EntityType>
         <EntityType Name="baosunType">
           <Key>
@@ -1443,10 +1443,9 @@
           <Property Name="ckpici" Type="Int32" />
           <Property Name="Tid" Type="Int32" />
           <Property Name="chuSum" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="by3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="by4" Type="Int32" />
+          <Property Name="by4" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="zt" Type="Int32" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_CHUKU_REFERENCE_CKXIANG" FromRole="CKxiang" ToRole="chuku" />
           <NavigationProperty Name="chukuType" Relationship="NewHope4Model.FK_CKxiang_chukuType" FromRole="CKxiang" ToRole="chukuType" />
@@ -1470,6 +1469,7 @@
           <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
           <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
           <NavigationProperty Name="yikuxq" Relationship="Self.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="yikuxq" />
+          <Property Name="beiyong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -1651,7 +1651,6 @@
           <Property Name="XID" Type="Int32" />
           <Property Name="defaultstorage" Type="Int32" />
           <Property Name="state" Type="Int32" />
-          <Property Name="by1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="by2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="kucun" Type="Int32" />
           <NavigationProperty Name="baosun" Relationship="Self.FK_BAOSUN_REFERENCE_PRODUCTG" FromRole="productguanli" ToRole="baosun" />
@@ -1764,6 +1763,7 @@
           <Property Name="rzName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="chuku" Relationship="Self.FK_chuku_rukuZT" FromRole="rukuZT" ToRole="chuku" />
           <NavigationProperty Name="ruku" Relationship="Self.FK_ruku_rukuZT" FromRole="rukuZT" ToRole="ruku" />
+          <NavigationProperty Name="baosun" Relationship="NewHope4Model.FK_baosun_rukuZT" FromRole="rukuZT" ToRole="baosun" />
         </EntityType>
         <EntityType Name="storage">
           <Key>
@@ -2718,6 +2718,10 @@
             <End Role="chukuType" EntitySet="chukuType" />
             <End Role="CKxiang" EntitySet="CKxiang" />
           </AssociationSet>
+          <AssociationSet Name="FK_baosun_rukuZT" Association="NewHope4Model.FK_baosun_rukuZT">
+            <End Role="rukuZT" EntitySet="rukuZT" />
+            <End Role="baosun" EntitySet="baosun" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_CKxiang_chukuType">
           <End Type="NewHope4Model.chukuType" Role="chukuType" Multiplicity="0..1" />
@@ -2728,6 +2732,18 @@
             </Principal>
             <Dependent Role="CKxiang">
               <PropertyRef Name="Tid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_baosun_rukuZT">
+          <End Type="NewHope4Model.rukuZT" Role="rukuZT" Multiplicity="0..1" />
+          <End Type="NewHope4Model.baosun" Role="baosun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rukuZT">
+              <PropertyRef Name="rzID" />
+            </Principal>
+            <Dependent Role="baosun">
+              <PropertyRef Name="zt" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2841,7 +2857,6 @@
                 <ScalarProperty Name="ckpici" ColumnName="ckpici" />
                 <ScalarProperty Name="Tid" ColumnName="Tid" />
                 <ScalarProperty Name="chuSum" ColumnName="chuSum" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
                 <ScalarProperty Name="by2" ColumnName="by2" />
                 <ScalarProperty Name="by3" ColumnName="by3" />
                 <ScalarProperty Name="by4" ColumnName="by4" />
@@ -2852,6 +2867,7 @@
           <EntitySetMapping Name="customer">
             <EntityTypeMapping TypeName="NewHope4Model.customer">
               <MappingFragment StoreEntitySet="customer">
+                <ScalarProperty Name="beiyong" ColumnName="beiyong" />
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
                 <ScalarProperty Name="KehuName" ColumnName="KehuName" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
@@ -3034,7 +3050,6 @@
                 <ScalarProperty Name="XID" ColumnName="XID" />
                 <ScalarProperty Name="defaultstorage" ColumnName="defaultstorage" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="by1" ColumnName="by1" />
                 <ScalarProperty Name="by2" ColumnName="by2" />
                 <ScalarProperty Name="kucun" ColumnName="kucun" />
               </MappingFragment>

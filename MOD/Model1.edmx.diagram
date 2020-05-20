@@ -93,6 +93,7 @@
         <AssociationConnector Association="NewHope4Model.FK_YIKU_REFERENCE_YIKUTYPE" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_YIKUXQ_REFERENCE_YIKUTYPE" ManuallyRouted="false" />
         <AssociationConnector Association="NewHope4Model.FK_CKxiang_chukuType" />
+        <AssociationConnector Association="NewHope4Model.FK_baosun_rukuZT" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
