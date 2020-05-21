@@ -1469,7 +1469,6 @@
           <NavigationProperty Name="productguanli" Relationship="Self.FK_PRODUCTG_REFERENCE_CUSTOMER" FromRole="customer" ToRole="productguanli" />
           <NavigationProperty Name="tuihuoxq" Relationship="Self.FK_TUIHUOXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="tuihuoxq" />
           <NavigationProperty Name="yikuxq" Relationship="Self.FK_YIKUXQ_REFERENCE_CUSTOMER" FromRole="customer" ToRole="yikuxq" />
-          <Property Name="beiyong" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -2867,7 +2866,6 @@
           <EntitySetMapping Name="customer">
             <EntityTypeMapping TypeName="NewHope4Model.customer">
               <MappingFragment StoreEntitySet="customer">
-                <ScalarProperty Name="beiyong" ColumnName="beiyong" />
                 <ScalarProperty Name="kehuID" ColumnName="kehuID" />
                 <ScalarProperty Name="KehuName" ColumnName="KehuName" />
                 <ScalarProperty Name="phone" ColumnName="phone" />

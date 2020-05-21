@@ -573,7 +573,7 @@
                     $("[name=xgysid] ").val(data.gysid);
                     $("[name=xcpid] ").val(data.cpid);
                     init_date = ConvertTime(data.time);
-                    alert(init_date);
+                    //alert(init_date);
                     //初始赋值
                     dd = init_date;
                     layui.use(['laydate'], function () {
@@ -727,7 +727,7 @@
                     pageSize = obj.limit;
                     chaall();
                 }
-            });
+            }); 
         });
         xgcpcha()
 
@@ -739,10 +739,10 @@
             var time = $("#test19").val();
 
             var cpid = $("[name=xcpid]").val();
-            alert("CPID=" + cpid);
-            alert("时间=" + time);
-            alert("入库类型编号=" + typeid);
-            alert("供应商id=" + gysid);
+            //alert("CPID=" + cpid);
+            //alert("时间=" + time);
+            //alert("入库类型编号=" + typeid);
+            //alert("供应商id=" + gysid);
             rukugai(rid, typeid, cpid, gysid, time);
 
 
