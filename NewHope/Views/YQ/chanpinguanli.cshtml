@@ -69,6 +69,7 @@
                         <th style="font-weight:bolder;">规格</th>
                         <th style="font-weight:bolder;">类别</th>
                         <th style="font-weight:bolder;">单位</th>
+                        <th style="font-weight:bolder;">库存</th>
                         <th style="font-weight:bolder;">描述</th>
                         <th style="font-weight:bolder;">操作</th>
                     </tr>
@@ -415,7 +416,7 @@
                 //获取总条数
                 pageCount = result.PageCount;
                 $.each(result.DateList, function (index, data) {
-                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.cpID + "'/></td><td>" + data.ID + "</td><td>" + data.cpID + "</td><td>" + data.cpName + "</td><td>" + data.upper + "</td><td>" + data.floor + "</td><td>" + data.price + "</td><td>" + data.specification + "</td><td>" + data.PNames + "</td><td>" + data.MNames + "</td><td>" + data.remark + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='chanpinguanlidel(" + data.cpID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.cpID + ")'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' data-id='" + data.cpID + "'/></td><td>" + data.ID + "</td><td>" + data.cpID + "</td><td>" + data.cpName + "</td><td>" + data.upper + "</td><td>" + data.floor + "</td><td>" + data.price + "</td><td>" + data.specification + "</td><td>" + data.PNames + "</td><td>" + data.MNames + "</td><td>" + data.kucun + "</td><td>" + data.remark + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='chanpinguanlidel(" + data.cpID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.cpID + ")'>编辑</button></td></tr>");
                 })
             },
         });
@@ -464,7 +465,7 @@
                 //获取总条数
                 //pageCount = result.PageCount;
                 $.each(result, function (index, data) {
-                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' /></td><td>" + data.ID + "</td><td>" + data.cpID + "</td><td>" + data.cpName + "</td><td>" + data.upper + "</td><td>" + data.floor + "</td><td>" + data.price + "</td><td>" + data.specification + "</td><td>" + data.PNames + "</td><td>" + data.MNames + "</td><td>" + data.remark + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='chanpinlbdel(" + data.ID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.ID + ")'>编辑</button></td></tr>");
+                    $("#tb1").append("<tr><td><input type='checkbox' name='checkbox' class='check' /></td><td>" + data.ID + "</td><td>" + data.cpID + "</td><td>" + data.cpName + "</td><td>" + data.upper + "</td><td>" + data.floor + "</td><td>" + data.price + "</td><td>" + data.specification + "</td><td>" + data.PNames + "</td><td>" + data.MNames + "</td><td>" + data.kucun + "</td><td>" + data.remark + "</td><td><input id='Button1' class='btn btn- success' type='button' value='删除'  onclick='chanpinlbdel(" + data.ID + ")'  /><button class='layui-btn layui-btn -primary layui-btn-sm' onclick='show2(" + data.ID + ")'>编辑</button></td></tr>");
                 })
             },
         });
