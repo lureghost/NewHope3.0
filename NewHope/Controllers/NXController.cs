@@ -438,12 +438,23 @@ namespace NewHope.Controllers
 
             return Json(NXmanager.bsT2add(rr), JsonRequestBehavior.AllowGet);
         }
-        //入库新增页面-第二次添加时修改rkxiang表中的zt为1
+        //报损新增页面-第二次添加时修改rkxiang表中的zt为1
         public ActionResult bsT2ztupd(BSxiang rr)
         {
 
             return Json(NXmanager.bsT2ztupd(rr), JsonRequestBehavior.AllowGet);
 
+        }
+
+        //入库审核改变产品列表库存的方法
+        public ActionResult rukuSH(string rr, int count) {
+
+            return Json(NXmanager.rukuSH(rr, count), JsonRequestBehavior.AllowGet);
+        }
+        //出库，报损审核更改产品列表库存的方法
+        public ActionResult CBSH(string rr, int count) {
+
+            return Json(NXmanager.CBSH(rr, count), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -364,5 +364,15 @@ namespace BLL
         {
             return NXdal.bsT2ztupd(rzt);
         }
+        //入库审核成功后修改产品管理表的库存
+        public static int rukuSH(string rr, int count)
+        {
+            return NXdal.rukuSH(rr, count);
+        }
+        //出库,报损审核成功后修改产品管理表的库存
+        public static int CBSH(string rr, int count)
+        {
+            return NXdal.CBSH(rr, count);
+        }
         }
 }

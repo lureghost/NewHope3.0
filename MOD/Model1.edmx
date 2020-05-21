@@ -96,7 +96,7 @@
           <Key>
             <PropertyRef Name="ckID" />
           </Key>
-          <Property Name="ckID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ckID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Pid" Type="int" />
           <Property Name="Ptiaoma" Type="varchar" MaxLength="50" />
           <Property Name="Pguige" Type="varchar" MaxLength="50" />

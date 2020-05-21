@@ -710,7 +710,7 @@
                 $("#all tr").remove();
                 rowss = result.PageCount;
                 $.each(result.DateList, function (index, data) {
-                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td name='kucun'>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input class='layui-btn layui-btn-primary layui-btn-sm' name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + "," + data.cpid + "," + data.sum + ")' /><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                 })
 
@@ -734,7 +734,7 @@
             success: function (result) {
                 $("#all tr").remove();
                 $.each(result, function (index, data) {
-                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                    $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input class='layui-btn layui-btn-primary layui-btn-sm' name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                 })
             },
@@ -780,7 +780,7 @@
                 $("#all tr").remove();
                 if (result != null) {
                     $.each(result, function (index, data) {
-                        $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.gysname + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.price + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /></td></tr>");
+                        $("#all").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input class='layui-btn layui-btn-primary layui-btn-sm' name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                     })
                 }
@@ -807,7 +807,7 @@
             success: function (result) {
                 $("#dai tr").remove();
                 $.each(result, function (index, data) {
-                    $("#dai").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                    $("#dai").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input class='layui-btn layui-btn-primary layui-btn-sm' name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                 })
             },
@@ -827,7 +827,7 @@
             success: function (result) {
                 $("#tong tr").remove();
                 $.each(result, function (index, data) {
-                    $("#tong").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");chaxiang(" + data.rxid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
+                    $("#tong").append("<tr><td><input id='Checkbox1' type='checkbox' /> <input style='display:blook;' type='checkbox' name='check'><td>&nbsp;" + data.rukuid + "</td><td>&nbsp;" + data.rukuType + "</td><td>&nbsp;" + data.cpid + "</td><td>&nbsp;" + data.sum + "</td><td>&nbsp;" + data.zt + "</td><td>&nbsp;" + data.userid + "</td><td>&nbsp;" + data.caozuofs + "</td><td>&nbsp;" + ConvertTime2(data.time) + "</td><td><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='删除' onclick='shanchu(" + data.rukuid + ")'/><input class='layui-btn layui-btn-primary layui-btn-sm' name='kan' type='button' value='查看' onclick='show3(" + data.rukuid + ");shenghe(" + data.rukuid + "," + data.ztid + ")' /><input class='layui-btn layui-btn-primary layui-btn-sm' name='del' type='button' value='修改' onclick='show4(" + data.rukuid + ")'/></td></tr>");
 
                 })
             },
@@ -882,7 +882,7 @@
     }
 
     //审核的方法
-    function shenghe(rid, zt) {
+    function shenghe(rid, zt,cpid,count) {
 
         var ztid = zt;
         if (ztid == 2) {
@@ -903,9 +903,25 @@
                     contentType: "application/json",
                     success: function (result) {
                         if (result > 0) {
-                            alert("审核成功");
-                            layer.closeAll('page');
-                            chaall();
+                            //修改产品表的库存
+                            $.ajax({
+                                type: "post",
+                                url: "/NX/CBSH",
+                                data: "{rr:'" + cpid + "',count:'" + count + "'}",
+                                dataType: "json",
+                                contentType: "application/json",
+                                success: function (result) {
+
+                                    if (result > 0) {
+                                        alert("审核成功");
+                                        layer.closeAll('page');
+                                        chaall();
+                                    }
+                                },
+                                error: function (ex) {
+                                    alert(ex.responseText);
+                                }
+                            });
                         }
                         else {
                             alert(rid);

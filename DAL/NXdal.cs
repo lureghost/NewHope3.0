@@ -712,6 +712,7 @@ namespace DAL
                           psum = p.chuSum,
                           kuwei = p.chukuType.chukuTypeName,
                           total = p.chuSum * p.Pprice
+                          
                       };
             return obj;
         }
@@ -1182,6 +1183,26 @@ namespace DAL
             BSxiang rz = context.BSxiang.Find(rzt.bsID);
             rz.zt = rzt.zt;
             return context.SaveChanges();
+        }
+
+        //入库审核成功后修改产品管理表的库存
+        public static int rukuSH(string rr,int count) {
+
+            NewHope4Entities context = new NewHope4Entities();
+            productguanli obj = (from p in context.productguanli where p.cpID == rr select p).First();
+            obj.kucun += count;
+            return context.SaveChanges();   
+
+        }
+        //出库,报损审核成功后修改产品管理表的库存
+        public static int CBSH(string rr, int count)
+        {
+
+            NewHope4Entities context = new NewHope4Entities();
+            productguanli obj = (from p in context.productguanli where p.cpID == rr select p).First();
+            obj.kucun -= count;
+            return context.SaveChanges();
+
         }
 
     }
