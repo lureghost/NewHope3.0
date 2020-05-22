@@ -289,7 +289,8 @@ namespace DAL
                           remark = p.remark,//备注
                           KehuNames = p.customer.KehuName,//客户
                           WNames = p.warehouse.WName,//默认仓库
-                          KuNames = p.KuType.KuName//默认库位
+                          KuNames = p.KuType.KuName,//默认库位
+                          kucun=p.kucun
                           /* XID = p.XID,*///
                           //p.state,
                       };
@@ -343,7 +344,8 @@ namespace DAL
                           remark = p.remark,//备注
                           KehuNames = p.customer.KehuName,//客户
                           WNames = p.warehouse.WName,//默认仓库
-                          KuNames = p.KuType.KuName//默认库位
+                          KuNames = p.KuType.KuName,//默认库位
+                          kucun = p.kucun
                       };
             if (cpID != null || cpName != null)
             {
