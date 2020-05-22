@@ -12,7 +12,7 @@
     <link href="~/layui/css/layui.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/layui/layui.js" charset="utf-8"></script>
-    @*<script src="~/layui/layui.all.js"></script>*@
+    @*@<script src="~/layui/layui.all.js"></script>*@
     <link href="~/layui/bootstrap-theme.min.css" rel="stylesheet" />
 </head>
 <body>
@@ -56,8 +56,8 @@
 
                 @*菜单栏的div*@
                 <div style="float:left;">
-                    <ul id="ui1" class="layui-nav layui-nav-tree layui-inline layui-show" lay-filter="demo" style="margin-right: 10px;">
-                        <li class="layui-nav-item layui-nav-itemed">
+                    <ul id="ui1" class="layui-nav layui-nav-tree layui-inline layui-show" lay-filter="demo" >
+                        @*<li class="layui-nav-item layui-nav-itemed">
                             <a href="javascript:;">系统设置</a>
                             <dl class="layui-nav-child ">
                                 <dd><a href="/ZZX/yuangong">员工管理</a></dd>
@@ -99,12 +99,12 @@
                         </li>
                         <li class="layui-nav-item layui-nav-itemed">
                             <a href="javascript:;">退出系统</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
 
                 @*子页面的div*@
-                <div style="float:left; width:1680px">
+                <div style="float:left;">
                     @RenderBody()
 
                 </div>

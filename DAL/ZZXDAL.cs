@@ -195,7 +195,6 @@ namespace DAL
             NewHope4Entities ent = new NewHope4Entities();
             var obj = ent.Admin.Find(id);
             obj.state = 1;
-            ent.Admin.Remove(obj);
             return ent.SaveChanges();
         }
         //模糊查询
@@ -279,8 +278,7 @@ namespace DAL
         public static int roleXinZeng(role r)
         {
             NewHope4Entities ent = new NewHope4Entities();
-            r.CreationDate = DateTime.Now;
-            r.state = 0;
+            
             ent.role.Add(r);
             return ent.SaveChanges();
         }

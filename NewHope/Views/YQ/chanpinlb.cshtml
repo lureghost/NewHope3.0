@@ -19,11 +19,13 @@
 
 </div>
 <div class="layui-col-md12">
-    <div class="layui-card" style="margin:0px;padding:0px;">
+    <div class="layui-card" style="margin:0px;padding:0px;width:1300px;">
         <div class="layui-card-header" >
             <p style="font-weight:bolder"><span class="glyphicon glyphicon-globe"></span>产品类别</p>
             <div style="height:30px;float:right;margin-top:-53px;">
-                <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#006dcc" onclick="show()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
+                <button href="#" class="layui-btn layui-btn-normal" style="        height: 30px;
+        border-radius: 6px;
+        background-color: #006dcc" onclick="show()"><span class="glyphicon glyphicon-pencil"></span> 新增</button>
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#da4f49" onclick="you()"><span class="glyphicon glyphicon-trash"></span>  删除</button>
                 <button href="#" class="layui-btn layui-btn-normal" style="height:30px;border-radius:6px;background-color:#49afcd"><span class="glyphicon glyphicon-download"></span>  导出</button>
             </div>
@@ -75,16 +77,17 @@
                 <span style="margin-left:30px">名称&nbsp;&nbsp;<input type="text" name="PName" placeholder="请输入类别名称" /></span>
                 <br />
                 <br />
-                <span style="margin-left:30px">备注&nbsp;&nbsp;<input type="text" name="remark" placeholder="" /></span>
+                <span style="margin-left:30px">备注&nbsp;&nbsp;<input type="text" name="remark" placeholder="" /></span> <br />
+                <br />
                 @*<div class="layui-input-inline" style="margin-left:30px">
-                供应商类型&nbsp;&nbsp;
-                <select name="quiz3">
-                    <option value="">请选择</option>
-                    <option value="产品仓库">虚拟供应商</option>
-                    <option value="产品仓库">合作供应商</option>
-                </select>
-            </div>*@
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:250px;" onclick="chanpinlbadd()">确定</button>
+            供应商类型&nbsp;&nbsp;
+            <select name="quiz3">
+                <option value="">请选择</option>
+                <option value="产品仓库">虚拟供应商</option>
+                <option value="产品仓库">合作供应商</option>
+            </select>
+        </div>*@
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:80px" onclick="chanpinlbadd()">确定</button>
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="" id="guanbi" onclick="guan()">关闭</button>
 
             </div>
@@ -98,6 +101,7 @@
                 <br />
                 <br />
                 <span style="margin-left:30px">备注&nbsp;&nbsp;<input type="text" name="remark2" id="remark2" placeholder="" /></span>
+                <br /><br />
                 @*<div class="layui-input-inline" style="margin-left:30px">
                 供应商类型&nbsp;&nbsp;
                 <select name="quiz3">
@@ -106,7 +110,7 @@
                     <option value="产品仓库">合作供应商</option>
                 </select>
             </div>*@
-                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:250px;" onclick="chanpinlbupdate()">确定</button>
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="margin-left:80px" onclick="chanpinlbupdate()">确定</button>
                 <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="" id="guanbi2" onclick="guan2()">关闭</button>
 
             </div>

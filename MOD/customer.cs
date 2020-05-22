@@ -33,7 +33,6 @@ namespace MOD
         public string Email { get; set; }
         public string beizhu { get; set; }
         public Nullable<int> dizhiID { get; set; }
-        public string beiyong { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chuku> chuku { get; set; }
